@@ -1,0 +1,100 @@
+% microtypography
+\usepackage{microtype}
+
+% bibliography
+\usepackage[backend=biber, style=alphabetic, dateabbrev=false, urldate=long]{biblatex}
+
+% the file containing the references for biblatex
+\bibliography{references.bib}
+% no unplaned surprises with \cite
+\DeclareFieldFormat{postnote}{#1}
+\DeclareFieldFormat{multipostnote}{#1}
+
+% showing examples with output
+\usepackage{showexpl}
+
+% configure list environments
+\usepackage{enumitem}
+
+% more control about tables
+\usepackage{multirow}
+
+% mathematical things
+\usepackage{mathtools}
+\usepackage{amssymb}
+
+% ugly fractions
+\usepackage{faktor}
+
+% commutative diagram
+\usepackage{tikz-cd}
+
+% TeX related logos
+\usepackage{hologo}
+
+% loading different languages
+% all used languages must be loaded, the standard one last
+\usepackage[british, ngerman, french, american]{babel}
+
+% quotation marks
+\usepackage[babel = true]{csquotes}
+
+% changing the font for code examples
+% showexpl uses the listings package, so changin the font is done using the listing package
+\usepackage{fontspec}
+\newfontfamily\listingsfont{DejaVu Sans Mono}
+\setmonofont[Scale=MatchLowercase]{DejaVu Sans Mono}
+% for proper fontsize
+\sbox0{\footnotesize\listingsfont A}
+\edef\mybasewidth{\the\wd0}
+% proper indentation for new paragraphs
+\newlength{\parindentsave}
+\AtBeginDocument{\setlength{\parindentsave}{\parindent}}
+\lstset{%
+  numbers           = left,
+  xleftmargin       = 1em,
+  numbersep         = 2pt,
+  numberstyle       = \tiny,
+  basicstyle        = \footnotesize\listingsfont,
+  columns           = fixed,
+  basewidth         = \mybasewidth,
+  breaklines        = true,
+  breakatwhitespace = true,
+  breakindent       = 0pt,
+  preset=\setlength{\parindent}{\parindentsave}
+}
+
+% referencing
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks,
+    linkcolor={magenta},
+    citecolor={magenta},
+    urlcolor={magenta}
+}
+\usepackage[capitalise,noabbrev]{cleveref}
+
+% theorem like environments
+\usepackage{amsthm}
+\newtheorem{theorem}{Theorem}
+
+% prevents breaking inline math around binary or relationship symbols
+\binoppenalty=\maxdimen
+\relpenalty=\maxdimen
+
+% no subsections in the toc
+\setcounter{tocdepth}{2}
+
+\newcommand{\commandtt}[1]{\texttt{{\textbackslash}#1}}
+
+\DeclareMathOperator*{\colim}{colim}
+\DeclareMathOperator{\lcm}{lcm}
+
+\newcommand{\Acat}{\mathcal{A}}
+\newcommand{\Ccat}{\mathcal{C}}
+\newcommand{\glie}{\mathfrak{g}}
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\Mod}{Mod}
+\newcommand{\Real}{\mathbb{R}}
+\DeclareMathOperator{\Univ}{U}
+\DeclareMathOperator{\Word}{Word}

@@ -1,8 +1,8 @@
-\documentclass[a4paper,10pt,abstract=on]{scrartcl}
+\documentclass[a4paper, 10pt, abstract=on, headings=standardclasses]{scrartcl}
 
-\usepackage{showexpl}
+\usepackage{stylesheet}
 
-\title{Some Thoughts About Mathematical~Typesetting}
+\title{Some Thoughts About Writing~\LaTeX}
 \author{Jendrik Stelzner}
 \date{\today}
   
@@ -12,9 +12,1647 @@
 \maketitle
 
 \begin{abstract}
-  The author presents some thoughts about what to (not) do in mathematical typesetting using \LaTeX.
+  The author presents some thoughts about what (not) to do in mathematical typesetting using \LaTeX.
   Examples are provided using the \texttt{showexpl} package.
+  This text is not intended as a first introduction to \LaTeX.
+  Some of the following remarks are subject to individual taste, but many are simply the correct way to do things.
+  Many of the following rules have exceptions.
 \end{abstract}
+
+\tableofcontents
+
+
+
+
+
+\section{Use version control}
+
+Use some kind of sensible version control for your code.
+The author uses Git but has also heard good things about Mercurial.
+Sending the code to yourself on facebook is not a proper system for version control.
+
+
+
+
+
+\section{Use \hologo{LuaLaTeX} and \hologo{XeLaTeX}}
+
+Use \hologo{LuaLaTeX} or \hologo{XeLaTeX} for native unicode support (i.e.\ without including any kind of additional packages).
+The author prefers \hologo{LuaLaTeX} because \hologo{XeLaTeX} only offers limited functionality for the \texttt{microtype} package.
+
+
+
+
+
+\section{Use KOMA classes}
+
+Instead of the standard classes \texttt{article}, \texttt{report} and \texttt{book} use the more modern KOMA-Script classes \texttt{scrartcl}, \texttt{scrreprt} and \texttt{scrbook}.
+They provide more functionalities then the standard classes.
+If you don’t like the standard headings style of the KOMA-Script classes then you can use the option \texttt{headings = standardclasses} to get the style of the standard classes.
+
+
+
+
+
+\section{Package: \texttt{microtype}}
+
+Use the \texttt{microtype} package.
+It makes your document look nicer and can help you circumvent overfull hboxes.
+
+
+
+
+
+\section{Package: \texttt{mathtools}}
+
+The \texttt{amsmath} package is standard for most mathematical typesetting (nowadays).
+The \texttt{mathtools} package is an extension of the \texttt{amsmath} package that fixes some of its problems and also provides some new (and often times very useful) functionalities.
+The \texttt{mathtools} package automatically loads the \texttt{amsmath} package too, so instead \commandtt{usepackage\{amsmath\}} just use \commandtt{usepackage\{mathtools\}}.
+
+
+
+
+
+\section{Package: \texttt{csquotes}}
+
+Dealing with quotations marks by hand can be a pain in the ass, for at least two reasons:
+Different languages use different kinds of quotation marks, and finding the right combination of \LaTeX code to get the correct ones can be a non-trivial problem.
+One way to circumvent this probem is by using the \texttt{csquotes} package, which provides the command \texttt{enquote}:
+\begin{LTXexample}[pos = r]
+  \enquote{This is a quote.}
+\end{LTXexample}
+When a different languge is loaded using \texttt{babel}, then the the option \texttt{babel=true} tells \texttt{csquotes} to use the correct quotation marks for the specified language:
+\begin{LTXexample}[pos=r]
+  % american english
+  \selectlanguage{american}
+  \enquote{quote}
+  % british english
+  \selectlanguage{british}
+  \enquote{quotation}
+  % german
+  \selectlanguage{ngerman}
+  \enquote{Zitat}
+  % french
+  \selectlanguage{french}
+  \enquote{citation}
+\end{LTXexample}
+The \texttt{csquotes} command automatically handels nested quotation marks:
+\begin{LTXexample}[pos = r]
+  \enquote{This is a \enquote{quote} inside a quote.}
+\end{LTXexample}
+So for dealing with quotes of any kind use the \texttt{csquotes} package.
+
+
+
+
+
+\section{Package: \texttt{enumitem}}
+
+\LaTeX provides three different kinds of list environments:
+Numbered lists are provided by the \texttt{enumerate} environment.
+\begin{LTXexample}[pos = r]
+  \begin{enumerate}
+    \item
+      Annahme
+    \item
+      ???
+    \item
+      Widerspruch
+  \end{enumerate}
+\end{LTXexample}
+Unnumbered lists ar provided by the \texttt{itemize} environment.
+\begin{LTXexample}[pos = r]
+  \begin{itemize}
+    \item
+      This is a list item.
+    \item
+      This is also a list item.
+    \item
+      And yet another list item.
+  \end{itemize}
+\end{LTXexample}
+The \texttt{decription} uses no predefined symbols for the list items and instead expects a descriptive text from the author.
+\begin{LTXexample}[pos = r]
+  \begin{description}
+    \item[Field]
+      A ring in which every nonzero element has an inverse.
+    \item[Vector space]
+      A module over a field.
+    \item[Ring]
+      A ring without inverses.
+    \item[Module]
+      A vector space over a ring.
+  \end{description}
+\end{LTXexample}
+
+The package \texttt{enumitem} is immensely usefull to configure the style of these lists.
+It provides (among others) the following features:
+\begin{itemize}
+  \item
+    For \texttt{enumerate} environments the style of the numbering can be changed.
+    \begin{LTXexample}[pos = r]
+      \begin{enumerate}[label = (\alph*)]
+        \item
+          First entry.
+        \item
+          Second entry.
+        \item
+          Third entry.
+      \end{enumerate}
+    \end{LTXexample}
+    One has the following options:
+    \begin{center}
+      \begin{tabular}{ll}
+        \commandtt{alph*}
+        &
+        lower case alphabetic
+        \\
+        \commandtt{Alph*}
+        &
+        upper case alphabetic
+        \\
+        \commandtt{roman*}
+        &
+        lower case roman
+        \\
+        \commandtt{Roman*}
+        &
+        upper case roman
+        \\
+        \commandtt{arabic*}
+        &
+        usual numbers
+      \end{tabular}
+    \end{center}
+    One can similarly change the symbol for \texttt{itemize} lists:
+    \begin{LTXexample}[pos = b]
+      With the \commandtt{textbullet} symbol:
+      \begin{itemize}[label = {\textbullet}]
+        \item
+          First entry.
+        \item
+          Second entry.
+      \end{itemize}
+      With the \commandtt{textopenbullet} symbol:
+      \begin{itemize}[label = {\textopenbullet}]
+        \item
+          First entry again.
+        \item
+          Second entry again.
+      \end{itemize}
+    \end{LTXexample}
+  \item
+    One can resume lists:
+    \begin{LTXexample}[pos = r]
+      Some text before the first \texttt{enumerate} environment.
+      \begin{enumerate}
+        \item
+          First entry.
+        \item
+          Second entry.
+      \end{enumerate}
+      Some text that breaks the \texttt{enumerate} environment.
+      \begin{enumerate}[resume]
+        \item
+          Third entry.
+        \item
+          Fourth entry.
+      \end{enumerate}
+      Some text after the second \texttt{enumerate} environment.
+    \end{LTXexample}
+  \item
+    One can change the various spacings involved in the list environments.
+  \item
+    Gobal settings can be set:
+    \begin{LTXexample}[pos = r]
+      \setlist[enumerate]{label = \roman*)}
+      \begin{enumerate}
+        \item
+          First entry.
+        \item
+          Second entry.
+      \end{enumerate}
+    \end{LTXexample}
+  \item
+    One can use different settings for different levels of nestedness:
+    \begin{LTXexample}[pos = b]
+      \begin{enumerate}[label = \Roman*]
+        \item
+          First entry.
+          \begin{enumerate}[label = \alph*]
+            \item
+              First entry, first subentry.
+            \item
+              First entry, second subentry.
+          \end{enumerate}
+        \item
+          Second entry.
+          \begin{enumerate}[label = \arabic*]
+            \item
+              Second entry, first subentry.
+            \item
+              Second entry, second subentry.
+          \end{enumerate}
+      \end{enumerate}
+    \end{LTXexample}
+    One can also use different global settings for different depths:
+    \begin{LTXexample}[pos = b]
+      \setlist[enumerate, 1]{label = (\roman*)}
+      \setlist[enumerate, 2]{label = (\alph*)}
+      \begin{enumerate}
+        \item
+          First entry.
+          \begin{enumerate}
+            \item
+              First entry, first subentry.
+            \item
+              First entry, second subentry.
+          \end{enumerate}
+        \item
+          Second entry.
+          \begin{enumerate}
+            \item
+              Second entry, first subentry.
+            \item
+              Second entry, second subentry.
+          \end{enumerate}
+      \end{enumerate}
+    \end{LTXexample}
+    The counter of the first depth and second depth can be accessed via \texttt{enumi} and \texttt{enumii}: 
+    \begin{LTXexample}[pos = b]
+      \setlist[enumerate, 1]{label = (\arabic*)}
+      \setlist[enumerate, 2]{label = (\arabic{enumi}.\alph*)}
+      \begin{enumerate}
+        \item
+          An entry.
+          \begin{enumerate}
+            \item
+              Again an entry.
+            \item
+              Again an entry.
+          \end{enumerate}
+        \item
+          Another entry.
+          \begin{enumerate}
+            \item
+              Yet another entry.
+            \item
+              Yet another entry.
+          \end{enumerate}
+      \end{enumerate}
+    \end{LTXexample}
+  \item
+    When a certain list formatting is used repeatedly for lists with the same purpose then one should created a cloned version of this list:
+    \begin{LTXexample}[pos = b]
+      % clone enumerate as equivalenceslist, allowing up to 2 levels
+      \newlist{equivalenceslist}{enumerate}{2}
+      % set the formatting
+      \setlist[equivalenceslist,1]{label = (\roman*)}
+      \setlist[equivalenceslist,2]{label = (\alph*), leftmargin = *}
+      % an example
+      For elements $x_1, \dotsc, x_n$ of a module $M$ the following conditions are equivalent:
+      \begin{equivalenceslist}
+        \item
+          For every other module $N$ and every choice of elements $y_1, \dotsc, y_n \in N$ there exists a unique module homomorphism $f \colon M \to N$ with $f(x_i) = y_i$ for every $i = 1, \dotsc, n$.
+        \item
+          The elements $x_1, \dotsc, x_n$ are a basis of $M$, i.e.
+          \begin{equivalenceslist}
+            \item
+              the elements $x_1, \dotsc, x_n$ are linearly independent, and
+            \item
+              the elements $x_1, \dotsc, x_n$ are a generating set of $M$.
+          \end{equivalenceslist}
+      \end{equivalenceslist}
+    \end{LTXexample}
+\end{itemize}
+
+
+
+
+
+\section{Use macros and commands}
+
+Use the predefined mathematical operators:
+
+\begin{center}
+  \begin{tabular}{lclc}
+    \multicolumn{2}{c}{Do}
+    &
+    \multicolumn{2}{c}{Don’t}
+    \\
+    command
+    &
+    output
+    &
+    command
+    &
+    output
+    \\
+    \hline\hline
+    \texttt{{\textbackslash}dim V}
+    &
+    $\dim V$
+    &
+    \texttt{dim V}
+    &
+    $dim V$
+    \\
+    \texttt{{\textbackslash}lim\_\{n {\textbackslash}to {\textbackslash}infty\} a\_n}
+    &
+    $\lim_{n \to \infty} a_n$
+    &
+    \texttt{lim\_\{n {\textbackslash}to {\textbackslash}infty\} a\_n}
+    &
+    $lim_{n \to \infty} a_n$
+  \end{tabular}
+\end{center}
+New commands can be defined in various ways:
+
+
+
+\subsection{\texttt{DeclareMathOperator}}
+
+Commands of the form \commandtt{Word} that give the output $\Word$ can easily be defined using \commandtt{DeclareMathOperator}.
+To define the command \commandtt{Hom} we can use the following:
+\begin{lstlisting}
+  \DeclareMathOperator{\Hom}{Hom}
+\end{lstlisting}
+The command \commandtt{Hom} can then be used in the usual way:
+\begin{LTXexample}[pos = b]
+  Thus $\Hom(V,W) = \Hom_k(V,W)$ becomes a vector space.
+\end{LTXexample}
+
+
+
+\subsection{\commandtt{operatorname}}
+
+The command \commandtt{operatorname} can be used without defining a completely new operator:
+\begin{LTXexample}[pos = b]
+  Thus $\operatorname{Hom}(V,W) = \operatorname{Hom}_k(V,W)$ becomes a vector space.
+\end{LTXexample}
+If the same command is used multiple times then one should use \commandtt{DeclareMathOperator} instead of \commandtt{operatorname}, as \commandtt{Word} easier to write and read then \commandtt{operatorname{Word}}, and keeps the code clean.
+
+
+
+\subsection{Don’t: \commandtt{mathrm}}
+
+One should not \commandtt{mathrm} instead of \commandtt{operatorname}.
+With \commandtt{operatorname} we get necessary spacing when not using parentheses, which does not happen when using \commandtt{mathrm}.
+\begin{LTXexample}[pos = r]
+  Compare $\operatorname{End} V$ to $\mathrm{End} V$.
+\end{LTXexample}
+
+
+
+
+
+\subsection{\commandtt{newcommand}}
+
+A general way of defining now commands is given by \commandtt{newcommand}.
+Its syntax is as follows:
+\begin{lstlisting}
+  \newcommand{\name}[n]{something #1 something #2 ... something #n}
+\end{lstlisting}
+Here \texttt{n} is the number of arguments that the command takes.
+The arguments can be accessed as \texttt{\#1}, \texttt{\#2}, etc., where \texttt{\#i} is the $i$-th argument.
+Consider the following example:
+\begin{LTXexample}[pos = b]
+  \newcommand{\bimodule}[2]{#1-#2-bimodule}
+  Let $M$ be a \bimodule{$A$}{$B$}.
+\end{LTXexample}
+One may think about \commandtt{DeclareMathOperator} as a combination of \commandtt{newcommand} and \commandtt{operatorname}:
+\begin{LTXexample}[pos = b]
+  \newcommand{\End}{\operatorname{End}}
+  $\End V$
+\end{LTXexample}
+
+When trying to define an already existing command with \commandtt{newcommand} one gets an error.
+One can use the related command \commandtt{renewcommand} to overwrite an already existing command.
+But this shouldn’t really be used (unles you really, \emph{really} know what you’re doing):
+Even if you don’t like a particular command there is a chance that some package that you’re using relies on it.
+So overwriting a command can easily surprise you with some new problems.
+
+
+
+\subsection{Package: \texttt{xparse}}
+
+A useful way for defining more involved macros is the \texttt{xparse} package.
+This package provides the \commandtt{NewDocumentCommand} command, which can be used to define new commands.
+The syntax of \commandtt{NewDocumentCommand} is as follows:
+\begin{lstlisting}
+  \NewDocumentCommand{\name}{arguments}{definition}
+\end{lstlisting}
+Instead of giving the number of arguments (as done for \commandtt{newcommand}) we say what kind of arguments will be given.
+There are four possible kinds of argument:
+\begin{itemize}
+  \item
+    \texttt{s} if a starred version of the argument should also be defined,
+  \item
+    \texttt{o} for optional arguments,
+  \item
+    \texttt{O} for optional arguments that admit a default value
+  \item 
+    \texttt{m} for mandatory arguments.
+\end{itemize}
+Mandatory arguments are given in curly brackets \texttt{\{ \}} and optional arguments are given in square brackets \texttt{[ ]}.
+This is most easy to understand through some examples:
+
+\subsubsection{First Example}
+
+\begin{lstlisting}
+  \NewDocumentCommand{\restrict}{smm}{
+    \IfBooleanTF{#1}
+      {\left. {#2} \right|_{#3}}
+      {#2|_{#3}}
+  }
+\end{lstlisting}
+% define the command
+\NewDocumentCommand{\restrict}{smm}{
+  \IfBooleanTF{#1}
+    {\left. {#2} \right|_{#3}}
+    {#2|_{#3}}
+}
+The letter \texttt{s} ensures that the code defines both the command \commandtt{restrict} and its starred version \commandtt{restrict*}.
+Both of these take two mandatory arguments.
+The following part checks which version of the command is used:
+\begin{lstlisting}
+  \IfBooleanTF{#1}{ starred command }{ non-starred command }
+\end{lstlisting}
+So \commandtt{restrict\{f\}\{X\}} gives the code \texttt{f|\_\{X\}} whereas \commandtt{restrict*\{f\}\{X\}} gives the code
+\begin{center}
+  \texttt{{\textbackslash}left. f {\textbackslash}right|\_\{X\}}
+\end{center}
+We get the following output:
+\begin{LTXexample}[pos = r]
+  \[
+    \restrict{f}{X}
+    \quad
+    \restrict{\frac{f}{g}}{X}
+    \quad
+    \restrict*{\frac{f}{g}}{X}
+  \]
+\end{LTXexample}
+
+\subsubsection{Second Example}
+
+The following is modified version of the previous example:
+\begin{lstlisting}
+  \NewDocumentCommand{\restrict}{smmO{}}{
+  \IfBooleanTF{#1}
+    {\left. {#2} \right|_{#3}^{#4}}
+    {{#2} |_{#3}^{#4}}
+  }
+\end{lstlisting}
+% redefine the command
+\RenewDocumentCommand{\restrict}{smmO{}}{
+\IfBooleanTF{#1}
+  {\left. {#2} \right|_{#3}^{#4}}
+  {{#2} |_{#3}^{#4}}
+}
+The command now takes an optional third argument.
+If this optional argument is not set then it takes on its standard value, which is empty.
+\begin{LTXexample}[pos = r]
+  \[
+    \restrict{f}{X}
+    \quad
+    \restrict{f}{X}[Y]
+    \quad
+    \restrict*{\frac{f}{g}}{X}
+    \quad
+    \restrict*{\frac{f}{g}}{X}[Y]
+  \]
+\end{LTXexample}
+
+\subsubsection{Third Example}
+
+The following command takes two mandatory arguments and two optional arguments, whose standard values are empty:
+\begin{lstlisting}
+  \NewDocumentCommand{\module}{O{} m O{}}{
+    {}_{#1} #2_{#3}
+  }
+\end{lstlisting}
+\NewDocumentCommand{\module}{O{} m O{}}{
+  {}_{#1} #2_{#3}
+}
+The output is as follows:
+\begin{LTXexample}[pos = r]
+  \[
+    \module{M}
+    \quad
+    \module[R]{M}
+    \quad
+    \module{M}[S]
+    \quad
+    \module[R]{M}[S]
+  \]
+\end{LTXexample}
+
+\subsubsection{Fourth Example}
+
+The following examle takes an optional argument with no standard value.
+So it has to be checked if this optional argument was assigned a value.
+\begin{lstlisting}
+  \NewDocumentCommand{\module}{m o}{
+    \IfNoValueTF{#2}{{#1}-module}
+                    {{#1}-{#2}-bimodule}
+  }
+\end{lstlisting}
+% overwrite the command
+\RenewDocumentCommand{\module}{m o}{%
+  \IfNoValueTF{#2}{{#1}-module}
+                  {{#1}-{#2}-bimodule}%
+}
+This command works as follows:
+\begin{LTXexample}[pos = b]
+  Let $M$ be an \module{$R$} and let $N$ be an \module{$R$}[$S$].
+\end{LTXexample}
+
+
+
+
+
+% \section{Use labeling and referencing}
+% 
+% Use labeling and referencing.
+% Use the \texttt{cleveref} package for more automagic and use \texttt{hyperref} for links in the pdf file.
+% The \texttt{cleveref} package needs to be loaded after the \texttt{hyperref} package, and the \texttt{hyperref} package should otherwise be the last package to be included.
+% 
+% Use descriptive labels.
+% Recommended options for \texttt{cleveref} are \texttt{capitalise} and \texttt{noabbrev}.
+% 
+% \begin{LTXexample}[pos = r]
+%   \begin{theorem}
+%       \label{vector spaces are free}
+%       Every vector space admits a basis.
+%   \end{theorem}
+%   It follows from \cref{test label} that two vector spaces are isomorphic if and only if they have the same dimension.
+% \end{LTXexample}
+% 
+% \begin{theorem}
+%   \label{test label}
+%   Test
+% \end{theorem}
+% 
+% see \cref{vector spaces are free}.
+
+
+
+
+\section{A mathematical text is a text}
+\label{a mathematical text is a text}
+
+To quote \cite{mathoverflow_text}:
+
+\begin{center}
+  \enquote{A mathematical text is, before everything else, a text.}
+\end{center}
+
+This means in particular that a mathematical text has to obey the rules of the language that is it written in (e.g.\ English, French, German or Russian).
+It also means that mathematical equations are part of the surrounding text.
+
+
+
+
+
+\section{Be Consist}
+
+One of the most important aspects of mathematical writing and use of mathematical notation is consistency.
+If you’re making crappy choices then at least do them consistently in the same way.
+Let’s look at two counterexamples:
+
+\begin{LTXexample}[pos=b]
+  The algebra $U(\glie)$ is commutative if and only if the original Lie algebra $\glie$ is abelian.
+  But $\Univ(\glie)$ is infinite dimensional whenever $\glie$ is nonzero, even if $\glie$ itself is finite dimensional as well.
+\end{LTXexample}
+Even if the reader doesn’t care if you use $U(\glie)$ or $\Univ(\glie)$ they will notice the inconsistent use of the two notations, and this will distract them from the actual conent of the text.
+Here the commands \commandtt{glie} and \commandtt{Univ} have been defined in the preamble as follows:
+\begin{lstlisting}
+  \newcommand{\glie}{\mathfrak{g}}
+  \DeclareMathOperator{\Univ}{U}
+\end{lstlisting}
+
+\begin{LTXexample}[pos=b]
+If $X$ and $Y$ are two objects in a category $\Ccat$ then it may happen that the set $\Hom_{\Ccat}(X,Y)$ is empty even though the set $Hom_{\Ccat}(Y,X)$ is non-empty.
+\end{LTXexample}
+Even worse then the use of $Hom_{\Ccat}$ is the inconsistency between $\Hom_{\Ccat}$ and $Hom_{\Ccat}$.
+Here the command \commandtt{Hom} and \commandtt{Ccat} has been defined in the preamble as follows:
+\begin{lstlisting}
+  \newcommand{\Ccat}{\mathcal{C}}
+  \DeclareMathOperator{\Hom}{Hom}
+\end{lstlisting}
+
+
+
+
+
+\section{Sentences end with punctation}
+
+\Cref{a mathematical text is a text} has an important consequence:
+If a sentence ends with an equation or some kind of formula, then this need to be followed by some kind of punctation (in most cases by a full point).
+
+The following is a counterexample, which does it the \textbf{wrong} way:
+\begin{LTXexample}[pos=r]
+  It follows that
+  \[
+    a^2 + b^2 = c^2
+  \]
+  This formula is important.
+\end{LTXexample}
+The following is also \textbf{wrong}:
+\begin{LTXexample}[pos=r]
+  It follows that:
+  \[
+    a^2 + b^2 = c^2
+  \]
+  This formula is important.
+\end{LTXexample}
+The following example is \textbf{right}:
+\begin{LTXexample}[pos=r]
+  It follows that
+  \[
+    a^2 + b^2 = c^2.
+  \]
+  This formula is important.
+\end{LTXexample}
+It is even \textbf{better} if we add some slight spacing between the formula and the full stop.
+\begin{LTXexample}[pos=r]
+  It follows that
+  \[
+    a^2 + b^2 = c^2 \,.
+  \]
+  This formula is important.
+\end{LTXexample}
+This last approach is taken from \cite{tex_period}.
+
+
+
+
+
+\section{Don’t use \texttt{\textbackslash\textbackslash} or \texttt{{\textbackslash}newline}}
+
+The proper way to separate two succeeding paragraphs in \hologo{LaTeX} is to leave an empty line between them.
+
+\begin{LTXexample}[pos = r]
+  This is the first pagraph.
+  It consists of multiples lines to make this example better.
+  This is probably a good thing.
+  
+  This is a second paraph.
+  It also consists of multiple lines to make this example even more better.
+  
+  This one is the third and last paragraph in this example.
+\end{LTXexample}
+The use of \texttt{\textbackslash\textbackslash} or \texttt{{\textbackslash}newline} doesn’t actually end a paragraph but instead forces \hologo{LaTeX} to continue at the beginning of a new line.
+\begin{LTXexample}[pos = r]
+  This is the first paragraph in a counterexample.\\
+  This is not a new paragraph.
+  The text was just forced to start a new line.\newline
+  This one is also not a new paragraph.
+  But this whole thing looks ugly.
+\end{LTXexample}
+The use of \texttt{\textbackslash\textbackslash} and \texttt{{\textbackslash}newline} is only for starting new rows in matrices, tables and arrays.
+
+
+
+
+
+\section{Don’t begin a sentence with a mathematical symbol}
+
+Don’t begin a sentence with a mathematical symbol.
+The following is an especially horrible example:
+\begin{LTXexample}[pos = b]
+  \begin{theorem}
+    $\Mod(R)$ is an abelian category.
+  \end{theorem}
+\end{LTXexample}
+Instead do the following:
+\begin{LTXexample}[pos = b]
+  \begin{theorem}
+    The category $\Mod(R)$ is abelian.
+  \end{theorem}
+\end{LTXexample}
+An exception to this rule is a list:
+\begin{LTXexample}[pos = b]
+  For every function $f \colon \Real \to \Real$ the following conditions are equivalent:
+  \begin{enumerate}
+    \item
+      $f(x) \to \infty$ as $x \to \infty$.
+    \item
+      There exists for every $C > 0$ some $x_0 \in \Real$ with $f(x) \geq C$ for every $x \geq x_0$.
+  \end{enumerate}
+\end{LTXexample}
+The command \commandtt{Real} is defined in the preamble as follows:
+\begin{lstlisting}
+  \newcommand{\Real}{\mathbb{R}}
+\end{lstlisting}
+
+
+
+
+\section{Don’t break inline math}
+\label{breaking inline math}
+
+When inline formulas or equations are too long or badly placed then it can happen that a line break occurs, tearing the formula apart:
+% standard values for penalities, for the demonstration
+\binoppenalty=700
+\relpenalty=500
+\begin{LTXexample}[pos = b]
+  The most important formula of all times is without any doubt in my mind $1 + 2 + 3 = 10 - 4$.
+  Truly a work of genius!
+\end{LTXexample}
+This horrible affront to nature can thanfully be completely stopped by raising the corresponding penalties to their (literal) maximum:
+\begin{LTXexample}[pos = b]
+  % best done in the preamble
+  \binoppenalty = \maxdimen
+  \relpenalty = \maxdimen
+  
+  The most important formula of all times is without any doubt in my mind $1 + 2 + 3 = 10 - 4$.
+  Truly a work of genius!
+\end{LTXexample}
+% puttng the penalties back
+\binoppenalty = \maxdimen
+\relpenalty = \maxdimen
+
+
+
+
+% \section{Don’t use inline for long formulas}
+% 
+% The change in \cref{breaking inline math} tends to lead to problems with long formulas or equations, as the surrounding text has to be arranged in a way that they are contained in a single line.
+% This is a feature of \cref{breaking inline math}:
+% If formulas and equations are too long then they should be put into display mode, not inline mode!
+% Compare the following two examples:
+% \begin{LTXexample}[pos = b]
+%   Suppose that you have already written a bunch of text.
+%   Now you start talking about the inequality $\lcm([L_1 : K],[L_2 : K]) \leq [L_1 L_2 : K] \leq [L_1 : K] [L_2 : K]$,
+%   which is a bit long.
+%   The surrounding text doesn’t really help when you want to focus on the formula.
+% \end{LTXexample}
+% \begin{LTXexample}[pos = b]
+%   Suppose that you have already written a bunch of text.
+%   Now you start talking about the inequality
+%   \[
+%           \lcm([L_1 : K],[L_2 : K])
+%     \leq  [L_1 L_2 : K]
+%     \leq  [L_1 : K] [L_2 : K]
+%   \]
+%   which is a bit long.
+%   Now the surrounding text doesn’t matter when you want to focus on the formula.
+% \end{LTXexample}
+
+
+
+
+
+% \section{Put important things in display mode}
+% 
+% Putting mathematical content in display mode distinguishes it from the surrounding text.
+% This can be used to emphasize its importance.
+% It therefore makes sense to put certain contents into display mode even though it’s short and can reasonable fit into inline mode.
+% 
+% \begin{LTXexample}[pos = b]
+%   If $I$ is an ideal in a commutative ring $R$ and $M$ is an $R$-module then
+%   \[
+%     (R/I) \otimes_R M
+%     \cong
+%     M / IM \,.
+%   \]
+%   This will turn out to be a rather useful identity.
+% \end{LTXexample}
+
+
+
+
+
+\section{Beware of spacings}
+
+When typesetting a document \LaTeX groups the appearing symbols and expressions into different groups and then adds spacing around these symbols and expressions depending on which group they belong to.
+Tree of these groups are \emph{operators}, \emph{relation symbols} and \emph{binary operations}.
+The symbols~\texttt{=} and~\texttt{<} are for example treated as relations symbols, and the symbols~\texttt{+} and~\commandtt{cdot} as binary operations.
+We can see in the following example how some space is automatically added around these symbols:
+\begin{LTXexample}[pos = r]
+\[
+    a = b
+    \quad
+    a < b
+    \quad
+    a + b
+    \quad
+    a \cdot b
+  \]
+\end{LTXexample}
+To compare this to a version without spacing we can surround the symbols by a pair of curly brackets.
+This circumvents \LaTeX from taking the surround code into consideration.
+This leads to the following result:
+\begin{LTXexample}[pos = r]
+\[
+    a {=} b
+    \quad
+    a {<} b
+    \quad
+    a {+} b
+    \quad
+    a {\cdot} b
+  \]
+\end{LTXexample}
+The spacing can become a problem, as the following example illustrates:
+\begin{LTXexample}[pos = r]
+  \[
+    X/\sim
+    \quad
+    R/\operatorname{J}(R)
+    \quad
+    \operatorname{id} \otimes h
+  \]
+\end{LTXexample}
+This problem can be fixed by surround the respective symbols in curly brackets.
+\begin{LTXexample}[pos = r]
+  \[
+    X/{\sim}
+    \quad
+    R/{\operatorname{J}(R)}
+    \quad
+    {\operatorname{id}} \otimes h
+  \]
+\end{LTXexample}
+One can tell \LaTeX how to treat a certain symbol:
+\begin{LTXexample}[pos = r]
+  \[
+    a | b
+    \quad
+    a \mathop{|} b
+    \quad
+    a \mathrel{|} b
+    \quad
+    a \mathbin{|} b
+  \]
+\end{LTXexample}
+To define a command \commandtt{divides} to express that a number $n$ divides a number $m$ we do therefore do the following:
+\begin{lstlisting}
+  \newcommand{\divides}{\mathrel{|}}
+\end{lstlisting}
+For more on this topic see \cite{tex_binrel}.
+
+
+
+
+
+\section{Use the right symbols and commands}
+
+Use the right symbols.
+
+\begin{center}
+  \begin{tabular}{clclc}
+      symbol
+      &
+      \multicolumn{2}{c}{right command}
+      &
+      \multicolumn{2}{c}{wrong command}
+    \\
+    \hline
+    \hline
+      \multirow{2}{*}{element relation}
+      &
+      \multirow{2}{*}{\commandtt{in}}
+      &
+      \multirow{2}{*}{$\in$}
+      &
+      \commandtt{epsilon}
+      &
+      $\epsilon$
+    \\
+      {}
+      &
+      {}
+      &
+      {}
+      &
+      \commandtt{varepsilon}
+      &
+      $\varepsilon$
+    \\
+    \hline
+      empty set
+      &
+      \commandtt{emptyset}
+      &
+      $\emptyset$
+      &
+      \commandtt{phi}
+      &
+      $\phi$
+    \\
+    \hline
+      \multirow{2}{*}{implication}
+      &
+      \commandtt{implies}
+      &
+      $\implies$
+      &
+      \commandtt{Rightarrow}
+      &
+      $\Rightarrow$
+    \\
+      {}
+      &
+      \commandtt{impliedby}
+      &
+      $\impliedby$
+      &
+      \commandtt{Leftarrow}
+      &
+      $\Leftarrow$
+    \\
+    \hline
+      equivalence
+      &
+      \commandtt{iff}
+      &
+      $\iff$
+      &
+      \commandtt{Leftrightarrow}
+      &
+      $\Leftrightarrow$
+    \\
+    \hline
+      \multirow{2}{*}{definition}
+      &
+      \texttt{:=}
+      &
+      $:=$
+      &
+      \commandtt{coloneqq}
+      &
+      $\coloneqq$
+    \\
+      {}
+      &
+      \texttt{=:}
+      &
+      $=:$
+      &
+      \commandtt{eqqcolon}
+      &
+      $\eqqcolon$
+    \\
+    \hline
+      \multirow{2}{*}{norm}
+      &
+      \texttt{{\textbackslash}| x {\textbackslash}|}
+      &
+      \multirow{2}{*}{$\| x \|$}
+      &
+      \multirow{2}{*}{\texttt{|| x ||}}
+      &
+      \multirow{2}{*}{$|| x ||$}
+    \\
+      {}
+      &
+      \texttt{{\textbackslash}lVert x {\textbackslash}rVert}
+      &
+      {}
+      &
+      {}
+      &
+      {}
+    \\
+    \hline
+      infinity
+      &
+      \commandtt{infty}
+      &
+      $\infty$
+      &
+      \texttt{oo}
+      &
+      $oo$
+    \\
+    \hline
+      functions
+      &
+      \texttt{f {\textbackslash}colon X {\textbackslash}to Y}
+      &
+      $f \colon X \to Y$
+      &
+      \texttt{f : X {\textbackslash}to Y}
+      &
+      $f : X \to Y$
+  \end{tabular}
+\end{center}
+Both \commandtt{rightarrow} and \commandtt{to} give the same arrow.
+So use whichever is more appropriate in the given situation.
+
+
+
+
+
+\section{Use \commandtt{text}}
+
+When text needs to be used in math mode use \commandtt{text}.
+The following is horrible:
+\begin{LTXexample}[pos = b]
+  Let $A \coloneqq \{ x \in [0,1] : x \; is \; rational \}$.
+\end{LTXexample}
+This next one looks a bit better, but is still not okay:
+\begin{LTXexample}[pos = b]
+  Let $A \coloneqq \{ x \in [0,1] : x \text{ is rational} \}$.
+\end{LTXexample}
+Instead do this:
+\begin{LTXexample}[pos = b]
+  \newcommand{\defined}{\coloneqq}
+  \newcommand{\sothat}{\mathrel{:}}
+  Let $A \defined \{ x \in [0,1] \sothat \text{$x$ is rational} \}$.
+\end{LTXexample}
+
+
+
+
+
+\section{Don’t force fancy fractions}
+
+When fractions are placed inline, as an exponent or in an index then they should be of the form $a/b$.
+The notation
+\[
+  \frac{a}{b}
+\]
+is reserved for display style.
+So don’t do the following:
+\begin{LTXexample}[pos = r]
+  Consider $e^{\frac{1}{x}}$ and $x_{\frac{1}{n}}$ and $\frac{2}{3}$.
+\end{LTXexample}
+Do the following instead:
+\begin{LTXexample}[pos = r]
+  Consider $e^{1/x}$ and $x_{1/n}$ and $2/3$.
+\end{LTXexample}
+
+Don’t use fractions like $\faktor{a}{b}$.
+They fuck up everything around them and are ugly.
+
+
+
+
+
+\section{Don’t underline}
+Underlining text (or mathematics) works on the blackboard, on paper and for typewriters.
+Don’t do it in \LaTeX.
+
+
+
+
+
+\section{Don’t use \commandtt{limits}}
+
+For the love of God, please don’t.
+People seem to think that they have to add \commandtt{limits} after a command to add limits to it:
+\begin{LTXexample}[pos = r]
+  \[
+    \sum\limits_{k=0}^n k = \frac{n(n+1)}{2}
+  \]
+\end{LTXexample}
+But this is not only unnecessary, but also dangerous.
+It is unnecessary because (most of) the commands in questions already have this functionality built in:
+\begin{LTXexample}[pos = r]
+  \[
+    \sum_{k=0}^n k = \frac{n(n+1)}{2}
+  \]
+\end{LTXexample}
+This built-in limits have the advantage that they can distinguish between inline math and display math math:
+\begin{LTXexample}[pos = r]
+  The sum $\sum_{k=0}^n 2^k = 2^{n+1} - 1$ is inline while the sum
+  \[
+    \sum_{k=0}^n 3^k \neq 3^{n+1} - 1
+  \]
+  is in display mode.
+\end{LTXexample}
+We can see that the inline version does not only use the smaller summation sign, but also sets the limits to the right instead of above the top and below the bottom of the summation sign.
+This is a \textbf{feature}---a feature that the \commandtt{limits} version is missing:
+\begin{LTXexample}[pos = r]
+  So here is some text which will generate some lines.
+  The text itself isn’t important, but we really want it to fill some lines.
+  The important thing is the sum $\sum\limits_{k=0}^n k$.
+  Well, not really the sum itself, but its typesetting using the \commandtt{limits} command.
+  I think you know what I mean.
+\end{LTXexample}
+The limits are still placed above the top and below the summation sign.
+This has it’s price:
+The line in which the sum resides breaks the usual vertical space between lines, which gives the text an inconsistent and unorganized look.
+Compare this to the version without \commandtt{limits}:
+\begin{LTXexample}[pos = r]
+  So here is some text which will generate some lines.
+  The text itself isn’t important, but we really want it to fill some lines.
+  The important thing is the sum $\sum_{k=0}^n k$.
+  Well, not really the sum itself, but its typesetting without the \commandtt{limits} command.
+  I think you know what I mean.
+\end{LTXexample}
+Here the line distance is nicely consistent and pleasing to the eye.
+
+The usual predefined commands on which one would expect limits already have them defined, e.g.\ \commandtt{sum}, \commandtt{prod} or \commandtt{lim}, as the following example shows:
+\begin{LTXexample}[pos = r]
+  Compare the inline versions $\sum_{k=0}^n k$ and $\prod_{k=1}^n k$ and $\lim_{n \to \infty} a_n$ with the display versions
+  \[
+    \sum_{k=0}^n k \,,
+    \quad
+    \prod_{k=1}^n k \,,
+    \quad
+    \lim_{n \to \infty} a_n \,.
+  \]
+\end{LTXexample}
+When one defines custom commands using \commandtt{DeclareMathOperator} and \commandtt{operatorname} one can make them support limits by using \commandtt{DeclareMathOperator*} and \commandtt{operatorname*} instead.
+Suppose for examlp that we make in the preamble the following definition:
+\begin{lstlisting}
+  \DeclareMathOperator*{\colim}{colim}
+\end{lstlisting}
+We can then do the following:
+\begin{LTXexample}[pos = b]
+  Inline we have $\colim_{X' \leq X} F(X')$ and in display mode we get
+  \[
+    \colim_{X' \leq X} F(X') \,.
+  \]
+\end{LTXexample}
+The command \commandtt{operatorname*} was in the past also known as \commandtt{operatornamewithlimits}, but this version should no longer be used.
+
+If for some extremly strange reason one \textit{really}%
+\footnote{This is basically never the case.
+If you think that you’re the exception then you are most probably not.}
+needs the limits to be in display style, then on should commit to it, by using \commandtt{displaystyle}.
+Compare the following two examples:
+\begin{LTXexample}[pos = r]
+  \[
+    \begin{pmatrix*}[l]
+        \sum_{k=0}^n k
+      & \sum_{k=0}^n k^2
+      \\
+        \sum_{k=0}^n k^3
+      & \sum_{k=0}^n k^4
+    \end{pmatrix*}
+  \]
+\end{LTXexample}
+\begin{LTXexample}[pos = r]
+  \[
+    \begin{pmatrix*}[l]
+        \displaystyle \sum_{k=0}^n k
+      & \displaystyle \sum_{k=0}^n k^2
+      \\
+        \displaystyle \sum_{k=0}^n k^3
+      & \displaystyle \sum_{k=0}^n k^4
+    \end{pmatrix*}
+  \]
+\end{LTXexample}
+
+
+
+
+
+\section{Use \texorpdfstring{$\mathrm{d}x$}{dx} instead of \texorpdfstring{$dx$}{dx}}
+
+A differential is written as \texttt{{\textbackslash}mathrm{d}x}, not as $dx$.
+When it occurs a differential then a slight spacing \texttt{{\textbackslash},} is also introduced.
+The following are therefore \textbf{wrong}:
+\begin{LTXexample}[pos = r]
+  \[
+    \int_a^b f(x) dx
+    \quad
+    \int_a^b f(x) \mathrm{d}x
+  \]
+\end{LTXexample}
+The following is right:
+\begin{LTXexample}[pos = r]
+  \[
+    \int_a^b f(x) \,\mathrm{d}x
+  \]
+\end{LTXexample}
+
+
+
+
+
+
+\section{Know your dots}
+Ellipsis should \textbf{never} by written as \texttt{...} (three single dots), see the following horrible example:
+\begin{LTXexample}[pos = r]
+  $a + ... + b$
+\end{LTXexample}
+\LaTeX instead provides different kinds of ellipses to use in math mode, namely
+\begin{center}
+    \commandtt{dotsb},
+    \quad
+    \commandtt{dotsc},
+    \quad
+    \commandtt{dotsm},
+    \quad
+    \commandtt{dotsi},
+    \quad
+    \commandtt{dotso},
+    \\
+    \commandtt{cdots},
+    \quad
+    \commandtt{ddots},
+    \quad
+    \commandtt{vdots},
+    \quad
+    \commandtt{ldots}.
+\end{center}
+Each of these have they own role and (mostly) distinct look and feel.
+There are two groups of ellipses.
+The first group consists of \commandtt{dotsb}, \commandtt{dotsc}, \commandtt{dotsm}, \commandtt{dotsi},\commandtt{dotso} whereas the second group consists of \commandtt{cdots}, \commandtt{ddots}, \commandtt{vdots}, \commandtt{ldots}.
+The ellipses in the first group are named after they function:
+
+The ellipsis \commandtt{dotsb} for binary, \commandtt{dotsc} for comma, \commandtt{dotsm} for multiplication, \commandtt{dotsi} for integrals and \commandtt{dotso} for other.
+The usage and look of the first three are as follows:
+\begin{LTXexample}[pos = r]
+  \begin{gather*}
+    \sum_{i=1}^n x_i = x_1 + \dotsb + x_n  \\
+    1 \leq \dotsb \leq n  \\
+    i = 1, \dotsc, m  \\
+    \int_{a_1}^{b_1} \dotsi \int_{a_n}^{b_n} \\
+    \prod_{i=1}^n x_i = x_1 \dotsm x_n
+  \end{gather*}
+\end{LTXexample}
+The command \commandtt{dotso} is meant for other, more unspecific cases.
+
+The ellipses in the second group are not named after their function but after their look:
+The ellipsis \commandtt{cdots} is vertically centered, \commandtt{ddots} is diagonal (from the top left to the bottom right), \commandtt{vdots} is horizontally centered, and \commandtt{ldots} is vertically lowered.
+The first three of these ellipses are usually used in matrices:
+\begin{LTXexample}[pos = r]
+  \[
+    \begin{pmatrix}
+      a_{11} & \cdots & a_{1n} \\
+      \vdots & \ddots & \vdots \\
+      a_{n1} & \cdots & a_{nn}
+    \end{pmatrix}
+  \]
+\end{LTXexample}
+The command \commandtt{ldots} can for example be used to denote left out digits.
+\begin{LTXexample}[pos = r]
+  $x = 0.1234567891011\ldots$
+\end{LTXexample}
+It can also be used to denote left out symbols:
+\begin{LTXexample}[pos = b]
+  Consider the word $w = a_1 \ldots a_n$ where $a_1, \dotsc, a_n$ are letters in an alphabet $\Sigma$.
+\end{LTXexample}
+
+The following should \textbf{never} to denote a product:
+\begin{lstlisting}
+  x_1 \cdots {any kind of dots} \cdot x_n
+\end{lstlisting}
+So all of the following are \textbf{wrong}, and some of them look even worse then the other ones.
+\begin{LTXexample}[pos = r]
+  \begin{tabular}{cc}
+    \commandtt{dotsb}
+    &
+    $x_1 \cdot \dotsb \cdot x_n$
+    \\
+    \commandtt{dotsc}
+    &
+    $x_1 \cdot \dotsc \cdot x_n$
+    \\
+    \commandtt{dotsm}
+    &
+    $x_1 \cdot \dotsm \cdot x_n$
+    \\
+    \commandtt{dotsi}
+    &
+    $x_1 \cdot \dotsi \cdot x_n$
+    \\
+    \commandtt{cdots}
+    &
+    $x_1 \cdot \cdots \cdot x_n$
+    \\
+    \commandtt{ldots}
+    &
+    $x_1 \cdot \ldots \cdot x_n$
+  \end{tabular}
+\end{LTXexample}
+(The author hopes that nobody is stupid enough to even trying using \commandtt{ddots} or \commandtt{vdots} in this situation.)
+
+So overall one should use \commandtt{cdots}, \commandtt{ddots} and \commandtt{vdots} for matrices, and otherwise the commands \commandtt{dotsb}, \commandtt{dotsc}, \commandtt{dotsm}, \commandtt{dotsi} or \commandtt{dotso} depending on the context.
+
+There also exists the generic command \commandtt{dots} which tries to automagically use the right kind of positioning and spacing.
+But the author doesn’t see the point is this command, since it is safer to just tell \LaTeX what kind of dots are expected.
+
+
+
+
+
+\section{Don’t use \texttt{\$\$  \$\$} or \texttt{eqnarray}}
+
+There are many good ways to put mathematics into display mode, but \texttt{\$\$  \$\$} and \texttt{eqnarray} are none of them.
+The method \texttt{\$\$  \$\$} is too level for practical use, and \texttt{eqnarray} has too many problems and has been deprecated since forever.
+One can use any of the following, depending on the planned usage.
+
+
+
+\subsection{\texttt{equation*} and \texttt{{\textbackslash}[ {\textbackslash}]}}
+The methods \texttt{equation*} and \texttt{{\textbackslash}[ {\textbackslash}]} can be used for a single line of display math mode.
+Both commands do the same thing (when \texttt{amsmath} is loaded).
+\begin{LTXexample}
+  Suppose that both the formula
+  \[
+    a + b = c \,.
+  \]
+  and the formula
+  \begin{equation*}
+    2a - b = c \,.
+  \end{equation*}
+  hold.
+  Then $a$ and $b$ are unique.
+\end{LTXexample}
+The non-starred version \texttt{equation} numbers the equation.
+\begin{LTXexample}
+  The fomula
+  \begin{equation}
+    a^2 - b^2 = (a + b)(a - b)
+  \end{equation}
+  is one of the binomial formulas.
+\end{LTXexample}
+
+
+
+\subsection{\texttt{gather*}}
+
+The \texttt{gather*} environment is meant for multiple lines that are non-aligned but centered instead.
+\begin{LTXexample}[pos = b]
+  We consider for every integer $n \geq 0$ the polynomial
+  \[
+    p_n
+    =
+    \sum_{k=0}^n x^k \,.
+  \]
+  In particular
+  \begin{gather*}
+    p_0 = 1 \,,
+    \qquad
+    p_1 = 1 + x \,,
+    \qquad
+    p_2 = 1 + x + x^2 \,,
+    \qquad
+    p_3 = 1 + x + x^2 + x^3 \,,
+    \\
+    p_4 = 1 + x + x^2 + x^3 + x^4 \,,
+    \qquad
+    p_5 = 1 + x + x^2 + x^3 + x^4 + x^5 \,.
+  \end{gather*}
+\end{LTXexample}
+The non-starred version \texttt{gather} number the lines.
+\begin{LTXexample}[pos = b]
+  We have the polynomials
+  \begin{gather}
+    p_0 = 1 \,,
+    \qquad
+    p_1 = 1 + x \,,
+    \qquad
+    p_2 = 1 + x + x^2 \,,
+    \qquad
+    p_3 = 1 + x + x^2 + x^3 \,,
+    \\
+    p_4 = 1 + x + x^2 + x^3 + x^4 \,,
+    \qquad
+    p_5 = 1 + x + x^2 + x^3 + x^4 + x^5 \,.
+  \end{gather}
+\end{LTXexample}
+
+
+
+\subsection{\texttt{align*} and \texttt{alignat*}}
+
+The \texttt{align*} enviroment takes multiple lines which can aligned.
+Each line contains the symbol \texttt{\&} once, and the occurences of this symbol are then aligned.
+\begin{LTXexample}[pos = r]
+  We find that
+  \begin{align*}
+    a + b + c
+    &=
+    d + e + f + g + h
+    \\
+    &=
+    i + j + k + l
+    \\
+    &=
+    m + n + o + p + q + r \,.
+  \end{align*}
+\end{LTXexample}
+The unstarred version \texttt{align} again numbers the lines.
+\begin{LTXexample}[pos = r]
+  We find again that
+  \begin{align}
+    a + b + c
+    &=
+    d + e + f + g + h
+    \\
+    &=
+    i + j + k + l
+    \\
+    &=
+    m + n + o + p + q + r \,.
+  \end{align}
+\end{LTXexample}
+One can also use multiple aligned columns, which then need to be separated by an additional \texttt{\&}.
+For~$n$ aligned columns we hence need~$2n+1$ occurences of \texttt{\&}.
+\begin{LTXexample}[pos = b]
+  We consider the values
+  \begin{align*}
+    x_1 &= 1 \,,  &   x_2 &= 2 \,,  &   x_3 &= 3 \,,  \\
+    x_4 &= 4 \,,  &   x_5 &= 5 \,,  &   x_6 &= 6 \,,  \\
+    x_7 &= 7 \,,  &   x_8 &= 8 \,,  &   x_9 &= 9 \,.
+  \end{align*}
+\end{LTXexample}
+
+The \texttt{alignat*} environment is similar to the \texttt{align} environment, but doesn’t add any built-in spacing between the aligned columns.
+Any such spacing must therefore by added by hand.
+One also has to specify the number of columns beforehand.
+\begin{LTXexample}[pos = b]
+  We also consider the values
+  \begin{alignat*}{3}
+    y_1 &= 9 \,,  &\qquad   y_2 &= 8 \,,  &\qquad   y_3 &= 7 \,,  \\
+    y_4 &= 6 \,,  &         y_5 &= 5 \,,  &         y_6 &= 4 \,,  \\
+    y_7 &= 3 \,,  &         y_8 &= 2 \,,  &         y_9 &= 1 \,.
+  \end{alignat*}
+\end{LTXexample}
+
+
+
+
+
+\section{Use \texttt{intertext}}
+
+Multiline environments like \texttt{gather*} and \texttt{align*} can be interrupted by using \commandtt{intersect} and \commandtt{shortintertext} to icsert some text.
+This is particularly useful to combine two \texttt{align*} environments into a single one to give a common alignment.
+We don’t want the following:
+\begin{LTXexample}[pos = r]
+  We consider the equalities
+  \begin{align*}
+    H
+    &=
+    a_1 + a_2 + a_3 + a_4
+    \\
+    &=
+    b_1 + b_2 + b_3 + b_4 + b_5 + b_6
+    \\
+    &=
+    c_1 + c_2 + c_3 + c_4 + c_5
+  \end{align*}
+  and
+  \begin{align*}
+    I
+    &=
+    d_1 + d_2 + d_3 + d_4 + d_5 + d_6
+    \\
+    &=
+    e_1 + e_2 + e_3
+    \\
+    &=
+    f_1 + f_2 + f_3 + f_4 + f_5 \,.
+  \end{align*}
+\end{LTXexample}
+Note the annoying misalignment of the equality signs of the two \texttt{align*} environments.
+We can solve this problem by using only one \texttt{align*} environment and inserting the text \enquote{and} by using the \commandtt{shortintertext} command:
+\begin{LTXexample}[pos = r]
+  We consider now the equalities
+  \begin{align*}
+    H
+    &=
+    a_1 + a_2 + a_3 + a_4
+    \\
+    &=
+    b_1 + b_2 + b_3 + b_4 + b_5 + b_6
+    \\
+    &=
+    c_1 + c_2 + c_3 + c_4 + c_5
+  \shortintertext{and}
+    I
+    &=
+    d_1 + d_2 + d_3 + d_4 + d_5 + d_6
+    \\
+    &=
+    e_1 + e_2 + e_3
+    \\
+    &=
+    f_1 + f_2 + f_3 + f_4 + f_5 \,.
+  \end{align*}
+\end{LTXexample}
+
+
+
+
+
+\section{Use the right kind of matrix}
+
+The following are the usual kinds of matrices.
+\begin{LTXexample}[pos = r]
+  \[
+    \begin{matrix}
+      a & b \\
+      c & d
+    \end{matrix}
+    \qquad
+    \begin{pmatrix}
+      a & b \\
+      c & d
+    \end{pmatrix}
+    \qquad
+    \begin{bmatrix}
+      a & b \\
+      c & d
+    \end{bmatrix}
+    \qquad
+    \begin{vmatrix}
+      a & b \\
+      c & d
+    \end{vmatrix}
+  \]
+\end{LTXexample}
+There alse exist starred versions of these matrix environments that allow to specify the alignment of its columns.
+(The standard is centered.)
+\begin{LTXexample}[pos = r]
+  \begin{gather*}
+    \begin{matrix*}[r]
+       a & -b \\
+      -c &  d
+    \end{matrix*}
+    \qquad
+    \begin{pmatrix*}[c]
+       a & -b \\
+      -c &  d
+    \end{pmatrix*}
+  \\
+    \begin{bmatrix*}[l]
+       a & -b \\
+      -c &  d
+    \end{bmatrix*}
+    \qquad
+    \begin{vmatrix}
+       a & -b \\
+      -c &  d
+    \end{vmatrix}
+  \end{gather*}
+\end{LTXexample}
+There are also small versions of all of the above:
+\begin{LTXexample}[pos = r]
+  \begin{gather*}
+    \begin{smallmatrix}
+      a & b \\
+      c & d
+    \end{smallmatrix}
+    \qquad
+    \begin{psmallmatrix}
+      a & b \\
+      c & d
+    \end{psmallmatrix}
+    \qquad
+    \begin{bsmallmatrix}
+      a & b \\
+      c & d
+    \end{bsmallmatrix}
+    \qquad
+    \begin{vsmallmatrix}
+      a & b \\
+      c & d
+    \end{vsmallmatrix}
+  \\
+    \begin{smallmatrix*}[r]
+      -a &  b \\
+        c & -d
+    \end{smallmatrix*}
+    \quad
+    \begin{psmallmatrix*}[c]
+      -a &  b \\
+        c & -d
+    \end{psmallmatrix*}
+    \quad
+    \begin{bsmallmatrix*}[l]
+      -a &  b \\
+        c & -d
+    \end{bsmallmatrix*}
+    \quad
+    \begin{vsmallmatrix}
+      -a &  b \\
+        c & -d
+    \end{vsmallmatrix}
+  \end{gather*}
+\end{LTXexample}
+One needs to choose the type of matrix depending on the context:
+\begin{LTXexample}[pos = r]
+  We consider the morphism
+  \[
+    X \oplus Y
+    \xrightarrow{
+      \begin{bsmallmatrix*}[r]
+        f & -d \\
+        0 &  g
+      \end{bsmallmatrix*}
+    }
+    X' \oplus Y' \,.
+  \]
+
+\end{LTXexample}
+
+
+
+
+
+
+\printbibliography
+
 
 
 
