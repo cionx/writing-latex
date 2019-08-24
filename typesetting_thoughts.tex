@@ -35,7 +35,7 @@ Sending the code to yourself on facebook is not a proper system for version cont
 
 
 
-\section{Use \hologo{LuaLaTeX} and \hologo{XeLaTeX}}
+\section{Use \hologo{LuaLaTeX} or \hologo{XeLaTeX}}
 
 Use \hologo{LuaLaTeX} or \hologo{XeLaTeX} for native unicode support (i.e.\ without including any kind of additional packages).
 The author prefers \hologo{LuaLaTeX} because \hologo{XeLaTeX} only offers limited functionality for the \texttt{microtype} package.
@@ -404,6 +404,10 @@ With \commandtt{operatorname} we get necessary spacing when not using parenthese
 
 
 
+\subsection{\commandtt{DeclarePairedDelimiter}}
+
+
+
 
 
 \subsection{\commandtt{newcommand}}
@@ -614,7 +618,7 @@ It also means that mathematical equations are part of the surrounding text.
 
 
 
-\section{Be Consist}
+\section{Be Consistent}
 
 One of the most important aspects of mathematical writing and use of mathematical notation is consistency.
 If you’re making crappy choices then at least do them consistently in the same way.
@@ -977,23 +981,23 @@ Use the right symbols.
     \hline
       \multirow{2}{*}{definition}
       &
-      \texttt{:=}
-      &
-      $:=$
-      &
       \commandtt{coloneqq}
       &
       $\coloneqq$
+      &
+      \texttt{:=}
+      &
+      $:=$
     \\
       {}
-      &
-      \texttt{=:}
-      &
-      $=:$
       &
       \commandtt{eqqcolon}
       &
       $\eqqcolon$
+      &
+      \texttt{=:}
+      &
+      $=:$
     \\
     \hline
       \multirow{2}{*}{norm}
