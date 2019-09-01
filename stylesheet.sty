@@ -1,3 +1,13 @@
+% git information
+\usepackage{gitinfo2}
+
+% fixes some float issue with koma
+% see https://tex.stackexchange.com/questions/51867/koma-warning-about-toc
+\usepackage{scrhack}
+
+% header layout
+\usepackage[automark, autooneside=false]{scrlayer-scrpage}
+
 % microtypography
 \usepackage{microtype}
 
@@ -10,11 +20,14 @@
 \DeclareFieldFormat{postnote}{#1}
 \DeclareFieldFormat{multipostnote}{#1}
 
-% showing examples with output
-\usepackage{showexpl}
+% better defining commands
+\usepackage{xparse}
 
 % configure list environments
 \usepackage{enumitem}
+
+% tables
+\usepackage{booktabs}
 
 % more control about tables
 \usepackage{multirow}
@@ -22,9 +35,16 @@
 % mathematical things
 \usepackage{mathtools}
 \usepackage{amssymb}
+\usepackage{amsthm}
 
 % ugly fractions
 \usepackage{faktor}
+
+% pretty drawings
+\usepackage{tikz}
+% for trees
+\usetikzlibrary{trees}
+\usetikzlibrary{shapes.multipart}
 
 % commutative diagram
 \usepackage{tikz-cd}
@@ -39,31 +59,6 @@
 % quotation marks
 \usepackage[babel = true]{csquotes}
 
-% changing the font for code examples
-% showexpl uses the listings package, so changin the font is done using the listing package
-\usepackage{fontspec}
-\newfontfamily\listingsfont{DejaVu Sans Mono}
-\setmonofont[Scale=MatchLowercase]{DejaVu Sans Mono}
-% for proper fontsize
-\sbox0{\footnotesize\listingsfont A}
-\edef\mybasewidth{\the\wd0}
-% proper indentation for new paragraphs
-\newlength{\parindentsave}
-\AtBeginDocument{\setlength{\parindentsave}{\parindent}}
-\lstset{%
-  numbers           = left,
-  xleftmargin       = 1em,
-  numbersep         = 2pt,
-  numberstyle       = \tiny,
-  basicstyle        = \footnotesize\listingsfont,
-  columns           = fixed,
-  basewidth         = \mybasewidth,
-  breaklines        = true,
-  breakatwhitespace = true,
-  breakindent       = 0pt,
-  preset=\setlength{\parindent}{\parindentsave}
-}
-
 % referencing
 \usepackage{hyperref}
 \hypersetup{
@@ -74,27 +69,80 @@
 }
 \usepackage[capitalise,noabbrev]{cleveref}
 
-% theorem like environments
-\usepackage{amsthm}
-\newtheorem{theorem}{Theorem}
+% boxes for examples
+\usepackage[listings,breakable,skins]{tcolorbox}
+% settings for the boxes 
+\newlength{\normalparindent}
+\AtBeginDocument{\setlength{\normalparindent}{\parindent}}
+\tcbset{
+  breakable,
+  enhanced jigsaw,
+  before lower={\setlength{\parindent}{\normalparindent}\noindent},
+  before={\par\pagebreak[0]\smallskip\noindent},
+  after={\par\noindent}
+}
+% before must be set because after is set, see
+% https://tex.stackexchange.com/questions/505832/tcbset-behaves-differently-in-preamble-and-main-body
+
+% fonts for titlepage
+\setkomafont{date}{\normalsize}
+\setkomafont{publishers}{\normalsize}
+
+% no subsections in the toc
+\setcounter{tocdepth}{2}
+
+% defining theorem like environments
+\newcounter{everything}[section]  % to be used for all kind of math enviroments
+
+\newtheorem{lemma}[everything]{Lemma}
+\newtheorem{remark}[everything]{Remark}
+\newtheorem{theorem}[everything]{Theorem}
+
+\renewcommand{\theeverything}{\arabic{everything}}
 
 % prevents breaking inline math around binary or relationship symbols
 \binoppenalty=\maxdimen
 \relpenalty=\maxdimen
 
-% no subsections in the toc
-\setcounter{tocdepth}{2}
+% settings for code
+% tcolorbox uses the listings package, so changin the font is done using the listing package
+\usepackage{fontspec}
+\setmonofont[Scale=MatchLowercase]{DejaVu Sans Mono}
+% proper indentation for new paragraphs
+\newlength{\parindentsave}
+% finally setting everything
+\AtBeginDocument{\setlength{\parindentsave}{\parindent}}
+\lstset{%
+  numbers           = left,
+  numbersep         = 2pt,
+  numberstyle       = \tiny,
+  basicstyle        = \small\ttfamily,
+  columns           = fixed,
+  breaklines        = true,
+  breakatwhitespace = true,
+  breakindent       = 0pt
+}
+
+% footnote symbol in minipages
+\renewcommand{\thempfootnote}{\arabic{mpfootnote}}
 
 \newcommand{\commandtt}[1]{\texttt{{\textbackslash}#1}}
+\newcommand{\customtexttilde}{\char`~}
 
 \DeclareMathOperator*{\colim}{colim}
 \DeclareMathOperator{\lcm}{lcm}
 
+\newcommand{\tbs}{\textbackslash}
+
+\DeclarePairedDelimiter{\abs}{\lvert}{\rvert}
 \newcommand{\Acat}{\mathcal{A}}
 \newcommand{\Ccat}{\mathcal{C}}
-\newcommand{\glie}{\mathfrak{g}}
+\DeclareMathOperator{\Complex}{\mathbb{C}}
+\DeclareMathOperator{\End}{End}
 \DeclareMathOperator{\Hom}{Hom}
-\DeclareMathOperator{\Mod}{Mod}
+\DeclarePairedDelimiterX{\inner}[2]{\langle}{\rangle}{#1 \,\delimsize\vert\, #2}
+\DeclareMathOperator{\Mod}{\mathbf{Mod}}
+\DeclarePairedDelimiterXPP{\newnorm}[1]{\mathop{}}{\lVert}{\rVert}{}{#1}
+\DeclarePairedDelimiter{\norm}{\lVert}{\rVert}
 \newcommand{\Real}{\mathbb{R}}
-\DeclareMathOperator{\Univ}{U}
 \DeclareMathOperator{\Word}{Word}

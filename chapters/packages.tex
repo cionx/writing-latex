@@ -1,0 +1,298 @@
+\chapter{Useful packages}
+
+
+
+
+
+\section{Package: \texttt{microtype}}
+
+Use the \texttt{microtype} package.
+It makes your document look nicer and can help you circumvent overfull hboxes.
+Simply including the package is enough to let it work its magic.
+
+
+
+
+
+\section{Package: \texttt{mathtools}}
+
+The \texttt{amsmath} package is standard for mathematical typesetting.
+The \texttt{mathtools} package is an extension of the \texttt{amsmath} package that fixes some of its problems and also provides some new (and often times very useful) functionalities.
+The \texttt{mathtools} package automatically loads the \texttt{amsmath} package too, so instead \commandtt{usepackage\{amsmath\}} just use \commandtt{usepackage\{mathtools\}}.
+
+
+
+
+
+\section{Package: \texttt{csquotes}}
+
+Dealing with quotations marks by hand can be a pain in the ass, for at least two reasons:
+Different languages use different kinds of quotation marks, and finding the right combination of \hologo{LaTeX} code to get the correct ones can be a non-trivial problem.
+One way to circumvent this probem is by using the \texttt{csquotes} package, which provides the command \texttt{enquote}:
+\begin{tcblisting}{listing side text, title={\commandtt{enquote} for quotes}}
+\enquote{This is a quote.}
+\end{tcblisting}
+When a different languge is loaded using \texttt{babel}, then by loading the \texttt{csquotes} package with the option \texttt{babel=true} ensures the correct quotation marks for the specified language:
+\begin{tcblisting}{listing side text, title={\texttt{csquotes} chooses the right kind of quotation marks}}
+% american english
+\selectlanguage{american}
+\enquote{quote}
+% british english
+\selectlanguage{british}
+\enquote{quotation}
+% german
+\selectlanguage{ngerman}
+\enquote{Zitat}
+% french
+\selectlanguage{french}
+\enquote{citation}
+\end{tcblisting}
+
+The \texttt{csquotes} command automatically handels nested quotation marks:
+\begin{tcblisting}{listing side text, title={Nested quotes}}
+\enquote{This is a \enquote{quote} inside a quote.}
+\end{tcblisting}
+So for dealing with quotes of any kind use the \texttt{csquotes} package.
+
+
+
+
+
+\section{Package: \texttt{enumitem}}
+
+\hologo{LaTeX} provides three different kinds of list environments:
+Numbered lists are provided by the \texttt{enumerate} environment.
+
+\begin{tcblisting}{listing side text, title={\texttt{enumerate} environment}}
+\begin{enumerate}
+  \item
+    Assumption
+  \item
+    ???
+  \item
+    Contradiction
+\end{enumerate}
+\end{tcblisting}
+Unnumbered lists are provided by the \texttt{itemize} environment.
+\begin{tcblisting}{listing side text, title={\texttt{itemize} environment}}
+\begin{itemize}
+  \item
+    This is a list item.
+  \item
+    This is also a list item.
+  \item
+    And yet another list item.
+\end{itemize}
+\end{tcblisting}
+The \texttt{decription} environment uses no predefined symbols for the list items and instead expects a descriptive text from the author.
+\begin{tcblisting}{listing side text, title={\texttt{description} environment}}
+\begin{description}
+  \item[Field]
+    A ring in which every nonzero element has an inverse.
+  \item[Vector space]
+    A module over a field.
+  \item[Ring]
+    A ring without inverses.
+  \item[Module]
+    A vector space over a ring.
+\end{description}
+\end{tcblisting}
+
+The package \texttt{enumitem} is immensely usefull to configure the style and behavior of these list environments.
+It provides (among others) the following features:
+\begin{itemize}
+  \item
+    For \texttt{enumerate} environment the style of the numbering can be changed.
+    
+    \begin{tcblisting}{listing side text, title={Changing numbering style}}
+\begin{enumerate}[label = (\alph*)]
+  \item
+    First entry.
+  \item
+    Second entry.
+  \item
+    Third entry.
+\end{enumerate}
+    \end{tcblisting}
+
+  One has the following options:
+    \begin{center}
+      \begin{tabular}{@{}ll@{}}
+        \toprule
+        option
+        &
+        output
+        \\
+        \midrule
+        \commandtt{alph*}
+        &
+        lower case alphabetic
+        \\
+        \commandtt{Alph*}
+        &
+        upper case alphabetic
+        \\
+        \commandtt{roman*}
+        &
+        lower case roman
+        \\
+        \commandtt{Roman*}
+        &
+        upper case roman
+        \\
+        \commandtt{arabic*}
+        &
+        arabic numbers
+        \\
+        \bottomrule
+      \end{tabular}
+    \end{center}
+    
+    One can similarly change the symbol for \texttt{itemize} lists:
+    \begin{tcblisting}{listing side text, title={Changing \texttt{itemize} symbol}}
+\begin{itemize}[label = {\textbullet}]
+  \item
+    First entry.
+  \item
+    Second entry.
+\end{itemize}
+Now with another symbol:
+\begin{itemize}[label = {\textopenbullet}]
+  \item
+    First entry again.
+  \item
+    Second entry again.
+\end{itemize}
+    \end{tcblisting}
+    
+  \item
+    One can resume lists:
+    \begin{tcblisting}{title={Resuming lists}}
+Some text before the first \texttt{enumerate} environment.
+\begin{enumerate}
+  \item
+    First entry.
+  \item
+    Second entry.
+\end{enumerate}
+Some text between the \texttt{enumerate} environment.
+\begin{enumerate}[resume]
+  \item
+    Third entry.
+  \item
+    Fourth entry.
+\end{enumerate}
+Some text after the second \texttt{enumerate} environment.
+    \end{tcblisting}
+    
+  \item
+    One can change the various spacings involved in the list environments.
+%   TODO: Gixe examples
+
+  \item
+    Gobal settings can be set:
+    \begin{tcblisting}{listing side text, title={Global settings}}
+\setlist[enumerate]{label = \roman*)}
+\begin{enumerate}
+  \item
+    First entry.
+  \item
+    Second entry.
+\end{enumerate}
+    \end{tcblisting}
+    
+  \item
+    One can use different settings for different levels of nestedness:
+    \begin{tcblisting}{title={Settings depending on level}}
+\begin{enumerate}[label = \Roman*]
+  \item
+    First entry.
+    \begin{enumerate}[label = \alph*]
+      \item
+        First entry, first subentry.
+      \item
+        First entry, second subentry.
+    \end{enumerate}
+  \item
+    Second entry.
+    \begin{enumerate}[label = \arabic*]
+      \item
+        Second entry, first subentry.
+      \item
+        Second entry, second subentry.
+    \end{enumerate}
+\end{enumerate}
+    \end{tcblisting}
+    One can also use different global settings for different depths:
+    \begin{tcblisting}{title={Global settings depending on level}}
+\setlist[enumerate, 1]{label = (\roman*)}
+\setlist[enumerate, 2]{label = (\alph*)}
+\begin{enumerate}
+  \item
+    First entry.
+    \begin{enumerate}
+      \item
+        First entry, first subentry.
+      \item
+        First entry, second subentry.
+    \end{enumerate}
+  \item
+    Second entry.
+    \begin{enumerate}
+      \item
+        Second entry, first subentry.
+      \item
+        Second entry, second subentry.
+    \end{enumerate}
+\end{enumerate}
+    \end{tcblisting}
+    The counter of the first depth and second depth can be accessed via \texttt{enumi} and \texttt{enumii}: 
+    \begin{tcblisting}{title={Accessing level counters}}
+\setlist[enumerate, 1]{label = (\arabic*)}
+\setlist[enumerate, 2]{label = (\arabic{enumi}.\alph*)}
+\begin{enumerate}
+  \item
+    An entry.
+    \begin{enumerate}
+      \item
+        Again an entry.
+      \item
+        Again an entry.
+    \end{enumerate}
+  \item
+    Another entry.
+    \begin{enumerate}
+      \item
+        Yet another entry.
+      \item
+        Yet another entry.
+    \end{enumerate}
+\end{enumerate}
+    \end{tcblisting}
+    
+  \item
+    One often uses a certain kind of list environment multiple times with a specific formatting in the same way.
+    In this case it is best to created a cloned version of this list environment, and then set global settings for this list.
+    \begin{tcblisting}{title={Cloning lists}}
+% clone enumerate as equivalenceslist, allowing up to 2 levels
+\newlist{equivalenceslist}{enumerate}{2}
+% set the formatting
+\setlist[equivalenceslist,1]{label = (\roman*)}
+\setlist[equivalenceslist,2]{label = (\alph*), leftmargin = *}
+% an example
+Let $M$ be an $R$-module.
+For every collection of elements $x_1, \dotsc, x_n \in M$ the following conditions are equivalent:
+\begin{equivalenceslist}
+  \item
+    For every $R$-module $N$ and every choice of elements $y_1, \dotsc, y_n \in N$ there exists a unique module homomorphism $f \colon M \to N$ with $f(x_i) = y_i$ for every $i = 1, \dotsc, n$.
+  \item
+    The elements $x_1, \dotsc, x_n$ are a basis of $M$, i.e.
+    \begin{equivalenceslist}
+      \item
+        the elements $x_1, \dotsc, x_n$ are linearly independent, and
+      \item
+        the elements $x_1, \dotsc, x_n$ are a generating set of $M$.
+    \end{equivalenceslist}
+\end{equivalenceslist}
+    \end{tcblisting}
+\end{itemize}
