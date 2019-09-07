@@ -1,39 +1,327 @@
-\chapter{Useful packages}
+\chapter{Useful and important packages}
 
 
 
 
-
-\section{Package: \texttt{microtype}}
+\section{\texttt{microtype} for better typesetting}
 
 Use the \texttt{microtype} package.
-It makes your document look nicer and can help you circumvent overfull hboxes.
+It makes your document look nicer and helps you to circumvent overfull hboxes.
 Simply including the package is enough to let it work its magic.
 
 
 
 
 
-\section{Package: \texttt{mathtools}}
+\section{\texttt{mathtools} for mathematis}
 
 The \texttt{amsmath} package is standard for mathematical typesetting.
 The \texttt{mathtools} package is an extension of the \texttt{amsmath} package that fixes some of its problems and also provides some new (and often times very useful) functionalities.
 The \texttt{mathtools} package automatically loads the \texttt{amsmath} package too, so instead \commandtt{usepackage\{amsmath\}} just use \commandtt{usepackage\{mathtools\}}.
 
+Note that the important mathematical packages~\packagename{amssymb} and~\packagename{amsthm} are not automatically loaded by~\packagename{mathtools} and therefore still need to be loaded by hand.
+Two other useful packages for mathematical stuff are~\packagename{stmaryrd} (which provides some more symbols) and occasionally~\packagename{extarrows} (which provides certain kinds of extensible arrows, see \cref{extensible arrow table}).
 
 
 
 
-\section{Package: \texttt{csquotes}}
+
+\section{\texttt{amsthm} for theorem-like environments}
+\label{defining theorem like environments}
+
+To define theorem-like environments, like \texttt{lemma}, \texttt{proposition}, \texttt{theorem}, etc., include the package \texttt{amsthm}.
+New environments can then be defined with the \commandtt{newtheorem} command:
+\begin{showcode}{Syntax of \commandtt{newtheorem)}}
+\newtheorem{name of the environment}{title to be printed}
+\end{showcode}
+\begin{showlatex}{Using \commandtt{newtheorem}}
+% in the preamble
+\newtheorem{proposition}{Proposition}
+% in the main body
+\begin{proposition}
+  Every finite subgroup of $k^\times$ is cyclic.
+\end{proposition}
+\end{showlatex}
+The variant \commandtt{newtheorem*} defines unnumbered theorem-like environments:
+\begin{showlatex}{Using \commandtt{newtheorem*}}
+% in the preamble
+\newtheorem*{claim}{Claim}
+% in the main body
+\begin{claim}
+  The symmetric group $S_3$ is the smallest non-abelian group.
+\end{claim}
+\end{showlatex}
+
+If different numbered theorem-like environments are defined then their have different counters:
+\begin{showlatex}{Theorem-like environment use differnt counters by default}
+%in the preamble
+\newtheorem{idea}{Idea}
+\newtheorem{problem}{Problem}
+%in the main text
+\begin{idea}
+  Fly to the moon in a car.
+\end{idea}
+\begin{problem}
+  Cars don’t fly.
+\end{problem}
+\end{showlatex}
+For mathematical texts this behavior is pretty bad, as it makes it harder to find a specified result.
+(If page~492 features Lemma~112 and Proposition~43 then have fun finding Remark~20.)
+
+To solve this problem we define a new counter \texttt{alltheorems} and tell all theorem-like environments to use this counter:
+\begin{showlatex}{Setting up a common counter}
+% in the preamble
+\newcounter{alltheorems}
+
+\newtheorem{assumption}[alltheorems]{Assumption}
+\newtheorem{consequence}[alltheorems]{Consequence}
+
+% in the main text
+\begin{assumption}
+  Cats hunt mice.
+\end{assumption}
+
+\begin{assumption}
+  Tigers are cats.
+\end{assumption}
+
+\begin{consequence}
+  Tigers hunt mice.
+\end{consequence}
+\end{showlatex}
+
+In praxis one often wants the counter to be bound to the surround section or even chapter.
+This can be achived with the following modification:
+\begin{showlatex}[
+  before lower = {\stoptoc},
+  after lower = {\starttoc, \addtocounter{section}{-2}}
+]{Binding a new counter to the section level}
+% in the preamble
+\newcounter{sometheorems}[section]
+\renewcommand{\thesometheorems}{\thesection.\arabic{sometheorems}}
+\newtheorem{corollary}[sometheorems]{Corollary}
+
+% in the main text
+\section{Free abelian groups}
+
+\begin{corollary}
+  Every subgroup of a free abelian group is again free abelian.
+\end{corollary}
+
+\begin{corollary}
+  Every subgroup of $\mathbb{Z}^n$ admits a basis.
+\end{corollary}
+
+\section{More free abelian groups}
+
+\begin{corollary}
+  Every subgroup of a subgroup of $\mathbb{Z}^n$ admits a basis.
+\end{corollary}
+\end{showlatex}
+The addition \texttt{[section]} to the definition of the new counter ensures that the resulting counter \texttt{sometheorems} resets every time the counter \texttt{section} is increased (which happens everytime a new section begins).
+We also change the way the \texttt{sometheorems} counter is printed, namely printing it in the form \texttt{\{section number\}.\{counter number\}} with both numbers printed in arabic numbers.
+
+
+
+
+
+\section{\texorpdfstring{\packagename{tikz-cd}}{tikz-cd} for commutative diagrams}
+
+There are many packages for drawing commutative diagrams.
+Many of them have a rather restricted functionality, and quite a lot of them product bad looking output.
+You should use the package \packagename{tikz-cd}.
+We refer to the very readable manual \cite{tikz-cd} for an explanation of this package.
+
+
+
+
+
+\section{\texttt{cleveref} and \texttt{hyperref} for referencing}
+
+
+
+\subsection{Recalling basic referencing}
+
+To refer to a numbered part of the document, like a theorem, an item of a list, a chapter or a section, one shoud never write down this number explicitely in the code.
+The referencing system of \hologo{LaTeX} should be used instead.
+Using this referencing system always consists of two steps:
+Setting a label at the position that you want to refer to, and then referencing this label at the desired position.
+
+The command for setting a label is \commandtt{label}.
+There are multiple commands for referencing this label, the most basic of which is \commandtt{ref}.
+The use of \commandtt{ref\{label name\}} will print the number of whatever \commandtt{label\{label name\}} is set at.
+\begin{showlatex}{Basic referencing with~\commandname{label} and~\commandname{ref}}
+\begin{theorem}
+  \label{vector spaces are free}
+  Every vector space admits a basis.
+\end{theorem}
+It follows from \ref{vector spaces are free} that two vector spaces are isomorphic if and only if they have the same dimension.
+\end{showlatex}
+
+Instead of giving just a simple number it is customary to also specify what hides behinds this reference, e.g.\ a theorem, table or proposition.
+In this case the name and number should be seperated by a tie~\inlinecode{\customtexttilde} (as explained in \cref{non-breakable space}) to ensure that no line break occurs at this position.
+\begin{showlatex}{Specifying the kind of reference, and using~\inlinecode{\customtexttilde}}
+\begin{theorem}
+  \label{every vector space has a basis}
+  Every vector space admits a basis.
+\end{theorem}
+It follows from the above Theorem~\ref{every vector space has a basis} that two vector spaces are isomorphic if and only if they have the same dimension.
+\end{showlatex}
+
+To refer to an equation it is customary to put the resulting number in parentheses.
+This can automatically done by using \commandtt{eqref} instead of simply \commandtt{ref}.
+\begin{showlatex}{Using \commandtt{eqref}}
+A classic result in mathematics shows
+\begin{equation}
+  \label{important formula}
+  1 + 1 = 2 \,.
+\end{equation}
+Note that the identity \eqref{important formula} shows that Fermat’s conjecture on the sum $a^n + b^n = c^n$ cannot be generalized to the case $n = 1$.
+\end{showlatex}
+
+Always use descriptive labels.
+Cryptic sequences of symbols will backfire on you.
+
+
+
+\subsection{\texttt{cleveref}}
+
+There are two related problems with the above way of using \texttt{Type~{\tbs}ref\{label name\}}:
+One has to remember or look up what type of environment the label \texttt{label name} refers to, and if this type is changed (e.g.\ by changing a theorem into a proposition) then the references need to be manually adjusted.
+
+These problems can be circumvented by using the \texttt{cleveref} package, which the author recommends to load with the options~\inlinecode{capitalise} and \inlinecode{noabbrev}:
+\begin{showcode}[label={cref example}]{Loading~\packagename{cleveref} with the options~\inlinecode{capitalise} and~\inlinecode{noabbrev}}
+\usepackage[capitalise, noabbrev]{cleveref}
+\end{showcode}
+
+\subsubsection{The command~\commandname{cref}}
+
+The package~\packagename{cleveref} provides the command \commandname{cref} which automatically keeps track of which kind of environment the specified label refers to.
+\begin{showlatex}{Using~\commandname{cref}}
+\begin{lemma}
+  \label{dim is well-defined}
+  Every two bases of a vector space have the same cardinality.
+\end{lemma}
+
+\begin{remark}
+  One can generalize \cref{dim is well-defined} to non-commutative rings:
+  If $R$ is some ring and $M$ is a semisimple $R$-module then for every irreducible $R$-module $L$ the multiplicity of $L$ in $M$ is well-defined.
+\end{remark}
+\end{showlatex}
+
+The used options options~\inlinecode{capitalise} and~\inlinecode{noabbrev} have the following effects:
+\begin{itemize}
+  \item
+    The option~\inlinecode{capitalise} ensures that the printed type of the reference will begin with an upper case letter.
+    In \cref{cref example} we would otherwise get~\enquote{\lcnamecref{dim is well-defined}~\labelcref{dim is well-defined}} instead of~\enquote{\cref{dim is well-defined}}.
+  \item
+    The option~\inlinecode{noabbrev} ensures that printed types won’t be abbrevitad.
+    Otherwise one wil get~\enquote{eq.\ (5)} instead of~\enquote{equation~(5)}.
+\end{itemize}
+
+The command~\commandname{cref} has the variant \commandtt{Cref} which ensures that the inserted type will start with an upper case letter.
+One should always use~\commandname{Cref} instead of~\commandname{cref} at the beginning of a sentence, even if the option~\inlinecode{capitalise} is set.
+
+\subsubsection{The~\commandname{*name*ref} commands}
+
+The package~\packagename{cleveref} provides another family of useful commands aside from~\commandname{cref} and~\commandname{Cref}.
+An overview of these can be found in \cref{name ref commands}.
+\begin{table}[tb]
+  \begin{center}
+  \begin{tabular}{@{}lll@{}}
+    \toprule
+    {}
+    &
+    \textbf{singular}
+    &
+    \textbf{plural}
+    \\
+    \cmidrule(lr){2-2} \cmidrule(l){3-3}
+    lower case
+    &
+    \commandname{lcnamecref}
+    &
+    \commandname{lcnamecrefs}
+    \\
+    upper case
+    &
+    \commandname{nameCref}
+    &
+    \commandname{nameCrefs}
+    \\
+    default case
+    &
+    \commandname{namecref}
+    &
+    \commandname{namecrefs}
+    \\
+    \bottomrule
+  \end{tabular}
+  \end{center}
+  \caption{The~\commandname{*name*ref} commands.}
+  \label{name ref commands}
+\end{table}
+The commands in can be used to print the type of a reference without its number.
+These commands can be used to automate various text-based references:
+\begin{showlatex}{Using \commandname{lcnamecref}}
+\begin{theorem}
+  \label{weak cayley}
+  Every group embedds into a non-abelian group.
+\end{theorem}
+The above \lcnamecref{weak cayley} can be seen as a corollary of Cayley’s~theorem.
+\end{showlatex}
+By using the various referencing commands introduced so far it is now possible to avoid (nearly?) every kind of hardcorded reference.
+
+
+
+
+
+\subsection{\texttt{hyperref}}
+
+If the resulting \texttt{pdf} file is supposed to be navigated digitally then the \texttt{hyperref} package should be used.
+This package puts clickable links in the pdf file whenever some kind of reference is used.
+
+
+
+\subsection{Order of inclusion}
+
+The packages \texttt{cleveref} and \texttt{hyperref} are a bit peculiar when it comes to where they have to be included in the preamble.
+The general rule is that the \texttt{hyperref} should be included as the very last package to ensure that it interacts properly with all other used packages.
+There are some rare exceptions to this rule, one of which happened to be \texttt{cleveref}.
+
+If you’re defining some common counter for your theorem-like environments (which you should do, as explained in \cref{defining theorem like environments}) then this needs to be done after \texttt{cleverref} was included.
+Otherwise the \texttt{cleveref} package has problems knowing what name to print when the command \commandtt{cref} is used.
+
+Overall your preamble should the following order for these things:
+\begin{showcode}{Order of preamble with~\packagename{cleveref} and~\packagename{hyperref}}
+% most packages
+...
+\usepackage{amsthm}
+...
+
+% the last packages
+\usepackage{hyperref}
+\usepackage{cleveref}
+
+% defining theorem-like environments
+\newcounter{everything}
+\newtheorem{theorem}[everything]{Theorem}
+\end{showcode}
+
+
+
+
+
+\section{\texttt{csquotes} for quotation marks}
 
 Dealing with quotations marks by hand can be a pain in the ass, for at least two reasons:
 Different languages use different kinds of quotation marks, and finding the right combination of \hologo{LaTeX} code to get the correct ones can be a non-trivial problem.
 One way to circumvent this probem is by using the \texttt{csquotes} package, which provides the command \texttt{enquote}:
-\begin{tcblisting}{listing side text, title={\commandtt{enquote} for quotes}}
+\begin{showlatex}*{Using~\commandtt{enquote}}
 \enquote{This is a quote.}
-\end{tcblisting}
+\end{showlatex}
 When a different languge is loaded using \texttt{babel}, then by loading the \texttt{csquotes} package with the option \texttt{babel=true} ensures the correct quotation marks for the specified language:
-\begin{tcblisting}{listing side text, title={\texttt{csquotes} chooses the right kind of quotation marks}}
+\begin{showlatex}*{\texttt{csquotes} chooses the right kind of quotation marks}
 % american english
 \selectlanguage{american}
 \enquote{quote}
@@ -46,24 +334,24 @@ When a different languge is loaded using \texttt{babel}, then by loading the \te
 % french
 \selectlanguage{french}
 \enquote{citation}
-\end{tcblisting}
+\end{showlatex}
 
 The \texttt{csquotes} command automatically handels nested quotation marks:
-\begin{tcblisting}{listing side text, title={Nested quotes}}
+\begin{showlatex}*{Nested quotes with~\commandname{enquote}}
 \enquote{This is a \enquote{quote} inside a quote.}
-\end{tcblisting}
+\end{showlatex}
 So for dealing with quotes of any kind use the \texttt{csquotes} package.
 
 
 
 
 
-\section{Package: \texttt{enumitem}}
+\section{\texttt{enumitem} for configuration of lists}
 
 \hologo{LaTeX} provides three different kinds of list environments:
 Numbered lists are provided by the \texttt{enumerate} environment.
 
-\begin{tcblisting}{listing side text, title={\texttt{enumerate} environment}}
+\begin{showlatex}*{Basic \texttt{enumerate} environment}
 \begin{enumerate}
   \item
     Assumption
@@ -72,9 +360,9 @@ Numbered lists are provided by the \texttt{enumerate} environment.
   \item
     Contradiction
 \end{enumerate}
-\end{tcblisting}
+\end{showlatex}
 Unnumbered lists are provided by the \texttt{itemize} environment.
-\begin{tcblisting}{listing side text, title={\texttt{itemize} environment}}
+\begin{showlatex}*{Basic \texttt{itemize} environment}
 \begin{itemize}
   \item
     This is a list item.
@@ -83,20 +371,16 @@ Unnumbered lists are provided by the \texttt{itemize} environment.
   \item
     And yet another list item.
 \end{itemize}
-\end{tcblisting}
+\end{showlatex}
 The \texttt{decription} environment uses no predefined symbols for the list items and instead expects a descriptive text from the author.
-\begin{tcblisting}{listing side text, title={\texttt{description} environment}}
+\begin{showlatex}*{Basic \texttt{description} environment}
 \begin{description}
   \item[Field]
-    A ring in which every nonzero element has an inverse.
-  \item[Vector space]
-    A module over a field.
+    A special kind of ring.
   \item[Ring]
-    A ring without inverses.
-  \item[Module]
-    A vector space over a ring.
+    A generalization of fields.
 \end{description}
-\end{tcblisting}
+\end{showlatex}
 
 The package \texttt{enumitem} is immensely usefull to configure the style and behavior of these list environments.
 It provides (among others) the following features:
@@ -104,7 +388,7 @@ It provides (among others) the following features:
   \item
     For \texttt{enumerate} environment the style of the numbering can be changed.
     
-    \begin{tcblisting}{listing side text, title={Changing numbering style}}
+    \begin{showlatex}*{Changing the numbering style of \envname{enumerate}}
 \begin{enumerate}[label = (\alph*)]
   \item
     First entry.
@@ -113,15 +397,15 @@ It provides (among others) the following features:
   \item
     Third entry.
 \end{enumerate}
-    \end{tcblisting}
-
-  One has the following options:
-    \begin{center}
+    \end{showlatex}
+    For a list of possible labels see \cref{enumitem labels}.
+    \begin{table}[tb]
+      \begin{center}
       \begin{tabular}{@{}ll@{}}
         \toprule
-        option
+        \textbf{option}
         &
-        output
+        \textbf{output}
         \\
         \midrule
         \commandtt{alph*}
@@ -146,10 +430,12 @@ It provides (among others) the following features:
         \\
         \bottomrule
       \end{tabular}
-    \end{center}
-    
+      \end{center}
+      \caption{Possible labes for~{\packagename{enumitem}}.}
+      \label{enumitem labels}
+    \end{table}
     One can similarly change the symbol for \texttt{itemize} lists:
-    \begin{tcblisting}{listing side text, title={Changing \texttt{itemize} symbol}}
+    \begin{showlatex}*{Changing the symbol for \texttt{itemize}}
 \begin{itemize}[label = {\textbullet}]
   \item
     First entry.
@@ -163,11 +449,11 @@ Now with another symbol:
   \item
     Second entry again.
 \end{itemize}
-    \end{tcblisting}
+    \end{showlatex}
     
   \item
     One can resume lists:
-    \begin{tcblisting}{title={Resuming lists}}
+    \begin{showlatex}{Resuming lists}
 Some text before the first \texttt{enumerate} environment.
 \begin{enumerate}
   \item
@@ -183,7 +469,7 @@ Some text between the \texttt{enumerate} environment.
     Fourth entry.
 \end{enumerate}
 Some text after the second \texttt{enumerate} environment.
-    \end{tcblisting}
+    \end{showlatex}
     
   \item
     One can change the various spacings involved in the list environments.
@@ -191,7 +477,7 @@ Some text after the second \texttt{enumerate} environment.
 
   \item
     Gobal settings can be set:
-    \begin{tcblisting}{listing side text, title={Global settings}}
+    \begin{showlatex}*{Global settings for list environments}
 \setlist[enumerate]{label = \roman*)}
 \begin{enumerate}
   \item
@@ -199,11 +485,11 @@ Some text after the second \texttt{enumerate} environment.
   \item
     Second entry.
 \end{enumerate}
-    \end{tcblisting}
+    \end{showlatex}
     
   \item
     One can use different settings for different levels of nestedness:
-    \begin{tcblisting}{title={Settings depending on level}}
+    \begin{showlatex}{Level-dependend settings for list environments}
 \begin{enumerate}[label = \Roman*]
   \item
     First entry.
@@ -222,9 +508,9 @@ Some text after the second \texttt{enumerate} environment.
         Second entry, second subentry.
     \end{enumerate}
 \end{enumerate}
-    \end{tcblisting}
+    \end{showlatex}
     One can also use different global settings for different depths:
-    \begin{tcblisting}{title={Global settings depending on level}}
+    \begin{showlatex}{Global settings depending on level}
 \setlist[enumerate, 1]{label = (\roman*)}
 \setlist[enumerate, 2]{label = (\alph*)}
 \begin{enumerate}
@@ -245,9 +531,9 @@ Some text after the second \texttt{enumerate} environment.
         Second entry, second subentry.
     \end{enumerate}
 \end{enumerate}
-    \end{tcblisting}
+    \end{showlatex}
     The counter of the first depth and second depth can be accessed via \texttt{enumi} and \texttt{enumii}: 
-    \begin{tcblisting}{title={Accessing level counters}}
+    \begin{showlatex}{Accessing level counters in settings for list environments}
 \setlist[enumerate, 1]{label = (\arabic*)}
 \setlist[enumerate, 2]{label = (\arabic{enumi}.\alph*)}
 \begin{enumerate}
@@ -268,12 +554,12 @@ Some text after the second \texttt{enumerate} environment.
         Yet another entry.
     \end{enumerate}
 \end{enumerate}
-    \end{tcblisting}
+    \end{showlatex}
     
   \item
     One often uses a certain kind of list environment multiple times with a specific formatting in the same way.
     In this case it is best to created a cloned version of this list environment, and then set global settings for this list.
-    \begin{tcblisting}{title={Cloning lists}}
+    \begin{showlatex}{Custom clones of list environments}
 % clone enumerate as equivalenceslist, allowing up to 2 levels
 \newlist{equivalenceslist}{enumerate}{2}
 % set the formatting
@@ -294,5 +580,472 @@ For every collection of elements $x_1, \dotsc, x_n \in M$ the following conditio
         the elements $x_1, \dotsc, x_n$ are a generating set of $M$.
     \end{equivalenceslist}
 \end{equivalenceslist}
-    \end{tcblisting}
+    \end{showlatex}
 \end{itemize}
+
+
+
+
+
+% use refsection for local bibliography
+\begin{refsection}
+\section{\texttt{biblatex} for bibliography}
+
+
+
+\subsection{The basic setup}
+
+A bibliography in {\LaTeX} comes about from the interplay of three different actors:
+\begin{itemize}
+  \item
+    A~\filename{bib}-file which contains the various references and their informations.
+  \item
+    A package which provides commands for citing these references.
+  \item
+    A backend program which accesses the~\filename{bib}-file to extract the needed informations and pass them to {\LaTeX}.
+\end{itemize}
+
+One should choose~\packagename{biblatex} for the package and~\inlinecode{biber} for the backend program.
+For this the package~\packagename{biblatex} needs to be loaded with the option~\inlinecode{backend~=~biber}:
+\begin{showcode}{Loading \packagename{biblatex}}
+\usepackage[backend = biber]{biblatex}
+\end{showcode}
+The author also likes to use the following options:
+\begin{itemize}
+  \item
+    By default the occuring references will simply be numbered as~[1],~[2],~[3],~etc\@.
+    Often references of the form~[Eis04] are preferable, which is achieved via the option~\inlinecode{style = alphabetic}.
+  \item
+    The option~\inlinecode{dateabbrev = false} ensures that month names like \enquote{September} are not abbreviated as~\enquote{Sept.}
+  \item
+    The option~\inlinecode{urldate = long} ensure that dates concerning URLs are written out as \enquote{September~4,~2109} instead of~\enquote{09/04/2019}.
+\end{itemize}
+
+
+
+\subsection{Creating the \texorpdfstring{\filename{bib}}{bib}-file}
+
+To most important step of creating a bibliography is to collect the references and their various metadata in a \filename{bib}-file.
+For every reference we need to add an entry to this \filename{bib}-file.
+These entries have the following form:
+\begin{showcode}[label = {syntax of bib entry}]{Syntax for an entry in the \filename{bib}-file}
+@type{label,
+  key1 = {value1},
+  key2 = {value2},
+  key3 = {value3},
+  ...
+}
+\end{showcode}
+Instead of curly braces~\inlinecode{\{ \}} one can also use quotation marks~\inlinecode{" "} on the right hand side of the equality signs.
+
+The word~\inlinecode{type} in \cref{syntax of bib entry} will be be replaced by something like~\inlinecode{@book} or~\inlinecode{@article} to declare what kind of work this entry is.
+A list of all possible types can be found in~\cite[2.1]{biblatex}.
+This specified type will determine which of the given data will be printed in the bibliography and how these printed date are formatted.
+
+The given text~\inlinecode{label} has no influence on the bibliography itself.
+It will be used to add the citatations to this reference in the main text.
+
+\subsection{How to choose data for the bibliography}
+
+One should folllow two guidlines when adding information to the bibliography.
+\begin{itemize}
+  \item
+    Provide as much data as possible.
+    The specified type will determine which of these data will be printed.
+    To find out which type will use which information we refer again to~\cite[2.1, 2.2]{biblatex}.
+  \item
+    How the printed data are to be formated is for {\LaTeX}---and more specifically \packagename{biblatex}---to decide.
+    So don’t try to preformat the provided date in the~\filename{bib}-file.
+    Try in particular to give full, unabbreviated names whenever possible.
+\end{itemize}
+If you feels strongly about certain data being printed, or how certain data should be formatted when printed out, then you should not try to abuse the~\filename{bib}-file for this.
+Instead tell these complains to \packagename{biblatex} by changing the appropriate settings.
+
+Some good sources for finding the data that a bibliography requires are MathSciNet and the websites of the publishers. (Shoutout to Springer for providing all the needed information on the websites of their books.)
+Most of the needed data can also be found in the cited resource---e.g.\ book or article---itself.
+
+In the following we will look at some specific examples of~\filename{bib}-file entries.
+
+\subsubsection{Entry for a single book}
+
+The \filename{bib}-file entry for a single book should look as follows: 
+\begin{showcode}[label = {fulton harris bib entry}]{\filename{bib}-file entry for a single book}
+@book{fultonharris2004,
+  title     = {Representation Theory},
+  subtitle  = {A First Course},
+  author    = {Fulton, William and Harris, Joe},
+  edition   = {1},
+  year      = {2004},
+  pagetotal = {xv+551},
+  publisher = {Springer-Verlag New York},
+  series    = {Graduate Texts in Mathematics},
+  number    = {129},
+  isbn      = {978-0-387-97527-6},
+  doi       = {10.1007/978-1-4612-0979-9}
+}
+\end{showcode}
+The resulting output in the bibliography (see \cref{example bibliography}) will look as follows:
+\testcite{fultonharris2004}
+The various keys have the following functions:
+
+\begin{description}
+  \item[\inlinecode{title}]
+    This key specifies the title of the book.
+    The expected value of this key is a text.
+  \item[\inlinecode{subtitle}]
+    This key specifies the subtitle of the book.
+    The expected value of this key is a text.
+  \item[\inlinecode{author}]
+    This key specifies the author(s) of the book.
+    There are some things to be aware of here:
+    \begin{itemize}
+      \item
+        The name of an author needs to be given in the format~\inlinecode{Lastname, Firstname}.
+        This is needed so that~\inlinecode{biber} can properly process this data.
+      \item
+        If multiple authors are given then they need to be separated by the word~\inlinecode{and}.
+    \end{itemize}
+  \item[\inlinecode{edition}]
+    This key specifies the edition of the book.
+    The value should be given as a number for proper processing, but can in an emergency also be given as a text.
+  \item[\inlinecode{year}]
+    This key specifies the year the book was published.
+    One could also specify a moth with the key~\inlinecode{month}.
+    The values for both keys are expected to be numbers.
+    
+    One could also use the key~\inlinecode{date} takes arguments of the form~\inlinecode{year},~\inlinecode{year-month} or~\inlinecode{year-month-day}.
+    Here the value of~\inlinecode{year} is expected to be a four digit number, and the values of~\inlinecode{month} and~\inlinecode{day} are expected to be two digit numbers (which may contain a leading zero).
+  \item[\inlinecode{pagetotal}]
+    This key specifies the total number of pages of the book.
+    The value should be an integer but can also be an arbitrary text.
+
+    There is however a drawback to simply providing a text:
+    Normally the number of pages is followed by the text~\enquote{pp.}\ or~\enquote{p.},\ depending on whether the reference consists of only a single page.
+    To do so, \packagename{biblatex} always tried to interpret the input as a number.
+    But if this interpretation fails then neither~\enquote{pp.}\ nor~\enquote{p.} will be added.
+
+    Books often start with pages that are numbered with roman numerals, followed by pages that are numbered by arabic numberals.
+    In this case the total number of pages should be given in the form~\enquote{(roman~number)+(arabic~number)}.
+
+    As explained above, this will lead to the problem of \packagename{biblatex} being unable to interpret the input as a number, which leads by default to a missing~\enquote{pp.}\ in the output.
+    For this problem one can adjust the settings of \packagename{biblatex} to \emph{always} include~\enquote{pp.}\ after the total page number of a book.
+    This can be done as follows:
+    \begin{showcode}{Adjusting the formatting of \inlinecode{pagestotal}}
+\DeclareFieldFormat[book]{pagetotal}{#1~\ppno}
+    \end{showcode}
+  \item[\inlinecode{publisher}]
+    This key specifies the publisher of the book.
+    The expected value is a text.
+    Note that \enquote{Springer} is not a proper reference for a publisher.
+  \item[\inlinecode{series}]
+    Many mathematical books are part of some series, e.g.\ \enquote{Graduate Texts is Mathematics} or \enquote{Cambridge Studies in Advanced Mathematics}.
+    Such a series can be specified with the key~\inlinecode{series}, which expects as its value a text.
+  \item[\inlinecode{number}]
+    This key specifies the number of the book in the previously specified series.
+    The values of this key is (counterintuitively) treated as a text.
+    
+    If you copy your bibliography datae from somewhere else then there is a very high chance that instead of the key~\inlinecode{number} the key~\inlinecode{volume} is used.
+    This is relicts from the past that isn’t correct with \packagename{biblatex}.
+  \item[\inlinecode{isbn}]
+    This key specifies the isbn number of the book.
+    The value of this field is treated as a text.
+  \item[\inlinecode{doi}]
+    This key specifies the DOI of the book (if it has one).
+\end{description}
+
+\subsubsection{Entry for a book with multiple volumes}
+
+Sometimes a book is just a volume in a small collection of books.
+In this case one should use the type~\inlinecode{@mvbook} to define the overall information of these books, and then an entry of type~\inlinecode{@book} which is subordinate to the previously created entry.
+Let’s consider an exapmle:
+\begin{showcode}{\filename{bib}-file entry for a book with multiple volumes}
+@mvbook{benson,
+  title     = {Representations and Cohomology},
+  author    = {Benson, David John},
+  publisher = {Cambridge University Press},
+  series    = {Cambridge Studies in Advanced Mathematics},
+  volumes   = {2}
+}
+
+@book{benson1991,
+  crossref  = {benson},
+  volume    = {1},
+  number    = {30},
+  title     = {Basic Representation Theory of Finite Groups and Associative Algebras},
+  edition   = {1},
+  year      = {1991},
+  pagetotal = {xii+246},
+  isbn      = {978-0-521-36134-7},
+  doi       = {10.1017/CBO9780511623615}
+}
+\end{showcode}
+We can then refer to the entry of type~\inlinecode{@book} as usual, to get the following output in the bibliography (see \cref{example bibliography}):
+\testcite{benson1991}
+
+The only new key when compared to the previous example is~\inlinecode{crossref}, which establishes the desired connection between the two entries.
+
+\subsubsection{Entry for an article}
+
+We now consider an example for citing an article:
+
+\begin{showcode}{\filename{bib}-file entry for a single book}
+@article {diamond_lemma,
+  title         = {The Diamond Lemma for Ring Theory},
+  author        = {Bergman, George Mark},
+  year          = {1978},
+  month         = {2},
+  journaltitle  = {Advances in Mathematics},
+  issn          = {0001-8708},
+  volume        = {29},
+  number        = {2},
+  pages         = {178--218},
+  doi           = {10.1016/0001-8708(78)90010-5}
+}
+\end{showcode}
+The output in the bibliography (see \cref{example bibliography}) will look as follows:
+\testcite{diamond_lemma}
+
+Many fields are as for the type~\inlinecode{@book}, so we fill focuse on the changes:
+\begin{description}
+  \item[\inlinecode{journaltitle}]
+    This key specifies the name of the jornal that the article was published in.
+    The expected value for this key is a text.
+  \item[\inlinecode{issn}]
+    This key specifies the ISSN of the journal in question.
+    The value is treated as a text.
+  \item[\inlinecode{volume}, \inlinecode{number}]
+    These keys specify in which volume of the journal the article appeared, and in which number of the volume.
+    The value for~\inlinecode{volume} should be an integer, and the value for~\inlinecode{number} should be an integer too (although it is treated as text).
+  \item[\inlinecode{pages}]
+    This key specifies in which page range the article appeared.
+    It doesn’t matter how many dashes are used to separate the two page numbers.
+    It also doesn’t matter if the dash(es) are surrounded by space.
+    
+    It is customary to specify page ranges in the form~\inlinecode{pages~=~number--number} because this gives a right looking output even if this argument were simply to be interpreted as text.
+    (Which lesser packages than \packagename{biblatex} may do.)
+\end{description}
+
+\subsubsection{Entry for an online resource}
+
+We consider now an example where we cite an online resource:
+\begin{showcode}{\filename{bib}-file entry for an online resource}
+@online{cayley_graph,
+  title   = {Cayley graphs and the geometry of groups},
+  author  = {Terence Tao},
+  date    = {2010-06-10},
+  url     = {https://terrytao.wordpress.com/cayley-graphs-and-the-geometry-of-groups},
+  urldate = {2019-09-06}
+}
+\end{showcode}
+The output in the bibliography (see \cref{example bibliography}) will look as follows:
+\testcite{cayley_graph}
+We have three (or rather two) new fields to discuss:
+\begin{description}
+  \item[\inlinecode{date}]
+    This key specifies when the linked to resource was created.
+    This key takes arguments of the form~\inlinecode{year},~\inlinecode{year-month} or~\inlinecode{year-month-day}.
+    Here the value of~\inlinecode{year} is expected to be a four digit number, and the values of~\inlinecode{month} and~\inlinecode{day} are expected to be two digit numbers (which may contain a leading zero).
+    
+    Instead of~\inlinecode{date} one can also use the overall less specific keys~\inlinecode{year} and~\inlinecode{month}.
+  \item[\inlinecode{url}]
+    This key specifies the URL of the online resource.
+  \item[\inlinecode{urldate}]
+    This key specifies the date on which the online resource was accessed.
+    This is an importent information since content online may change over time.
+\end{description}
+
+
+
+\subsection{Citing the references}
+
+Suppose now that we have added an entry to our~\filename{bib}-file, as outlines in \cref{syntax of bib entry}.
+In the actual {\LaTeX} project we can then refer to this entry with the command~\commandname{cite}:
+\begin{showcode}{Syntax of~\commandname{cite}}
+\cite[details]{label}
+One can also refer to the overall collection:
+\testcite{benson}
+\end{showcode}
+Let’s consider an example.
+\begin{showlatex}[label = {using cite}]{Using~\commandname{cite}}
+We assume that the reader is famliar with the representation theory of the symmetric groups as discussed in \cite[\S 4]{fultonharris2004}.
+The reader may also want to check out \cite{benson1991} and \cite{cayley_graph}.
+For a nice proof of the Poincaré--Birkhoff--Witt~Theorem we refer to \cite[\S 3]{diamond_lemma}.
+\end{showlatex}
+
+We will also need to add the bibilography into the {\LaTeX} document.
+This is done by the command~\commandname{printbibliography}.
+This typically happens near the end of the document.
+% locally overwrite \printbibliography
+\let\oldprintbibliography\printbibliography
+\renewcommand{\printbibliography}{\oldprintbibliography[heading=subbibliography,title={Bibliography}]}
+\begin{showlatex}[label = {example bibliography}]
+  {Using \commandname{printbibliography}}
+\printbibliography
+\end{showlatex}
+% undo the above overwriting
+\let\printbibliography\oldprintbibliography
+
+
+
+\subsubsection{Compiling the bibliography}
+
+To get the output of \cref{using cite} and \cref{example bibliography} we actually have to compile the document in the right way:
+
+Suppose that the~\filename{bib}-file has created, we have put the citations in the text via~\commandname{cite} and that we have placed \commandname{printbibliography} in the source code.
+We then have to proceed in three steps.
+Suppose that our main file is called~\filename{main.tex} and the~\filename{bib}-file is called~\filename{references.bib}.
+\begin{enumerate}
+  \item
+    We compile the document~\filename{main.tex}.
+    The compiler will note down in an auxiliary file~\filename{main.bcf} which labels are cited in this document
+  \item
+    The backend program~\inlinecode{biber} will go through the auxiliary files~\filename{main.bcf} and write down all the requested information in a new auxiliary file~\filename{main.bbl}.
+  \item
+    We compile the document~\filename{main.tex} again.
+    The compiler will read the various data given in the auxiliary file~\filename{main.bll} and, using the settings and commands from the package~\packagename{biblatex}, will typeset both the citations in the main text and create a bibliography.
+\end{enumerate}
+\end{refsection}
+If you’re using a specialed {\LaTeX} editor or IDE (like {\TeX}Studio, kile, etc.)\ and have everything properly configured then your editor should take care of the above steps automatically when(ever) the document is compiled.
+But if you’re compiling by hand in the console then you will need three commands:
+\begin{showcode}{Compiling in the console with bibliography}
+latex main.tex
+biber main.bcf
+latex main.tex
+\end{showcode}
+
+
+
+
+
+\section{\texttt{booktabs} for tables}
+
+
+
+\subsection{Recalling basic tables}
+
+Recall that a centered table is constructed as follows in \hologo{LaTeX}:
+\begin{showlatex}{A basic table}
+\begin{tabular}{lcr}
+  longtext & text     & text      \\
+  text     & longtext & text      \\
+  text     & text     & longtext
+\end{tabular}
+\end{showlatex}
+The labels \texttt{l}, \texttt{c}, \texttt{r} specify the alignment of the corresponding column (left aligned, centered, and right aligned).
+Lines are traditionally added to a table as follows:
+\begin{itemize}
+  \item
+    The use of \commandtt{hline} at the beginnig of a row introduces a horizontal line that separates this row from the previous one.
+    To get multiple parallel lines (e.g.\ a double line) one uses multiple instances of \commandtt{hline} directly after each other.
+    \begin{showlatex}{Full horizontal lines in tables}
+\begin{center}
+\begin{tabular}{ccc}
+  top left & top center & top right \\
+  \hline\hline
+  text     & text       & text      \\
+  \hline
+  text     & text       & text
+\end{tabular}
+\end{center}
+  \end{showlatex}
+  \item
+    To seperate only the colums $i, \dotsc, j$ by horizontal line, the command \commandtt{cline\{i-j\}} can be used.
+    \begin{showlatex}{Partial horizontal lines in tables}
+\begin{center}
+\begin{tabular}{ccccc}
+  text & text & text & text & text \\
+  \cline{2-4}
+  text & text & text & text & text \\
+  \cline{1-2} \cline{4-5}
+  text & text & text & text & text
+\end{tabular}
+\end{center}
+    \end{showlatex}
+  \item
+     One can put a vertical line between two columns by adding the symbol \texttt{|} between the corresponding alignment symbols.
+     Inserting this symbol multiple times will give parallel vertical lines.
+     \begin{showlatex}{Vertical lines in tables}
+\begin{tabular}{l||c|c}
+  first row   & text & text \\
+  second row  & text & text \\
+  third row   & text & text
+\end{tabular}
+     \end{showlatex}
+\end{itemize}
+
+The above effects can also be combined:
+\begin{showlatex}{A table with all kinds of lines in it}
+\begin{center}
+\begin{tabular}{|l||l|r|}
+  \hline
+  \textbf{Country}  &  \textbf{Town}  & \textbf{Population} \\
+  \hline\hline
+  France            & Paris           & 2,229,621           \\
+  \cline{2-3}
+  {}                & Marseille       &   855,393           \\
+  \hline
+  Germany           & Berlin          & 3,520,031           \\
+  \cline{2-3}
+  {}                & Hamburg         & 1,787,408           \\
+  \hline
+  Japan             & Tokyo           & 8,637,098           \\
+  \cline{2-3}
+  {}                & Yokohama        & 3,697,894           \\
+  \hline
+\end{tabular}
+\end{center}
+\end{showlatex}
+
+
+
+\subsection{Problems and solutions}
+
+The above table has a huge problem:
+It’s ugly.
+This is due to various reasons:
+\begin{itemize}
+  \item
+    The spacing between the horizontal lines and the text below them is both bad and inconsistent.
+  \item
+    The above table breaks the first rule of table club:
+    Never, ever use vertical lines.
+  \item
+    The above table also breaks the second rule of table club:
+    Never use double lines.
+\end{itemize}
+The last two points are easy to fix.
+The \texttt{booktabs} package gives a way for fixing the first problem:
+\begin{itemize}
+  \item
+    The package provides the commands \commandtt{toprule}, \commandtt{midrule} and \commandtt{bottomrule} as replacements for \commandtt{hline}.
+    The command \commandtt{toprule} is to be used only for the line on top of the table.
+    The command \commandtt{bottomrule} is similarly only to be used for the line on the bottom of the table.
+    The horizontal line \commandtt{midrule} is meant to separate the main part of the table from the top part and bottom part.
+  \item
+    The command \commandtt{cmidrule} is the replacement for \commandtt{crule}.
+\end{itemize}
+One should also try to minimize the number of horizontal lines.
+The above example should hence look as follows:
+\begin{showlatex}{Using the rules of \packagename{booktabs}}
+\begin{center}
+\begin{tabular}{llr}
+  \toprule
+  \textbf{Country}  &  \textbf{Town}  & \textbf{Population} \\
+  \midrule
+  France            & Paris           & 2,229,621           \\
+  {}                & Marseille       &   855,393           \\
+  Germany           & Berlin          & 3,520,031           \\
+  {}                & Hamburg         & 1,787,408           \\
+  Japan             & Tokyo           & 8,637,098           \\
+  {}                & Yokohama        & 3,697,894           \\
+  \bottomrule
+\end{tabular}
+\end{center}
+\end{showlatex}
+
+Note that we could leave out all non-essential horizontal lines because the table has a very regular form.
+We refer to \cite{booktab} for more informations about typing tables (using the \texttt{booktab} package).
+
+
+
+

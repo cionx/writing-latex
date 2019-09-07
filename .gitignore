@@ -3,9 +3,11 @@
 *.bcf
 *.blg
 *.listing
+*.lof
 *.log
+*.lol
+*.lot
 *.out
 *.run.xml
 *.synctex.gz
-*.tmp
 *.toc

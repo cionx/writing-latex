@@ -1,0 +1,978 @@
+\chapter{Mathematical layout}
+
+
+
+
+
+\section{Don’t use \texttt{\$\$  \$\$} or \texttt{eqnarray}}
+
+There are many good ways to put mathematical content into display mode, but \texttt{\$\$  \$\$} and \texttt{eqnarray} are none of them.
+The method \texttt{\$\$  \$\$} is too level for practical use, and \texttt{eqnarray} has too many problems and has been deprecated since forever.
+One can use any of the following, depending on the planned usage.
+
+
+
+\subsection{\texttt{{\tbs}[ {\tbs}]} and \texttt{equation*}}
+
+The methods \texttt{equation*} and \texttt{{\tbs}[ {\tbs}]} can be used for a single line of display math mode.
+Both commands do the same thing (when \texttt{amsmath} is loaded).
+\begin{showlatex}*{Using \texttt{{\tbs}[ {\tbs}]} and \texttt{equation*}}
+Suppose that both the formula
+\[
+  a + b = c
+\]
+and the formula
+\begin{equation*}
+  2a - b = c \,.
+\end{equation*}
+hold.
+Then $a$ and $b$ are unique.
+\end{showlatex}
+The non-starred version \texttt{equation} numbers the equation.
+\begin{showlatex}*{Using \texttt{equation}}
+The formula
+\begin{equation}
+  a^2 - b^2 = (a + b)(a - b)
+\end{equation}
+is one of the binomial formulas.
+\end{showlatex}
+
+
+
+\subsection{\texttt{gather*}}
+
+The \texttt{gather*} environment is meant for multiple lines that are non-aligned but centered instead.
+\begin{showlatex}{Using \texttt{gather*}}
+We consider for every integer $n \geq 0$ the polynomial
+\[
+  p_n
+  =
+  \sum_{k=0}^n x^k \,.
+\]
+In particular
+\begin{gather*}
+  p_0 = 1 \,,
+  \qquad
+  p_1 = 1 + x \,,
+  \qquad
+  p_2 = 1 + x + x^2 \,,
+  \qquad
+  p_3 = 1 + x + x^2 + x^3 \,,
+  \\
+  p_4 = 1 + x + x^2 + x^3 + x^4 \,,
+  \qquad
+  p_5 = 1 + x + x^2 + x^3 + x^4 + x^5 \,.
+\end{gather*}
+\end{showlatex}
+The non-starred version \texttt{gather} number the lines.
+\begin{showlatex}{Using \texttt{gather}}
+We have the polynomials
+\begin{gather}
+  p_0 = 1 \,,
+  \qquad
+  p_1 = 1 + x \,,
+  \qquad
+  p_2 = 1 + x + x^2 \,,
+  \qquad
+  p_3 = 1 + x + x^2 + x^3 \,,
+  \\
+  p_4 = 1 + x + x^2 + x^3 + x^4 \,,
+  \qquad
+  p_5 = 1 + x + x^2 + x^3 + x^4 + x^5 \,.
+\end{gather}
+\end{showlatex}
+
+
+
+\subsection{\texttt{align*} and \texttt{alignat*}}
+
+The \texttt{align*} enviroment takes multiple lines which can aligned.
+Each line contains the symbol \texttt{\&} once, and the occurences of this symbol are then aligned.
+\begin{showlatex}*{Using \texttt{align*}}
+We find that
+\begin{align*}
+  a + b + c
+  &=
+  d + e + f + g
+  \\
+  &=
+  h + i + j
+  \\
+  &=
+  k + l + m + n \,.
+\end{align*}
+\end{showlatex}
+The unstarred version \texttt{align} again numbers the lines.
+\begin{showlatex}*{Using \texttt{align}}
+We find again that
+\begin{align}
+  a + b + c
+  &=
+  d + e + f + g
+  \\
+  &=
+  h + i + j
+  \\
+  &=
+  k + l + m + n \,.
+\end{align}
+\end{showlatex}
+One can also use multiple aligned columns, which then need to be separated by an additional \texttt{\&}.
+For~$n$ aligned columns we hence need~$2n+1$ occurences of \texttt{\&}.
+\begin{showlatex}{Using \texttt{align*} with multiple columns}
+We consider the values
+\begin{align*}
+  x_1 &= 1 \,,  &   x_2 &= 2 \,,  &   x_3 &= 3 \,,  \\
+  x_4 &= 4 \,,  &   x_5 &= 5 \,,  &   x_6 &= 6 \,,  \\
+  x_7 &= 7 \,,  &   x_8 &= 8 \,,  &   x_9 &= 9 \,.
+\end{align*}
+\end{showlatex}
+
+The \texttt{alignat*} environment is similar to the \texttt{align} environment, but doesn’t add any built-in spacing between the aligned columns.
+Any such spacing must therefore by added by hand.
+One also has to specify the number of columns beforehand.
+\begin{showlatex}{Using \texttt{alignat*}}
+We also consider the values
+\begin{alignat*}{3}
+  y_1 &= 9 \,,  &\qquad   y_2 &= 8 \,,  &\qquad   y_3 &= 7 \,,  \\
+  y_4 &= 6 \,,  &         y_5 &= 5 \,,  &         y_6 &= 4 \,,  \\
+  y_7 &= 3 \,,  &         y_8 &= 2 \,,  &         y_9 &= 1 \,.
+\end{alignat*}
+\end{showlatex}
+When aligning multiple columns one should use \texttt{alignat*} instead of \texttt{align*} to get (manually) a good looking distance between the aligned columns.
+
+
+
+\subsection{Don’t do \texttt{center} with \texttt{\$ \$}}
+
+By all that is holy, don’t do the following:
+\begin{showlatex}*{Using~\commandname{center} with~\inlinecode{\$ \$}}
+Some text that ends in
+\begin{center}
+  $a + b = c$.
+\end{center}
+Now some more text.
+\end{showlatex}
+% TODO: Explain all the things that go wrong
+
+
+
+\subsection{\texttt{gathered}, \texttt{aligned} and \texttt{alignedat}}
+
+The environments \texttt{gathered}, \texttt{aligned} and \texttt{alignedat} are variations of the environments \texttt{gather*}, \texttt{align*} and \texttt{alignat*}.
+These variations are meant to be used inside an already existing math environment.
+\begin{showlatex}*{Using \texttt{aligned}}
+\[
+  \left\{
+    \begin{aligned}
+      a + b &= c      \\
+      d     &= e + f
+    \end{aligned}
+  \right\}
+\]
+\end{showlatex}
+
+
+
+\subsection{Overview}
+
+One should always use the most basic environment that does the job:
+Using overpowered environments can lead to unexpected problems.
+Consider the following example:
+\begin{showlatex}{Inproper use of \texttt{align*}}
+\begin{align*}
+  ABCD = EF = GHI = JKL = M = NOP
+  \\
+  QRS = TUV = WX = Y = Z
+\end{align*}
+\end{showlatex}
+The \texttt{align*} environment automatically alignes both lines on the right since no information about alignment was given.
+In the above situation one should use \texttt{gather*} instead.
+\begin{showlatex}{Using \texttt{gather*} for non-aligned equations}
+\begin{gather*}
+  ABCD = EF = GHI = JKL = M = NOP
+  \\
+  QRS = TUV = WX = Y = Z
+\end{gather*}
+\end{showlatex}
+The flowchart in \cref{environment flow chart} explains how to choose the correct display environment.
+(This flowchart is partly inspired by \cite{flowchart}.)
+\begin{figure}[tb]
+  \begin{center}
+  \begin{tikzpicture}[
+    node distance = 5em,
+    >={Latex[width=2mm,length=2mm]},
+    every text node part/.style = { align = center },
+    start/.style    = { rectangle,
+                        rounded corners,
+                        fill = green!20!white,
+                        draw = black,
+                        minimum width  = 5em,
+                        minimum height = 2em
+                      },
+    question/.style = { rectangle,
+                        rounded corners,
+                        fill = black!10!white,
+                        draw = black,
+                        minimum width  = 9em,
+                        minimum height = 2.5em
+                      },
+    answer/.style   = { rectangle,
+                        rounded corners,
+                        draw = black,
+                        minimum width  = 7em,
+                        minimum height = 1.5em
+                      }
+  ]
+    % nodes
+    \node (start)
+          [start]
+          {formula};
+    \node (multiline)
+          [question, below of = start]
+          {multiline?};
+    \node (alignment)
+          [question, below of = multiline]
+          {alignment?};
+    \node (multicolumn)
+          [question, below of = alignment]
+          {multiple columns?};
+    \node (equation)
+          [answer, right of = multiline, xshift = 7em]
+          {\texttt{{\tbs}[ {\tbs}]}\\equation*};
+    \node (gather)
+          [answer, right of = alignment, xshift = 7em]
+          {gather*};
+    \node (align)
+          [answer, right of = multicolumn, xshift = 7em]
+          {align*};
+    \node (alignat)
+          [answer, below of = align]
+          {alignat*};
+    % arrows
+    \draw[->] (start) -- (multiline);
+    \draw[->] (multiline)   -- node[anchor=south] {no} (equation);
+    \draw[->] (multiline)   -- node[anchor=east] {yes} (alignment);
+    \draw[->] (alignment)   -- node[anchor=south] {no} (gather);
+    \draw[->] (alignment)   -- node[anchor=east] {yes} (multicolumn);
+    \draw[->] (multicolumn) -- node[anchor=south] {no} (align);
+    \draw[->] (multicolumn) |- node[anchor=east, yshift=1.7em] {yes} (alignat);
+  \end{tikzpicture}
+  \end{center}
+  If numbering of the line(s) is needed then the unstarred version is to be used.
+  \caption{Deciding on a math environment.}
+  \label{environment flow chart}
+\end{figure}
+
+
+
+
+
+\section{Break and align at good points}
+\label{break and align ponts}
+
+Often times a formula is broken among multiple lines.
+This is done for at least two reasons:
+\begin{itemize}
+  \item
+    To improve the readability of the given formula.
+  \item
+    To prevent that the formula goes over the margins of the document.
+\end{itemize}
+If a formula is broken amoung multiple lines then one has to choose at which places the formla is broken, and how the resulting parts of the formula will be aligned.
+In this section we present some standard ways of breaking and aligning a formula, and discuss when to break a formula.
+
+
+
+\subsection{When to break}
+
+We first discuss when a formula needs to be broken.
+
+\subsubsection{When the formula is too long}
+
+If a formula is too long to physically fit into the text area, i.e.\ if it goes over the margins of the text area, then it must be broken up.
+These occurences are easy to spot since they give will give an \enquote{overfull hbox} warning.
+Consider the following example:
+\begingroup
+\begin{showlatex}[before lower = {\hfuzz = 40pt}, after lower = {\hfuzz = 0pt}]{Overfull hbox}
+  It follows from
+  \[
+    aaaaaaa
+    =
+    bbbbbbb
+    =
+    ccccccc
+    \leq
+    ddddddd
+    =
+    eeeeeee
+    =
+    fffffff
+    \leq
+    ggggggg
+    =
+    hhhhhhh
+  \]
+  that $a \leq h$.
+\end{showlatex}
+\endgroup
+
+\subsubsection{When the formula is visually too long}
+
+Sometimes a formula does fit into a single line, but barely so.
+Consider the following example:
+\begin{showlatex}{Visually overfull hbox}
+Here is some text.
+\[
+  aaaaaaaaa = bbbbbbbbbbbbbb = cccccccccccccc = dddddddddddddd = eeeeeeeeee
+\]
+Here is some more text.
+\end{showlatex}
+The formula in the above example does actually not go over the margin.
+But it has stretched the displaymode over its visual limits.
+The formula does therefore neeed to be broken up.
+
+\subsection{Expressing structure}
+
+Often the breaking up of a formula is done to better express the structure---and thus content---of the displayed formula.
+Consider the following example:
+\begin{showlatex}[label={unreadable formula}]{A formula that should be broken up for readability}
+If $k$ is algebraically closed and $i$ is a square root of $-1$ then
+\[
+  k[x]/(x^2 + 1)
+  =
+  k[x]/( (x - i) (x + i) )
+  \cong
+  k[x]/(x - i) \times k[x]/(x + i)
+  \cong
+  k \times k
+\]
+by the Chinese remainder theorem.
+\end{showlatex}
+The above output still has an appropriate length to be put into a single line, and if space is spare then this is an acceptable solution.
+But this single-line approach to the formula does not help to display its internal structure.
+This can be done by splitting up the formula as done in the next example:
+\begin{showlatex}{Broken up version of \cref*{unreadable formula}}
+If $k$ is algebraically closed and $i$ is a square root of $-1$ then
+\begin{align*}
+  k[x]/(x^2 + 1)
+  &=
+  k[x]/( (x - i) (x + i) )
+  \\
+  &\cong
+  k[x]/(x - i) \times \mathbb{C}[x]/(x + i)
+  \\
+  &\cong
+  k \times k
+\end{align*}
+by the Chinese remainder theorem.
+\end{showlatex}
+This form makes it clear where the equalities and isomorphisms occur.
+
+
+
+\subsection{Where to break and align}
+
+We now discuss at which points a formula can be broken, and how these broken parts can then be aligned.
+
+\subsubsection{Aligning at relation symbols I}
+
+A first approach is to all relation symbols under each other, 
+\begin{showlatex}{Aligning relation symbols~I}
+Let $x$,$y$ be two nilpotent elements in a commutative ring $R$.
+Then
+\begin{align*}
+  \exp(x) \exp(y)
+  &=
+  \left( \sum_{k=0}^\infty \frac{x^k}{k!} \right)
+  \left( \sum_{l=0}^\infty \frac{y^l}{l!} \right)
+  \\
+  &=
+  \sum_{k,l=0}^\infty \frac{x^k y^l}{k! \, l!}
+  \\
+  &=
+  \sum_{n=0}^\infty \, \sum_{k+l = n} \frac{x^k y^l}{k! \, l!}
+  \\
+  &=
+  \sum_{n=0}^\infty \frac{1}{n!} \sum_{k=0}^n \binom{n}{k} x^k y^{n-k}
+  \\
+  &=
+  \sum_{n=0}^\infty \frac{1}{n!} (x + y)^n
+  \\
+  &=
+  \exp(x + y) \,.
+\end{align*}
+\end{showlatex}
+
+\subsubsection{Aligning at relation symbols II}
+
+One can also align all relation symbols to the left, so that the broken up parts of the formla all lie on top of each other.
+\begin{showlatex}{Aligning relation symbols~II}
+Let~$R$ and~$S$ be two commutative rings.
+Then for every~$(r,s) \in R \times S$,
+\begin{align*}
+  {}&
+  (r, s) \in (R \times S)^\times
+  \\
+  \iff{}&
+  \text{there exist $(r', s') \in R \times S$ with $(r,s)(r',s') = (1,1)$}
+  \\
+  \iff{}&
+  \text{there exist $r' \in R$ and $s' \in S$ with $rr' = r$ and $ss' = 1$}
+  \\
+  \iff{}&
+  \text{$r \in R^\times$ and $s \in S^\times$}
+  \\
+  \iff{}&
+  (r,s) \in R^\times \times S^\times \,,
+\end{align*}
+and therefore $(R \times S)^{\times} = R^\times \times S^\times$.
+\end{showlatex}
+The empty pair of curly brackets in \texttt{{\tbs}iff\{\}\&} ensures that the spacings coming from \commandtt{iff} and \texttt{\&} do not interfere with each other.
+Otherwise something like this happens:
+\begin{showlatex}{Wrong spacing when alignment points are set wrong}
+  \begin{align*}
+      &\text{some stuff} \\
+    =&\text{some other stuff}
+  \end{align*}
+\end{showlatex}
+
+\subsubsection{Breaking at a binary operator}
+
+Sometimes it is also useful to break a long term of a formula at a binary operator.
+In this case this operator needs to occur in the line after the break.
+The following example does it wrong:
+\begin{showlatex}*{Wrong aligning at a binary operator~I}
+\begin{align*}
+  & a + b + c + \\
+  & d + e
+\end{align*}
+\end{showlatex}
+The following should be done instead:
+\begin{showlatex}*{Right breaking at a binary operator~I}
+\begin{align*}
+  & a + b + c \\
+  & + d + e
+\end{align*}
+\end{showlatex}
+If a formula is broken at relation symbols and one of the resulting terms is broken at a binary operator, then the operator is not aligned together with the relation symbols.
+Instead the binary operator appears after the relation symbols.
+The following example does it wrong:
+\begin{showlatex}*{Wrong breaking at a binary operator~II}
+\begin{align*}
+  a + a
+  &=
+  b + b + b + b
+  \\
+  &+
+  b + b + b + b
+  \\
+  &=
+  c + c + c + c + c
+\end{align*}
+\end{showlatex}
+Instead the following has to be done:
+\begin{showlatex}*{Right breaking at a binary operator~II}
+\begin{align*}
+  a + a
+  ={}&
+  b + b + b + b
+  \\
+  {}&
+  +b + b + b + b
+  \\
+  ={}&
+  c + c + c + c + c
+\end{align*}
+\end{showlatex}
+
+\subsubsection{A single term in another line}
+
+If a single line equation is too long, then it is sometimes appropriate to put the last term in a new line, such that the last term occurs below the second to last term.
+\begin{showlatex}{Single term in new line}
+It follows that
+\begin{align*}
+  aaaaaaaaaaaa
+  =
+  bbbbbbbbbbb
+  =
+  cccccccccc
+  =
+  ddddddddd
+  &=
+  eeeeeeee
+  \\
+  &=
+  ffffff
+\end{align*}
+and hence $2 + 2 = 5$.
+\end{showlatex}
+
+
+
+\subsection{Don’t break formulas badly}
+
+One should always keep in mind that breaking up a formula isn’t just meant to prevent technical problems, but more importantly to let the resulting output display the structure---and thus part of the content---of the formula.
+A badly broken up formula is harder to understand for both the reader and the author.
+Consider the following example:
+\begin{showlatex}{Badly broken formula}
+It follows that
+\begin{align*}
+  aaaaaaaaa
+  &=
+  bbbbbbbbbbb
+  =
+  cccccccc
+  \leq
+  dddddd
+  =
+  eeeeeee
+  \\
+  &=
+  eee
+  \leq
+  fffffff
+  =
+  gggggggg
+  \leq
+  hhhhhhhhh
+  \\
+  &<
+  kkkkkkk
+  =
+  llll
+  \leq
+  mmmma
+  =
+  nnnnnnn
+  =
+  pp \,.
+\end{align*}
+\end{showlatex}
+In such a case the breaking of the formula should be done in a consistent way.
+There seeems to be two sensible approaches in this example:
+
+\subsubsection{Align everything}
+
+One can align all occuring relation symbols:
+\begin{showlatex}{Aligning all relation symbols}
+It follows that
+\begin{align*}
+  aaaaaaaaa
+  &= bbbbbbbbbbb \\
+  &= cccccccc \\
+  &\leq dddddd \\
+  &= eeeeeee \\
+  &= eee \\
+  &\leq fffffff \\
+  &= gggggggg \\
+  &\leq hhhhhhhhh \\
+  &< kkkkkkk \\
+  &= llll \\
+  &\leq mmmma \\
+  &= nnnnnnn \\
+  &= pp \,.
+\end{align*}
+\end{showlatex}
+This approach has the advantage of being very consistent.
+But it has the disadvantage of taking a lot of space.
+It also may not reflect the structure of the formula particularly well, as this layout gives all (in)equalities the same importance.
+    
+\subsubsection{Align at inequalities}
+
+On could align all the inequality symbols, to make it clear where these occur:
+\begin{showlatex}{Aligning all inequalities}
+It follows that
+\begin{align*}
+  aaaaaaaaa
+  &= bbbbbbbbbbb
+  = cccccccc
+  \\
+  &\leq
+  dddddd
+  = eeeeeee
+  = eee
+  \\
+  &\leq
+  fffffff
+  = gggggggg
+  \\
+  &\leq
+  hhhhhhhhh
+  \\
+  &<
+  kkkkkkk
+  = llll \\
+  &\leq mmmma
+  = nnnnnnn
+  \\
+  &= pp \,.
+\end{align*}
+\end{showlatex}
+This layout emphasizes the importance of the inequalities, while relegating the equalities to a less imporant position.
+Note that we have also aligned the first and last equality signs to make it clear where the manipulations begin and end.
+If some other equalities are also particularly important (e.g.\ if they follows from some previously hard-earned proposition) then they too should be alinged
+
+
+
+
+
+\section{Use \commandtt{intertext} and \commandtt{shortintertext}}
+
+Multiline environments like \texttt{gather*} and \texttt{align*} can be interrupted by using \commandtt{intersect} and \commandtt{shortintertext} to insert some text between different lines of mathematics.
+This is particularly useful to combine two \texttt{align*} environments into a single \texttt{align*} environment, which allows for a common alignment of both sections.
+
+The following is an example for what we don’t want.
+\begin{showlatex}*{Two non-aligned blocks}
+We consider the equalities
+\begin{align*}
+  H
+  &=
+  a_1 + a_2 + a_3 + a_4
+  \\
+  &=
+  b_1 + b_2 + b_3 + b_4 + b_5 + b_6
+  \\
+  &=
+  c_1 + c_2 + c_3 + c_4 + c_5
+\end{align*}
+and
+\begin{align*}
+  I
+  &=
+  d_1 + d_2 + d_3 + d_4 + d_5 + d_6
+  \\
+  &=
+  e_1 + e_2 + e_3
+  \\
+  &=
+  f_1 + f_2 + f_3 + f_4 + f_5 \,.
+\end{align*}
+\end{showlatex}
+Note the annoying misalignment of the equality signs of the two \texttt{align*} environments.
+We can solve this problem by using only one \texttt{align*} environment and inserting the text \enquote{and} by using the \commandtt{intertext} command:
+\begin{showlatex}*{Two aligned blocks}
+We consider now the equalities
+\begin{align*}
+  H
+  &=
+  a_1 + a_2 + a_3 + a_4
+  \\
+  &=
+  b_1 + b_2 + b_3 + b_4 + b_5 + b_6
+  \\
+  &=
+  c_1 + c_2 + c_3 + c_4 + c_5
+\intertext{and}
+  I
+  &=
+  d_1 + d_2 + d_3 + d_4 + d_5 + d_6
+  \\
+  &=
+  e_1 + e_2 + e_3
+  \\
+  &=
+  f_1 + f_2 + f_3 + f_4 + f_5 \,.
+\end{align*}
+\end{showlatex}
+The \texttt{shortintertext} functions in the same way as \texttt{intertext} but inserts less space between the two equations.
+To see the effects of \texttt{shortintertext} let us start with the following example:
+\begin{showlatex}{Two non-aligned equalities}
+First we have some lengthy text above the matical formulas, followed by the formulas
+\[
+  a = b
+\]
+and
+\[
+  b = a \,.
+\]
+We finish off by writing some more text after the above mathematical two formulas.
+\end{showlatex}
+We naturally want to align the two equality signs, which we by using a single \texttt{align*} environment together with \texttt{intertext}, as explained above:
+\begin{showlatex}{Two aligned equalities with too much space}
+First we have some lengthy text above the matical formulas, followed by the formulas
+\begin{align*}
+  a &= b
+\intertext{and}
+  b &= a \,.
+\end{align*}
+We finish off by writing some more text after the above mathematical two formulas.
+\end{showlatex}
+But we can seet that the inserted \texttt{intersect} puts a large space between the two formulas, much too large for our taste.
+We can solve this problem by using \texttt{shortintertext} instead of \texttt{intertext}, as the following example shows:
+\begin{showlatex}{Two aligned equalities with proper space}
+First we have some lengthy text above the matical formulas, followed by the formulas
+\begin{align*}
+  a &= b
+\shortintertext{and}
+  b &= a \,.
+\end{align*}
+We finish off by writing some more text after the above mathematical two formulas.
+\end{showlatex}
+
+
+
+
+
+\section{Uses \texorpdfstring{\envname{cases}}{cases}}
+
+Use the environment \envname{cases} for case distinctions:
+\begin{showlatex}{Using \envname{cases}}
+It follows that
+\[
+  A(x)
+  =
+  \begin{cases}
+    x^2  & \text{if $x \leq 0$,} \\
+    3x   & \text{if $x = 0$.}
+  \end{cases}
+\]
+\end{showlatex}
+In most cases one should actually use the environment \envname{cases*}, which ensures that the second column will be treated as text.
+\begin{showlatex}{Using \envname{cases*}}
+It follows that
+\[
+  A(x)
+  =
+  \begin{cases*}
+    x^2  & if $x \leq 0$, \\
+    3x   & if $x = 0$.
+  \end{cases*}
+\]
+\end{showlatex}
+
+
+
+
+
+\section{Aligning nearly alinged formulas}
+
+Sometimes formulas turn out to look nearly aligned in the compiled output, even though this wasn’t planned.
+But the formulas may still be non-aligned enough to look jarring.
+In such a case it is often best to align these formulas.
+
+Consider the following example:
+\begin{showlatex}{Accidental jarringly non-alined expressions}
+\begin{gather*}
+  KK^{-1} = 1 = K^{-1}K \,,
+  \quad
+  EF - FE = \frac{ K - K^{-1} }{ q - q^{-1} } \,,
+  \\
+  KE = q^2 EK \,,
+  \quad
+  KF = q^{-2} FK \,.
+\end{gather*}
+\end{showlatex}
+Note that the first line of the output looks slightly shifted to the left when compared to the second line.
+But properly aligning both lines this impression vanishes and instead gives rise to more coherent look and fell.
+\begin{showlatex}{Intentional well-aligned expressions}
+\begin{align*}
+  KK^{-1} = 1 = K^{-1}K \,,
+  \quad
+  &EF - FE = \frac{ K - K^{-1} }{ q - q^{-1} } \,,
+  \\
+  KE = q^2 EK \,,
+  \quad
+  &KF = q^{-2} FK \,.
+\end{align*}
+\end{showlatex}
+
+
+
+
+
+\section{Beware of spacings}
+
+When typesetting a document \hologo{LaTeX} groups the appearing symbols and expressions into different groups and then adds spacing around these symbols and expressions depending on which group they belong to.
+Three of these groups are \emph{operators}, \emph{relation symbols} and \emph{binary operations}.
+The symbols~\texttt{=} and~\texttt{<} are for example treated as relations symbols, and the symbols~\texttt{+} and~\commandtt{cdot} as binary operations.
+We can see in the following example how some space is automatically added around these symbols:
+\begin{showlatex}{Standard spacing around relation symbols and binary operators}
+\[
+  a = b  \qquad  a < b  \qquad  a + b  \qquad  a \cdot b
+\]
+\end{showlatex}
+To compare this to a version without spacing we can surround the symbols by a pair of curly brackets.
+This circumvents \hologo{LaTeX} from taking the surround code into consideration.
+This leads to the following result:
+\begin{showlatex}{Disabling the standard spacing around a symbol}
+\[
+  a {=} b   \qquad  a {<} b  \qquad  a {+} b  \qquad  a {\cdot} b
+\]
+\end{showlatex}
+The automatic spacing can become a problem, as the following examples illustrate:
+\begin{showlatex}*{Clashing spacings around symbols}
+\[
+  X/\sim
+  \quad
+  R/\operatorname{J}(R)
+  \quad
+  \operatorname{id} \otimes h
+\]
+\end{showlatex}
+This problem can be fixed by surround the respective symbols in curly brackets.
+\begin{showlatex}*{Preventing a clash of spacings}
+\[
+  X/{\sim}
+  \quad
+  R/{\operatorname{J}(R)}
+  \quad
+  {\operatorname{id}} \otimes h
+\]
+\end{showlatex}
+One can tell \hologo{LaTeX} how to treat a certain symbol:
+\begin{showlatex}*{Specifying the role (and thus spacing) of a symbol}
+\[
+  a | b
+  \quad
+  a \mathop{|} b
+  \quad
+  a \mathrel{|} b
+  \quad
+  a \mathbin{|} b
+\]
+\end{showlatex}
+To define a command \commandtt{divides} to express that a number $n$ divides a number $m$ we do therefore do the following:
+\begin{showlatex}*{Defining and using \commandtt{divides}}
+\newcommand{\divides}{\mathrel{|}}
+\[
+  n \divides m
+\]
+\end{showlatex}
+For more on this topic see \cite{tex_binrel}.
+
+
+
+
+
+\section{\texorpdfstring{\commandname{tag}}{{\tbs}tag} and \texorpdfstring{\commandname{notag}}{{\tbs}notag}}
+
+A finer contral of tags can be achived using~\commandname{tag} and~\commandname{notag}:
+
+
+
+
+
+\subsection{Don’t number just every formual}
+\label{dont number all formulas}
+
+Don’t indiscriminately number every formula.
+Instead an equation should be numbered only if it needs to be refered to later on.
+
+
+
+\subsection{\texorpdfstring{\commandname{tag}}{{\tbs}tag}}
+
+With the command~\commandname{tag} a custom tag can be set.
+This is useful for marking selected equations by special symbols:
+\begin{showlatex}{Using~\commandname{tag} for marking a line}
+Consider the equation
+\begin{equation}
+\label{important equation}
+  2 + 2 = 5 \,.
+  \tag{\ast}
+\end{equation}
+Note that \cref{important equation} can equivalently be expressed as~$5 = 2 + 2$.
+\end{showlatex}
+The argument of~\commandname{tag} is in text mode, and the resulting tag is automatically enclosed in parentheses.
+These parentheses can be removed by using the starred command~\commandname{tag*} instead.
+
+The command~\commandname{tag} should not be used for regular numbering of equations.
+It should be used to tag only certain (often a single) equations in a special way.
+It can also be used to express that certain transformations have been used, as the following example demonstrates:
+\begin{showlatex}{Using~\commandname{tag} to explain steps}
+It follows from the Chinese remainder theorem that
+\begin{align*}
+  \mathbb{R}[x] / ( x^3 + x^2 + x + 1 )
+  &=
+  \mathbb{R}[x] / ( (x^2 + 1) (x + 1) )
+  \\
+  &\cong
+  \mathbb{R}[x] / ( x^2 + 1 ) \times \mathbb{R}[x] / ( x + 1 )
+  \tag{CRT}
+  \\
+  &\cong
+  \mathbb{C} \times \mathbb{R}
+\end{align*}
+\end{showlatex}
+
+
+
+\subsection{\texorpdfstring{\commandname{notag}}{{\tbs}notag}}
+
+According to \cref{dont number all formulas} a formula should be numbered only if it needs to be refered to.
+But if this formula occurs in a multiline environment like~\envname{align*} then by switching~\envname{align} all lines will be numbered.
+The prevent the numbering of the unrequired lines the command~\commandname{notag} can then be used:
+\begin{showlatex}*{Using~\commandname{notag} to prevent selected line numbers}
+\begin{align}
+  a
+  &= b \notag \\
+  &= c \\
+  &= d \notag \\
+  &= e
+\end{align}
+\end{showlatex}
+
+
+
+
+
+\section{Multiline set descriptions}
+
+Multiline set descriptions of the form
+\[
+  \left\{
+    (e_1, \dotsc, e_n)
+  \,\middle|\,
+    \begin{tabular}{@{}c@{}}
+      $e_1, \dotsc, e_n \in R$ \\
+      is a complete set of \\
+      pairwise orthogonal \\
+      idempotents
+    \end{tabular}
+  \right\}
+\]
+can be typeset by using a \envname{tabular} environment in the second argument:
+\begin{showlatex}*{Multiline set descriptions with tabular}
+\[
+  \left\{
+    x \in X
+  \,\middle|\,
+    \begin{tabular}{@{}c@{}}
+      $x$ satisfies \\
+      certain conditions
+    \end{tabular}
+  \right\}
+\]
+\end{showlatex}
+Note that the entries of the environment~\envname{tabular} are automatically in text mode.
+The argument~\inlinecode{\@\{\}} ensure that the environment~\envname{tabular} does not insert additional spacing to its left and right.
+
+
+
+
+
+\section{Don’t force fancy fractions}
+
+When fractions are placed inline, as an exponent or in an index then they should be of the form $a/b$.
+The notation
+\[
+  \frac{a}{b}
+\]
+is reserved for display style.
+So don’t do the following:
+\begin{showlatex}{Full fractions in exponent, index and inline}
+Consider $e^{\frac{1}{x}}$ and $x_{\frac{1}{n}}$ and $\frac{2}{3}$.
+\end{showlatex}
+Do the following instead:
+\begin{showlatex}{Flat fractions in exponent, index and inline}
+Consider $e^{1/x}$ and $x_{1/n}$ and $2/3$.
+\end{showlatex}
+
+Don’t use funky fractions like $\faktor{a}{b}$, they’ll burn down your house and make you go blind.
+
+% TODO: Finding out the proper term for flat fractions. See Chicago Manual?
+
+
+
+

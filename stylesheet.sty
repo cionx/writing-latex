@@ -1,3 +1,9 @@
+% ignoring certain warnings
+\usepackage{silence}
+\WarningFilter{latexfont}{Font shape}
+\WarningFilter{latexfont}{Some font shapes were not available, defaults substituted.}
+
+
 % git information
 \usepackage{gitinfo2}
 
@@ -25,9 +31,14 @@
 
 % configure list environments
 \usepackage{enumitem}
+\setlist{  
+  listparindent=\parindent,
+  parsep=0pt,
+}
 
 % tables
 \usepackage{booktabs}
+% \renewcommand{\arraystretch}{1.2}
 
 % more control about tables
 \usepackage{multirow}
@@ -36,6 +47,10 @@
 \usepackage{mathtools}
 \usepackage{amssymb}
 \usepackage{amsthm}
+\usepackage{stmaryrd}
+\usepackage{extarrows}
+\usepackage{centernot}
+
 
 % ugly fractions
 \usepackage{faktor}
@@ -52,6 +67,9 @@
 % TeX related logos
 \usepackage{hologo}
 
+% scaling text for examples
+\usepackage{graphicx}
+
 % loading different languages
 % all used languages must be loaded, the standard one last
 \usepackage[british, ngerman, french, american]{babel}
@@ -67,29 +85,35 @@
     citecolor={magenta},
     urlcolor={magenta}
 }
-\usepackage[capitalise,noabbrev]{cleveref}
+\usepackage[capitalise, noabbrev]{cleveref}
+\crefname{equation}{equation}{equations}
+
 
 % boxes for examples
-\usepackage[listings,breakable,skins]{tcolorbox}
-% settings for the boxes 
-\newlength{\normalparindent}
-\AtBeginDocument{\setlength{\normalparindent}{\parindent}}
-\tcbset{
-  breakable,
-  enhanced jigsaw,
-  before lower={\setlength{\parindent}{\normalparindent}\noindent},
-  before={\par\pagebreak[0]\smallskip\noindent},
-  after={\par\noindent}
-}
-% before must be set because after is set, see
-% https://tex.stackexchange.com/questions/505832/tcbset-behaves-differently-in-preamble-and-main-body
+\usepackage[listings,xparse,breakable,skins]{tcolorbox}
 
-% fonts for titlepage
-\setkomafont{date}{\normalsize}
+% setting koma fonts
+\setkomafont{disposition}{\normalfont\scshape}
+\setkomafont{descriptionlabel}{\normalfont\bfseries}
 \setkomafont{publishers}{\normalsize}
+\setkomafont{dictumtext}{\itshape\small}
+\setkomafont{dictumauthor}{\normalfont}
+
+% further dictum settings
+\renewcommand*{\dictumwidth}{0.5\linewidth}
 
 % no subsections in the toc
 \setcounter{tocdepth}{2}
+% custom commands for disabeling/starting toc
+\newcommand{\stoptoc}{\addtocontents{toc}{\protect\setcounter{tocdepth}{-1}}}
+\newcommand{\starttoc}{\addtocontents{toc}{\protect\setcounter{tocdepth}{2}}}
+% custom command for changing the depth of bibliography
+\newcommand{\settocdepth}[1]{\addtocontents{toc}{\protect\setcounter{tocdepth}{#1}}}
+% more space for page numbers in the toc, default is 1.55
+\renewcommand{\@pnumwidth}{2em}
+
+% formatting of pagetotal in the references
+\DeclareFieldFormat[book, manual, article]{pagetotal}{#1~\ppno}
 
 % defining theorem like environments
 \newcounter{everything}[section]  % to be used for all kind of math enviroments
@@ -104,9 +128,82 @@
 \binoppenalty=\maxdimen
 \relpenalty=\maxdimen
 
-% settings for code
-% tcolorbox uses the listings package, so changin the font is done using the listing package
+
+%%% playign around with fonts
 \usepackage{fontspec}
+
+% first compiling with this font takes 6—7 GB, subsequent is back to normal
+\newfontfamily{\russianfont}[Scale=MatchUppercase]{Noto Serif CJK JP}
+\newcommand{\multilang}[1]{\begingroup \russianfont #1 \endgroup}
+
+
+
+%%%%% settings for code examples
+
+% change displayed name at beginning of the list
+\renewcommand{\lstlistlistingname}{List of Examples}
+
+% settings for the boxes
+\newlength{\normalparindent}
+\AtBeginDocument{\setlength{\normalparindent}{\parindent}}
+\tcbset{
+  examplestyle/.style
+  =
+  {,
+    add to list = {lol}{section},
+    breakable,
+    enhanced jigsaw,
+    before lower={\setlength{\parindent}{\normalparindent}\noindent},
+    before={\par\pagebreak[0]\smallskip\noindent},
+    after={\par\noindent},
+  }
+}
+% before must be set because after is set, see
+% https://tex.stackexchange% settings for the example boxes
+
+% define a common counter
+\newcounter{allexamples}[chapter]
+
+% define an environment for compiling examples
+\NewTCBListing
+[
+  use counter = allexamples,
+  crefname={Example}{Examples},
+  Crefname={Example}{Examples},
+  list inside = exam
+]
+{showlatex}
+{ s O{} m }
+{%
+  examplestyle,
+  list entry = {\protect\numberline{\arabic{chapter}.\thetcbcounter} #3},
+  IfBooleanTF={#1}
+    {listing side text}
+    {},
+  title = {Example \arabic{chapter}.\thetcbcounter: #3},
+  #2
+}
+
+% define an environment for listings only examples
+\NewTCBListing
+[
+  use counter = allexamples,
+  crefname={Example}{Examples},
+  Crefname={Example}{Examples},
+  list inside = example
+]
+{showcode}
+{ O{} m }
+{%
+  listing only,
+  examplestyle,
+  list entry = {\protect\numberline{\arabic{chapter}.\thetcbcounter} #2},
+  title = {Example \arabic{chapter}.\thetcbcounter: #2},
+  #1
+}
+
+% settings for the code
+% tcolorbox uses the listings package, so changes must be done there
 \setmonofont[Scale=MatchLowercase]{DejaVu Sans Mono}
 % proper indentation for new paragraphs
 \newlength{\parindentsave}
@@ -126,12 +223,36 @@
 % footnote symbol in minipages
 \renewcommand{\thempfootnote}{\arabic{mpfootnote}}
 
+
+
+%%%%% own commands and macros
+
+%\DeclareBibliographyCategory{testentries}
+\newcommand{\testcite}[1]{%
+  \begin{center}
+    \parbox{0.9\linewidth}{\fullcite{#1}}
+%    \addtocategory{testentries}{#1}
+  \end{center}
+}
+
+\RenewDocumentCommand{\TeX}{}{\hologo{TeX}}
+\RenewDocumentCommand{\LaTeX}{}{\hologo{LaTeX}}
+\NewDocumentCommand{\LuaLaTeX}{}{\hologo{LuaLaTeX}}
+\NewDocumentCommand{\XeLaTeX}{}{\hologo{XeLaTeX}}
+
+\NewDocumentCommand{\commandname}{ m }{\texttt{{\textbackslash}#1}}
+\NewDocumentCommand{\envname}{}{\texttt}
+\NewDocumentCommand{\filename}{}{\texttt}
+\NewDocumentCommand{\packagename}{}{\texttt}
+\NewDocumentCommand{\inlinecode}{}{\texttt}
 \newcommand{\commandtt}[1]{\texttt{{\textbackslash}#1}}
+
 \newcommand{\customtexttilde}{\char`~}
 
 \DeclareMathOperator*{\colim}{colim}
 \DeclareMathOperator{\lcm}{lcm}
 
+\newcommand{\nbh}{\nobreakdash-}
 \newcommand{\tbs}{\textbackslash}
 
 \DeclarePairedDelimiter{\abs}{\lvert}{\rvert}
