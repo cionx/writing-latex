@@ -17,11 +17,11 @@ Use the right symbols.
   \begin{center}
   \begin{tabular}{@{}lllll@{}}
       \toprule
-      \textbf{symbol}
+      \theading{symbol}
       &
-      \multicolumn{2}{c}{\textbf{right commands}}
+      \multicolumn{2}{c}{\theading{right commands}}
       &
-      \multicolumn{2}{c}{\textbf{wrong commands}}
+      \multicolumn{2}{c}{\theading{wrong commands}}
     \\
     \midrule
       element relation
@@ -282,11 +282,11 @@ One should not confuse the two of them.
     \renewcommand{\arraystretch}{1.3}
     \begin{tabular}{@{}llclc@{}}
       \toprule
-      \textbf{operation}
+      \theading{operation}
       &
-      \multicolumn{2}{c}{\textbf{binary}}
+      \multicolumn{2}{c}{\theading{binary}}
       &
-      \multicolumn{2}{c}{\textbf{generalized}}
+      \multicolumn{2}{c}{\theading{generalized}}
       \\
       \cmidrule(lr){2-3}
       \cmidrule(l){4-5}
@@ -431,9 +431,9 @@ A few of them are collected in~\cref{negation list}.
   \begin{center}
   \begin{tabular}{@{}lclc@{}}
     \toprule
-      \multicolumn{2}{c}{\textbf{right}}
+      \multicolumn{2}{c}{\theading{right}}
     &
-      \multicolumn{2}{c}{\textbf{wrong}}
+      \multicolumn{2}{c}{\theading{wrong}}
     \\
     \cmidrule(r){1-2} \cmidrule(l){3-4}
       \comname{notin}%
@@ -903,11 +903,11 @@ The ellipses in the first group are named after their function, see \cref{ellips
   \begin{tabular}{@{}lll@{}}
     \toprule
     %
-    \textbf{command}
+    \theading{command}
     &
-    \textbf{explanation}
+    \theading{where to use}
     &
-    \textbf{example}
+    \theading{example}
     \\
     \midrule
     %
@@ -969,11 +969,11 @@ The ellipses in the second group are not named after their function but after th
   \begin{tabular}{@{}llc@{}}
     \toprule
     %
-    \textbf{command}
+    \theading{command}
     &
-    \textbf{explanation}
+    \theading{description}
     &
-    \textbf{look}
+    \theading{look}
     \\
     \midrule
     %
@@ -1038,7 +1038,7 @@ Note that the members of this second group of dots all have names of the form~\c
 % \begin{showcode}{Wrong way of abbreviating multiplication~I}
 % x_1 \cdot {any kind of dots} \cdot x_n
 % \end{showcode}
-% So all of the following are \textbf{wrong}, and some of them look even worse then the other ones.
+% So all of the following are \emph{wrong}, and some of them look even worse then the other ones.
 % \begin{showlatex}*{Wrong way of abbreviating multiplication~II}
 % \begin{gather*}
 %   x_1 \cdot \dotsb \cdot x_n \\
@@ -1083,9 +1083,9 @@ See \cref{table of matrices} for a table of all these kinds of matrices.
   \begin{tabular}{@{}lccc@{}}
     \toprule
     %
-    \textbf{size}
+    \theading{size}
     &
-    \multicolumn{3}{c}{\textbf{matrices}}
+    \multicolumn{3}{c}{\theading{matrices}}
     \\
     \midrule
     %
@@ -1562,7 +1562,7 @@ Some standard distances are predefined, see \cref{column sep settings}.
   \begin{center}
   \begin{tabular}{@{}lcccccc@{}}
     \toprule
-    \textbf{name}
+    \theading{name}
     &
     \optname{tiny}\massindex[\piname{tikz-cd}!\optname{column sep}]{tiny}[\optname]
     &
@@ -1576,7 +1576,7 @@ Some standard distances are predefined, see \cref{column sep settings}.
     &
     \optname{huge}\massindex[\piname{tikz-cd}!\optname{column sep}]{huge}[\optname]
     \\
-    \textbf{distance}
+    \theading{distance}
     &
     \optname{0.6em}
     &
@@ -1622,7 +1622,7 @@ Some predefined distances can be found in \cref{row sep settings}.
   \begin{center}
   \begin{tabular}{@{}lcccccc@{}}
     \toprule
-    \textbf{name}
+    \theading{name}
     &
     \optname{tiny}\massindex[\piname{tikz-cd}!\optname{row sep}]{tiny}[\optname]
     &
@@ -1636,7 +1636,7 @@ Some predefined distances can be found in \cref{row sep settings}.
     &
     \optname{huge}\massindex[\piname{tikz-cd}!\optname{row sep}]{huge}[\optname]
     \\
-    \textbf{distance}
+    \theading{distance}
     &
     \inlinecode{0.45em}
     &
