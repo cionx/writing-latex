@@ -33,7 +33,7 @@ and the formula
 hold.
 Then $a$ and $b$ are unique.
 \end{showlatex}
-The non-starred version~\texttt{equation}\massindex[display math environment, tagging and numbering]{equation}[\envname] numbers the equation.
+The non-starred version~\envname{equation}\massindex[display math environment, tagging and numbering]{equation}[\envname] numbers the equation.
 \begin{showlatex}*{Using the environment~\envname{equation}}
 The formula
 \begin{equation}
@@ -44,9 +44,9 @@ is one of the binomial formulas.
 
 
 
-\subsection{The environment~\texttt{gather*}}
+\subsection{The environment~\envtitle{gather*}}
 
-The environment~\texttt{gather*}\massindex[display math environment, multi-line mathematics]{gather*}[\envname] is meant for multiple lines that are non-aligned.
+The environment~\envname{gather*}\massindex[display math environment, multi-line mathematics]{gather*}[\envname] is meant for multiple lines that are non-aligned.
 \begin{showlatex}{Using the environment~\envname{gather*}}
 We consider for every integer $n \geq 0$ the polynomial
 \[
@@ -136,7 +136,7 @@ We consider the values
 The environment~\envname{alignat*}\massindex[display math environment, multi-line mathematics]{alignat*}[\envname] is similar to the environment~\envname{align*} but doesn’t add any built-in spacing between the aligned columns.
 Any such spacing must therefore by added by hand.
 One also has to specify the number of columns beforehand.
-\begin{showlatex}{Using \texttt{alignat*}}
+\begin{showlatex}{Using the environment~\envname{alignat*}}
 We also consider the values
 \begin{alignat*}{3}
   y_1 &= 9 \,,  &\qquad   y_2 &= 8 \,,  &\qquad   y_3 &= 7 \,,  \\
@@ -186,7 +186,7 @@ The environments~\envname{gathered}\massindex[multi-line mathematics]{gathered}[
 One should always use the most basic environment that does the job:
 Using overpowered environments can lead to unexpected problems.
 Consider the following example:
-\begin{showlatex}{Improper use of \texttt{align*}}
+\begin{showlatex}{Improper use of~\envname{align*}}
 \begin{align*}
   ABCD = EF = GHI = JKL = M = NOP
   \\
@@ -248,7 +248,7 @@ The flowchart in \cref{environment flow chart} explains how to choose the correc
           {multiple columns?};
     \node (equation)
           [answer, right of = multi-line, xshift = 7em]
-          {\texttt{{\tbs}[ {\tbs}]}\\\inlinecode{equation*}};
+          {\inlinecode{{\tbs}[ {\tbs}]}\\\envname{equation*}};
     \node (gather)
           [answer, right of = alignment, xshift = 7em]
           {\inlinecode{gather*}};
@@ -439,7 +439,7 @@ Then for every~$(r,s) \in R \times S$,
 \end{align*}
 and therefore $(R \times S)^{\times} = R^\times \times S^\times$.
 \end{showlatex}
-The empty pair of curly brackets in \texttt{{\tbs}iff\{\}\&} ensures that the spacings coming from \comname{iff} and \texttt{\&} do not interfere with each other.
+The empty pair of curly brackets in \inlinecode{{\tbs}iff\{\}\&} ensures that the spacings coming from \comname{iff} and~\inlinecode{\&} do not interfere with each other.
 Otherwise something like this happens:
 \begin{showlatex}{Wrong spacing when alignment points are set wrong}
   \begin{align*}
