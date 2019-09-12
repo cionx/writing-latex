@@ -13,13 +13,14 @@
 % \begin{center}
 %   \enquote{A mathematical text is, before everything else, a text.}
 % \end{center}
-In this chapter we will talk about the more text focused aspects of writing a mathematical text with {\LaTeX}.
-We will in particular talk about the interplay between mathematical content and the text that surrounds it.
+In this chapter we will talk about the more text focused aspects of writing mathematics with {\LaTeX}.
+We will in particular talk about the interplay between the mathematical content and the text that surrounds it.
 
 
 
 
 \section{Obey orthography}
+\index{orthography}
 \label{a mathematical text is a text}
 
 A mathematical text has to obey the rules of the language that is it written in (e.g.~English, French, German or Russian).
@@ -29,7 +30,12 @@ It also means that a mathematical formula is part of the surrounding text, and h
 
 
 
-\section{A sentence ends with punctuation}
+\section{Proper punctuation}
+
+
+
+\subsection{A sentence ends with punctuation}
+\index{punctuation!in formulas|(}
 
 \Cref{a mathematical text is a text} has an important consequence:
 If a sentence ends with a formula, then this formula need to be followed by some kind of punctuation (in most cases by a full point).
@@ -76,16 +82,19 @@ This formula is important.
 \end{showlatex}
 This last approach is taken from \cite{tex_period}, which we strongly encourage the reader to check out.
 
+\index{punctuation!in formulas|)}
 
 
 
-
-
-\section{Punctuation in commutative diagrams?}
+\subsection{Punctuation in commutative diagrams?}
+\index{punctuation!in commutative diagrams|(}
+\index{commutative diagrams|(}
 
 There is some disagreement in the mathematical community about whether a commutative diagram is allowed to include punctuation coming from the surrounding text.
 The author is of the opinion that a commutative diagram should not contain any such punctuation.
-So when including a commutative diagram one has to either finish up the preceeding sentence beforehand, or has to incorporate the diagram in such a way that it contains no punctuation of the surround text.
+
+There are two standard ways to achieve this:
+One can finish up the sentence that precedes a commutative diagram beforehand:
 \begin{showlatex}{Finishing the sentence before the commutative diagram}
   We consider the following commutative diagram:
   \[
@@ -105,6 +114,7 @@ So when including a commutative diagram one has to either finish up the preceedi
   \]
   The horizontal arrows in this diagram are isomorphisms.
 \end{showlatex}
+But it often better to incorporate the diagram in the surrounding sentence in such a way that it contains no punctuation:
 \begin{showlatex}{Incorporating the commutative diagram in the sentence}
   In the commutative diagram
     \[
@@ -125,16 +135,69 @@ So when including a commutative diagram one has to either finish up the preceedi
   both horizontal arrows are isomorphisms.
 \end{showlatex}
 
+\index{punctuation!in commutative diagrams|)}
+\index{commutative diagrams|)}
 
 
 
+\subsection{Lists contain punctuation}
+\index{punctuation!in lists|(}
+\index{lists}
 
-\section{Know your hypen and dashes}
+Text that is organized using list environments still obeys the rules of punctuation.
+Consider the following counterexample:
+\begin{showlatex}{Wrong punctuation in lists}
+  A set $B$ is a basis of $V$ if
+  \begin{enumerate}
+    \item
+      $B$ is linearly independent
+    \item
+      $B$ is a generating set
+  \end{enumerate}
+\end{showlatex}
+To figure out the correct punctuation simply remove the surrounding list and consider the resulting text.
+In the above example this gives the following:
+\begin{center}
+  A set $B$ is a basis of $V$ if $B$ is linearly independent $B$ is a generating set
+\end{center}
+This is not a proper sentence, and should be the following instead:
+\begin{center}
+  A set $B$ is a basis of $V$ if $B$ is linearly independent and $B$ is a generating set.
+\end{center}
+The above counterexample should hence read as follows:
+\begin{showlatex}{Right punctuation in lists~I}
+  A set $B$ is a basis of $V$ if
+  \begin{enumerate}
+    \item
+      $B$ is linearly independent and
+    \item
+      $B$ is a generating set.
+  \end{enumerate}
+\end{showlatex}
+There are also some other acceptable versions:
+\begin{showlatex}{Right punctuation in lists~II}
+  A set $B$ is a basis of $V$ if it satisfies the following conditions:
+  \begin{enumerate}
+    \item
+      $B$ is linearly independent.
+    \item
+      $B$ is a generating set.
+  \end{enumerate}
+\end{showlatex}
 
-In {\LaTeX} there are (at least) four kind of line-like symbols which need to be distinguished, see \cref{dash list}.
+\index{punctuation!in lists|)}
+
+
+
+\subsection{Hyphen and dashes}
+
+\subsubsection{Know your lines}
+
+In {\LaTeX} there are (at least) four line-like symbols which need to be distinguished, the hyphen\massindex[punctuation]{hyphen}, the en~dash\massindex[punctuation]{en~dash}, the em~dash\massindex[punctuation]{em~dash} and the minus~sign\index{minus sign}.
+See \cref{dash list} for their {\LaTeX}~code and look.
 \begin{table}[tb]
   \begin{center}
-  \begin{tabular}{lll}
+  \begin{tabular}{@{}lll@{}}
     \toprule
     \textbf{name}
     &
@@ -143,25 +206,25 @@ In {\LaTeX} there are (at least) four kind of line-like symbols which need to be
     \textbf{output}
     \\
     \midrule
-    hypen
+    hyphen
     &
     \inlinecode{-}
     &
     -
     \\
-    endash
+    en~dash
     &
     \inlinecode{--}
     &
     --
     \\
-    emdash
+    em~dash
     &
     \inlinecode{---}
     &
     ---
     \\
-    minus sign
+    minus~sign
     &
     \inlinecode{\$-\$}
     &
@@ -170,24 +233,25 @@ In {\LaTeX} there are (at least) four kind of line-like symbols which need to be
     \bottomrule
   \end{tabular}
   \end{center}
-  \caption{Kinds of hypen and dashes.}
+  \caption{Kinds of hyphen and dashes.}
   \label{dash list}
 \end{table}
-Each of these line-like symbols plays its own role, but these roles depend both on language and on convention.
+Each of these symbols plays its own role, and these roles depend both on language and on convention.
 For mathematical writing in English the following usages are important:
 \begin{itemize}
   \item
-    For \enquote{$n$-dimensional} and \enquote{$3$-manifold}, use the hypen.
+    For \enquote{$n$-dimensional} and \enquote{$3$-manifold}, use the hyphen.
   \item
-    For combining names as in \enquote{Cauchy--Schwarz inequality} use the endash.
+    For combining names as in \enquote{Cauchy--Schwarz inequality} use the en~dash.
   \item
-    To interupt a sentence---as done here---use either the emdash without surround space.
-    If you’re British -- or like to pretend that you are -- use the endash surrounded by space.
+    To interrupt a sentence---as done here---use the em~dash without surrounding space, or -- if you’re feeling British -- use the en~dash surrounded by space.
 \end{itemize}
-For more information about the use of hypen and dashes in the English language we refer to \cite[6.75--6.94]{chicago}.
+For more information about the use of hyphen and dashes in the English language we refer to \cite[6.75--6.94]{chicago}.
 
-To underline how language dependent the usuage of hypen and dashes we consider in \cref{cgc names} how the the Clebsch--Gordan are called in different languages, as taken from Wikipedia.
-(We use the font~\texttt{Noto Serif CJK JP} for all examples to allow a better comparison.)
+To underline how language dependent the usage of hyphen and dashes is we’re considering in \cref{cgc names} how the the Clebsch--Gordan are called in different languages, as taken from Wikipedia.
+(We use the same font%
+\footnote{Namely~\enquote{Noto~Serif~CJK~JP}.}
+for all examples to allow a better comparison.)
 \begin{table}[tb]
   \begin{center}
   \begin{tabular}{@{}lll@{}}
@@ -203,7 +267,7 @@ To underline how language dependent the usuage of hypen and dashes we consider i
     &
     \multilang{Clebsch–Gordan coefficients}
     &
-    endash
+    en~dash
     \\
     German
     &
@@ -227,82 +291,45 @@ To underline how language dependent the usuage of hypen and dashes we consider i
     &
     \multilang{Коэффициенты Клебша — Гордана}
     &
-    emdash
+    em~dash
     \\
     Japanese
     &
     \multilang{クレブシュ–ゴルダン係数}
     &
-    endash
+    en~dash
     \\
     \bottomrule
   \end{tabular}
   \end{center}
-  \caption{Clebsch--Gordan coefficients in different languages.}
+  \caption{The Clebsch--Gordan coefficients in different languages.}
   \label{cgc names}
 \end{table}
 
+\subsubsection{Don’t put a hyphen in math~mode}
+
+A non-trivial amount of people makes the mistake of putting a hypen\massindex[punctuation]{hyphen} into math~mode.
+\begin{showlatex}{A hyphen in math~mode}
+Let~$A$ be a $\mathbb{Z}-$module.
+\end{showlatex}
+We can see that we don’t get a hyphen but a minus sign.
+We hence need to place the symbol~\inlinecode{-} outside of the math environment.
+\begin{showlatex}{Proper placement of the hyphen}
+Let~$A$ be a $\mathbb{Z}$-module.
+\end{showlatex}
 
 
 
-
-\section{Use non-breakable space}
-\label{non-breakable space}
-
-If two expressions in text mode are separated by a space or a hypen then {\LaTeX} may separate the resulting output by a line break.
-But in many situations such line breaks are unwanted, or downright wrong.
-\begin{itemize}
-  \item
-    In abbreviations like~\enquote{Prof.~Doe}.
-  \item
-    In combinations of words and numbers like~\enquote{Lemma~5}.
-  \item
-    In combinations of mathematics and words like~\enquote{$3$\nobreakdash-dimensional}.
-\end{itemize}
-In such cases one can tell {\LaTeX} that no line break must occur:
-\begin{itemize}
-  \item
-    If the tilde symbol~\inlinecode{\customtexttilde}, also know as a \emph{tie}, is used instead of a simple whitespace, then no line break will occur.
-    Consider the following example:
-    \begin{showlatex}*{An unwanted line break at a space}
-It follows from the above Lemma 5 that the integer $2$ is prime.
-    \end{showlatex}
-    We don’t want a line break to occur in~\enquote{Lemma~5} and thus use an unbreakable space.
-    One should also make sure that no line break occurs in the expression~\enquote{integer~$2$}
-    \begin{showlatex}*{Using~\inlinecode{\customtexttilde} to prevent unwanted line breaks at spaces}
-It follows from the above Lemma~5 that the integer~$2$ is prime.
-    \end{showlatex}
-  \item
-    If a hypen should not be broken then~\commandname{nobreakdash} can be used.
-    Consider the following example:
-    \begin{showlatex}{An unwanted line break at a hypen}
-The sphere $S^2$ will be our very first non-trivial example of a smooth $2$-manifold (without boundary).
-    \end{showlatex}
-    To prevent a line break at the hypen we put~\commandname{nobreakdash} before it:
-    \begin{showlatex}{Using~\commandname{nobreakdash} to prevent unwanted line breaks at hypens}
-The sphere $S^2$ will be our very first non-trivial example of a smooth $2$\nobreakdash-manifold (without boundary).
-    \end{showlatex}
-    Note that 
-    The command~\commandname{nobreakdash} also works with other kinds of dashes, like~\inlinecode{--} and~\inlinecode{---}.
-%   TODO: Add an example
-\end{itemize}
-
-
-
-
-
-\section{Use proper spacing after dots}
+\subsection{Correct spacing after a period}
 \label{spacing after dots}
+\index{spacing!after a period|(}
 
-
-
-\subsection{The basic problem}
+\subsubsection{The problem}
 
 Not all periods are treated equally by {\LaTeX}:
 If a period is both followed by whitespace and not preceded by an uppercase letter then {\LaTeX} will assume that this period is supposed to end a sentence.
 It will some introduce some additional space following this period.
 The effect of this can be seen in \cref{period spacing}.
-(The two segments are always separated by a single space, and we have scaled the text by a factor of~$3.5$ for readability.)
 \begin{table}
   \begin{center}
   \begin{tabular}{@{}r@{\hskip 2.7em}r@{\hskip 2.7em}l@{\hskip 2.7em}l@{}}
@@ -331,33 +358,32 @@ The effect of this can be seen in \cref{period spacing}.
     \bottomrule
   \end{tabular}
   \end{center}
-  \caption{Spacings after a period.}
+  \caption{Spacings after a period (with a zoom of factor~$3.5$).}
   \label{period spacing}
 \end{table}
 
-We can see from the first two columns of~\cref{period spacing} (by considering the positions of the periods) that the spacing in~\enquote{\inlinecode{x. *}} is larger then the corresponding spacing in~\enquote{\inlinecode{X. *}}.
+We can see from the first two columns of~\cref{period spacing} (by considering the positions of the periods) that the spacing in~\enquote{\inlinecode{x.~*}} is larger then the corresponding spacing in~\enquote{\inlinecode{X.~*}}.
 This happens because {\LaTeX} thinks that the period in~\enquote{\inlinecode{x. *}} is supposed to end a sentence.
 We can also see from the first two tables that this difference of spacing occurs both if the following letter is lower case and if it is upper case.
 We can see from the third and fourth column that the amount of additional spacing does not depenend on whether the following letter is in lower case or upper case.
 
+\subsubsection{The solution}
 
-
-\subsection{Solution}
-
-We can use the command~\enquote{\commandname{ }} to tell~{\LaTeX} that a preceeding period is not meant to end a sentence, and we can similarly use~\enquote{\commandname{{\tbs}@}} to tell {\LaTeX} that the following period is shall end the sentence.
+We can use the command~\enquote{\comname{ }} -- which we will write for readability as~\comname{(space)}\massindex[spacing!after a period]{(space)}[\comname] -- to tell~{\LaTeX} that a preceding period is not meant to end a sentence.
+We can similarly use the command~\comname{@}\massindex[spacing!after a period]{"@}[\comname] to tell {\LaTeX} that the following period is ending a sentence.
 Consider the following example:
 \begin{showlatex}{Proper spacing after periods}
 Imagine now some old and long-dead English kings, e.g.\ Henry III and Henry IV\@.
 (Kings not named Henry are also okay.)
 \end{showlatex}
-Note that in the above example one should also use ties~\inlinecode{\customtexttilde} (as explained in \cref{non-breakable space}) to ensure that the Henries don’t get separated from their number:
+Note that in the above example one should also use ties~\inlinecode{\customtexttilde} (as explained in \cref{non-breakable space}) to ensure that the Henries don’t lose their number.
 \begin{showlatex}{Proper spacing after periods, and using~\inlinecode{\customtexttilde}}
 Imagine now some old and long-dead English kings, e.g.\ Henry~III and Henry~IV\@.
 (Kings not named Henry are also okay.)
 \end{showlatex}
 
 It should be pointed out that if a problematic period is followed by a closing parenthesis, a closing brecket or quotations marks then then the problematic spacing will still occur after these symbols.
-Lets consider the following example (where we use the forbidden \commandname{\tbs} to compare the versions).
+Lets consider the following example (where we use the forbidden \comname{\tbs} to compare the versions).
 \begin{showlatex}{Spacings after periods followed by parentheses or quotation marks}
 Many colours (e.g. red, blue, etc.) are supported by \enquote{ColorX}. Even purple! \\
 Many colours (e.g.\ red, blue, etc.) are supported by \enquote{ColorX}. Even purple! \\
@@ -365,7 +391,7 @@ Many colours (e.g.\ red, blue, etc.)\ are supported by \enquote{ColorX}. Even pu
 Many colours (e.g.\ red, blue, etc.)\ are supported by \enquote{ColorX}\@. Even purple!
 \end{showlatex}
 
-The problem of a sentence ending with an upper case letter does not occur if this letter is in math mode.
+The problem of a sentence ending with an upper case letter does not occur if this letter is in math~mode.
 \begin{showlatex}{Upper case mathematics followed by a period}
 Let $f$ be an endomorphism of $X$.
 Then $f$ is an isomorphism or $f = 0$.\\
@@ -386,7 +412,7 @@ In view of \cref{non-breakable space} we get a problem:
 What if we want the space after an abbreviation, as in~\enquote{i.e.~word}, not to be broken?
 Should we then write~\inlinecode{i.e.{\tbs} word} or~\inlinecode{i.e.{\customtexttilde}word}?
 
-In this case we write~\inlinecode{i.e.{\customtexttilde}word}, since the tie~\inlinecode{\customtexttilde} already contains the effect of~\enquote{\inlinecode{{\tbs} }}.
+In this case we write~\inlinecode{i.e.{\customtexttilde}word}, since the tie~\inlinecode{\customtexttilde} already contains the effect of~\comname{(space)}.
 Consider for this the following example:
 \begin{showlatex}{Spacing of~\inlinecode{\customtexttilde} and~\enquote{\inlinecode{{\tbs} }}}
 Let $M$ be a $2$-manifold, e.g. $M = S^2$-dimensional. \\
@@ -401,97 +427,102 @@ The most of these special cases are covered by paying attention to~\enquote{i.e.
 
 We refer to \cite[19.5.1, 19.6]{latex2e_manual} for more information on this topic.
 
-
-
-
-
-\section{Lists contain punctuation}
-
-Text that is organized using list environments still obeys the rules of punctuation.
-Consider the following counterexample:
-\begin{showlatex}{Wrong punctuation in lists}
-  A set $B$ is a basise of $V$ if
-  \begin{enumerate}
-    \item
-      $B$ is linearly independent
-    \item
-      $B$ is a generating set
-  \end{enumerate}
-\end{showlatex}
-To figure out the correct punctuation simply remove the surrounding list and consider the resulting text.
-In the above example this gives the following:
-\begin{center}
-  A set $B$ is a basis of $V$ if $B$ is linearly independent $B$ is a generating set
-\end{center}
-This is not a proper sentence, and should be the following instead:
-\begin{center}
-  A set $B$ is a basis of $V$ if $B$ is linearly independent and $B$ is a generating set.
-\end{center}
-The above counterexample should hence read as follows:
-\begin{showlatex}{Right punctuation in lists~I}
-  A set $B$ is a basise of $V$ if
-  \begin{enumerate}
-    \item
-      $B$ is linearly independent and
-    \item
-      $B$ is a generating set.
-  \end{enumerate}
-\end{showlatex}
-There are also some other acceptable versions:
-\begin{showlatex}{Right punctuation in lists~II}
-  A set $B$ is a basise of $V$ if it satisfies the following conditions:
-  \begin{enumerate}
-    \item
-      $B$ is linearly independent.
-    \item
-      $B$ is a generating set.
-  \end{enumerate}
-\end{showlatex}
+\index{spacing!after a period|)}
 
 
 
 
 
-\section{Don’t use \texttt{\tbs\tbs} or \texttt{{\tbs}newline}}
+\section{Text layout}
 
-The proper way to separate two succeeding paragraphs in {\LaTeX} is to leave an empty line between them.
-\begin{showlatex}*{New pagragraphs done right}
-This is the first pagraph.
+
+
+\subsection{Use non-breakable space}
+\label{non-breakable space}
+
+If two expressions in text mode are separated by a space or a hyphen then {\LaTeX} may separate these expressions in the output \filename{pdf}-file by a line break\index{line breaks!in text mode}.
+But such line breaks are often undesirable and can sometimes be downright wrong.
+\begin{itemize}
+  \item
+    In abbreviations like~\enquote{Prof.~Dr.~John Doe}.
+  \item
+    In combinations of words and numbers like~\enquote{Lemma~5}.
+  \item
+    In combinations of mathematics and words like~\enquote{$3${\nbd}dimensional}.
+\end{itemize}
+In such cases one needs to prevent the line break:
+\begin{itemize}
+  \item
+    No line break will occur if the tie\index{\customtexttilde}\index{tie}\index{unbreakable!space} symbol~\inlinecode{\customtexttilde} is used instead of a space.
+    Consider for this the following example:
+    \begin{showlatex}*{An unwanted line break at a space}
+It follows from the above Lemma 5 that the integer $2$ is prime.
+    \end{showlatex}
+    We don’t want a line break to occur in the term~\enquote{Lemma~5} and thus introduce a tie.
+    In the above example it is also a good idea to prevent a possible line break in the term~\enquote{integer~$2$}.
+    We therefore get the following code:
+    \begin{showlatex}*{Using~\inlinecode{\customtexttilde} to prevent unwanted line breaks at spaces}
+It follows from the above Lemma~5 that the integer~$2$ is prime.
+    \end{showlatex}
+  \item
+    To prevent a line break at a hyphen the command~\comname{nobreakdash}\massindex{nobreakdash}[\comname]\index{unbreakable!hyphen} needs to be placed in front of it can be used.
+    Consider the following example:
+    \begin{showlatex}{An unwanted line break at a hyphen}
+The sphere $S^2$ will be our very first non-trivial example of a smooth $2$-manifold (without boundary).
+    \end{showlatex}
+    To prevent a line break at the hyphen\massindex[punctuation]{hyphen} we put~\comname{nobreakdash} before it:
+    \begin{showlatex}{Using~\comname{nobreakdash} to prevent unwanted line breaks at hyphens}
+The sphere $S^2$ will be our very first non-trivial example of a smooth $2${\nbd}manifold (without boundary).
+    \end{showlatex}
+    The command~\comname{nobreakdash} works not only with hyphens but also with en~dashes\index{unbreakable!dash}\massindex[punctuation]{en~dash} and em~dashes\index{unbreakable!dash}\massindex[punctuation]{em~dash}.
+\end{itemize}
+
+
+
+\subsection{Don’t use \comtitle{\tbs} or \comtitle{newline}}
+
+The proper way to separate two succeeding paragraphs\massindex[spacing]{paragraph} in {\LaTeX} is to leave an empty line between them.
+\begin{showlatex}*{New paragraphs done right}
+This is the first paragraph.
 It consists of multiples lines to make this example better.
 
-This is a second paraph.
+This is a second paragraph.
 It also consists of multiple lines to make this example even more better.
 
 This one is the third and last paragraph in this example.
 It also consists of multiple lines.
 \end{showlatex}
-Note that a new paragraph starts indented.
+Note that new paragraphs start indented.
 
-The use of~\commandname{\tbs} or~\commandname{newline} doesn’t actually end a paragraph but instead forces {\LaTeX} to continue at the beginning of a new line.
-\begin{showlatex}*{New \enquote{pagragraphs} done wrong}
+The use of~\comname{\tbs}\massindex{\tbs}[\comname] or~\comname{newline}\massindex{newline}[\comname] doesn’t actually end a paragraph but instead forces {\LaTeX} to do a line break.\index{line breaks!in text mode}
+\begin{showlatex}*{New \enquote{paragraphs} done wrong}
 This is the first paragraph in a counterexample.\\
 This is not a new paragraph.
 The text was just forced to start a new line.\newline
 This one is also not a new paragraph.
 But this whole thing looks ugly.
 \end{showlatex}
-The use of \texttt{\tbs\tbs} and \texttt{{\tbs}newline} is only for starting new rows in matrices, tables and arrays.
+The use of \comname{\tbs} and \comname{newline} is only for starting new rows in matrices, tables and arrays.
 Don’t use is to separate paragraphs.
 
 
 
 
 
-\section{Don’t break inline math}
+\section{Mathematics in text}
+
+
+
+\subsection{Don’t break inline mathematics}
 \label{breaking inline math}
 
-When inline formulas or equations are too long or badly placed then it can happen that a line break occurs, tearing the formula apart:
+When inline formulas or equations are too long or badly placed then it can happen that a line break\index{line breaks!in text mode} occurs, tearing the formula apart:
 % standard values for penalities, for the demonstration
 \begin{showlatex}[before lower = {\binoppenalty=100}, after lower = {\binoppenalty = \maxdimen}]{Line break in inline math}
 The most important formula of all times is without a doubt is my mind $1 + 2 + 3 + 4 = 10 - 5$.
 Truly a work of genius!
 \end{showlatex}
-This horrible affront to nature can thankfully be completely stopped by raising the corresponding penalties to their (literal) maximum:
+This horrible affront to nature can thankfully be completely stopped by setting the penalties~\comname{binoppenalty}\massindex[penalties]{binoppenality}[\comname] and~\comname{relpenalty}\massindex[penalties]{relpenalty}[\comname] to their maximum value, which can be accessed via the command~\comname{maxdimen}\massindex{maxdimen}[\comname].
 \begin{showlatex}{Preventing inline math in inline math}
 % in the preamble:
 \binoppenalty = \maxdimen
@@ -500,13 +531,10 @@ This horrible affront to nature can thankfully be completely stopped by raising 
 The most important formula of all times is without a doubt is my mind $1 + 2 + 3 + 4 = 10 - 5$.
 Truly a work of genius!
 \end{showlatex}
-(One can also lower these penalities to ensure a really bad looking first example.)
 
 
 
-
-
-\section{Don’t begin a sentence with a mathematics}
+\subsection{Don’t begin a sentence with a mathematical symbol}
 
 Don’t begin a sentence with a mathematical symbol.
 Consider the following example:
@@ -522,7 +550,7 @@ Instead do the following:
 \end{theorem}
 \end{showlatex}
 
-An exception to the above rule are lists, in which short entries may start with a math symbol.
+An exception to the above rule are lists\index{lists}, in which short entries may start with a math symbol.
 Consider for this the following example.
 \begin{showlatex}{List items beginning with mathematics}
 Let $V$ be a finite dimensional vector space.
@@ -540,12 +568,10 @@ Then the following conditions are equivalent:
 
 
 
-
-
-\section{Don’t put two formulas next to each other}
+\subsection{Don’t put two formulas next to each other}
 
 One should not put two mathematical formulas right next to each other.
-Consider the folloing example:
+Consider the following example:
 \begin{showlatex}{Not properly separating mathematics}
 Then $f^2 = g$,$f$ is differentiable and $f = \exp(h)$.
 \end{showlatex}
@@ -600,26 +626,38 @@ This sentence is parsed as follows:
 
 
 
+\subsection{Don’t begin a line with a mathematical symbol (optional)}
+
+One interesting idea for inline mathematics is to never start a line with a mathematical symbol.
+This can be achieved by prefixing every inline mathematical formula by a tie~\inlinecode{\customtexttilde}.
+The author has taken this approach from~\cite{nomath_at_line}.
 
 
 
 
-\section{Use \commandtt{text}}
 
-When text needs to be used in math mode use \commandtt{text}.
-The following is horrible:
-\begin{showlatex}{Missing text in math mode}
+\section{Text in mathematics}
+
+
+\subsection{Use \comtitle{text}}
+
+When text needs to be used in math~mode the command~\comname{text} is to be used.
+\begin{showcode}{Syntax of \comname{text}}
+\text{normal text in math~mode}
+\end{showcode}
+Let’s start with the following horrible example:
+\begin{showlatex}{Missing text in math~mode}
 Let $A \coloneqq \{ x \in [0,1] : x \; is \; rational \}$.
 \end{showlatex}
 This next one looks a bit better, but is still not okay:
-\begin{showlatex}[label = {wrong math mode position}]{Wrong way of using text in math mode}
+\begin{showlatex}[label = {wrong math mode position}]{Wrong way of using text in math~mode}
 Let $A \coloneqq \{ x \in [0,1] : x \text{ is rational} \}$.
 \end{showlatex}
 Instead do this:
-\begin{showlatex}[label = {right math mode position}]{Right way of using text in math mode}
+\begin{showlatex}[label = {right math mode position}]{Right way of using text in math~mode}
 Let $A \coloneqq \{ x \in [0,1] : \text{$x$ is rational} \}$.
 \end{showlatex}
-Note that the right code reflects the structure of the displayed expression:
+Note that the right code reflects the structure\index{structure of an expression} of the displayed expression:
 Indeed, the diagram in \cref{structure tree of definition} shows the structure of the given expression.
 \begin{figure}[tb]
   \begin{center}
@@ -661,21 +699,19 @@ We arrive at the diagram in \cref{structure tree of math}.
         ;
     \end{tikzpicture}
   \end{center}
-  \caption{Structure tree of the matematical expression.}
+  \caption{Structure tree of the mathematical expression.}
   \label{structure tree of math}
 \end{figure}
 By transforming this diagram node-wise into code we arrive at \cref{right math mode position}.
 Note that both the nodes~\enquote{$x \in [0,1]$} and~\enquote{$x$ is rational} both contain mathematics, but that the second is actually a text.
-It is therefore not proper to combine these two math modes, as done in \cref{wrong math mode position}.
+It is therefore not proper to combine these two math~modes, as done in \cref{wrong math mode position}.
 
 
 
-
-
-\section{Put space between math and text}
+\subsection{Put space around text in display mathematics}
 
 Sometimes a single line of displayed mathematics end with some text, as in the following example.
-\begin{showlatex}{Wrong spacing around text in math mode~I}
+\begin{showlatex}{Wrong spacing around text in math~mode~I}
 Therefore
 \[
   g h g^{-1}
@@ -684,9 +720,9 @@ Therefore
   \text{for all $g, h \in G$}.
 \]
 \end{showlatex}
-In such a case one needs to put space between the mathematics and the text.
+In such a case one needs to put space\index{spacing!in math~mode} between the mathematics and the text.
 This space should not be part of the text:
-\begin{showlatex}{Wrong spacing around text in math mode~II}
+\begin{showlatex}{Wrong spacing around text in math~mode~II}
 Therefore
 \[
   g h g^{-1}
@@ -696,8 +732,8 @@ Therefore
 \]
 \end{showlatex}
 Instead it should be put between the formula and the text.
-In the above example, where a single block of mathematics is follows by a single block of text which contains quantifiers for the previous formula, one should put a \commandname{qquad}:
-\begin{showlatex}{Right spacing arond text in math mode~I}
+In the above example, where a single block of mathematics is follows by a single block of text which contains quantifiers for the previous formula, one should use the spacing~\comname{qquad}\massindex[spacing]{qquad}[\comname]:
+\begin{showlatex}{Right spacing around text in math~mode~I}
 Therefore
 \[
   g h g^{-1}
@@ -708,8 +744,8 @@ Therefore
 \]
 \end{showlatex}
 Sometimes two blocks of mathematics are separated by a short text.
-In this case one should use~\commandname{quad} on both sides of the text:
-\begin{showlatex}{Right spacing around textt in math mode~II}
+In this case one should use the spacing~\comname{quad}\massindex[spacing]{quad}[\comname] on both sides of the text:
+\begin{showlatex}{Right spacing around text in math~mode~II}
 That $gh = hg$ can equivalently be expressed as
 \[
   g h g^{-1} = h
@@ -717,26 +753,110 @@ That $gh = hg$ can equivalently be expressed as
   h g h^{-1} = g \,.
 \]
 \end{showlatex}
-It may even be appropriate to use~\commandname{qquad} on both sides when more space is needed.
+It may even be appropriate to use~\comname{qquad} on both sides when more space is needed.
+
+
+
+\subsection{Use \comtitle{intertext} and \comtitle{shortintertext}}
+
+Multiline environments like \envname{gather*}\massindex[display math environment, multiline mathematics]{gather*}[\envname] and \envname{align*}\massindex[display math environment, multiline mathematics]{align*}[\envname] (see \cref{display environments}) can be interrupted by inserting some text via the commands~\comname{intersect}\massindex[text in math~mode]{intertext}[\comname] and~\comname{shortintertext}\massindex[text in math~mode]{shortintertext}[\comname] to insert some text between different lines of mathematics.
+This is particularly useful can combine multiple \envname{align*}~environments into a single one, which then allows for a common alignment\index{aligning formulas} of all lines.
+
+The following is an example for what we don’t want.
+\begin{showlatex}{Two non-aligned blocks}
+We consider the equalities
+\begin{align*}
+  H
+  &= a_1 + a_2 + a_3 + a_4 \\
+  &= b_1 + b_2 + b_3 + b_4 + b_5 + b_6 \\
+  &= c_1 + c_2 + c_3 + c_4 + c_5
+\end{align*}
+and
+\begin{align*}
+  I
+  &= d_1 + d_2 + d_3 + d_4 + d_5 + d_6 \\
+  &= e_1 + e_2 + e_3 \\
+  &= f_1 + f_2 + f_3 + f_4 + f_5 \,.
+\end{align*}
+\end{showlatex}
+Note the annoying misalignment of the equality signs of the two \envname{align*}~environments.
+We can solve this problem by using only one \envname{align*}~environment and inserting the text~\enquote{and} by using the command~\comname{intertext}:
+\begin{showlatex}*{Two aligned blocks}
+We consider now the equalities
+\begin{align*}
+  H
+  &= a_1 + a_2 + a_3 + a_4 \\
+  &= b_1 + b_2 + b_3 + b_4 + b_5 + b_6 \\
+  &= c_1 + c_2 + c_3 + c_4 + c_5
+\intertext{and}
+  I
+  &= d_1 + d_2 + d_3 + d_4 + d_5 + d_6 \\
+  &= e_1 + e_2 + e_3 \\
+  &= f_1 + f_2 + f_3 + f_4 + f_5 \,.
+\end{align*}
+\end{showlatex}
+The command~\comname{shortintertext} works in the same way as~\comname{intertext} but inserts less vertical space\index{spacing} around it.
+To see the effects of~\comname{shortintertext} let us start with the following example:
+\begin{showlatex}{Two non-aligned equalities}
+First we have some lengthy text above the mathematical formulas, followed by the formulas
+\[
+  a = b
+\]
+and
+\[
+  b = a \,.
+\]
+We finish off by writing some more text after the above mathematical two formulas.
+\end{showlatex}
+We naturally want to align the two equality signs, which we by using a single \comname{align*}~environment together with~\comname{intertext}, as explained above:
+\begin{showlatex}{Two aligned equalities with too much space}
+First we have some lengthy text above the mathematical formulas, followed by the formulas
+\begin{align*}
+  a &= b
+\intertext{and}
+  b &= a \,.
+\end{align*}
+We finish off by writing some more text after the above mathematical two formulas.
+\end{showlatex}
+But we can see that the inserted~\comname{intersect} puts a large space between the two formulas, far too large for our taste.
+We can solve this problem by using~\comname{shortintertext} instead of~\comname{intertext}, as the following example shows:
+\begin{showlatex}{Two aligned equalities with proper space}
+First we have some lengthy text above the mathematical formulas, followed by the formulas
+\begin{align*}
+  a &= b
+\shortintertext{and}
+  b &= a \,.
+\end{align*}
+We finish off by writing some more text after the above mathematical two formulas.
+\end{showlatex}
 
 
 
 
 
-\section{Don’t break math-text things}
-
-Mathematical termis are often of the form $x${\nbh}something for suitable~$x$ and~\enquote{something}, e.g.~\enquote{$k${\nbh}algebra} and~\enquote{$n${\nbh}manifold}.
-Such terms should not be broken at the hypen for a line break.
-This can be achieved by putting the command~\commandname{nobreakdash} before the hypen, as explained in \cref{non-breakable space}.
+\section{Mathematics as text}
 
 
 
+\subsection{Don’t abuse math as text}
+
+Again similar to \cref{no logical symbols} one should not abuse mathematical symbols as words:
+
+A mathematical symbol can often replace parts of a sentence, in particular a verb.
+\begin{showlatex}{Right way of using mathematical symbols as words}
+Then $a = b$ and thus $b \leq c$.
+\end{showlatex}
+But this use of mathematics should be treated with care, and not abused:
+\begin{showlatex}{Wrong way of using mathematical symbols as words}
+The integer $a$ is $< 0$ and thus $\notin \mathbb{N}$.
+\end{showlatex}
 
 
-\section{Logical symbols don’t replace text}
+
+\subsection{Logical symbols don’t replace text}
 \label{no logical symbols}
 
-Mathematicians often abuse logical symbols like
+Mathematicians often abuse logical symbols\index{logical symbols} like
 \[
   \exists \,,
   \quad
@@ -749,9 +869,9 @@ Mathematicians often abuse logical symbols like
 as replacements for written out words.
 This is okay in handwriting and on blackboards, but it is not okay in a properly written out mathematical text.
 \begin{showlatex}{Abuse of quantifiers}
-It follows that $\forall y \in B \exists x \in A$ with $f(x) = y$.
+It follows that $\forall y \in B$ that $\exists x \in A$ with $f(x) = y$.
 \end{showlatex}
-One needs to write out the used quantifiers.
+One needs to instead write out the used quantifiers.
 \begin{showlatex}{Writing out quantifiers}
 It follows that for every element $y \in B$ there exists an element $x \in A$ with $f(x) = y$.
 \end{showlatex}
@@ -788,39 +908,11 @@ The use of the above logical symbols is of course okay if they are used in their
 
 
 
-
-
-\section{Don’t write iff}
+\subsection{Don’t use \enquote{iff}}
+\index{iff}
 \label{no iff}
 
 Similarly to \cref{no logical symbols} abbreviations like~\enquote{iff} need to be written out in a mathematical text.
-
-
-
-
-
-\section{Don’t abuse math as text}
-
-Again similar to \cref{no logical symbols} one should not abuse mathematical symbols as words:
-
-A mathematical symbol can often replace parts of a sentence, in particular a verb.
-\begin{showlatex}{Right way of using mathematical symbols as words}
-Then $a = b$ and thus $b \leq c$.
-\end{showlatex}
-But this use of mathematics should be treated with care, and not abused:
-\begin{showlatex}{Wrong way of using mathematical symbols as words}
-The integer $a$ is $< 0$ and thus $\notin \mathbb{N}$.
-\end{showlatex}
-
-
-
-
-
-\section{Don’t begin a line with a mathematical symbol (optional)}
-
-One interesting idea for inline mathetics is to never start a line with a mathematical symbol.
-This can be achieved by prefixing every inline mathematical formula by a tie~\inlinecode{\customtexttilde}.
-The author has taken this approach from~\cite{nomath_at_line}.
 
 
 

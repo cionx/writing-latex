@@ -4,19 +4,24 @@
 
 
 
-\section{Don’t use \texttt{\$\$  \$\$} or \texttt{eqnarray}}
+\section{Environments for display mathematics}
+\label{display environments}
 
-There are many good ways to put mathematical content into display mode, but \texttt{\$\$  \$\$} and \texttt{eqnarray} are none of them.
-The method \texttt{\$\$  \$\$} is too level for practical use, and \texttt{eqnarray} has too many problems and has been deprecated since forever.
+
+
+\subsection{Don’t use \inlinecodetitle{\$\$  \$\$} or \envtitle{eqnarray}}
+
+There are many good ways to put mathematical content into display mode, but \inlinecode{\$\$~\$\$}\massindex[display math environment]{\$\$~\$\$}[\inlinecode] and \envname{eqnarray}\massindex[display math environment]{eqnarray}[\envname] are none of them.
+The method~\inlinecode{\$\$  \$\$} is too low level, and the environment~\envname{eqnarray} has too many problems and has been deprecated since forever.
 One can use any of the following, depending on the planned usage.
 
 
 
-\subsection{\texttt{{\tbs}[ {\tbs}]} and \texttt{equation*}}
+\subsection{The environments~\inlinecodetitle{{\tbs}[ {\tbs}]} and \envtitle{equation*}}
 
-The methods \texttt{equation*} and \texttt{{\tbs}[ {\tbs}]} can be used for a single line of display math mode.
-Both commands do the same thing (when \texttt{amsmath} is loaded).
-\begin{showlatex}*{Using \texttt{{\tbs}[ {\tbs}]} and \texttt{equation*}}
+The environments~\inlinecode{{\tbs}[ {\tbs}]}\massindex[display math environment]{{\tbs}[ {\tbs}]}[\inlinecode] and \envname{equation*}\massindex[display math environment]{equation*}[\envname] can be used for a single line of display math mode.
+Both commands do the same thing (when the package~\packname{amsmath}\massindex[packages]{amsmath}[\packname] is loaded).
+\begin{showlatex}*{Using the environments~\inlinecode{{\tbs}[ {\tbs}]} and \envname{equation*}}
 Suppose that both the formula
 \[
   a + b = c
@@ -28,8 +33,8 @@ and the formula
 hold.
 Then $a$ and $b$ are unique.
 \end{showlatex}
-The non-starred version \texttt{equation} numbers the equation.
-\begin{showlatex}*{Using \texttt{equation}}
+The non-starred version~\texttt{equation}\massindex[display math environment, tagging and numbering]{equation}[\envname] numbers the equation.
+\begin{showlatex}*{Using the environment~\envname{equation}}
 The formula
 \begin{equation}
   a^2 - b^2 = (a + b)(a - b)
@@ -39,10 +44,10 @@ is one of the binomial formulas.
 
 
 
-\subsection{\texttt{gather*}}
+\subsection{The environment~\texttt{gather*}}
 
-The \texttt{gather*} environment is meant for multiple lines that are non-aligned but centered instead.
-\begin{showlatex}{Using \texttt{gather*}}
+The environment~\texttt{gather*}\massindex[display math environment, multi-line mathematics]{gather*}[\envname] is meant for multiple lines that are non-aligned.
+\begin{showlatex}{Using the environment~\envname{gather*}}
 We consider for every integer $n \geq 0$ the polynomial
 \[
   p_n
@@ -64,8 +69,8 @@ In particular
   p_5 = 1 + x + x^2 + x^3 + x^4 + x^5 \,.
 \end{gather*}
 \end{showlatex}
-The non-starred version \texttt{gather} number the lines.
-\begin{showlatex}{Using \texttt{gather}}
+The non-starred version~\envname{gather}\massindex[display math environment, multi-line mathematics, tagging and numbering]{gather}[\envname] numbers the lines.
+\begin{showlatex}{Using the environment~\envname{gather}}
 We have the polynomials
 \begin{gather}
   p_0 = 1 \,,
@@ -84,11 +89,11 @@ We have the polynomials
 
 
 
-\subsection{\texttt{align*} and \texttt{alignat*}}
+\subsection{The environments~\envtitle{align*} and \envtitle{alignat*}}
 
-The \texttt{align*} enviroment takes multiple lines which can aligned.
-Each line contains the symbol \texttt{\&} once, and the occurences of this symbol are then aligned.
-\begin{showlatex}*{Using \texttt{align*}}
+The environment~\envname{align*}\massindex[display math environment, multi-line mathematics]{align*}[\envname] takes multiple lines which can aligned.
+Each line contains the symbol~\inlinecode{\&}\massindex{\&}[\inlinecode] once, and the occurrences of this symbol are then aligned.
+\begin{showlatex}*{Using the environment~\envname{align*}}
 We find that
 \begin{align*}
   a + b + c
@@ -102,8 +107,8 @@ We find that
   k + l + m + n \,.
 \end{align*}
 \end{showlatex}
-The unstarred version \texttt{align} again numbers the lines.
-\begin{showlatex}*{Using \texttt{align}}
+The unstarred version~\envname{align}\massindex[display math environment, multi-line mathematics, tagging and numbering]{align}[\envname] numbers the lines.
+\begin{showlatex}*{Using the environment \envname{align}}
 We find again that
 \begin{align}
   a + b + c
@@ -117,9 +122,9 @@ We find again that
   k + l + m + n \,.
 \end{align}
 \end{showlatex}
-One can also use multiple aligned columns, which then need to be separated by an additional \texttt{\&}.
-For~$n$ aligned columns we hence need~$2n+1$ occurences of \texttt{\&}.
-\begin{showlatex}{Using \texttt{align*} with multiple columns}
+One can also use multiple aligned columns, which then need to be separated by an additional~\inlinecode{\&}\massindex{\&}[\inlinecode].
+For~$n$ aligned columns we hence need~$2n+1$ occurrences of~\inlinecode{\&} per line.
+\begin{showlatex}{Using \envname{align*} with multiple columns}
 We consider the values
 \begin{align*}
   x_1 &= 1 \,,  &   x_2 &= 2 \,,  &   x_3 &= 3 \,,  \\
@@ -128,7 +133,7 @@ We consider the values
 \end{align*}
 \end{showlatex}
 
-The \texttt{alignat*} environment is similar to the \texttt{align} environment, but doesn’t add any built-in spacing between the aligned columns.
+The environment~\envname{alignat*}\massindex[display math environment, multi-line mathematics]{alignat*}[\envname] is similar to the environment~\envname{align*} but doesn’t add any built-in spacing between the aligned columns.
 Any such spacing must therefore by added by hand.
 One also has to specify the number of columns beforehand.
 \begin{showlatex}{Using \texttt{alignat*}}
@@ -139,14 +144,17 @@ We also consider the values
   y_7 &= 3 \,,  &         y_8 &= 2 \,,  &         y_9 &= 1 \,.
 \end{alignat*}
 \end{showlatex}
-When aligning multiple columns one should use \texttt{alignat*} instead of \texttt{align*} to get (manually) a good looking distance between the aligned columns.
+For aligning multiple columns one should use \envname{alignat*} instead of \envname{align*} to get (manually) a good looking distance between the aligned columns.
+The environment~\envname{alignat}\massindex[display math environment, multi-line mathematics]{alignat}[\envname] works the same way as \envname{alignat*} but automatically numbers the lines.
 
 
 
-\subsection{Don’t do \texttt{center} with \texttt{\$ \$}}
+\subsection{Don’t use \envtitle{center} plus \inlinecodetitle{\$ \$}}
+\massindex{center}[\envname]
+\massindex{\$ \$}[\inlinecode]
 
 By all that is holy, don’t do the following:
-\begin{showlatex}*{Using~\commandname{center} with~\inlinecode{\$ \$}}
+\begin{showlatex}*{Using~\comname{center} with~\inlinecode{\$ \$}}
 Some text that ends in
 \begin{center}
   $a + b = c$.
@@ -157,11 +165,10 @@ Now some more text.
 
 
 
-\subsection{\texttt{gathered}, \texttt{aligned} and \texttt{alignedat}}
+\subsection{The environments~\envtitle{gathered}, \envtitle{aligned} and \envtitle{alignedat}}
 
-The environments \texttt{gathered}, \texttt{aligned} and \texttt{alignedat} are variations of the environments \texttt{gather*}, \texttt{align*} and \texttt{alignat*}.
-These variations are meant to be used inside an already existing math environment.
-\begin{showlatex}*{Using \texttt{aligned}}
+The environments~\envname{gathered}\massindex[multi-line mathematics]{gathered}[\envname], \envname{aligned}\massindex[multi-line mathematics]{aligned}[\envname] and \envname{alignedat}\massindex[multi-line mathematics]{alignedat}[\envname] are variations of the environments~\envname{gather*}, \envname{align*} and \envname{alignat*} that can be used inside an already existing math environment.
+\begin{showlatex}*{Using \envname{aligned}}
 \[
   \left\{
     \begin{aligned}
@@ -179,22 +186,24 @@ These variations are meant to be used inside an already existing math environmen
 One should always use the most basic environment that does the job:
 Using overpowered environments can lead to unexpected problems.
 Consider the following example:
-\begin{showlatex}{Inproper use of \texttt{align*}}
+\begin{showlatex}{Improper use of \texttt{align*}}
 \begin{align*}
   ABCD = EF = GHI = JKL = M = NOP
   \\
   QRS = TUV = WX = Y = Z
 \end{align*}
 \end{showlatex}
-The \texttt{align*} environment automatically alignes both lines on the right since no information about alignment was given.
-In the above situation one should use \texttt{gather*} instead.
-\begin{showlatex}{Using \texttt{gather*} for non-aligned equations}
+The environment~\envname{align*} automatically alignes both lines on the right since no information about alignment was given.
+In the above situation one should use \envname{gather*} instead.
+\begin{showlatex}{Using \envname{gather*} for non-aligned equations}
 \begin{gather*}
   ABCD = EF = GHI = JKL = M = NOP
   \\
   QRS = TUV = WX = Y = Z
 \end{gather*}
 \end{showlatex}
+If a multi-line display mode environment is used for a single line then one can get spacing issues, see \cref{spacing before multi-line}.
+
 The flowchart in \cref{environment flow chart} explains how to choose the correct display environment.
 (This flowchart is partly inspired by \cite{flowchart}.)
 \begin{figure}[tb]
@@ -228,31 +237,31 @@ The flowchart in \cref{environment flow chart} explains how to choose the correc
     \node (start)
           [start]
           {formula};
-    \node (multiline)
+    \node (multi-line)
           [question, below of = start]
-          {multiline?};
+          {multi-line?};
     \node (alignment)
-          [question, below of = multiline]
+          [question, below of = multi-line]
           {alignment?};
     \node (multicolumn)
           [question, below of = alignment]
           {multiple columns?};
     \node (equation)
-          [answer, right of = multiline, xshift = 7em]
-          {\texttt{{\tbs}[ {\tbs}]}\\equation*};
+          [answer, right of = multi-line, xshift = 7em]
+          {\texttt{{\tbs}[ {\tbs}]}\\\inlinecode{equation*}};
     \node (gather)
           [answer, right of = alignment, xshift = 7em]
-          {gather*};
+          {\inlinecode{gather*}};
     \node (align)
           [answer, right of = multicolumn, xshift = 7em]
-          {align*};
+          {\inlinecode{align*}};
     \node (alignat)
           [answer, below of = align]
-          {alignat*};
+          {\inlinecode{alignat*}};
     % arrows
-    \draw[->] (start) -- (multiline);
-    \draw[->] (multiline)   -- node[anchor=south] {no} (equation);
-    \draw[->] (multiline)   -- node[anchor=east] {yes} (alignment);
+    \draw[->] (start) -- (multi-line);
+    \draw[->] (multi-line)   -- node[anchor=south] {no} (equation);
+    \draw[->] (multi-line)   -- node[anchor=east] {yes} (alignment);
     \draw[->] (alignment)   -- node[anchor=south] {no} (gather);
     \draw[->] (alignment)   -- node[anchor=east] {yes} (multicolumn);
     \draw[->] (multicolumn) -- node[anchor=south] {no} (align);
@@ -268,33 +277,34 @@ The flowchart in \cref{environment flow chart} explains how to choose the correc
 
 
 
-\section{Break and align at good points}
+\section{Where to break and align formulas}
 \label{break and align ponts}
 
-Often times a formula is broken among multiple lines.
+Oftentimes a formula is broken among multiple lines.
 This is done for at least two reasons:
 \begin{itemize}
   \item
     To improve the readability of the given formula.
   \item
-    To prevent that the formula goes over the margins of the document.
+    To prevent that the formula goes over the margins of the text area.
 \end{itemize}
-If a formula is broken amoung multiple lines then one has to choose at which places the formla is broken, and how the resulting parts of the formula will be aligned.
-In this section we present some standard ways of breaking and aligning a formula, and discuss when to break a formula.
+If a formula is broken among multiple lines then one has to choose at which places the formula is broken, and how the resulting parts of the formula will be aligned.
+In this section we present some standard ways of doing so.
 
 
 
-\subsection{When to break}
+\subsection{When to break a formula}
+\index{line breaks!in math mode|(}
 
 We first discuss when a formula needs to be broken.
 
 \subsubsection{When the formula is too long}
 
 If a formula is too long to physically fit into the text area, i.e.\ if it goes over the margins of the text area, then it must be broken up.
-These occurences are easy to spot since they give will give an \enquote{overfull hbox} warning.
+These occurrences are easy to spot since they give will give an \enquote{overfull hbox} warning.
 Consider the following example:
 \begingroup
-\begin{showlatex}[before lower = {\hfuzz = 40pt}, after lower = {\hfuzz = 0pt}]{Overfull hbox}
+\begin{showlatex}[before lower = {\hfuzz = 40pt}, after lower = {\hfuzz = 0pt}]{An overfull hbox}
   It follows from
   \[
     aaaaaaa
@@ -330,9 +340,9 @@ Here is some more text.
 \end{showlatex}
 The formula in the above example does actually not go over the margin.
 But it has stretched the displaymode over its visual limits.
-The formula does therefore neeed to be broken up.
+The formula does therefore need to be broken up.
 
-\subsection{Expressing structure}
+\subsubsection{Expressing structure}
 
 Often the breaking up of a formula is done to better express the structure---and thus content---of the displayed formula.
 Consider the following example:
@@ -360,7 +370,7 @@ If $k$ is algebraically closed and $i$ is a square root of $-1$ then
   k[x]/( (x - i) (x + i) )
   \\
   &\cong
-  k[x]/(x - i) \times \mathbb{C}[x]/(x + i)
+  k[x]/(x - i) \times k[x]/(x + i)
   \\
   &\cong
   k \times k
@@ -371,7 +381,8 @@ This form makes it clear where the equalities and isomorphisms occur.
 
 
 
-\subsection{Where to break and align}
+\subsection{Where to break and align a formula}
+\index{aligning formulas|(}
 
 We now discuss at which points a formula can be broken, and how these broken parts can then be aligned.
 
@@ -406,7 +417,7 @@ Then
 
 \subsubsection{Aligning at relation symbols II}
 
-One can also align all relation symbols to the left, so that the broken up parts of the formla all lie on top of each other.
+One can also align all relation symbols to the left, so that the broken up parts of the formula all lie on top of each other.
 \begin{showlatex}{Aligning relation symbols~II}
 Let~$R$ and~$S$ be two commutative rings.
 Then for every~$(r,s) \in R \times S$,
@@ -428,7 +439,7 @@ Then for every~$(r,s) \in R \times S$,
 \end{align*}
 and therefore $(R \times S)^{\times} = R^\times \times S^\times$.
 \end{showlatex}
-The empty pair of curly brackets in \texttt{{\tbs}iff\{\}\&} ensures that the spacings coming from \commandtt{iff} and \texttt{\&} do not interfere with each other.
+The empty pair of curly brackets in \texttt{{\tbs}iff\{\}\&} ensures that the spacings coming from \comname{iff} and \texttt{\&} do not interfere with each other.
 Otherwise something like this happens:
 \begin{showlatex}{Wrong spacing when alignment points are set wrong}
   \begin{align*}
@@ -508,6 +519,10 @@ It follows that
 and hence $2 + 2 = 5$.
 \end{showlatex}
 
+\index{aligning formulas|)}
+\index{aligning formulas!zzzza@\igobble |seealso {\comname{align*}}}
+\index{aligning formulas!zzzzb@\igobble |seealso {\comname{alignat*}}}
+
 
 
 \subsection{Don’t break formulas badly}
@@ -550,11 +565,11 @@ It follows that
 \end{align*}
 \end{showlatex}
 In such a case the breaking of the formula should be done in a consistent way.
-There seeems to be two sensible approaches in this example:
+There seems to be two sensible approaches in this example:
 
 \subsubsection{Align everything}
 
-One can align all occuring relation symbols:
+One can align all occurring relation symbols:
 \begin{showlatex}{Aligning all relation symbols}
 It follows that
 \begin{align*}
@@ -609,150 +624,25 @@ It follows that
   &= pp \,.
 \end{align*}
 \end{showlatex}
-This layout emphasizes the importance of the inequalities, while relegating the equalities to a less imporant position.
+This layout emphasizes the importance of the inequalities, while relegating the equalities to a less important position.
 Note that we have also aligned the first and last equality signs to make it clear where the manipulations begin and end.
-If some other equalities are also particularly important (e.g.\ if they follows from some previously hard-earned proposition) then they too should be alinged
+If some other equalities are also particularly important (e.g.\ if they follows from some previously hard-earned proposition) then they too should be aligned
+
+\index{line breaks!in math mode|)}
 
 
 
 
 
-\section{Use \commandtt{intertext} and \commandtt{shortintertext}}
-
-Multiline environments like \texttt{gather*} and \texttt{align*} can be interrupted by using \commandtt{intersect} and \commandtt{shortintertext} to insert some text between different lines of mathematics.
-This is particularly useful to combine two \texttt{align*} environments into a single \texttt{align*} environment, which allows for a common alignment of both sections.
-
-The following is an example for what we don’t want.
-\begin{showlatex}*{Two non-aligned blocks}
-We consider the equalities
-\begin{align*}
-  H
-  &=
-  a_1 + a_2 + a_3 + a_4
-  \\
-  &=
-  b_1 + b_2 + b_3 + b_4 + b_5 + b_6
-  \\
-  &=
-  c_1 + c_2 + c_3 + c_4 + c_5
-\end{align*}
-and
-\begin{align*}
-  I
-  &=
-  d_1 + d_2 + d_3 + d_4 + d_5 + d_6
-  \\
-  &=
-  e_1 + e_2 + e_3
-  \\
-  &=
-  f_1 + f_2 + f_3 + f_4 + f_5 \,.
-\end{align*}
-\end{showlatex}
-Note the annoying misalignment of the equality signs of the two \texttt{align*} environments.
-We can solve this problem by using only one \texttt{align*} environment and inserting the text \enquote{and} by using the \commandtt{intertext} command:
-\begin{showlatex}*{Two aligned blocks}
-We consider now the equalities
-\begin{align*}
-  H
-  &=
-  a_1 + a_2 + a_3 + a_4
-  \\
-  &=
-  b_1 + b_2 + b_3 + b_4 + b_5 + b_6
-  \\
-  &=
-  c_1 + c_2 + c_3 + c_4 + c_5
-\intertext{and}
-  I
-  &=
-  d_1 + d_2 + d_3 + d_4 + d_5 + d_6
-  \\
-  &=
-  e_1 + e_2 + e_3
-  \\
-  &=
-  f_1 + f_2 + f_3 + f_4 + f_5 \,.
-\end{align*}
-\end{showlatex}
-The \texttt{shortintertext} functions in the same way as \texttt{intertext} but inserts less space between the two equations.
-To see the effects of \texttt{shortintertext} let us start with the following example:
-\begin{showlatex}{Two non-aligned equalities}
-First we have some lengthy text above the matical formulas, followed by the formulas
-\[
-  a = b
-\]
-and
-\[
-  b = a \,.
-\]
-We finish off by writing some more text after the above mathematical two formulas.
-\end{showlatex}
-We naturally want to align the two equality signs, which we by using a single \texttt{align*} environment together with \texttt{intertext}, as explained above:
-\begin{showlatex}{Two aligned equalities with too much space}
-First we have some lengthy text above the matical formulas, followed by the formulas
-\begin{align*}
-  a &= b
-\intertext{and}
-  b &= a \,.
-\end{align*}
-We finish off by writing some more text after the above mathematical two formulas.
-\end{showlatex}
-But we can seet that the inserted \texttt{intersect} puts a large space between the two formulas, much too large for our taste.
-We can solve this problem by using \texttt{shortintertext} instead of \texttt{intertext}, as the following example shows:
-\begin{showlatex}{Two aligned equalities with proper space}
-First we have some lengthy text above the matical formulas, followed by the formulas
-\begin{align*}
-  a &= b
-\shortintertext{and}
-  b &= a \,.
-\end{align*}
-We finish off by writing some more text after the above mathematical two formulas.
-\end{showlatex}
-
-
-
-
-
-\section{Uses \texorpdfstring{\envname{cases}}{cases}}
-
-Use the environment \envname{cases} for case distinctions:
-\begin{showlatex}{Using \envname{cases}}
-It follows that
-\[
-  A(x)
-  =
-  \begin{cases}
-    x^2  & \text{if $x \leq 0$,} \\
-    3x   & \text{if $x = 0$.}
-  \end{cases}
-\]
-\end{showlatex}
-In most cases one should actually use the environment \envname{cases*}, which ensures that the second column will be treated as text.
-\begin{showlatex}{Using \envname{cases*}}
-It follows that
-\[
-  A(x)
-  =
-  \begin{cases*}
-    x^2  & if $x \leq 0$, \\
-    3x   & if $x = 0$.
-  \end{cases*}
-\]
-\end{showlatex}
-
-
-
-
-
-\section{Aligning nearly alinged formulas}
+\section{Aligning nearly aligned formulas}
+\index{aligning formulas|(}
 
 Sometimes formulas turn out to look nearly aligned in the compiled output, even though this wasn’t planned.
 But the formulas may still be non-aligned enough to look jarring.
 In such a case it is often best to align these formulas.
 
 Consider the following example:
-\begin{showlatex}{Accidental jarringly non-alined expressions}
+\begin{showlatex}{Accidental jarringly non-aligned expressions}
 \begin{gather*}
   KK^{-1} = 1 = K^{-1}K \,,
   \quad
@@ -777,95 +667,247 @@ But properly aligning both lines this impression vanishes and instead gives rise
 \end{align*}
 \end{showlatex}
 
+\index{aligning formulas|)}
 
 
 
 
-\section{Beware of spacings}
 
-When typesetting a document \hologo{LaTeX} groups the appearing symbols and expressions into different groups and then adds spacing around these symbols and expressions depending on which group they belong to.
-Three of these groups are \emph{operators}, \emph{relation symbols} and \emph{binary operations}.
-The symbols~\texttt{=} and~\texttt{<} are for example treated as relations symbols, and the symbols~\texttt{+} and~\commandtt{cdot} as binary operations.
-We can see in the following example how some space is automatically added around these symbols:
-\begin{showlatex}{Standard spacing around relation symbols and binary operators}
+\section{Proper spacing before multi-line display mode environments}
+\label{spacing before multi-line}
+
+If mathematical content is put into display mode then this content will not only be horizontally centered but also receive some vertical spacing\index{spacing!around display mode} around it to separate it from the surrounding text.
+Observe in the following example that both above and below the formula there is an additional spacing of roughly (exactly?) one line:
+\begin{showlatex}*{Vertical space around display mode}
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
 \[
-  a = b  \qquad  a < b  \qquad  a + b  \qquad  a \cdot b
+  a = b \,.
+\]
+Nunc aliquet bibendum enim facilisis gravida. Nisl nunc mi ipsum faucibus vitae aliquet nec ullamcorper.
+\end{showlatex}
+
+If the line before a display mode environment is too short then this vertical spacing may be visually too large.
+The one-line display environments~\inlinecode{{\tbs}[ {\tbs}]}\massindex[display math environment]{{\tbs}[ {\tbs}]}[\inlinecode] and \massindex[display math environment]{equation*}[\envname] do therefore automatically adjust this spacing.
+Observe that in the following example the distance between the first two text lines is far shorter than the distance between the second and third text lines.
+\begin{showlatex}*{Adjusted spacing before one-line display mode}
+Lorem
+\[
+  a = b
+\]
+ ipsum dolor sit amet, consectetur
+\[
+  a = b \,.
+\]
+ipsum elit.
+\end{showlatex}
+We can say more precisely that the additional spacing inserted by {\LaTeX} is either \comname{abovedisplayskip} or its shorter version~\comname{abovedisplayshortskip}.
+
+The multi-line display mode environments (like~~\envname{align*}\massindex[display math environment, multi-line mathematics]{align*}[\envname]) don’t have this feature.
+It always uses the spacing~\comname{abovedisplayskip} (for technical reasons).
+This can lead to some unpleasant spacing:
+\begin{showlatex}*{Unpleasant spacing around a multi-line environment}
+text text text text text text text text text
+\begin{alignat*}{1}
+  x &= y_i
+\shortintertext{text}
+  x &= z_{i+1}
+\end{alignat*}
+text text text text text text text text
+\end{showlatex}
+
+The package~\packname{mathools} provides a partial fix to this problem:
+By putting the command~\comname{SwapAboveDisplaySkip}\massindex[\piname{mathtools}, spacing!around display mode]{SwapAboveDisplaySkip}[\comname] at the beginning of a multi-line display mode environment we force {\LaTeX} to use the shorter spacing~\comname{abovedisplayshortskip}.
+\begin{showlatex}*{Pleasant spacing around a multi-line environment}
+text text text text text text text text text
+\begin{alignat*}{1}
+\SwapAboveDisplaySkip
+  x &= y_i
+\shortintertext{text}
+  x &= z_{i+1}
+\end{alignat*}
+text text text text text text text text
+\end{showlatex}
+
+
+
+
+
+\section{Use the \envtitle{cases} environment}
+
+Use the environment~\envname{cases}\massindex[multi-line mathematics]{cases}[\envname] for case distinctions:
+\begin{showlatex}{Using \envname{cases}}
+It follows that
+\[
+  A(x)
+  =
+  \begin{cases}
+    x^2  & \text{if $x \leq 0$,} \\
+    3x   & \text{if $x = 0$.}
+  \end{cases}
 \]
 \end{showlatex}
-To compare this to a version without spacing we can surround the symbols by a pair of curly brackets.
-This circumvents \hologo{LaTeX} from taking the surround code into consideration.
-This leads to the following result:
-\begin{showlatex}{Disabling the standard spacing around a symbol}
+In most cases one should actually use the environment~\envname{cases*}\massindex[multi-line mathematics]{cases*}[\envname], which ensures that the second column will be treated as text.
+\begin{showlatex}{Using \envname{cases*}}
+It follows that
 \[
-  a {=} b   \qquad  a {<} b  \qquad  a {+} b  \qquad  a {\cdot} b
+  A(x)
+  =
+  \begin{cases*}
+    x^2  & if $x \leq 0$, \\
+    3x   & if $x = 0$.
+  \end{cases*}
 \]
 \end{showlatex}
-The automatic spacing can become a problem, as the following examples illustrate:
-\begin{showlatex}*{Clashing spacings around symbols}
-\[
-  X/\sim
-  \quad
-  R/\operatorname{J}(R)
-  \quad
-  \operatorname{id} \otimes h
-\]
+
+The package~\packname{mathtools}\massindex[packages]{mathtools}[\packname] defines some more useful variants of the environment~\envname{cases}.
+We refer to~\cite[3.4.3]{mathtools} for more information on this.
+
+
+
+
+\section{Proper placement of the qed-symbol}
+
+\index{qed-symbol|(}
+
+The~\envname{proof}~environment automatically places a qed-symbol at its end.
+\begin{showlatex}{Using the \envname{proof}~environment}
+\begin{proof}
+This is obviously a proof.
+\end{proof}
 \end{showlatex}
-This problem can be fixed by surround the respective symbols in curly brackets.
-\begin{showlatex}*{Preventing a clash of spacings}
-\[
-  X/{\sim}
-  \quad
-  R/{\operatorname{J}(R)}
-  \quad
-  {\operatorname{id}} \otimes h
-\]
+It can happen that this automatic placement of the qed-symbol gives a bad looking result.
+The general rule is that the qed-symbol should not occur at the end of an otherwise empty line.
+To fix such a bad placement one can use the command~\comname{qedhere}\massindex{qedhere}[\comname] 
+
+\subsubsection{qed-symbol after lists}
+
+If a proof consists of a list then the qed-symbol will by default be placed after the list, and thus in a new line.
+\begin{showlatex}{Improper placement of the qed-symbol after a list~I}
+\begin{proof}
+  This proof consists of a list.
+  \begin{enumerate}
+    \item
+      Some part of the proof.
+    \item
+      Another part of the proof.
+  \end{enumerate}
+\end{proof}
 \end{showlatex}
-One can tell \hologo{LaTeX} how to treat a certain symbol:
-\begin{showlatex}*{Specifying the role (and thus spacing) of a symbol}
-\[
-  a | b
-  \quad
-  a \mathop{|} b
-  \quad
-  a \mathrel{|} b
-  \quad
-  a \mathbin{|} b
-\]
+This can be fixed by placing the command~\comname{qedhere}
+\begin{showlatex}{Proper placement of the qed-symbol after a list}
+\begin{proof}
+  This proof consists of a list.
+  \begin{enumerate}
+    \item
+      Some part of the proof.
+    \item
+      Another part of the proof.
+    \qedhere
+  \end{enumerate}
+\end{proof}
 \end{showlatex}
-To define a command \commandtt{divides} to express that a number $n$ divides a number $m$ we do therefore do the following:
-\begin{showlatex}*{Defining and using \commandtt{divides}}
-\newcommand{\divides}{\mathrel{|}}
-\[
-  n \divides m
-\]
+But one has to be careful no to introduce a new line before the command~\comname{qedhere}.
+\begin{showlatex}{Improper placement of the qed-symbol after a list~II}
+\begin{proof}
+  This proof consists of a list.
+  \begin{enumerate}
+    \item
+      Some part of the proof.
+    \item
+      Another part of the proof.
+      
+    \qedhere
+  \end{enumerate}
+\end{proof}
 \end{showlatex}
-For more on this topic see \cite{tex_binrel}.
+
+\subsubsection{qed-symbol after displaystyle}
+
+If a proof ends with display~style mathematics then the qed-symbol will by default be placed after this display~mode.
+\begin{showlatex}{Improper placement of the qed-symbol after display~mode~I}
+\begin{proof}
+  This proof ends with a some display~mode mathematics, namely
+  \[
+    \sin(x+y)
+    =
+    \cos(x)\sin(y) + \sin(x)\cos(y) \,.
+  \]
+\end{proof}
+\end{showlatex}
+There are at least different approaches to fixing this situation:
+
+Some authors prever to bring the qed-symbol to the height of the display environment:
+\begin{showlatex}{Proper (?) placement of the qed-symbol after display~mode}
+\begin{proof}
+  This proof ends with a some display~mode mathematics, namely
+  \[
+    \sin(x+y)
+    =
+    \cos(x)\sin(y) + \sin(x)\cos(y) \,.
+    \qedhere
+  \]
+\end{proof}
+\end{showlatex}
+But this approach does not work if the (last line) of the display environment has additional height.
+Then the mathematical formula go below the line on which the qed-symbol rests.
+\begin{showlatex}{Improper placement of the qed-symbol after display~mode~II}
+\begin{proof}
+  This proof ends with a some display~mode mathematics, namely
+  \[
+    1
+    + \frac{a}{b - a}
+    =
+    \frac{(b - a) + a}{b - a}
+    =
+    \frac{b}{b - a} \,.
+    \qedhere
+  \]
+\end{proof}
+\end{showlatex}
+The author is the opinion that in such a cases there is no good placement for the qed-symbol.
+
+Aside the placement of the qed-symbol there is another problem to ending a proof with a display~environment:
+One of the functions of display~mode is to put an emphasis on the displayed mathematical content.
+Putting such an emphasis directly before the end of a proof can lead to the proof missing a sense of closure.
+
+This problem leads to the second solution for the placement of the qed-symbol.
+Simply never end a proof with a display~environment.
+This can be done by rewriting the end of proof, or by adding a closing sentence to it.
+% TODO: Give an example
+
+\subsubsection{qed-symbol at the end of a long text}
+
+It can also happen that the qed-symbol is pushed to a new line if the previous line is completely filled with text.
+(Although {\LaTeX} will actually try quite hard to prevent this from happening.)
+If this happens then one should (slightly) rewrite the text to circumvent this problem.
+
+\index{qed-symbol|)}
+\index{qed-symbol!zzzz@\igobble |seealso{\comname{qedhere}}}
 
 
 
 
+\section{Tagging and numbering}
 
-\section{\texorpdfstring{\commandname{tag}}{{\tbs}tag} and \texorpdfstring{\commandname{notag}}{{\tbs}notag}}
-
-A finer contral of tags can be achived using~\commandname{tag} and~\commandname{notag}:
-
+A finer control of tags can be achieved using~\comname{tag} and~\comname{notag}.
 
 
 
-
-\subsection{Don’t number just every formual}
+\subsection{Don’t autonumber all formulas}
 \label{dont number all formulas}
+\index{tagging and numbering}
 
-Don’t indiscriminately number every formula.
-Instead an equation should be numbered only if it needs to be refered to later on.
+Don’t indiscriminately number every occurring formula.
+Instead, an equation should be numbered only if it will be referred to later on.
+This numbering should then be done automatically by using a suitable environment like~\envname{equation},~\envname{gather},~\envname{align} or~\envname{alignat}.
 
 
 
-\subsection{\texorpdfstring{\commandname{tag}}{{\tbs}tag}}
+\subsection{\comtitle{tag}}
 
-With the command~\commandname{tag} a custom tag can be set.
+With the command~\comname{tag}\massindex[tagging and numbering]{tag}[\comname] a custom tag can be set.
 This is useful for marking selected equations by special symbols:
-\begin{showlatex}{Using~\commandname{tag} for marking a line}
+\begin{showlatex}{Using~\comname{tag} for marking a line}
 Consider the equation
 \begin{equation}
 \label{important equation}
@@ -874,13 +916,14 @@ Consider the equation
 \end{equation}
 Note that \cref{important equation} can equivalently be expressed as~$5 = 2 + 2$.
 \end{showlatex}
-The argument of~\commandname{tag} is in text mode, and the resulting tag is automatically enclosed in parentheses.
-These parentheses can be removed by using the starred command~\commandname{tag*} instead.
+The argument of~\comname{tag} is in text mode, and the resulting tag is automatically enclosed in parentheses.
+These parentheses can be removed by using the starred command~\comname{tag*} instead.
 
-The command~\commandname{tag} should not be used for regular numbering of equations.
+The command~\comname{tag} should not be used for regular numbering of equations.
 It should be used to tag only certain (often a single) equations in a special way.
+
 It can also be used to express that certain transformations have been used, as the following example demonstrates:
-\begin{showlatex}{Using~\commandname{tag} to explain steps}
+\begin{showlatex}{Using~\comname{tag} to explain steps}
 It follows from the Chinese remainder theorem that
 \begin{align*}
   \mathbb{R}[x] / ( x^3 + x^2 + x + 1 )
@@ -898,12 +941,12 @@ It follows from the Chinese remainder theorem that
 
 
 
-\subsection{\texorpdfstring{\commandname{notag}}{{\tbs}notag}}
+\subsection{\comtitle{notag}}
 
-According to \cref{dont number all formulas} a formula should be numbered only if it needs to be refered to.
-But if this formula occurs in a multiline environment like~\envname{align*} then by switching~\envname{align} all lines will be numbered.
-The prevent the numbering of the unrequired lines the command~\commandname{notag} can then be used:
-\begin{showlatex}*{Using~\commandname{notag} to prevent selected line numbers}
+According to \cref{dont number all formulas} a formula should be numbered only if it needs to be referred to.
+But if this formula occurs in a multi-line environment like~\envname{align*} then by switching~\envname{align} all lines will be numbered.
+The prevent the numbering of the unrequired lines the command~\comname{notag}\massindex[tagging and numbering]{tag}[\comname] can then be used:
+\begin{showlatex}*{Using~\comname{notag} to prevent selected line numbers}
 \begin{align}
   a
   &= b \notag \\
@@ -932,7 +975,7 @@ Multiline set descriptions of the form
     \end{tabular}
   \right\}
 \]
-can be typeset by using a \envname{tabular} environment in the second argument:
+can be typeset by using a \envname{tabular} environment for the right hand side of the set description:
 \begin{showlatex}*{Multiline set descriptions with tabular}
 \[
   \left\{
@@ -946,32 +989,7 @@ can be typeset by using a \envname{tabular} environment in the second argument:
 \]
 \end{showlatex}
 Note that the entries of the environment~\envname{tabular} are automatically in text mode.
-The argument~\inlinecode{\@\{\}} ensure that the environment~\envname{tabular} does not insert additional spacing to its left and right.
-
-
-
-
-
-\section{Don’t force fancy fractions}
-
-When fractions are placed inline, as an exponent or in an index then they should be of the form $a/b$.
-The notation
-\[
-  \frac{a}{b}
-\]
-is reserved for display style.
-So don’t do the following:
-\begin{showlatex}{Full fractions in exponent, index and inline}
-Consider $e^{\frac{1}{x}}$ and $x_{\frac{1}{n}}$ and $\frac{2}{3}$.
-\end{showlatex}
-Do the following instead:
-\begin{showlatex}{Flat fractions in exponent, index and inline}
-Consider $e^{1/x}$ and $x_{1/n}$ and $2/3$.
-\end{showlatex}
-
-Don’t use funky fractions like $\faktor{a}{b}$, they’ll burn down your house and make you go blind.
-
-% TODO: Finding out the proper term for flat fractions. See Chicago Manual?
+The argument~\inlinecode{\@\{\}} ensure that the environment~\envname{tabular} does not insert additional spacing\index{spacing!in math mode} to its left and right.
 
 
 

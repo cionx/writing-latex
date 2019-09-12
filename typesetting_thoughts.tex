@@ -3,17 +3,19 @@
   10pt,
   oneside,
   chapterprefix = true,
-  listof=totoc,
-  bibliography=totocnumbered
+  listof = totoc,
+  bibliography = totoc,
+  index = totoc
 ]
 {scrbook}
 
 
 
 \usepackage[firstpage]{draftwatermark}
-\SetWatermarkText{DRAFT}
+\SetWatermarkText{\textsc{Draft}}
 \SetWatermarkScale{1}
-\SetWatermarkLightness{0.4}
+\SetWatermarkVerCenter{0.43\paperheight}
+\SetWatermarkLightness{0.6}
 
 
 
@@ -22,17 +24,18 @@
 
 
 \title{Writing~\hologo{LaTeX}}
-\subtitle{Some Do’s and Don’ts}
+\subtitle{Some do’s and don’ts}
 \author{Jendrik Stelzner}
 \date{\today}
 \publishers{
-  Available at \texttt{\url{https://github.com/cionx/thoughts-about-writing-latex}.}
+  Available at \texttt{\url{https://github.com/cionx/writing-latex}.}
   \\
   Please send comments and corrections to \texttt{\href{mailto:stelzner@uni-bonn.de}{stelzner@uni-bonn.de}.}
 }
 
 
 
+% \includeonly{chapters/commands}
 \begin{document}
 
 \frontmatter
@@ -53,8 +56,11 @@
 
 
 \backmatter
-\printbibliography
+\printbibliography[notcategory = testentries]
 \lstlistoflistings
+
+\raggedright
+\printindex
 
 
 \end{document}

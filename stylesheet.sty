@@ -1,11 +1,8 @@
-% ignoring certain warnings
-\usepackage{silence}
-\WarningFilter{latexfont}{Font shape}
-\WarningFilter{latexfont}{Some font shapes were not available, defaults substituted.}
-
-
-% git information
-\usepackage{gitinfo2}
+% the index
+\usepackage[original]{imakeidx}
+%\usepackage{silence}
+%\WarningFilter{imakeidx}{Remember to run lualatex again after calling}
+\makeindex
 
 % fixes some float issue with koma
 % see https://tex.stackexchange.com/questions/51867/koma-warning-about-toc
@@ -18,20 +15,15 @@
 \usepackage{microtype}
 
 % bibliography
+% the options backend and style must be set at load time
 \usepackage[backend=biber, style=alphabetic, dateabbrev=false, urldate=long]{biblatex}
-
-% the file containing the references for biblatex
-\bibliography{references.bib}
-% no unplaned surprises with \cite
-\DeclareFieldFormat{postnote}{#1}
-\DeclareFieldFormat{multipostnote}{#1}
 
 % better defining commands
 \usepackage{xparse}
 
 % configure list environments
 \usepackage{enumitem}
-\setlist{  
+\setlist{
   listparindent=\parindent,
   parsep=0pt,
 }
@@ -51,9 +43,11 @@
 \usepackage{extarrows}
 \usepackage{centernot}
 
-
 % ugly fractions
 \usepackage{faktor}
+
+% colours
+\usepackage[dvipsnames]{xcolor}
 
 % pretty drawings
 \usepackage{tikz}
@@ -63,6 +57,9 @@
 
 % commutative diagram
 \usepackage{tikz-cd}
+
+% boxes for examples
+\usepackage[listings,xparse,breakable,skins]{tcolorbox}
 
 % TeX related logos
 \usepackage{hologo}
@@ -81,26 +78,21 @@
 \usepackage{hyperref}
 \hypersetup{
     colorlinks,
-    linkcolor={magenta},
-    citecolor={magenta},
-    urlcolor={magenta}
+    linkcolor = {MidnightBlue},
+    % alternative for citecolor: RedViolet
+    citecolor = {BrickRed},
+    urlcolor  = {BrickRed}
 }
 \usepackage[capitalise, noabbrev]{cleveref}
 \crefname{equation}{equation}{equations}
 
 
-% boxes for examples
-\usepackage[listings,xparse,breakable,skins]{tcolorbox}
 
-% setting koma fonts
-\setkomafont{disposition}{\normalfont\scshape}
-\setkomafont{descriptionlabel}{\normalfont\bfseries}
-\setkomafont{publishers}{\normalsize}
-\setkomafont{dictumtext}{\itshape\small}
-\setkomafont{dictumauthor}{\normalfont}
+
 
 % further dictum settings
-\renewcommand*{\dictumwidth}{0.5\linewidth}
+% \renewcommand*{\dictumwidth}{0.5\linewidth}
+\renewcommand*{\dictumauthorformat}[1]{#1}
 
 % no subsections in the toc
 \setcounter{tocdepth}{2}
@@ -129,19 +121,30 @@
 \relpenalty=\maxdimen
 
 
-%%% playign around with fonts
+%%%%% PLAYING AROUND WITH FONTS
 \usepackage{fontspec}
+
+\setmonofont[Scale=MatchLowercase]{DejaVu Sans Mono}
 
 % first compiling with this font takes 6—7 GB, subsequent is back to normal
 \newfontfamily{\russianfont}[Scale=MatchUppercase]{Noto Serif CJK JP}
 \newcommand{\multilang}[1]{\begingroup \russianfont #1 \endgroup}
 
+% setting koma fonts
+\setkomafont{disposition}{\normalfont\bfseries}
+\setkomafont{descriptionlabel}{\normalfont\bfseries}
+\setkomafont{publishers}{\normalsize}
+\setkomafont{dictumtext}{\itshape\small}
+\setkomafont{dictumauthor}{\normalfont}
 
 
-%%%%% settings for code examples
+
+
+
+%%%%% SETTINGS FOR CODE EXAMPLES
 
 % change displayed name at beginning of the list
-\renewcommand{\lstlistlistingname}{List of Examples}
+\renewcommand{\lstlistlistingname}{List of examples}
 
 % settings for the boxes
 \newlength{\normalparindent}
@@ -204,14 +207,14 @@
 
 % settings for the code
 % tcolorbox uses the listings package, so changes must be done there
-\setmonofont[Scale=MatchLowercase]{DejaVu Sans Mono}
+
 % proper indentation for new paragraphs
 \newlength{\parindentsave}
 % finally setting everything
 \AtBeginDocument{\setlength{\parindentsave}{\parindent}}
 \lstset{%
   numbers           = left,
-  numbersep         = 2pt,
+  numbersep         = 3pt,
   numberstyle       = \tiny,
   basicstyle        = \small\ttfamily,
   columns           = fixed,
@@ -219,19 +222,36 @@
   breakatwhitespace = true,
   breakindent       = 0pt
 }
+% extend the keywards
+%\lstset{%
+%  morekeywords = {\input{keywords}}
+%}
 
 % footnote symbol in minipages
 \renewcommand{\thempfootnote}{\arabic{mpfootnote}}
 
 
+%%%%% names and such
+\renewcaptionname{american}{\listfigurename}{List of figures}
+\renewcaptionname{american}{\listtablename}{List of tables}
 
-%%%%% own commands and macros
 
-%\DeclareBibliographyCategory{testentries}
+
+
+
+%%%%%% BIBLIOGRAPHY STUFF
+
+% the file containing the references for biblatex
+\bibliography{references.bib}
+% no unplaned surprises with \cite
+\DeclareFieldFormat{postnote}{#1}
+\DeclareFieldFormat{multipostnote}{#1}
+
+\DeclareBibliographyCategory{testentries}
 \newcommand{\testcite}[1]{%
   \begin{center}
     \parbox{0.9\linewidth}{\fullcite{#1}}
-%    \addtocategory{testentries}{#1}
+   \addtocategory{testentries}{#1}
   \end{center}
 }
 
@@ -240,19 +260,86 @@
 \NewDocumentCommand{\LuaLaTeX}{}{\hologo{LuaLaTeX}}
 \NewDocumentCommand{\XeLaTeX}{}{\hologo{XeLaTeX}}
 
-\NewDocumentCommand{\commandname}{ m }{\texttt{{\textbackslash}#1}}
-\NewDocumentCommand{\envname}{}{\texttt}
-\NewDocumentCommand{\filename}{}{\texttt}
-\NewDocumentCommand{\packagename}{}{\texttt}
-\NewDocumentCommand{\inlinecode}{}{\texttt}
-\newcommand{\commandtt}[1]{\texttt{{\textbackslash}#1}}
 
+
+
+
+%%%% INDEX FUCKERY
+
+\newcommand{\commandtt}[1]{\texttt{{\textbackslash}#1}}
+\NewDocumentCommand{\appname}{ m }{#1}
+\NewDocumentCommand{\atname}{ m }{\texttt{@#1}}
+\NewDocumentCommand{\comname}{ m }{\texttt{{\textbackslash}#1}}
+\NewDocumentCommand{\envname}{ m }{\texttt{#1}}
+\NewDocumentCommand{\filename}{ m }{\texttt{#1}}
+\NewDocumentCommand{\optname}{ m }{\texttt{#1}}
+\NewDocumentCommand{\packname}{ m }{\texttt{#1}}
+\NewDocumentCommand{\inlinecode}{ m }{\texttt{#1}}
+  
+\newcommand{\comtitle}[1]{\texorpdfstring{\comname{#1}}{{\tbs}#1}}
+\newcommand{\envtitle}[1]{\texorpdfstring{\envname{#1}}{{\tbs}#1}}
+\newcommand{\filetitle}[1]{\texorpdfstring{\filename{#1}}{#1}}
+\newcommand{\inlinecodetitle}[1]{\texorpdfstring{\inlinecode{#1}}{#1}}
+\newcommand{\packtitle}[1]{\texorpdfstring{\packname{#1}}{#1}}
+  
+% the following needs nowcommand instead of newdocumentcommand for non-robust commands
+\newcommand{\ainame}[1]{#1@\string\appname{#1}}
+\newcommand{\ciname}[1]{#1@\string\comname{#1}}
+\newcommand{\einame}[1]{#1@\string\envname{#1}}
+\newcommand{\finame}[1]{#1@\string\filename{#1}}
+\newcommand{\oiname}[1]{#1@\string\optname{#1}}
+\newcommand{\piname}[1]{#1@\string\packname{#1}}
+  
+\NewDocumentCommand{\massindex}
+  { >{\SplitList{,}}o m o }
+  {%
+    \IfValueTF{#3}
+    {%
+      \index{#2@\string#3{#2}}%
+      \IfValueTF{#1}
+      {%
+        \NewDocumentCommand{\preindex}{m}{\index{##1!#2@\string#3{#2}}}%
+        \ProcessList{#1}{\preindex}%
+        \undef\preindex%
+      }%
+      {}%
+    }%
+    {%
+      \index{#2}%
+      \IfValueTF{#1}
+      {%
+        \NewDocumentCommand{\preindex}{m}{\index{##1!#2}}%
+        \ProcessList{#1}{\preindex}%
+        \undef\preindex%
+      }%
+      {}%
+    }%
+  }
+
+\NewDocumentCommand{\comindex}{ m m }{\index{#1@\comname{#2}}}
+\NewDocumentCommand{\envindex}{ m m }{\index{#1@\envname{#2}}}
+\NewDocumentCommand{\fileindex}{ m m }{\index{#1@\filename{#2a}}}
+\NewDocumentCommand{\optionindex}{ m m }{\index{#1@\optname{#2}}}
+\NewDocumentCommand{\packindex}{ m m }{\index{#1@\packname{#2}}}
+
+\def\igobble#1 {}
+
+
+
+
+
+%%%%% CUSTOM COMMANDS
+
+
+% defining a tilde symbol
 \newcommand{\customtexttilde}{\char`~}
+% the command \index will only be expended later
+\NewDocumentCommand{\indexline}{}{|}
 
 \DeclareMathOperator*{\colim}{colim}
 \DeclareMathOperator{\lcm}{lcm}
 
-\newcommand{\nbh}{\nobreakdash-}
+\newcommand{\nbd}{\nobreakdash-}
 \newcommand{\tbs}{\textbackslash}
 
 \DeclarePairedDelimiter{\abs}{\lvert}{\rvert}

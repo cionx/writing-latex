@@ -6,12 +6,127 @@
   publisher = {The University of Chicago Press},
   place     = {Chicago and London},
   year      = {2017},
-  doi       = {10.7208/cmos1},
+  doi       = {10.7208/cmos17},
   isbn      = {978-0-226-28705-8},
   label     = {CMS}
 }
 
-% for test purposes
+@manual{biblatex,
+  title     = {The \texttt{biblatex} Package},
+  subtitle  = {Programmable Bibliographies and Citations},
+  author    = {Kime, Philip and Wemheuer, Moritz and Lehman, Philipp},
+  version   = {3.13},
+  date      = {2019-08-17},
+  pagetotal = {336},
+  url       = {https://ctan.org/pkg/biblatex},
+  urldate   = {2019-09-06},
+  label     = {CTN}
+}
+
+@manual{booktab,
+  title     = {booktabs},
+  subtitle  = {Publication quality tables in {\LaTeX}},
+  author    = {Fear, Simon},
+  date      = {2016-04-29},
+  version   = {1.618033},
+  pagetotal = {17},
+  url       = {https://www.ctan.org/pkg/booktabs},
+  urldate   = {2019-09-01},
+  label     = {CTN}
+}
+
+@manual{latex2e_manual,
+  title     = {{\LaTeX}2e},
+  subtitle  = {An unofficial reference manual},
+  date      = {2019-06},
+  pagetotal = {ix + 262},
+  url       = {https://latexref.xyz},
+  urldate   = {2019-09-04},
+  label     = {L2M}
+}
+
+@manual{mathtools,
+  title     = {mathtools},
+  subtitle  = {Mathematical tools to use with amsmath},
+  author    = {Høgholm, Morten and Madsen, Lars},
+  version   = {1.22},
+  date      = {2019-07-31},
+  pagetotal = {37},
+  url       = {https://ctan.org/pkg/mathtools},
+  urldate   = {2019-09-12},
+  label     = {CTN}
+}
+
+@manual{tikz-cd,
+  title     = {\{tikzcd\}},
+  subtitle  = {Commutative diagrams with Ti\textit{k}Z},
+  author    = {Stoffel, Augusto},
+  version   = {0.9f},
+  date      = {2018-11-19},
+  pagetotal = {17},
+  url       = {https://ctan.org/pkg/tikz-cd},
+  urldate   = {2019-09-04},
+  label     = {CTN}
+}
+
+@online{flowchart,
+  title   = {Example: Flowchart},
+  author  = {Kottwitz, Stefan},
+  date    = {2015-08-29},
+  url     = {http://www.texample.net/tikz/examples/math-flowchart/},
+  urldate = {2019-08-27}
+}
+
+@online{mathoverflow_text,
+  title         = {Periods and commas in mathematical writing},
+  author        = {Suárez-Álvarez, Mariano},
+  howpublished  = {MathOverflow},
+  date          = {2009-11-24},
+  url           = {https://mathoverflow.net/a/6683},
+  urldate       = {2019-08-18},
+  label         = {MO}
+}
+
+@online{nomath_at_line,
+  title   = {My good practice concerning inline mathematical formulas},
+  author  = {Belmans, Pieter},
+  date    = {2018-12-18},
+  url     = {https://pbelmans.ncag.info/blog/2010/12/18/my-good-practice-concerning-inline-mathematical-formulas},
+  urldate = {2019-09-04}
+}
+
+@online{tex_advancedpair,
+  title         = {Missing space with DeclarePairedDelimiter},
+  author        = {egreg},
+  howpublished  = {TeX Stackexchange},
+  date          = {2018-11-26},
+  url           = {https://tex.stackexchange.com/a/461824/108717},
+  urldate       = {2019-08-26},
+  label         = {TSE},
+}
+
+@online{tex_binrel,
+  title         = {What is the difference between {\textbackslash}mathbin vs.\ {\textbackslash}mathrel?},
+  author        = {Nobby},
+  howpublished  = {TeX Stackexchange},
+  date          = {2011-12-21},
+  url           = {https://tex.stackexchange.com/questions/38982/what-is-the-difference-between-mathbin-vs-mathrel},
+  urldate       = {2019-08-19},
+  label         = {TSE}
+}
+
+@online{tex_period,
+  title         = {For formal articles, should a displayed equation be followed by a punctuation to conform to the language grammar ?},
+  author        = {Lupino},
+  howpublished  = {TeX Stackexchange},
+  date          = {2014-04-10},
+  url           = {https://tex.stackexchange.com/a/170691/108717},
+  urldate       = {2019-08-18},
+  label         = {TSE}
+}
+
+%%%%% FOR TEST PURPOSES
+
 @book{fultonharris2004,
   title     = {Representation Theory},
   subtitle  = {A First Course},
@@ -27,9 +142,7 @@
   doi       = {10.1007/978-1-4612-0979-9}
 }
 
-% for test purposes
 @mvbook{benson,
-  skipbib   = true,
   title     = {Representations and Cohomology},
   author    = {Benson, David John},
   publisher = {Cambridge University Press},
@@ -37,7 +150,6 @@
   volumes   = {2}
 }
 
-% for test purposes
 @book{benson1991,
   crossref  = {benson},
   volume    = {1},
@@ -49,7 +161,6 @@
   doi       = {10.1017/CBO9780511623615}
 }
 
-% for test purposes
 @article {diamond_lemma,
   title         = {The Diamond Lemma for Ring Theory},
   author        = {Bergman, George Mark},
@@ -62,111 +173,29 @@
   doi           = {10.1016/0001-8708(78)90010-5}
 }
 
-@manual{booktab,
-  title     = {booktabs -- Publication quality tables in {\LaTeX}},
-  author    = {Simon Fear},
-  date      = {2016-04-29},
-  version   = {1.618033},
-  pagetotal = {17},
-  url       = {https://www.ctan.org/pkg/booktabs},
-  urldate   = {2019-09-01},
-  label     = {CT}
+@online{leinster2014,
+  title       = {The bijection between projective indecomposable and simple modules},
+  author      = {Leinster, Tom},
+  date        = {2014-10-14},
+  eprint      = {1410.3671v1},
+  eprinttype  = {arxiv},
+  eprintclass = {math.RA},
+  urldate     = {2019-09-12}
 }
 
-@manual{tikz-cd,
-  title     = {\{tikzcd\}},
-  subtitle  = {Commutative diagrams with Ti\textit{k}Z},
-  author    = {Augusto Stoffel},
-  version   = {0.9f},
-  date      = {2018-11-19},
-  pagetotal = {17},
-  url       = {https://ctan.org/pkg/tikz-cd},
-  urldate   = {2019-09-04},
-  label     = {CT}
+@online{symmgroup_2005,
+  title       = {A New Approach to the Representation Thoery of the Symmetric Groups.\ 2},
+  author      = {Vershik, Anatoly Moiseevich and Okounkov, Andrei Yuryevich},
+  date        = {2005-04-20},
+  eprint      = {math/0503040v3},
+  eprinttype  = {arxiv},
+  eprintclass = {math.RT},
+  urldate     = {2019-09-12}
 }
 
-@manual{biblatex,
-  title     = {The \texttt{biblatex} Package},
-  subtitle  = {Programmable Bibliographies and Citations},
-  author    = {Kime, Philip and Wemheuer, Moritz and Lehman, Philipp},
-  version   = {3.13},
-  date      = {2019-08-17},
-  pagetotal = {336},
-  url       = {https://ctan.org/pkg/biblatex},
-  urldate   = {2019-09-06},
-  label     = {CT}
-}
-
-@manual{latex2e_manual,
-  title     = {{\LaTeX}2e},
-  subtitle  = {An unofficial reference manual},
-  date      = {2019-06},
-  pagetotal = {ix + 262},
-  url       = {https://latexref.xyz},
-  urldate   = {2019-09-04},
-  label     = {L2M}
-}
-
-@online{mathoverflow_text,
-  title         = {Periods and commas in mathematical writing},
-  author        = {Suárez-Álvarez, Mariano},
-  howpublished  = {MathOverflow},
-  date          = {2009-11-24},
-  url           = {https://mathoverflow.net/a/6683},
-  urldate       = {2019-08-18},
-  label         = {MO}
-}
-
-@online{tex_period,
-  title         = {For formal articles, should a displayed equation be followed by a punctuation to conform to the language grammar ?},
-  author        = {Lupino},
-  howpublished  = {TeX Stackexchange},
-  date          = {2014-04-10},
-  url           = {https://tex.stackexchange.com/a/170691/108717},
-  urldate       = {2019-08-18},
-  label         = {TSE}
-}
-
-@online{tex_binrel,
-  title         = {What is the difference between {\textbackslash}mathbin vs.\ {\textbackslash}mathrel?},
-  author        = {Nobby},
-  howpublished  = {TeX Stackexchange},
-  date          = {2011-12-21},
-  url           = {https://tex.stackexchange.com/questions/38982/what-is-the-difference-between-mathbin-vs-mathrel},
-  urldate       = {2019-08-19},
-  label         = {TSE}
-}
-
-@online{tex_advancedpair,
-  title         = {Missing space with DeclarePairedDelimiter},
-  author        = {egreg},
-  howpublished  = {TeX Stackexchange},
-  date          = {2018-11-26},
-  url           = {https://tex.stackexchange.com/a/461824/108717},
-  urldate       = {2019-08-26},
-  label         = {TSE},
-}
-
-@online{flowchart,
-  title   = {Example: Flowchart},
-  author  = {Kottwitz, Stefan},
-  date    = {2015-08-29},
-  url     = {http://www.texample.net/tikz/examples/math-flowchart/},
-  urldate = {2019-08-27}
-}
-
-@online{nomath_at_line,
-  title   = {My good practice concerning inline mathematical formulas},
-  author  = {Pieter Belmans},
-  date    = {2018-12-18},
-  url     = {https://pbelmans.ncag.info/blog/2010/12/18/my-good-practice-concerning-inline-mathematical-formulas},
-  urldate = {2019-09-04}
-}
-
-% for test purposes
 @online{cayley_graph,
   title   = {Cayley graphs and the geometry of groups},
-  author  = {Terence Tao},
+  author  = {Tao, Terence},
   date    = {2010-07-10},
   url     = {https://terrytao.wordpress.com/cayley-graphs-and-the-geometry-of-groups},
   urldate = {2019-09-06}

@@ -3,38 +3,39 @@
 
 
 
-\section{\texttt{microtype} for better typesetting}
 
-Use the \texttt{microtype} package.
+\section{\packtitle{microtype} for better typesetting}
+
+Use the package~\packname{microtype}\massindex[packages]{microtype}[\packname].
 It makes your document look nicer and helps you to circumvent overfull hboxes.
-Simply including the package is enough to let it work its magic.
+Simply including the package is enough to let it work its magic\index{magic!zzzz@\igobble |see {\packname{microtype}}}
 
 
 
 
 
-\section{\texttt{mathtools} for mathematis}
+\section{\packtitle{mathtools} for mathematics}
 
-The \texttt{amsmath} package is standard for mathematical typesetting.
-The \texttt{mathtools} package is an extension of the \texttt{amsmath} package that fixes some of its problems and also provides some new (and often times very useful) functionalities.
-The \texttt{mathtools} package automatically loads the \texttt{amsmath} package too, so instead \commandtt{usepackage\{amsmath\}} just use \commandtt{usepackage\{mathtools\}}.
+The package~\packname{amsmath}\massindex[packages]{amsmath}[\packname] is standard for mathematical typesetting.
+The package~\packname{mathtools}\massindex[packages]{mathtools}[\packname] is an extension of~\packname{amsmath} that fixes some of its problems and also provides some new (and often times very useful) functionalities.
+The package~\packname{mathtools} automatically loads \packname{amsmath}, so instead of~\packname{amsmath} include~\packname{mathtools}.
 
-Note that the important mathematical packages~\packagename{amssymb} and~\packagename{amsthm} are not automatically loaded by~\packagename{mathtools} and therefore still need to be loaded by hand.
-Two other useful packages for mathematical stuff are~\packagename{stmaryrd} (which provides some more symbols) and occasionally~\packagename{extarrows} (which provides certain kinds of extensible arrows, see \cref{extensible arrow table}).
-
-
+Note that the important mathematical packages~\packname{amssymb}\massindex[packages]{amssymb}[\packname] and \packname{amsthm}\massindex[packages]{amsthm}[\packname] are not automatically loaded by~\packname{mathtools} and therefore still need to be included by hand.
+Two other useful packages for mathematical content are \packname{stmaryrd}\massindex[packages]{stmaryrd}[\packname] (which provides some more symbols) and occasionally \packname{extarrows}\massindex[packages]{extarrows}[\packname] (which provides certain kinds of extensible arrows, see \cref{extensible arrow table}).
 
 
 
-\section{\texttt{amsthm} for theorem-like environments}
-\label{defining theorem like environments}
 
-To define theorem-like environments, like \texttt{lemma}, \texttt{proposition}, \texttt{theorem}, etc., include the package \texttt{amsthm}.
-New environments can then be defined with the \commandtt{newtheorem} command:
-\begin{showcode}{Syntax of \commandtt{newtheorem)}}
-\newtheorem{name of the environment}{title to be printed}
+
+\section{\packtitle{amsthm} for theorem-like environments}
+\label{defining theorem-like environments}
+
+To define theorem-like environments\index{theorem-like environments} -- like~\envname{lemma}\massindex[theorem-like environments]{lemma}[\envname], \envname{proposition}\massindex[theorem-like environments]{proposition}[\envname], \envname{theorem}\massindex[theorem-like environments]{theorem}[\envname], \envname{corollary}\massindex[theorem-like environments]{corollary}[\envname], etc.,\ include the package~\packname{amsthm}\massindex[packages]{amsthm}[\packname].
+New environments can then be defined with the command~\comname{newtheorem}\massindex{newtheorem}[\comname]:
+\begin{showcode}{Syntax of \comname{newtheorem)}}
+\newtheorem{internal name of the environment}{name to be printed}
 \end{showcode}
-\begin{showlatex}{Using \commandtt{newtheorem}}
+\begin{showlatex}{Using the command~\comname{newtheorem}}
 % in the preamble
 \newtheorem{proposition}{Proposition}
 % in the main body
@@ -42,8 +43,8 @@ New environments can then be defined with the \commandtt{newtheorem} command:
   Every finite subgroup of $k^\times$ is cyclic.
 \end{proposition}
 \end{showlatex}
-The variant \commandtt{newtheorem*} defines unnumbered theorem-like environments:
-\begin{showlatex}{Using \commandtt{newtheorem*}}
+The variant \comname{newtheorem*}\massindex{newtheorem*}[\comname] defines unnumbered theorem-like environments:
+\begin{showlatex}{Using the command~\comname{newtheorem*}}
 % in the preamble
 \newtheorem*{claim}{Claim}
 % in the main body
@@ -52,8 +53,8 @@ The variant \commandtt{newtheorem*} defines unnumbered theorem-like environments
 \end{claim}
 \end{showlatex}
 
-If different numbered theorem-like environments are defined then their have different counters:
-\begin{showlatex}{Theorem-like environment use differnt counters by default}
+If multiple theorem-like environments are defined then their have by default independent counters\index{counter}:
+\begin{showlatex}{Theorem-like environment use different counters by default}
 %in the preamble
 \newtheorem{idea}{Idea}
 \newtheorem{problem}{Problem}
@@ -65,10 +66,15 @@ If different numbered theorem-like environments are defined then their have diff
   Cars don’t fly.
 \end{problem}
 \end{showlatex}
-For mathematical texts this behavior is pretty bad, as it makes it harder to find a specified result.
-(If page~492 features Lemma~112 and Proposition~43 then have fun finding Remark~20.)
+For mathematical texts this behavior is pretty bad, as it makes it harder to find a specified result.%
+\footnote{If page~492 features Lemma~112 and Proposition~43 then where is Remark~20?}
 
-To solve this problem we define a new counter \texttt{alltheorems} and tell all theorem-like environments to use this counter:
+To solve this problem we define a new counter \inlinecode{alltheorems} and tell all theorem-like environments to use this counter\index{counter}.
+To define the now counter we use the command~\comname{newcounter}\massindex{newcounter}[\comname]:
+\begin{showcode}{Syntax of \comname{newcounter}}
+\newcounter{name}[dependence]
+\end{showcode}
+The explicit code looks as follows
 \begin{showlatex}{Setting up a common counter}
 % in the preamble
 \newcounter{alltheorems}
@@ -90,11 +96,11 @@ To solve this problem we define a new counter \texttt{alltheorems} and tell all 
 \end{consequence}
 \end{showlatex}
 
-In praxis one often wants the counter to be bound to the surround section or even chapter.
-This can be achived with the following modification:
+In practice one often wants the counter to be bound to the surround section or even chapter.
+This can be achieved by binding the new counter to the section counter:
 \begin{showlatex}[
   before lower = {\stoptoc},
-  after lower = {\starttoc, \addtocounter{section}{-2}}
+  after lower = {\starttoc \addtocounter{section}{-2}}
 ]{Binding a new counter to the section level}
 % in the preamble
 \newcounter{sometheorems}[section]
@@ -118,59 +124,74 @@ This can be achived with the following modification:
   Every subgroup of a subgroup of $\mathbb{Z}^n$ admits a basis.
 \end{corollary}
 \end{showlatex}
-The addition \texttt{[section]} to the definition of the new counter ensures that the resulting counter \texttt{sometheorems} resets every time the counter \texttt{section} is increased (which happens everytime a new section begins).
-We also change the way the \texttt{sometheorems} counter is printed, namely printing it in the form \texttt{\{section number\}.\{counter number\}} with both numbers printed in arabic numbers.
+The addition \inlinecode{[section]} to the definition of the new counter ensures that the resulting counter~\inlinecode{sometheorems} resets every time the counter~\inlinecode{section} is increased (which happens every time a new section begins).
+We also change the way the counter~\inlinecode{sometheorems} is printed, namely printing it in the form~\enquote{(section~number).(counter~number)} with both numbers printed in Arabic numerals.
 
 
 
 
 
-\section{\texorpdfstring{\packagename{tikz-cd}}{tikz-cd} for commutative diagrams}
+\section{\packtitle{tikz-cd} for commutative diagrams}
 
-There are many packages for drawing commutative diagrams.
+There are many packages for drawing commutative diagrams\index{commutative diagrams}.
 Many of them have a rather restricted functionality, and quite a lot of them product bad looking output.
-You should use the package \packagename{tikz-cd}.
+You should use the package~\packname{tikz-cd}\massindex[packages]{tikz-cd}[\packname].
 We refer to the very readable manual \cite{tikz-cd} for an explanation of this package.
 
 
 
 
 
-\section{\texttt{cleveref} and \texttt{hyperref} for referencing}
+\section{\packtitle{cleveref} and \packtitle{hyperref} for referencing}
 
 
 
 \subsection{Recalling basic referencing}
 
-To refer to a numbered part of the document, like a theorem, an item of a list, a chapter or a section, one shoud never write down this number explicitely in the code.
-The referencing system of \hologo{LaTeX} should be used instead.
+To refer to a numbered part of the document, like a theorem, an item of a list, a chapter or a section, one should never write down this number explicitly in the code.
+The referencing system of {\LaTeX} should be used instead.
 Using this referencing system always consists of two steps:
 Setting a label at the position that you want to refer to, and then referencing this label at the desired position.
 
-The command for setting a label is \commandtt{label}.
-There are multiple commands for referencing this label, the most basic of which is \commandtt{ref}.
-The use of \commandtt{ref\{label name\}} will print the number of whatever \commandtt{label\{label name\}} is set at.
-\begin{showlatex}{Basic referencing with~\commandname{label} and~\commandname{ref}}
+\subsubsection{\comname{label} and \comname{ref}}
+
+The command for setting a label is \comname{label}\massindex[referencing]{label}[\comname]:
+\begin{showcode}{Syntax of \comname{label}}
+\label{labelname}
+\end{showcode}
+There are multiple commands for referencing this label, the most basic of which is \comname{ref}\massindex[referencing]{ref}[\comname]:
+\begin{showcode}{Syntax of \comname{ref}}
+\ref{labelname}
+\end{showcode}
+Referencing a label with \comname{ref} will print the number of whatever the specified label appears in.
+\begin{showlatex}{Using the commands~\comname{label} and~\comname{ref}}
 \begin{theorem}
   \label{vector spaces are free}
   Every vector space admits a basis.
 \end{theorem}
-It follows from \ref{vector spaces are free} that two vector spaces are isomorphic if and only if they have the same dimension.
+It follows from \ref{vector spaces are free} that every $k$-vector space is isomorphic to $k^{\oplus I}$ for some suitable index set $I$.
 \end{showlatex}
 
-Instead of giving just a simple number it is customary to also specify what hides behinds this reference, e.g.\ a theorem, table or proposition.
-In this case the name and number should be seperated by a tie~\inlinecode{\customtexttilde} (as explained in \cref{non-breakable space}) to ensure that no line break occurs at this position.
-\begin{showlatex}{Specifying the kind of reference, and using~\inlinecode{\customtexttilde}}
+Instead of giving just a simple number it is customary to also specify what hides behinds this number, e.g.\ a theorem, table or figure.
+The specified name and number should then be separated by a tie~\inlinecode{\customtexttilde} (as explained in \cref{non-breakable space}) to ensure that no line break occurs at this position.
+The name of the referred to environment is usually capitalised.
+\begin{showlatex}{Specifying the kind of reference}
 \begin{theorem}
   \label{every vector space has a basis}
   Every vector space admits a basis.
 \end{theorem}
-It follows from the above Theorem~\ref{every vector space has a basis} that two vector spaces are isomorphic if and only if they have the same dimension.
+It follows from Theorem~\ref{vector spaces are free} that every $k$-vector space is isomorphic to $k^{\oplus I}$ for some suitable index set $I$.
 \end{showlatex}
 
+\subsubsection{\comname{eqref}}
+
 To refer to an equation it is customary to put the resulting number in parentheses.
-This can automatically done by using \commandtt{eqref} instead of simply \commandtt{ref}.
-\begin{showlatex}{Using \commandtt{eqref}}
+This is done via the command~\comname{eqref}\massindex[referencing]{eqref}[\comname].
+\begin{showcode}{Syntax of \comname{eqref}}
+\eqref{labelname}
+\end{showcode}
+The command~\comname{eqref} is used in the same way as the original \comname{ref}:
+\begin{showlatex}{Using the command~\comname{eqref}}
 A classic result in mathematics shows
 \begin{equation}
   \label{important formula}
@@ -179,25 +200,30 @@ A classic result in mathematics shows
 Note that the identity \eqref{important formula} shows that Fermat’s conjecture on the sum $a^n + b^n = c^n$ cannot be generalized to the case $n = 1$.
 \end{showlatex}
 
-Always use descriptive labels.
-Cryptic sequences of symbols will backfire on you.
+Always use descriptive label names.
+Cryptic sequences of seemingly random letters will backfire on you down the road.
 
 
 
-\subsection{\texttt{cleveref}}
+\subsection{\packtitle{cleveref}}
 
-There are two related problems with the above way of using \texttt{Type~{\tbs}ref\{label name\}}:
-One has to remember or look up what type of environment the label \texttt{label name} refers to, and if this type is changed (e.g.\ by changing a theorem into a proposition) then the references need to be manually adjusted.
+There are two related problems with the above way of using hardcoding the type of a reference:
+One has to remember or look up what type of environment the label \inlinecode{labelname} refers to, and if this type is changed (e.g.\ by promoting a proposition to a theorem) then the hardcorded types need to be manually adjusted.
 
-These problems can be circumvented by using the \texttt{cleveref} package, which the author recommends to load with the options~\inlinecode{capitalise} and \inlinecode{noabbrev}:
-\begin{showcode}[label={cref example}]{Loading~\packagename{cleveref} with the options~\inlinecode{capitalise} and~\inlinecode{noabbrev}}
+These problems can be circumvented by using the \packname{cleveref}\massindex[packages,referencing]{cleveref}[\packname] package.
+The author recommends to load this package with the options~\optname{capitalise}\massindex[\piname{cleveref},referencing]{capitalise}[\optname] and \optname{noabbrev}\massindex[\piname{cleveref},referencing]{noabbrev}[\optname]:
+\begin{showcode}[label={cref example}]{Loading the package~\packname{cleveref}}
 \usepackage[capitalise, noabbrev]{cleveref}
 \end{showcode}
 
-\subsubsection{The command~\commandname{cref}}
+\subsubsection{The command~\comname{cref}}
 
-The package~\packagename{cleveref} provides the command \commandname{cref} which automatically keeps track of which kind of environment the specified label refers to.
-\begin{showlatex}{Using~\commandname{cref}}
+The package~\packname{cleveref} provides the command~\comname{cref}\massindex[\piname{cleveref},referencing]{cref}[\comname]
+\begin{showcode}{Syntax of \comname{cref}}
+\cref{labelname}
+\end{showcode}
+The command~\comname{cref} differs from the more primitive~\comname{ref} in that it automatically inserts the right kind of type before the reference.
+\begin{showlatex}{Using the command~\comname{cref}}
 \begin{lemma}
   \label{dim is well-defined}
   Every two bases of a vector space have the same cardinality.
@@ -215,85 +241,86 @@ The used options options~\inlinecode{capitalise} and~\inlinecode{noabbrev} have 
     The option~\inlinecode{capitalise} ensures that the printed type of the reference will begin with an upper case letter.
     In \cref{cref example} we would otherwise get~\enquote{\lcnamecref{dim is well-defined}~\labelcref{dim is well-defined}} instead of~\enquote{\cref{dim is well-defined}}.
   \item
-    The option~\inlinecode{noabbrev} ensures that printed types won’t be abbrevitad.
-    Otherwise one wil get~\enquote{eq.\ (5)} instead of~\enquote{equation~(5)}.
+    The option~\inlinecode{noabbrev} ensures that printed types won’t be abbreviated.
+    One wil otherwise get~\enquote{eq.\ (5)} instead of~\enquote{equation~(5)}.
 \end{itemize}
 
-The command~\commandname{cref} has the variant \commandtt{Cref} which ensures that the inserted type will start with an upper case letter.
-One should always use~\commandname{Cref} instead of~\commandname{cref} at the beginning of a sentence, even if the option~\inlinecode{capitalise} is set.
+The command~\comname{cref} has the variant \comname{Cref}\massindex[\piname{cleveref},referencing]{Cref}[\comname] which ensures that the inserted type will start with an upper case letter.
+One should always use~\comname{Cref} instead of~\comname{cref} at the beginning of a sentence, even if the option~\optname{capitalise} is set.
 
-\subsubsection{The~\commandname{*name*ref} commands}
+\subsubsection{The commands~\comname{*name*ref}}
 
-The package~\packagename{cleveref} provides another family of useful commands aside from~\commandname{cref} and~\commandname{Cref}.
-An overview of these can be found in \cref{name ref commands}.
+The package~\packname{cleveref} provides another family of useful commands aside from~\comname{cref} and~\comname{Cref}.
+An overview of these commands can be found in \cref{name ref commands}.
 \begin{table}[tb]
   \begin{center}
-  \begin{tabular}{@{}lll@{}}
+  \begin{tabular}{@{}llll@{}}
     \toprule
+    %
     {}
     &
-    \textbf{singular}
+    \textbf{lower case}
     &
-    \textbf{plural}
+    \textbf{upper case}
+    &
+    \textbf{default case}
     \\
-    \cmidrule(lr){2-2} \cmidrule(l){3-3}
-    lower case
+    \cmidrule(lr){2-2}
+    \cmidrule(lr){3-3}
+    \cmidrule(l){4-4}
+    singular
     &
-    \commandname{lcnamecref}
+    \comname{lcnamecref}\massindex[\piname{cleveref},referencing]{lcnamecref}[\comname]
     &
-    \commandname{lcnamecrefs}
+    \comname{nameCref}\massindex[\piname{cleveref},referencing]{nameCref}[\comname]
+    &
+    \comname{namecref}\massindex[\piname{cleveref},referencing]{namecref}[\comname]
     \\
-    upper case
+    plural
     &
-    \commandname{nameCref}
+    \comname{lcnamecrefs}\massindex[\piname{cleveref},referencing]{lcnamecrefs}[\comname]
     &
-    \commandname{nameCrefs}
-    \\
-    default case
+    \comname{nameCrefs}\massindex[\piname{cleveref},referencing]{nameCrefs}[\comname]
     &
-    \commandname{namecref}
-    &
-    \commandname{namecrefs}
+    \comname{namecrefs}\massindex[\piname{cleveref},referencing]{namecrefs}[\comname]
     \\
     \bottomrule
   \end{tabular}
   \end{center}
-  \caption{The~\commandname{*name*ref} commands.}
+  \caption{The commands~\comname{*name*ref}.}
   \label{name ref commands}
 \end{table}
-The commands in can be used to print the type of a reference without its number.
-These commands can be used to automate various text-based references:
-\begin{showlatex}{Using \commandname{lcnamecref}}
+They can be used to print the type of a reference without its number.
+This can be used be used to circumvent hardcoding types into the source code:
+\begin{showlatex}{Using~\comname{lcnamecref}}
 \begin{theorem}
   \label{weak cayley}
-  Every group embedds into a non-abelian group.
+  Every group embeds into a non-abelian group.
 \end{theorem}
-The above \lcnamecref{weak cayley} can be seen as a corollary of Cayley’s~theorem.
+The above \lcnamecref{weak cayley} is actually a corollary of Cayley’s~theorem.
 \end{showlatex}
-By using the various referencing commands introduced so far it is now possible to avoid (nearly?) every kind of hardcorded reference.
+By using the various referencing commands introduced so far it is now possible to avoid (nearly?) every kind of hardcorded type.
 
 
 
+\subsection{\packtitle{hyperref}}
 
-
-\subsection{\texttt{hyperref}}
-
-If the resulting \texttt{pdf} file is supposed to be navigated digitally then the \texttt{hyperref} package should be used.
-This package puts clickable links in the pdf file whenever some kind of reference is used.
+If the resulting \filename{pdf}-file is supposed to be navigated digitally then the package~\packname{hyperref}\massindex[packages,referencing]{hyperref}[\packname] should be used.
+This package puts hyperlinks\index{hyperlink} in the \filename{pdf}-file whenever some kind of reference is used.
 
 
 
 \subsection{Order of inclusion}
 
-The packages \texttt{cleveref} and \texttt{hyperref} are a bit peculiar when it comes to where they have to be included in the preamble.
-The general rule is that the \texttt{hyperref} should be included as the very last package to ensure that it interacts properly with all other used packages.
-There are some rare exceptions to this rule, one of which happened to be \texttt{cleveref}.
+The packages~\packname{cleveref} and~\packname{hyperref} are a bit peculiar when it comes to where they have to be included in the preamble.
+The general rule is that the package~\packname{hyperref} should be included as the very last package to ensure that it interacts properly with all other used packages.
+There are some rare exceptions to this rule, one of which happened to be~\packname{cleveref}.
 
-If you’re defining some common counter for your theorem-like environments (which you should do, as explained in \cref{defining theorem like environments}) then this needs to be done after \texttt{cleverref} was included.
-Otherwise the \texttt{cleveref} package has problems knowing what name to print when the command \commandtt{cref} is used.
+If you’re defining some common counter for your theorem-like environments (which you should do, as explained in \cref{defining theorem-like environments}) then this needs to be done after~\packname{cleverref} was included.
+Otherwise~\packname{cleveref} will have problems knowing what names to print when the command~\comname{cref} is used.
 
 Overall your preamble should the following order for these things:
-\begin{showcode}{Order of preamble with~\packagename{cleveref} and~\packagename{hyperref}}
+\begin{showcode}{Order of preamble with \packname{cleveref} and \packname{hyperref}}
 % most packages
 ...
 \usepackage{amsthm}
@@ -312,46 +339,63 @@ Overall your preamble should the following order for these things:
 
 
 
-\section{\texttt{csquotes} for quotation marks}
+\section{\packtitle{csquotes} for quotation marks}
 
-Dealing with quotations marks by hand can be a pain in the ass, for at least two reasons:
-Different languages use different kinds of quotation marks, and finding the right combination of \hologo{LaTeX} code to get the correct ones can be a non-trivial problem.
-One way to circumvent this probem is by using the \texttt{csquotes} package, which provides the command \texttt{enquote}:
-\begin{showlatex}*{Using~\commandtt{enquote}}
+Dealing with quotations marks\index{quotation marks} in {\LaTeX} by hand can be a pain in the ass, for at least two reasons:
+Different languages use different kinds of quotation marks, and finding the right combination of {\LaTeX} code to get the correct ones can be a non-trivial problem.
+One way to circumvent this problem is by using the package~\packname{csquotes}\massindex[packages]{csquotes}[\packname].
+This package provides the command~\comname{enquote}\massindex[\piname{csquotes}]{enquote}[\comname]:
+\begin{showcode}{Syntax of~\comname{enquote}}
+\enquote{text}
+\end{showcode}
+This commands inserts quotation marks around the specified text:
+\begin{showlatex}*{Using the command~\comname{enquote}}
 \enquote{This is a quote.}
 \end{showlatex}
-When a different languge is loaded using \texttt{babel}, then by loading the \texttt{csquotes} package with the option \texttt{babel=true} ensures the correct quotation marks for the specified language:
-\begin{showlatex}*{\texttt{csquotes} chooses the right kind of quotation marks}
-% american english
-\selectlanguage{american}
-\enquote{quote}
-% british english
-\selectlanguage{british}
-\enquote{quotation}
-% german
-\selectlanguage{ngerman}
-\enquote{Zitat}
-% french
-\selectlanguage{french}
-\enquote{citation}
+The command~\comname{enquote} can automatically adjust the quotation marks to conventions of the used language when this language is specified through the package~\packname{babel}\massindex[packages]{babel}[\packname].
+This is done by loading the package~\packname{csquotes} which the option~\optname{babel}\massindex[\piname{cleveref}]{babel}[\optname] set to~\optname{true}.
+\begin{showlatex}{\comname{enquote} chooses the right kind of quotation marks}
+\begin{tabular}{@{}ll@{}}
+  \toprule
+  American English
+  &
+  \selectlanguage{american}
+  \enquote{quote}
+  \\
+  British English
+  &
+  \selectlanguage{british}
+  \enquote{quotation}
+  \\
+  German
+  &
+  \selectlanguage{ngerman}
+  \enquote{Zitat}
+  \\
+  French
+  &
+  \selectlanguage{french}
+  \enquote{citation}
+  \\
+  \bottomrule
+\end{tabular}
 \end{showlatex}
 
-The \texttt{csquotes} command automatically handels nested quotation marks:
-\begin{showlatex}*{Nested quotes with~\commandname{enquote}}
+The command~\comname{enquote} automatically handles nested quotation marks\index{quotation marks!nested}:
+\begin{showlatex}*{Nested quotes with \comname{enquote}}
 \enquote{This is a \enquote{quote} inside a quote.}
 \end{showlatex}
-So for dealing with quotes of any kind use the \texttt{csquotes} package.
+So for dealing with quotes of any kind use the package~\packname{csquotes}.
 
 
 
 
 
-\section{\texttt{enumitem} for configuration of lists}
+\section{\packtitle{enumitem} for configuration of lists}
 
-\hologo{LaTeX} provides three different kinds of list environments:
-Numbered lists are provided by the \texttt{enumerate} environment.
-
-\begin{showlatex}*{Basic \texttt{enumerate} environment}
+In {\LaTeX} there are three different kinds of list environments:
+Numbered lists are provided by the environment~\envname{enumerate}\massindex[list environments]{enumerate}[\envname]:
+\begin{showlatex}*{Using the environment~\envname{enumerate}}
 \begin{enumerate}
   \item
     Assumption
@@ -361,8 +405,8 @@ Numbered lists are provided by the \texttt{enumerate} environment.
     Contradiction
 \end{enumerate}
 \end{showlatex}
-Unnumbered lists are provided by the \texttt{itemize} environment.
-\begin{showlatex}*{Basic \texttt{itemize} environment}
+Unnumbered lists are provided by the environment~\envname{itemize}\massindex[list environments]{itemize}[\envname]:
+\begin{showlatex}*{Using the environment~\envname{itemize}}
 \begin{itemize}
   \item
     This is a list item.
@@ -372,8 +416,8 @@ Unnumbered lists are provided by the \texttt{itemize} environment.
     And yet another list item.
 \end{itemize}
 \end{showlatex}
-The \texttt{decription} environment uses no predefined symbols for the list items and instead expects a descriptive text from the author.
-\begin{showlatex}*{Basic \texttt{description} environment}
+The environment~\envname{description}\massindex[list environments]{description}[\envname] uses no predefined symbols for the list items and instead expects a descriptive text from the user:
+\begin{showlatex}*{Using the environment~\envname{description}}
 \begin{description}
   \item[Field]
     A special kind of ring.
@@ -382,13 +426,12 @@ The \texttt{decription} environment uses no predefined symbols for the list item
 \end{description}
 \end{showlatex}
 
-The package \texttt{enumitem} is immensely usefull to configure the style and behavior of these list environments.
+The package~\packname{enumitem}\massindex[packages]{enumitem}[\packname]\expandafter\index\expandafter{\einame{enumerate}!zzzz@\igobble |seealso{\packname{enumitem}}} is immensely useful for configuring the style and behavior of these list environments.
 It provides (among others) the following features:
 \begin{itemize}
   \item
-    For \texttt{enumerate} environment the style of the numbering can be changed.
-    
-    \begin{showlatex}*{Changing the numbering style of \envname{enumerate}}
+    For the environment~\envname{enumerate} the style of the numbering can be changed by using the option~\optname{label}\massindex[\piname{enumitem}]{label}[\optname]
+    \begin{showlatex}*{Changing the numbering style of \envname{enumerate} lists}
 \begin{enumerate}[label = (\alph*)]
   \item
     First entry.
@@ -408,41 +451,53 @@ It provides (among others) the following features:
         \textbf{output}
         \\
         \midrule
-        \commandtt{alph*}
+        \comname{alph*}%
+        \massindex[\piname{enumitem}]{alph*}[\optname]
         &
         lower case alphabetic
         \\
-        \commandtt{Alph*}
+        \comname{Alph*}%
+        \massindex[\piname{enumitem}]{Alph*}[\optname]
         &
         upper case alphabetic
         \\
-        \commandtt{roman*}
+        \comname{roman*}%
+        \massindex[\piname{enumitem}]{roman*}[\optname]
         &
-        lower case roman
+        lower case Roman numerals%
+        \index{Roman numerals}%
+        \index{numerals!Roman}
         \\
-        \commandtt{Roman*}
+        \comname{Roman*}%
+        \massindex[\piname{enumitem}]{Roman*}[\optname]
         &
-        upper case roman
+        upper case Roman numerals%
+        \index{Roman numerals}%
+        \index{numerals!Roman}
         \\
-        \commandtt{arabic*}
+        \comname{arabic*}%
+        \massindex[\piname{enumitem}]{arabic*}[\optname]
         &
-        arabic numbers
+        Arabic numerals%
+        \index{Arabic numeral}%
+        \index{numerals!Arabic}
         \\
         \bottomrule
       \end{tabular}
       \end{center}
-      \caption{Possible labes for~{\packagename{enumitem}}.}
+      \caption{Possible labels for the environment~\envname{enumerate}.}
       \label{enumitem labels}
     \end{table}
-    One can similarly change the symbol for \texttt{itemize} lists:
-    \begin{showlatex}*{Changing the symbol for \texttt{itemize}}
+    One can similarly change the symbol for~\envname{itemize} lists via the option~\optname{label}\massindex[\piname{enumitem}]{label}[\optname]:
+    \begin{showlatex}*{Changing the symbol for~\envname{itemize} lists}
+With the standard symbol:
 \begin{itemize}[label = {\textbullet}]
   \item
     First entry.
   \item
     Second entry.
 \end{itemize}
-Now with another symbol:
+Now with a different symbol:
 \begin{itemize}[label = {\textopenbullet}]
   \item
     First entry again.
@@ -450,9 +505,8 @@ Now with another symbol:
     Second entry again.
 \end{itemize}
     \end{showlatex}
-    
   \item
-    One can resume lists:
+    One can resume lists with the option~\optname{resume}\massindex[\piname{enumitem}]{resume}[\optname]:
     \begin{showlatex}{Resuming lists}
 Some text before the first \texttt{enumerate} environment.
 \begin{enumerate}
@@ -470,13 +524,15 @@ Some text between the \texttt{enumerate} environment.
 \end{enumerate}
 Some text after the second \texttt{enumerate} environment.
     \end{showlatex}
-    
   \item
-    One can change the various spacings involved in the list environments.
+    One can change the various spacings\index{spacing} involved in the list environments.
 %   TODO: Gixe examples
-
   \item
-    Gobal settings can be set:
+    Global settings can be set via the command~\comname{setlist}\massindex[\piname{enumitem}]{setlist}[\optname]:
+    \begin{showcode}{Syntax of~\comname{setlist}}
+\setlist[kind of list]{options}
+    \end{showcode}
+    Consider the following example:
     \begin{showlatex}*{Global settings for list environments}
 \setlist[enumerate]{label = \roman*)}
 \begin{enumerate}
@@ -486,14 +542,13 @@ Some text after the second \texttt{enumerate} environment.
     Second entry.
 \end{enumerate}
     \end{showlatex}
-    
   \item
-    One can use different settings for different levels of nestedness:
-    \begin{showlatex}{Level-dependend settings for list environments}
-\begin{enumerate}[label = \Roman*]
+    When lists are nested one can use different settings for each list.
+    \begin{showlatex}{Different settings for nested lists}
+\begin{enumerate}[label = \Roman*)]
   \item
     First entry.
-    \begin{enumerate}[label = \alph*]
+    \begin{enumerate}[label = \alph*)]
       \item
         First entry, first subentry.
       \item
@@ -501,7 +556,7 @@ Some text after the second \texttt{enumerate} environment.
     \end{enumerate}
   \item
     Second entry.
-    \begin{enumerate}[label = \arabic*]
+    \begin{enumerate}[label = \arabic*)]
       \item
         Second entry, first subentry.
       \item
@@ -532,7 +587,7 @@ Some text after the second \texttt{enumerate} environment.
     \end{enumerate}
 \end{enumerate}
     \end{showlatex}
-    The counter of the first depth and second depth can be accessed via \texttt{enumi} and \texttt{enumii}: 
+    The counter of the first depth and second depth can be accessed via the counters~\inlinecode{enumi}\massindex[\piname{enumitem}]{enumi}[\inlinecode] and \inlinecode{enumii}\massindex[\piname{enumitem}]{enumii}[\inlinecode]: 
     \begin{showlatex}{Accessing level counters in settings for list environments}
 \setlist[enumerate, 1]{label = (\arabic*)}
 \setlist[enumerate, 2]{label = (\arabic{enumi}.\alph*)}
@@ -555,10 +610,14 @@ Some text after the second \texttt{enumerate} environment.
     \end{enumerate}
 \end{enumerate}
     \end{showlatex}
-    
   \item
-    One often uses a certain kind of list environment multiple times with a specific formatting in the same way.
-    In this case it is best to created a cloned version of this list environment, and then set global settings for this list.
+    New list types can be constructed by cloning an already existing one via the command~\comname{newlist}\massindex[\piname{enumitem}]{newlist}[\comname]:
+        \begin{showcode}{Syntax of \comname{newlist}}
+\newlist{new list}{original list}{depth of new list}
+    \end{showcode}
+    One can then set global options for this new list type without changing the global options for the original type.
+    This can be used to construct list environments that serve special purposes.
+    In the following example we create a new list environment that is meant for listing equivalent statements:
     \begin{showlatex}{Custom clones of list environments}
 % clone enumerate as equivalenceslist, allowing up to 2 levels
 \newlist{equivalenceslist}{enumerate}{2}
@@ -587,9 +646,8 @@ For every collection of elements $x_1, \dotsc, x_n \in M$ the following conditio
 
 
 
-% use refsection for local bibliography
-\begin{refsection}
-\section{\texttt{biblatex} for bibliography}
+\section{\packtitle{biblatex} for bibliography}
+\index{bibliography|(}
 
 
 
@@ -598,37 +656,39 @@ For every collection of elements $x_1, \dotsc, x_n \in M$ the following conditio
 A bibliography in {\LaTeX} comes about from the interplay of three different actors:
 \begin{itemize}
   \item
-    A~\filename{bib}-file which contains the various references and their informations.
+    A~\filename{bib}-file\massindex[bibliography]{bib-file@\string\filename{bib}-file} that contains the various references and their information.
   \item
-    A package which provides commands for citing these references.
+    A package that provides commands for citing these references.
   \item
-    A backend program which accesses the~\filename{bib}-file to extract the needed informations and pass them to {\LaTeX}.
+    A back~end program\index{bibliography!back~end} that accesses the~\filename{bib}-file to extract the needed information and pass them to {\LaTeX}.
 \end{itemize}
 
-One should choose~\packagename{biblatex} for the package and~\inlinecode{biber} for the backend program.
-For this the package~\packagename{biblatex} needs to be loaded with the option~\inlinecode{backend~=~biber}:
-\begin{showcode}{Loading \packagename{biblatex}}
+One should choose~\packname{biblatex}\massindex[packages,bibliography]{biblatex}[\packname] for the package and~\appname{biber}\massindex[bibliography]{biber}[\appname] for the back~end program.
+For this the package~\packname{biblatex} needs to be loaded with the option~\optname{backend}\massindex[\piname{biblatex}!options]{backend}[\optname] set to~\optname{biber}:
+\begin{showcode}{Loading the package~\packname{biblatex}}
 \usepackage[backend = biber]{biblatex}
 \end{showcode}
 The author also likes to use the following options:
 \begin{itemize}
   \item
-    By default the occuring references will simply be numbered as~[1],~[2],~[3],~etc\@.
-    Often references of the form~[Eis04] are preferable, which is achieved via the option~\inlinecode{style = alphabetic}.
+    By default the occurring references will simply be numbered as~[1],~[2],~[3],~etc\@.
+    Often references of the form~[Eis04] are preferable, which is achieved by setting the option~\optname{style}\massindex[\piname{biblatex}!options]{style}[\optname] to~\optname{alphabetic}.
   \item
-    The option~\inlinecode{dateabbrev = false} ensures that month names like \enquote{September} are not abbreviated as~\enquote{Sept.}
+    Setting the option~\optname{dateabbrev}\massindex[\piname{biblatex}!options]{dateabbrev}[\optname] to~\optname{false} ensures that month names like \enquote{September} are not abbreviated as~\enquote{Sept.}
   \item
-    The option~\inlinecode{urldate = long} ensure that dates concerning URLs are written out as \enquote{September~4,~2109} instead of~\enquote{09/04/2019}.
+    Setting the option~\optname{urldate}\massindex[\piname{biblatex}!options]{urldate}[\optname] to~\optname{long} ensure that dates concerning URLs are written out as~\enquote{September~4,~2109} instead of~\enquote{09/04/2019}.
 \end{itemize}
 
 
 
-\subsection{Creating the \texorpdfstring{\filename{bib}}{bib}-file}
+\subsection{Creating the \filetitle{bib}-file}
+\index{bib-file@\filename{bib}-file|(}
+\index{bibliography!bib-file@\filename{bib}-file|(}
 
 To most important step of creating a bibliography is to collect the references and their various metadata in a \filename{bib}-file.
 For every reference we need to add an entry to this \filename{bib}-file.
 These entries have the following form:
-\begin{showcode}[label = {syntax of bib entry}]{Syntax for an entry in the \filename{bib}-file}
+\begin{showcode}[label = {syntax of bib entry}]{Syntax for an entry of the \filename{bib}-file}
 @type{label,
   key1 = {value1},
   key2 = {value2},
@@ -638,38 +698,39 @@ These entries have the following form:
 \end{showcode}
 Instead of curly braces~\inlinecode{\{ \}} one can also use quotation marks~\inlinecode{" "} on the right hand side of the equality signs.
 
-The word~\inlinecode{type} in \cref{syntax of bib entry} will be be replaced by something like~\inlinecode{@book} or~\inlinecode{@article} to declare what kind of work this entry is.
+The specifier~\optname{@type} in \cref{syntax of bib entry} will be be replaced by something like~\optname{@book} or~\optname{@article} to explain what kind of work this entry is.
 A list of all possible types can be found in~\cite[2.1]{biblatex}.
 This specified type will determine which of the given data will be printed in the bibliography and how these printed date are formatted.
 
-The given text~\inlinecode{label} has no influence on the bibliography itself.
-It will be used to add the citatations to this reference in the main text.
+The given text~\optname{label} has no influence on the bibliography itself.
+It will be used to add the citations to this reference in the main text.
 
-\subsection{How to choose data for the bibliography}
+\subsubsection{How to choose data for the bibliography}
 
-One should folllow two guidlines when adding information to the bibliography.
+One should follow two guidelines when adding information to the bibliography.
 \begin{itemize}
   \item
     Provide as much data as possible.
     The specified type will determine which of these data will be printed.
     To find out which type will use which information we refer again to~\cite[2.1, 2.2]{biblatex}.
   \item
-    How the printed data are to be formated is for {\LaTeX}---and more specifically \packagename{biblatex}---to decide.
+    How the printed data are to be formatted is for {\LaTeX} -- and more specifically \packname{biblatex} -- to decide.
     So don’t try to preformat the provided date in the~\filename{bib}-file.
     Try in particular to give full, unabbreviated names whenever possible.
 \end{itemize}
 If you feels strongly about certain data being printed, or how certain data should be formatted when printed out, then you should not try to abuse the~\filename{bib}-file for this.
-Instead tell these complains to \packagename{biblatex} by changing the appropriate settings.
+Instead tell these complains to \packname{biblatex} by changing the appropriate settings.
 
-Some good sources for finding the data that a bibliography requires are MathSciNet and the websites of the publishers. (Shoutout to Springer for providing all the needed information on the websites of their books.)
-Most of the needed data can also be found in the cited resource---e.g.\ book or article---itself.
+Some good sources for finding the data that a bibliography requires are MathSciNet\massindex[bibliography]{MathSciNet} and the websites of the publishers.
+(Springer is quite good at providing all the needed information on the websites of their books.)
+Most of the needed data can also be found in the cited resource -- e.g.\ book or article -- itself.
 
 In the following we will look at some specific examples of~\filename{bib}-file entries.
 
 \subsubsection{Entry for a single book}
 
 The \filename{bib}-file entry for a single book should look as follows: 
-\begin{showcode}[label = {fulton harris bib entry}]{\filename{bib}-file entry for a single book}
+\begin{showcode}[label = {bib entry single book}]{\filename{bib}-file entry for a single book}
 @book{fultonharris2004,
   title     = {Representation Theory},
   subtitle  = {A First Course},
@@ -686,79 +747,91 @@ The \filename{bib}-file entry for a single book should look as follows:
 \end{showcode}
 The resulting output in the bibliography (see \cref{example bibliography}) will look as follows:
 \testcite{fultonharris2004}
-The various keys have the following functions:
 
+The type~\optname{@books}\massindex[\piname{biblatex}!types]{book}[\atname] tells {\LaTeX} that the entry is a (single) book.
+The various keys have the following functions:
 \begin{description}
-  \item[\inlinecode{title}]
+  \item[\optname{title}]
+    \massindex[\piname{biblatex}!keys]{title}[\optname]
     This key specifies the title of the book.
     The expected value of this key is a text.
-  \item[\inlinecode{subtitle}]
+  \item[\optname{subtitle}]
+    \massindex[\piname{biblatex}!keys]{subtitle}[\optname]
     This key specifies the subtitle of the book.
     The expected value of this key is a text.
-  \item[\inlinecode{author}]
+  \item[\optname{author}]
+    \massindex[\piname{biblatex}!keys]{author}[\optname]
     This key specifies the author(s) of the book.
     There are some things to be aware of here:
     \begin{itemize}
       \item
         The name of an author needs to be given in the format~\inlinecode{Lastname, Firstname}.
-        This is needed so that~\inlinecode{biber} can properly process this data.
+        This is needed so that~\appname{biber} can properly process this data.
       \item
         If multiple authors are given then they need to be separated by the word~\inlinecode{and}.
     \end{itemize}
-  \item[\inlinecode{edition}]
+  \item[\optname{edition}]
+    \massindex[\piname{biblatex}!keys]{edition}[\optname]
     This key specifies the edition of the book.
     The value should be given as a number for proper processing, but can in an emergency also be given as a text.
-  \item[\inlinecode{year}]
+  \item[\optname{year}]
+    \massindex[\piname{biblatex}!keys]{year}[\optname]
     This key specifies the year the book was published.
-    One could also specify a moth with the key~\inlinecode{month}.
+    One could also specify a moth with the key~\optname{month}.
     The values for both keys are expected to be numbers.
     
-    One could also use the key~\inlinecode{date} takes arguments of the form~\inlinecode{year},~\inlinecode{year-month} or~\inlinecode{year-month-day}.
-    Here the value of~\inlinecode{year} is expected to be a four digit number, and the values of~\inlinecode{month} and~\inlinecode{day} are expected to be two digit numbers (which may contain a leading zero).
-  \item[\inlinecode{pagetotal}]
+    One could also use the key~\optname{date}\massindex[\piname{biblatex}!keys]{date}[\optname] takes arguments of the form~\optname{year},~\optname{year-month} or~\optname{year-month-day}.
+    Here the value of~\optname{year} is expected to be a four digit number, and the values of~\optname{month} and~\optname{day} are expected to be two digit numbers (which may contain a leading zero).
+  \item[\optname{pagetotal}]
+    \massindex[\piname{biblatex}!keys]{pagetotal}[\optname]
     This key specifies the total number of pages of the book.
     The value should be an integer but can also be an arbitrary text.
 
     There is however a drawback to simply providing a text:
     Normally the number of pages is followed by the text~\enquote{pp.}\ or~\enquote{p.},\ depending on whether the reference consists of only a single page.
-    To do so, \packagename{biblatex} always tried to interpret the input as a number.
+    To do so \packname{biblatex} always tried to interpret the input as a number.
     But if this interpretation fails then neither~\enquote{pp.}\ nor~\enquote{p.} will be added.
 
-    Books often start with pages that are numbered with roman numerals, followed by pages that are numbered by arabic numberals.
-    In this case the total number of pages should be given in the form~\enquote{(roman~number)+(arabic~number)}.
+    Books often start with pages that are numbered with Roman numbers\index{Roman numerals}\index{numerals!Roman}, followed by pages that are numbered by Arabic numbers\index{Arabic numerals}\index{numerals!Arabic}.
+    In this case the total number of pages should be given in the form~\enquote{(Roman~number)+(Arabic~number)}.
 
-    As explained above, this will lead to the problem of \packagename{biblatex} being unable to interpret the input as a number, which leads by default to a missing~\enquote{pp.}\ in the output.
-    For this problem one can adjust the settings of \packagename{biblatex} to \emph{always} include~\enquote{pp.}\ after the total page number of a book.
+    As explained above, this will lead to the problem of \packname{biblatex} being unable to interpret the input as a number, which leads by default to a missing~\enquote{pp.}\ in the output.
+    For this problem one can adjust the settings of \packname{biblatex} to \emph{always} include~\enquote{pp.}\ after the total page number of a book.
     This can be done as follows:
-    \begin{showcode}{Adjusting the formatting of \inlinecode{pagestotal}}
+    \begin{showcode}{Adjusting the formatting of~\optname{pagestotal}}
 \DeclareFieldFormat[book]{pagetotal}{#1~\ppno}
     \end{showcode}
-  \item[\inlinecode{publisher}]
+  \item[\optname{publisher}]
+    \massindex[\piname{biblatex}!keys]{publisher}[\optname]
     This key specifies the publisher of the book.
     The expected value is a text.
     Note that \enquote{Springer} is not a proper reference for a publisher.
-  \item[\inlinecode{series}]
+  \item[\optname{series}]
+    \massindex[\piname{biblatex}!keys]{series}[\optname]
     Many mathematical books are part of some series, e.g.\ \enquote{Graduate Texts is Mathematics} or \enquote{Cambridge Studies in Advanced Mathematics}.
-    Such a series can be specified with the key~\inlinecode{series}, which expects as its value a text.
-  \item[\inlinecode{number}]
+    Such a series can be specified with the key~\optname{series}, which expects as its value a text.
+  \item[\optname{number}]
+    \massindex[\piname{biblatex}!keys]{number}[\optname]
     This key specifies the number of the book in the previously specified series.
     The values of this key is (counterintuitively) treated as a text.
     
-    If you copy your bibliography datae from somewhere else then there is a very high chance that instead of the key~\inlinecode{number} the key~\inlinecode{volume} is used.
-    This is relicts from the past that isn’t correct with \packagename{biblatex}.
-  \item[\inlinecode{isbn}]
+    If you copy your bibliography data from somewhere else then there is a very high chance that instead of the key~\optname{number} the key~\optname{volume} is used.
+    This is relicts from the past that isn’t correct with \packname{biblatex}.
+  \item[\optname{isbn}]
+    \massindex[\piname{biblatex}!keys]{isbn}[\optname]
     This key specifies the isbn number of the book.
     The value of this field is treated as a text.
-  \item[\inlinecode{doi}]
+  \item[\optname{doi}]
+    \massindex[\piname{biblatex}!keys]{doi}[\optname]
     This key specifies the DOI of the book (if it has one).
 \end{description}
 
 \subsubsection{Entry for a book with multiple volumes}
 
-Sometimes a book is just a volume in a small collection of books.
-In this case one should use the type~\inlinecode{@mvbook} to define the overall information of these books, and then an entry of type~\inlinecode{@book} which is subordinate to the previously created entry.
-Let’s consider an exapmle:
-\begin{showcode}{\filename{bib}-file entry for a book with multiple volumes}
+Sometimes a book is just one volume in a small collection of books.
+In this case one should use the type~\optname{@mvbook}\massindex[\piname{biblatex}!types]{mvbook}[\atname] to define the overall information of these books, and then an entry of type~\optname{@book} which is subordinate to the previously created entry.
+Let’s consider an example:
+\begin{showcode}[label = {bib entry multiple volume book}]{\filename{bib}-file entry for a book with multiple volumes}
 @mvbook{benson,
   title     = {Representations and Cohomology},
   author    = {Benson, David John},
@@ -779,16 +852,30 @@ Let’s consider an exapmle:
   doi       = {10.1017/CBO9780511623615}
 }
 \end{showcode}
-We can then refer to the entry of type~\inlinecode{@book} as usual, to get the following output in the bibliography (see \cref{example bibliography}):
+We can then refer to the entry of type~\optname{@book} as usual, to get the following output in the bibliography (see \cref{example bibliography}):
 \testcite{benson1991}
 
-The only new key when compared to the previous example is~\inlinecode{crossref}, which establishes the desired connection between the two entries.
+There are three new keys to talk about here:
+\begin{description}
+  \item[\optname{volumes}]
+    \massindex[\piname{biblatex}!keys]{volumes}[\optname]
+    This key describes the total number of volumes.
+    The value of this key is expected to be an integer.
+  \item[\optname{volume}]
+    \massindex[\piname{biblatex}!keys]{volume}[\optname]
+    This key describes the volumes of the specified volume.
+    The value of this key is expected to be an integer.
+  \item[\optname{crossref}]
+  \massindex[\piname{biblatex}!keys]{crossref}[\optname]
+    This key expresses that the given entry is subordinate to some other entry.
+    The expected value is the label of the superior entry.
+\end{description}
 
 \subsubsection{Entry for an article}
 
 We now consider an example for citing an article:
 
-\begin{showcode}{\filename{bib}-file entry for a single book}
+\begin{showcode}[label = {bib entry article}]{\filename{bib}-file entry for a single book}
 @article {diamond_lemma,
   title         = {The Diamond Lemma for Ring Theory},
   author        = {Bergman, George Mark},
@@ -805,33 +892,40 @@ We now consider an example for citing an article:
 The output in the bibliography (see \cref{example bibliography}) will look as follows:
 \testcite{diamond_lemma}
 
-Many fields are as for the type~\inlinecode{@book}, so we fill focuse on the changes:
+The type~\optname{@article}\massindex[\piname{biblatex}!types]{article}[\atname] tells {\LaTeX} that the entry is for a (journal)\index{journal} article.
+Many fields are as for the type~\optname{@book}, so we will focus on the changes:
 \begin{description}
-  \item[\inlinecode{journaltitle}]
-    This key specifies the name of the jornal that the article was published in.
+  \item[\optname{journaltitle}]
+    \massindex[\piname{biblatex}!keys]{journaltitle}[\optname]
+    This key specifies the name of the journal that the article was published in.
     The expected value for this key is a text.
-  \item[\inlinecode{issn}]
-    This key specifies the ISSN of the journal in question.
+  \item[\optname{issn}]
+    \massindex[\piname{biblatex}!keys]{issn}[\optname]
+    This key specifies the ISSN (International Standard Serial Number) of the journal in question.
     The value is treated as a text.
-  \item[\inlinecode{volume}, \inlinecode{number}]
+  \item[\optname{volume}, \optname{number}]
+    \massindex[\piname{biblatex}!keys]{volume}[\optname]
+    \massindex[\piname{biblatex}!keys]{number}[\optname]
     These keys specify in which volume of the journal the article appeared, and in which number of the volume.
-    The value for~\inlinecode{volume} should be an integer, and the value for~\inlinecode{number} should be an integer too (although it is treated as text).
-  \item[\inlinecode{pages}]
+    The value for~\optname{volume} should be an integer, and the value for~\optname{number} should be an integer too (although it is treated as text).
+  \item[\optname{pages}]
+    \massindex[\piname{biblatex}!keys]{pages}[\optname]
     This key specifies in which page range the article appeared.
     It doesn’t matter how many dashes are used to separate the two page numbers.
     It also doesn’t matter if the dash(es) are surrounded by space.
     
-    It is customary to specify page ranges in the form~\inlinecode{pages~=~number--number} because this gives a right looking output even if this argument were simply to be interpreted as text.
-    (Which lesser packages than \packagename{biblatex} may do.)
+    It is customary to specify page ranges in the form~\optname{pages~=~number--number} because this gives a right looking output even if this argument were simply to be interpreted as text.
+    (Which lesser packages than \packname{biblatex} may do.)
 \end{description}
 
 \subsubsection{Entry for an online resource}
 
-We consider now an example where we cite an online resource:
-\begin{showcode}{\filename{bib}-file entry for an online resource}
+We consider now an example where we cite an online resource.
+For this we use the generic type~\optname{@online}\massindex[\piname{biblatex}!types]{online}[\atname].
+\begin{showcode}[label = {bib entry online}]{\filename{bib}-file entry for an online resource}
 @online{cayley_graph,
   title   = {Cayley graphs and the geometry of groups},
-  author  = {Terence Tao},
+  author  = {Tao, Terence},
   date    = {2010-06-10},
   url     = {https://terrytao.wordpress.com/cayley-graphs-and-the-geometry-of-groups},
   urldate = {2019-09-06}
@@ -841,45 +935,102 @@ The output in the bibliography (see \cref{example bibliography}) will look as fo
 \testcite{cayley_graph}
 We have three (or rather two) new fields to discuss:
 \begin{description}
-  \item[\inlinecode{date}]
+  \item[\optname{date}]
+    \massindex[\piname{biblatex}!keys]{date}[\optname]
     This key specifies when the linked to resource was created.
-    This key takes arguments of the form~\inlinecode{year},~\inlinecode{year-month} or~\inlinecode{year-month-day}.
-    Here the value of~\inlinecode{year} is expected to be a four digit number, and the values of~\inlinecode{month} and~\inlinecode{day} are expected to be two digit numbers (which may contain a leading zero).
+    This key takes arguments of the form~\optname{year},~\optname{year-month} or~\optname{year-month-day}.
+    Here the value of~\optname{year} is expected to be a four digit number, and the values of~\optname{month} and~\optname{day} are expected to be two digit numbers (which may contain a leading zero).
     
-    Instead of~\inlinecode{date} one can also use the overall less specific keys~\inlinecode{year} and~\inlinecode{month}.
-  \item[\inlinecode{url}]
-    This key specifies the URL of the online resource.
-  \item[\inlinecode{urldate}]
+    Instead of~\optname{date} one can also use the overall less specific keys~\optname{year} and~\optname{month}.
+  \item[\optname{url}]
+    \massindex[\piname{biblatex}!keys]{url}[\optname]
+    This key specifies the URL\index{URL} of the online resource.
+  \item[\optname{urldate}]
+    \massindex[\piname{biblatex}!keys]{urldate}[\optname]
     This key specifies the date on which the online resource was accessed.
-    This is an importent information since content online may change over time.
+    This is an important information since content online may change over time.
 \end{description}
+\index{bib-file@\filename{bib}-file|)}
+\index{bibliography!bib-file@\filename{bib}-file|)}
+
+To cite an article published on arXiv one shouldn’t use the key~\optname{url} because \packname{biblatex} has a built-in way of dealing with arXiv articles.
+For an article that uses the current identifier scheme consider the following example:
+\begin{showcode}{\filename{bib}-file entry for an online resource}
+@online{leinster2014,
+  title       = {The bijection between projective indecomposable and simple modules},
+  author      = {Leinster, Tom},
+  date        = {2014-10-14},
+  eprint      = {1410.3671v1},
+  eprinttype  = {arxiv},
+  eprintclass = {math.RA},
+  urldate     = {2019-09-12}
+}
+\end{showcode}
+The output in the bibliography (see \cref{example bibliography}) will look as follows:
+\testcite{leinster2014}
+We have used three new fields:
+\begin{description}
+  \item[\optname{eprinttype}]
+    This key specifies what kind of resource the entry is.
+    The used value~\optname{arxiv} results in a predefined formatting of the resulting output.
+  \item[\optname{eprint}]
+    This key specifies the identifier of the resource.
+  \item[\optname{eprintclass}]
+    This field specifies additional information about the resource.
+\end{description}
+
+% For an article that uses the old identifier scheme a slightly different syntax is needed:
+% \testcite{symmgroup_2005}
+
 
 
 
 \subsection{Citing the references}
 
 Suppose now that we have added an entry to our~\filename{bib}-file, as outlines in \cref{syntax of bib entry}.
-In the actual {\LaTeX} project we can then refer to this entry with the command~\commandname{cite}:
-\begin{showcode}{Syntax of~\commandname{cite}}
+In the actual {\LaTeX} project we can then refer to this entry with the command~\comname{cite}\massindex[\piname{biblatex},bibliography]{cite}[\comname]:
+\begin{showcode}{Syntax of \comname{cite}}
 \cite[details]{label}
 One can also refer to the overall collection:
 \testcite{benson}
 \end{showcode}
-Let’s consider an example.
-\begin{showlatex}[label = {using cite}]{Using~\commandname{cite}}
-We assume that the reader is famliar with the representation theory of the symmetric groups as discussed in \cite[\S 4]{fultonharris2004}.
+Let’s consider an example where we cite the references given in the previous examples:
+\begin{showlatex}[label = {using cite}]{Using the command~\comname{cite}}
+We assume that the reader is familiar with the representation theory of the symmetric groups as discussed in \cite[\S 4]{fultonharris2004}.
 The reader may also want to check out \cite{benson1991} and \cite{cayley_graph}.
 For a nice proof of the Poincaré--Birkhoff--Witt~Theorem we refer to \cite[\S 3]{diamond_lemma}.
 \end{showlatex}
 
-We will also need to add the bibilography into the {\LaTeX} document.
-This is done by the command~\commandname{printbibliography}.
-This typically happens near the end of the document.
+We will also need to add the bibliography into the {\LaTeX} document.
+Suppose for this that the \filename{bib}-file is called \filename{references.bib}.
+We then have to do two things:
+\begin{itemize}
+  \item
+    We need to tell {\LaTeX} how the \filename{bib}-file is called.
+    This is done via the command~\comname{bibliography}\massindex[bibliography]{bibliography}[\comname]:
+    \begin{showcode}{Syntax of \comname{bibliography}}
+\bibliography{name of bib-file}
+    \end{showcode}
+    In our case we have to add~\inlinecode{{\tbs}bibliography\{references.bib\}}.
+  \item
+    We have to add the command~\comname{printbibliography}\massindex[\piname{biblatex},bibliography]{printbibliography}[\comname] at the position in source code where we want the bibliography to be printed.
+    This typically happens near the end of the document.
+  \item
+    We set the option~\optname{bibliography}\massindex[KOMA-Script classes, document class!options, bibliography]{bibliography}[\optname] of~\comname{documentclass} to~\optname{totoc} to add the bibliography to the index. (see \cref{layout for scrbook}).
+\end{itemize}
+
+In our running example(s) we would get the following bibliography:
 % locally overwrite \printbibliography
 \let\oldprintbibliography\printbibliography
-\renewcommand{\printbibliography}{\oldprintbibliography[heading=subbibliography,title={Bibliography}]}
+\renewcommand{\printbibliography}{%
+  \oldprintbibliography[
+    heading   = subbibliography,
+    title     = {Bibliography},
+    category  = testentries
+  ]
+}
 \begin{showlatex}[label = {example bibliography}]
-  {Using \commandname{printbibliography}}
+  {Using the command~\comname{printbibliography}}
 \printbibliography
 \end{showlatex}
 % undo the above overwriting
@@ -891,27 +1042,28 @@ This typically happens near the end of the document.
 
 To get the output of \cref{using cite} and \cref{example bibliography} we actually have to compile the document in the right way:
 
-Suppose that the~\filename{bib}-file has created, we have put the citations in the text via~\commandname{cite} and that we have placed \commandname{printbibliography} in the source code.
-We then have to proceed in three steps.
+Suppose that the~\filename{bib}-file has created, we have put the citations in the text via~\comname{cite} and that we have placed \comname{printbibliography} in the source code.
 Suppose that our main file is called~\filename{main.tex} and the~\filename{bib}-file is called~\filename{references.bib}.
+To get the desired bibliography and cross-references between it and the text we need to complete three steps:
 \begin{enumerate}
   \item
     We compile the document~\filename{main.tex}.
     The compiler will note down in an auxiliary file~\filename{main.bcf} which labels are cited in this document
   \item
-    The backend program~\inlinecode{biber} will go through the auxiliary files~\filename{main.bcf} and write down all the requested information in a new auxiliary file~\filename{main.bbl}.
+    The back~end program~\appname{biber}\massindex[bibliography]{biber}[\appname] will go through the auxiliary files~\filename{main.bcf} and write down all the requested information in a new auxiliary file~\filename{main.bbl}.
   \item
     We compile the document~\filename{main.tex} again.
-    The compiler will read the various data given in the auxiliary file~\filename{main.bll} and, using the settings and commands from the package~\packagename{biblatex}, will typeset both the citations in the main text and create a bibliography.
+    The compiler will read the various data given in the auxiliary file~\filename{main.bll} and, using the settings and commands from the package~\packname{biblatex}, will typeset both the citations in the main text and create a bibliography.
 \end{enumerate}
-\end{refsection}
-If you’re using a specialed {\LaTeX} editor or IDE (like {\TeX}Studio, kile, etc.)\ and have everything properly configured then your editor should take care of the above steps automatically when(ever) the document is compiled.
+If you’re using a specialized {\LaTeX} editor or IDE (like {\TeX}Studio\index{TeXStudio@{\TeX}Studio}, kile\index{kile}, etc.)\ and have everything properly configured then your editor should take care of the above steps automatically when(ever) the document is compiled.
 But if you’re compiling by hand in the console then you will need three commands:
-\begin{showcode}{Compiling in the console with bibliography}
+\begin{showcode}{Compiling in the console (with bibliography)}
 latex main.tex
 biber main.bcf
 latex main.tex
 \end{showcode}
+
+\index{bibliography|)}
 
 
 
@@ -922,8 +1074,9 @@ latex main.tex
 
 
 \subsection{Recalling basic tables}
+\index{tables|(}
 
-Recall that a centered table is constructed as follows in \hologo{LaTeX}:
+Recall that a table is constructed with the environment~\envname{tabular}\massindex[tables]{tabular}[\envname]:
 \begin{showlatex}{A basic table}
 \begin{tabular}{lcr}
   longtext & text     & text      \\
@@ -931,12 +1084,12 @@ Recall that a centered table is constructed as follows in \hologo{LaTeX}:
   text     & text     & longtext
 \end{tabular}
 \end{showlatex}
-The labels \texttt{l}, \texttt{c}, \texttt{r} specify the alignment of the corresponding column (left aligned, centered, and right aligned).
+The labels~\optname{l}\massindex[tables]{l}[\optname],~\optname{c}\massindex[tables]{c}[\optname],~\optname{r}\massindex[tables]{r}[\optname] specify the alignment of the corresponding column (left aligned, centered, and right aligned).
 Lines are traditionally added to a table as follows:
 \begin{itemize}
   \item
-    The use of \commandtt{hline} at the beginnig of a row introduces a horizontal line that separates this row from the previous one.
-    To get multiple parallel lines (e.g.\ a double line) one uses multiple instances of \commandtt{hline} directly after each other.
+    The command~\comname{hline}\massindex[tables]{hline}[\comname]\index{tables!horizontal lines} at the beginning of a row introduces a horizontal line that separates this row from the previous one.
+    To get multiple parallel lines (e.g.\ a double line) one uses multiple instances of \comname{hline} directly after each other.
     \begin{showlatex}{Full horizontal lines in tables}
 \begin{center}
 \begin{tabular}{ccc}
@@ -949,7 +1102,11 @@ Lines are traditionally added to a table as follows:
 \end{center}
   \end{showlatex}
   \item
-    To seperate only the colums $i, \dotsc, j$ by horizontal line, the command \commandtt{cline\{i-j\}} can be used.
+    To separate only the columns $i, \dotsc, j$ by horizontal line\index{tables!horizontal lines}, the command~\comname{cline}\massindex[tables]{cline}[\comname] is used:
+    \begin{showcode}{Syntax of \comname{cline}}
+\cline{start column-end column}
+    \end{showcode}
+    The command~\comname{cline} has the same placement as \comname{hline}:
     \begin{showlatex}{Partial horizontal lines in tables}
 \begin{center}
 \begin{tabular}{ccccc}
@@ -962,7 +1119,7 @@ Lines are traditionally added to a table as follows:
 \end{center}
     \end{showlatex}
   \item
-     One can put a vertical line between two columns by adding the symbol \texttt{|} between the corresponding alignment symbols.
+     One can put a vertical line\index{tables!vertical lines} between two columns by adding the symbol~\optname{|} between the corresponding alignment symbols.
      Inserting this symbol multiple times will give parallel vertical lines.
      \begin{showlatex}{Vertical lines in tables}
 \begin{tabular}{l||c|c}
@@ -1014,19 +1171,19 @@ This is due to various reasons:
     Never use double lines.
 \end{itemize}
 The last two points are easy to fix.
-The \texttt{booktabs} package gives a way for fixing the first problem:
+The package~\packname{booktabs}\massindex[packages,tables]{booktabs}[\packname] gives a way for fixing the first problem:
 \begin{itemize}
   \item
-    The package provides the commands \commandtt{toprule}, \commandtt{midrule} and \commandtt{bottomrule} as replacements for \commandtt{hline}.
-    The command \commandtt{toprule} is to be used only for the line on top of the table.
-    The command \commandtt{bottomrule} is similarly only to be used for the line on the bottom of the table.
-    The horizontal line \commandtt{midrule} is meant to separate the main part of the table from the top part and bottom part.
+    The package provides the commands~\comname{toprule}\massindex[\piname{booktabs},tables]{toprule}[\comname], \comname{midrule}\massindex[\piname{booktabs},tables]{midrule}[\comname] and \comname{bottomrule}\massindex[\piname{booktabs},tables]{bottomrule}[\comname] as replacements for \comname{hline}.
+    The command~\comname{toprule} is to be used only for the line on top of the table.
+    The command~\comname{bottomrule} is similarly only to be used for the line on the bottom of the table.
+    The horizontal line~\comname{midrule} is meant to separate the main part of the table from the top part and bottom part.
   \item
-    The command \commandtt{cmidrule} is the replacement for \commandtt{crule}.
+    The command~\comname{cmidrule}\massindex[\piname{booktabs},tables]{cmidrule}[\comname] is the replacement for \comname{crule}.
 \end{itemize}
 One should also try to minimize the number of horizontal lines.
 The above example should hence look as follows:
-\begin{showlatex}{Using the rules of \packagename{booktabs}}
+\begin{showlatex}{Using the rules of \packname{booktabs}}
 \begin{center}
 \begin{tabular}{llr}
   \toprule
@@ -1044,8 +1201,9 @@ The above example should hence look as follows:
 \end{showlatex}
 
 Note that we could leave out all non-essential horizontal lines because the table has a very regular form.
-We refer to \cite{booktab} for more informations about typing tables (using the \texttt{booktab} package).
+We refer to \cite{booktab} for more information about typing tables.
 
+\index{tables|)}
 
 
 

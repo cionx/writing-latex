@@ -1,22 +1,21 @@
-\chapter{Good behavior inside math mode}
+\chapter{Good behaviour inside math mode}
 
 
 
 
 
-\section{Use the right symbols}
-
-
+\section{Using the right commands and symbols}
 
 
 
 \subsection{General symbols}
+\index{symbols}
 
 Use the right symbols.
-\Cref{wrong symbol list} shows some popular sources of this problem:
+\Cref{wrong symbol list} shows some popular sources of this problem.
 \begin{table}[tb]
   \begin{center}
-  \begin{tabular}{@{}clclc@{}}
+  \begin{tabular}{@{}lllll@{}}
       \toprule
       \textbf{symbol}
       &
@@ -27,11 +26,13 @@ Use the right symbols.
     \midrule
       element relation
       &
-      \commandtt{in}
+      \comname{in}%
+      \massindex{in}[\comname]
       &
       $\in$
       &
-      \commandtt{epsilon}
+      \comname{epsilon}%
+      \massindex{epsilon}[\comname]
       &
       $\epsilon$
     \\
@@ -41,34 +42,40 @@ Use the right symbols.
       &
       {}
       &
-      \commandtt{varepsilon}
+      \comname{varepsilon}%
+      \massindex{varepsilon}[\comname]
       &
       $\varepsilon$
     \\
       {}
       &
-      \commandname{ni}
+      \comname{ni}%
+      \massindex{ni}[\comname]
       &
       $\ni$
       &
-      \commandname{backepsilon}
+      \comname{backepsilon}%
+      \massindex{backepsilon}[\comname]
       &
       $\backepsilon$
     \\
     \cmidrule(lr){2-3} \cmidrule(l){4-5}
       empty set
       &
-      \commandtt{emptyset}
+      \comname{emptyset}%
+      \massindex{emptyset}[\comname]
       &
       $\emptyset$
       &
-      \commandtt{phi}
+      \comname{phi}%
+      \massindex{phi}[\comname]
       &
       $\phi$
     \\
       {}
       &
-      \commandname{varnothing}
+      \comname{varnothing}%
+      \massindex{varnothing}[\comname]
       &
       $\varnothing$
       &
@@ -79,17 +86,20 @@ Use the right symbols.
     \cmidrule(lr){2-3} \cmidrule(l){4-5}
       set difference
       &
-      \texttt{A {\tbs}setminus B}
+      \inlinecode{A {\tbs}setminus B}%
+      \massindex{setminus}[\comname]
       &
       $A \setminus B$
       &
-      \texttt{A {\tbs}backslash B}
+      \inlinecode{A {\tbs}backslash B}%
+      \massindex{backslash}[\comname]
       &
       $A \backslash B$
     \\
       {}
       &
-      \texttt{A {\tbs}smallsetminus B}
+      \inlinecode{A {\tbs}smallsetminus B}%
+      \massindex{smallsetminus}[\comname]
       &
       $A \smallsetminus B$
       &
@@ -99,7 +109,7 @@ Use the right symbols.
     \\
       {}
       &
-      \texttt{A - B}
+      \inlinecode{A - B}\index{minus sign}
       &
       $A - B$
       &
@@ -110,11 +120,13 @@ Use the right symbols.
     \cmidrule(lr){2-3} \cmidrule(l){4-5}
       implication
       &
-      \commandtt{implies}
+      \comname{implies}%
+      \massindex{implies}[\comname]
       &
       $\implies$
       &
-      \commandtt{Rightarrow}
+      \comname{Rightarrow}%
+      \massindex[arrows]{Rightarrow}[\comname]
       &
       $\Rightarrow$
     \\
@@ -124,17 +136,19 @@ Use the right symbols.
       &
       {}
       &
-      \texttt{=>}
+      \inlinecode{=>}
       &
       $=>$
     \\
       {}
       &
-      \commandtt{impliedby}
+      \comname{impliedby}%
+      \massindex{impliedby}[\comname]
       &
       $\impliedby$
       &
-      \commandtt{Leftarrow}
+      \comname{Leftarrow}%
+      \massindex[arrows]{Leftarrow}[\comname]
       &
       $\Leftarrow$
     \\
@@ -144,56 +158,63 @@ Use the right symbols.
       &
       {}
       &
-      \texttt{<=}
+      \inlinecode{<=}
       &
       $<=$
     \\
     \cmidrule(lr){2-3} \cmidrule(l){4-5}
       equivalence
       &
-      \commandtt{iff}
+      \comname{iff}%
+      \massindex{iff}[\comname]
       &
       $\iff$
       &
-      \commandtt{Leftrightarrow}
+      \comname{Leftrightarrow}%
+      \massindex[arrows]{Leftrightarrow}[\comname]
       &
       $\Leftrightarrow$
     \\
     \cmidrule(lr){2-3} \cmidrule(l){4-5}
       definition
       &
-      \commandtt{coloneqq}
+      \comname{coloneqq}%
+      \massindex{coloneqq}[\comname]
       &
       $\coloneqq$
       &
-      \texttt{:=}
+      \inlinecode{:=}
       &
       $:=$
     \\
       {}
       &
-      \commandtt{eqqcolon}
+      \comname{eqqcolon}%
+      \massindex{eqqcolon}[\comname]
       &
       $\eqqcolon$
       &
-      \texttt{=:}
+      \inlinecode{=:}
       &
       $=:$
     \\
     \cmidrule(lr){2-3} \cmidrule(l){4-5}
       norm
       &
-      \texttt{{\tbs}| x {\tbs}|}
+      \inlinecode{{\tbs}| x {\tbs}|}%
+      \massindex[delimiters]{\indexline}[\comname]
       &
       $\| x \|$
       &
-      \texttt{|| x ||}
+      \inlinecode{|| x ||}
       &
       $|| x ||$
     \\
       {}
       &
-      \texttt{{\tbs}lVert x {\tbs}rVert}
+      \inlinecode{{\tbs}lVert x {\tbs}rVert}%
+      \massindex[delimiters]{lVert}[\comname]%
+      \massindex[delimiters]{rVert}[\comname]
       &
       {}
       &
@@ -204,33 +225,38 @@ Use the right symbols.
     \cmidrule(lr){2-3} \cmidrule(l){4-5}
       pointy brackets
       &
-      \texttt{{\tbs}langle x {\tbs}rangle}
+      \inlinecode{{\tbs}langle x {\tbs}rangle}%
+      \massindex[delimiters]{langle}[\comname]%
+      \massindex[delimiters]{rangle}[\comname]
       &
       $\langle x \rangle$
       &
-      \texttt{< x >}
+      \inlinecode{< x >}
       &
       $< x >$
     \\
     \cmidrule(lr){2-3} \cmidrule(l){4-5}
       infinity
       &
-      \commandtt{infty}
+      \comname{infty}%
+      \massindex{infty}[\comname]
       &
       $\infty$
       &
-      \texttt{oo}
+      \inlinecode{oo}
       &
       $oo$
     \\
     \cmidrule(lr){2-3} \cmidrule(l){4-5}
       function colon
       &
-      \texttt{f {\tbs}colon X {\tbs}to Y}
+      \inlinecode{f {\tbs}colon X {\tbs}to Y}%
+      \massindex{colon}[\comname]%
+      \massindex{ni}[\comname]
       &
       $f \colon X \to Y$
       &
-      \texttt{f : X {\tbs}to Y}
+      \inlinecode{f : X {\tbs}to Y}
       &
       $f : X \to Y$
     \\
@@ -240,7 +266,7 @@ Use the right symbols.
   \caption{Right symbols and wrong symbols.}
   \label{wrong symbol list}
 \end{table}
-The commands \commandtt{rightarrow} and \commandtt{to} give the same arrow.
+Note that the commands~\comname{rightarrow}\massindex[arrows]{rightarrow}[\comname] and~\comname{to}\massindex[arrows]{to}[\comname] give the same arrow.
 So use whichever is more appropriate in the given situation.
 
 
@@ -270,107 +296,107 @@ One should not confuse the two of them.
       &
       $a + b$
       &
-      \commandname{sum}
+      \comname{sum}
       &
       $\sum_i x_i$
       \\
       multiplication
       &
-      \commandname{cdot}
+      \comname{cdot}
       &
       $a \cdot b$
       &
-      \commandname{prod}
+      \comname{prod}
       &
       $\prod_i x_i$
       \\
       direct sum
       &
-      \commandname{oplus}
+      \comname{oplus}
       &
       $A \oplus B$
       &
-      \commandname{bigoplus}
+      \comname{bigoplus}
       &
       $\bigoplus_i X_i$
       \\
       tensor product
       &
-      \commandname{otimes}
+      \comname{otimes}
       &
       $A \otimes B$
       &
-      \commandname{bigotimes}
+      \comname{bigotimes}
       &
       $\bigotimes_i X_i$
       \\
       wedge
       &
-      \commandname{wedge}
+      \comname{wedge}
       &
       $a \wedge b$
       &
-      \commandname{bigwedge}
+      \comname{bigwedge}
       &
       $\bigwedge_i X_i$
       \\
       union
       &
-      \commandname{cup}
+      \comname{cup}
       &
       $A \cup B$
       &
-      \commandname{bigcup}
+      \comname{bigcup}
       &
       $\bigcup_i X_i$
       \\
       intersection
       &
-      \commandname{cap}
+      \comname{cap}
       &
       $A \cap B$
       &
-      \commandname{bigcap}
+      \comname{bigcap}
       &
       $\bigcap_i X_i$
       \\
       product
       &
-      \commandname{times}
+      \comname{times}
       &
       $A \times B$
       &
-      \commandname{prod}
+      \comname{prod}
       &
       $\prod_i X_i$
       \\
       {}
       &
-      \commandname{sqcap}
+      \comname{sqcap}
       &
       $A \sqcap B$
       &
-      \commandname{bigsqcap}
+      \comname{bigsqcap}
       &
       $\bigsqcap_i X_i$
       \\
       coproduct
       &
-      \commandname{amalg}
+      \comname{amalg}
       &
       $A \amalg B$
       &
-      \commandname{coprod}
+      \comname{coprod}
       &
       $\coprod_i X_i$
       \\
       {}
       &
-      \commandname{sqcup}
+      \comname{sqcup}
       &
       $A \sqcup B$
       &
-      \commandname{bigsqcup}
+      \comname{bigsqcup}
       &
       $\bigsqcup_i X_i$
       \\
@@ -381,25 +407,25 @@ One should not confuse the two of them.
   \caption{Binary operation and operator version.}
   \label{binary vs operator}
 \end{table}
-The command \commandname{bigsqcap} requires the package \packagename{stmaryrd}.
+The command \comname{bigsqcap} requires the package \packname{stmaryrd}.
 
 
 
 \subsection{Negations}
 
-For some mathematical symbols there also exists a negated version, which is formed by adding a vertical line between the bottom left and top right.
-A general way of introducing such a line is the command \commandname{not}.
-\begin{showlatex}*{Using \commandname{not}}
+For some mathematical symbols there also exists a negated version, which is formed by diagonal line through the symbol.
+A general way of introducing such a line is the command \comname{not}\massindex[negation]{not}[\comname].
+\begin{showlatex}*{Using \comname{not}}
   It follows that $A \not\ni x$.
 \end{showlatex}
-But in praxis this command should seldom be used, as it often produces very bad looking output.
+But in practice this command should seldom be used, as it often produces very bad looking output.
 Consider the following example:
-\begin{showlatex}{Why not to use \commandname{not}}
+\begin{showlatex}{Why not to use \comname{not}}
   Hence $A \not\implies B$.
 \end{showlatex}
 There are two solutions to this problem:
 
-Many symbols already have a predefined crossed-out version available.
+Many symbols already have a predefined lined-out version available.
 A few of them are collected in~\cref{negation list}.
 \begin{table}[tb]
   \begin{center}
@@ -410,7 +436,8 @@ A few of them are collected in~\cref{negation list}.
       \multicolumn{2}{c}{\textbf{wrong}}
     \\
     \cmidrule(r){1-2} \cmidrule(l){3-4}
-      \commandname{notin}
+      \comname{notin}%
+      \massindex[negation]{notin}[\comname]
       &
       $\notin$
       &
@@ -418,7 +445,8 @@ A few of them are collected in~\cref{negation list}.
       &
       $\not\in$
     \\
-      \commandname{nexists}
+      \comname{nexists}%
+      \massindex[negation]{nexists}[\comname]
       &
       $\nexists$
       &
@@ -426,7 +454,8 @@ A few of them are collected in~\cref{negation list}.
       &
       $\not\exists$
     \\
-      \commandname{neq}
+      \comname{neq}%
+      \massindex[negation]{neq}[\comname]
       &
       $\neq$
       &
@@ -434,7 +463,8 @@ A few of them are collected in~\cref{negation list}.
       &
       $\not =$
     \\
-      \commandname{nleq}
+      \comname{nleq}%
+      \massindex[negation]{nleq}[\comname]
       &
       $\nleq$
       &
@@ -442,12 +472,13 @@ A few of them are collected in~\cref{negation list}.
       &
       $\not\leq$
     \\
-      \commandname{nrightarrow}
-    &
+      \comname{nrightarrow}%
+      \massindex[negation,arrows]{notrightarrow}[\comname]
+      &
       $\nrightarrow$
-    &
+      &
       \inlinecode{{\tbs}not{\tbs}rightarrow}
-    &
+      &
       $\not\rightarrow$
     \\
     \bottomrule
@@ -456,8 +487,8 @@ A few of them are collected in~\cref{negation list}.
   \caption{Negated versions of popular symbols.}
   \label{negation list}
 \end{table}
-If the required symbol is not predefined then the command~\commandname{centernot} from the package~\packagename{centernot} often produces better looking output then~\commandname{not}:
-\begin{showlatex}{Using~\commandname{centernot}}
+If the required symbol is not predefined then the command~\comname{centernot}\massindex[negation]{centernot}[\comname] from the package~\packname{centernot}\massindex[packages]{centernot}[\packname] often produces better looking output then~\comname{not}:
+\begin{showlatex}{Using the command~\comname{centernot}}
   Consider
   \[
     A \centernot\ni x
@@ -475,59 +506,831 @@ If the required symbol is not predefined then the command~\commandname{centernot
 
 
 
+\subsection{Don’t use \comtitle{limits}}
+
+People seem to think that they have to put\comname{limits}\massindex[limits]{limits}[\comname] after a command to add limits to it:
+\begin{showlatex}*{Using limits}
+\[
+  \sum\limits_{k=1}^n k
+  =
+  \frac{n(n+1)}{2}
+\]
+\end{showlatex}
+But this is not only unnecessary, but also dangerous.
+It is unnecessary because (most of) the commands in questions already have this functionality built in:
+\begin{showlatex}*{Using built-in limits}
+\[
+  \sum_{k=1}^n k
+  =
+  \frac{n(n+1)}{2}
+\]
+\end{showlatex}
+This built-in limits have the advantage that they can distinguish between inline math and display math math:
+\begin{showlatex}*{Inline math vs.\ display math with built-in limits}
+The sum $\sum_{k=0}^n 2^k = 2^{n+1} - 1$ is inline while the sum
+\[
+  \sum_{k=0}^n 3^k
+  \neq
+  3^{n+1} - 1
+\]
+is in display mode.
+\end{showlatex}
+We can see that the inline version does not only use the smaller summation sign but also sets the limits to the right of the summation sign.
+This is a feature which \comname{limits} version is missing:
+\begin{showlatex}*{Inline math with~\comname{limits}}
+So here is some text which will generate some lines.
+The text itself isn’t important, but we really want it to fill some lines.
+The important thing is the sum $\sum\limits_{k=0}^n k$.
+Well, not really the sum itself, but the use of \texttt{{\textbackslash}limits} for typesetting it..
+\end{showlatex}
+The limits are still placed above the top and below the summation sign.
+This has its price:
+The line in which the sum resides breaks the usual vertical space between lines, which gives the text an inconsistent and unorganized look.
+Compare this to the version without \comname{limits}:
+\begin{showlatex}*{Inline with built-in limits}
+So here is some text which will generate some lines.
+The text itself isn’t important, but we really want it to fill some lines.
+The important thing is the sum $\sum_{k=0}^n k$.
+Well, not really the sum itself, but use of built-in limits for typesetting it.
+\end{showlatex}
+Here the line distance is nicely consistent and pleasing to the eye.
+
+The usual predefined commands on which one would expect limits already have them defined, e.g.\ \comname{sum}, \comname{prod} or \comname{lim}, as the following example shows:
+\begin{showlatex}{Inline vs.\ display for different commands with built-in limits}
+Compare the inline versions $\sum_{k=0}^n k$ and $\prod_{k=1}^n k$ and $\lim_{n \to \infty} a_n$ with the display versions
+\[
+  \sum_{k=0}^n k \,,
+  \quad
+  \prod_{k=1}^n k \,,
+  \quad
+  \lim_{n \to \infty} a_n \,.
+\]
+\end{showlatex}
+When now commands are defined with~\comname{DeclareMathOperator}\massindex[defining commands]{DeclareMathOperator}[\comname] or~\comname{operatorname}\massindex[defining commands]{operatorname}[\comname] then one can make them support limits by using \comname{DeclareMathOperator*}\massindex[defining commands, limits]{DeclareMathOperator*}[\comname] and \comname{operatorname*}\massindex[defining commands, limits]{operatorname*}[\comname] instead.
+Suppose for example that we have made in the preamble the following definition:
+\begin{showcode}{Using \comname{DeclareMathOperator*} to define~\comname{colim}}
+\DeclareMathOperator*{\colim}{colim}
+\end{showcode}
+We can then do the following:
+\begin{showlatex}{Using~\comname{colim}}
+Inline we have $\colim_{X' \leq X} F(X')$ and in display mode we get
+\[
+  \colim_{X' \leq X} F(X') \,.
+\]
+\end{showlatex}
+The command~\comname{operatorname*} was named~\comname{operatornamewithlimits} in the past, but this name is deprecated.
+
+% If for some extremly strange reason one \emph{really} needs the limits to be in display style, then one should commit to it by using \comname{displaystyle}.
+% Consider the following example:
+% \begin{showlatex}{Forcing displaystyle with \comname{displaystyle}}
+% \[
+%   \begin{pmatrix}
+%     \frac{n^2+1}{n^2 + 2}
+%     &
+%     \frac{n^2+2}{n^2 + 3}
+%     \\
+%     \frac{n^2+2}{n^2 + 3}
+%     &
+%     \frac{n^2+3}{n^2 + 4}
+%   \end{pmatrix}
+%   =
+%   \begin{pmatrix}
+%     \displaystyle
+%     \frac{n^2+1}{n^2 + 2}
+%     &
+%     \displaystyle
+%     \frac{n^2+2}{n^2 + 3}
+%     \\[1.5em]
+%     \displaystyle
+%     \frac{n^2+2}{n^2 + 3}
+%     &
+%     \displaystyle
+%     \frac{n^2+3}{n^2 + 4}
+%   \end{pmatrix}
+% \]
+% \end{showlatex}
+% In the above example we have put~\comname{displaystyle} before every matrix entry to ensure that it has the usual style of display mathematics.
+% We have also put replaced the basic line break~\comname{\tbs} by~\inlinecode{{\tbs}{\tbs}[1.5em]} for some additional spacing between the two rows of the resulting matrix.
+% (Otherwise the fractions are far too close.)
 
 
-\section{Don’t use \texorpdfstring{\commandname{subset}}{{\tbs}subseteq}}
 
-Some people use~$\subset$~(\commandname{subset}) to denote inclusion and~$\subsetneq$~(\commandname{subsetneq}) to denote proper inclusion, while some other people use~$\subseteq$~(\commandname{subseteq}) to denote inclusion and~$\subset$ to denote proper inclusion.
+\subsection{Use extensible arrows instead of \comtitle{overset} and \comtitle{underset}}
+\label{extensible arrows}
+
+Some people put text above or under arrows by wrongly using the commands~\comname{overset}\massindex{overset}[\comname] or \comname{underset}\massindex{underset}[\comname]:
+\begin{showlatex}{Using~\comname{overset} and~\comname{underset} to put text above or below an arrow}
+\[
+  X
+  \overset{f}{\longrightarrow}
+  Y
+  \underset{g \circ h \circ k}{\longrightarrow}
+  Z
+\]
+\end{showlatex}
+We can see above that the length of the arrow does not adjust to the size of the text above it or below it.
+The proper way to put text on top of an arrow or bellow an arrow of the form~\enquote{$\to$} is therefore the command~\comname{xrightarrow}\massindex[arrows]{xrightarrow}[\comname]:
+\begin{showlatex}{Using~\comname{xrightarrow} to put text above or below an arrow}
+\[
+  X
+  \xrightarrow{f}
+  Y
+  \xrightarrow[g \circ h \circ k]{}
+  Z \,.
+\]
+\end{showlatex}
+The package~\packname{amsmath}\massindex[packages]{amsmath}[\packname] defines only the two most basic extensible arrows\index{extensible arrows}\index{arrows!extensible}.
+Many more kinds of extensible arrows are provided by the package~\packname{mathtools}\massindex[packages]{mathtools}[\packname] and some more are contained in the package~\packname{extarrows}\massindex[packages]{extarrows}[\packname].
+An overview of the various kinds of extensible arrows can be found in \cref{extensible arrow table}.
+\begin{table}[tb]
+  \begin{center}
+  \begingroup
+  \renewcommand{\arraystretch}{0.9}
+  \begin{tabular}{@{}lccc@{}}
+    \toprule
+    \packname{amsmath}
+    &
+    \begin{tabular}{@{}c@{}}
+      $A \xrightarrow{f} B$
+      \\
+      \comname{xrightarrow}%
+      \massindex[arrows]{xrightarrow}[\comname]
+    \end{tabular}
+    &
+    \begin{tabular}{@{}c@{}}
+      $A \xleftarrow{f} B$
+      \\
+      \comname{xleftarrow}%
+      \massindex[arrows]{xleftarrow}[\comname]
+    \end{tabular}
+    &
+    {}
+    \\[1.5em]
+%     \midrule
+    \packname{mathtools}
+    &
+    \begin{tabular}{@{}c@{}}
+      $A \xmapsto{f} B$
+      \\
+      \comname{xmapsto}%
+      \massindex[arrows]{xmapsto}[\comname]
+    \end{tabular}
+    &
+    \begin{tabular}{@{}c@{}}
+      $A \xleftrightarrow{f} B$
+      \\
+      \comname{xleftrightarrow}%
+      \massindex[arrows]{xleftrightarrow}[\comname]
+    \end{tabular}
+    &
+    \begin{tabular}{@{}c@{}}
+      $A \xRightarrow{f} B$
+      \\
+      \comname{xRightarrow}%
+      \massindex[arrows]{xRightarrow}[\comname]
+    \end{tabular}
+    \\[1.5em]
+    {}
+    &
+    \begin{tabular}{@{}c@{}}
+      $A \xLeftarrow{f} B$
+      \\
+      \comname{xLeftarrow}%
+      \massindex[arrows]{xLeftarrow}[\comname]
+    \end{tabular}
+    &
+    \begin{tabular}{@{}c@{}}
+      $A \xLeftrightarrow{f} B$
+      \\
+      \comname{xLeftrightarrow}%
+      \massindex[arrows]{xLeftrightarrow}[\comname]
+    \end{tabular}
+    &
+    \begin{tabular}{@{}c@{}}
+      $A \xhookleftarrow{f} B$
+      \\
+      \comname{xhookleftarrow}%
+      \massindex[arrows]{xhookleftarrow}[\comname]
+    \end{tabular}
+    \\[1.5em]
+    {}
+    &
+    \begin{tabular}{@{}c@{}}
+      $A \xhookrightarrow{f} B$
+      \\
+      \comname{xhookrightarrow}%
+      \massindex[arrows]{xhookrightarrow}[\comname]
+    \end{tabular}
+    &
+    \begin{tabular}{@{}c@{}}
+      $A \xrightharpoondown{f} B$
+      \\
+      \comname{xrightharpoondown}%
+      \massindex[arrows]{xrightharpoondown}[\comname]
+    \end{tabular}
+    &
+    \begin{tabular}{@{}c@{}}
+      $A \xrightharpoonup{f} B$
+      \\
+      \comname{xrightharpoonup}%
+      \massindex[arrows]{xrightharpoonup}[\comname]
+    \end{tabular}
+    \\[1.5em]
+    {}
+    &
+    \begin{tabular}{@{}c@{}}
+      $A \xrightleftharpoons{f} B$
+      \\
+      \comname{xrightleftharpoons}%
+      \massindex[arrows]{xrightleftharpoons}[\comname]
+    \end{tabular}
+    &
+    \begin{tabular}{@{}c@{}}
+      $A \xleftharpoondown{f} B$
+      \\
+      \comname{xleftharpoondown}%
+      \massindex[arrows]{xleftharpoondown}[\comname]
+    \end{tabular}
+    &
+    \begin{tabular}{@{}c@{}}
+      $A \xleftharpoonup{f} B$
+      \\
+      \comname{xleftharpoonup}%
+      \massindex[arrows]{xleftharpoonup}[\comname]
+    \end{tabular}
+    \\[1.5em]
+    {}
+    &
+    \begin{tabular}{@{}c@{}}
+      $A \xleftrightharpoons{f} B$
+      \\
+      \comname{xleftrightharpoons}%
+      \massindex[arrows]{xleftrightharpoons}[\comname]
+    \end{tabular}
+    &
+    {}
+    &
+    {}
+    \\[1.5em]
+%     \midrule
+    \packname{extarrows}
+    &
+    \begin{tabular}{@{}c@{}}
+      $A \xlongequal{f} B$
+      \\
+      \comname{xlongequal}%
+      \massindex[arrows]{xlongequal}[\comname]
+    \end{tabular}
+    &
+    \begin{tabular}{@{}c@{}}
+      $A \xleftrightarrow{f} B$
+      \\
+      \comname{xleftrightarrow}%
+      \massindex[arrows]{xleftrightarrow}[\comname]
+    \end{tabular}
+    &
+    \begin{tabular}{@{}c@{}}
+      $A \xLeftrightarrow{f} B$
+      \\
+      \comname{xLeftrightarrow}%
+      \massindex[arrows]{xLeftrightarrow}[\comname]
+    \end{tabular}
+    \\[1.5em]
+    {}
+    &
+    \begin{tabular}{@{}c@{}}
+      $A \xlongleftarrow{f} B$
+      \\
+      \comname{xlongleftarrow}%
+      \massindex[arrows]{xlongleftarrow}[\comname]
+    \end{tabular}
+    &
+    \begin{tabular}{@{}c@{}}
+      $A \xlongrightarrow{f} B$
+      \\
+      \comname{xlongrightarrow}%
+      \massindex[arrows]{xlongrightarrow}[\comname]
+    \end{tabular}
+    &
+    \begin{tabular}{@{}c@{}}
+      $A \xlongleftrightarrow{f} B$
+      \\
+      \comname{xlongleftrightarrow}%
+      \massindex[arrows]{xlongleftrightarrow}[\comname]
+    \end{tabular}
+    \\[1.5em]
+    {}
+    &
+    \begin{tabular}{@{}c@{}}
+      $A \xLongleftarrow{f} B$
+      \\
+      \comname{xLongleftarrow}%
+      \massindex[arrows]{xLongleftarrow}[\comname]
+    \end{tabular}
+    &
+    \begin{tabular}{@{}c@{}}
+      $A \xLongrightarrow{f} B$
+      \\
+      \comname{xLongrightarrow}%
+      \massindex[arrows]{xLongrightarrow}[\comname]
+    \end{tabular}
+    &
+    \begin{tabular}{@{}c@{}}
+      $A \xLongleftrightarrow{f} B$
+      \\
+      \comname{xLongleftrightarrow}%
+      \massindex[arrows]{xLongrightarrow}[\comname]
+    \end{tabular}
+    \\
+    \bottomrule
+  \end{tabular}
+  \endgroup
+  \end{center}
+ \caption{Extensible arrows in \packname{amsmath}, \packname{mathtools} and \packname{extarrows}.}
+ \label{extensible arrow table}
+\end{table}
+
+The author recommends to define custom commands as shortcuts for the most used arrows.
+\begin{showlatex}{Defining arrow commands as shortcuts}
+\newcommand{\xto}{\xrightarrow}
+\newcommand{\xlongto}[1]{\xlongrightarrow{\;#1\;}}
+The function $A \xto{f} B$ is the same as
+\[
+  A \xlongto{f} B \,.
+\]
+\end{showlatex}
+
+% TODO: Defining new kind of stretchable arrows
+
+
+
+
+
+\subsection{Know your ellipses}
+\index{dots!zzzz@\igobble |see {ellipsis}}
+\index{ellipses|(}
+
+An ellipsis\index{ellipses} should \emph{never} by written as~\inlinecode{...} (three single dots).
+{\LaTeX} instead provides different kinds of ellipses to use in math mode, namely
+\begin{center}
+    \comname{dotsb},
+    \quad
+    \comname{dotsc},
+    \quad
+    \comname{dotsm},
+    \quad
+    \comname{dotsi},
+    \quad
+    \comname{dotso},
+    \\
+    \comname{cdots},
+    \quad
+    \comname{ddots},
+    \quad
+    \comname{vdots},
+    \quad
+    \comname{ldots}.
+\end{center}
+Each of these have they own role and (mostly) distinct look and feel.
+There are two groups of ellipses.
+The first group consists of \comname{dotsb}, \comname{dotsc}, \comname{dotsm}, \comname{dotsi},\comname{dotso}, whereas the second group consists of \comname{cdots}, \comname{ddots}, \comname{vdots}, \comname{ldots}.
+
+The ellipses in the first group are named after their function, see \cref{ellipses with function}.
+\begin{table}[tb]
+  \begin{center}
+  \begingroup
+  \renewcommand{\arraystretch}{1.3}
+  \begin{tabular}{@{}lll@{}}
+    \toprule
+    %
+    \textbf{command}
+    &
+    \textbf{explanation}
+    &
+    \textbf{example}
+    \\
+    \midrule
+    %
+    \comname{dotsb}%
+    \massindex[ellipses]{dotsb}[\comname]
+    &
+    Between binary relations and operations.
+    &
+    $x_1 + \dotsb + x_n$
+    \\
+    {}
+    &
+    {}
+    &
+    $x_1 \leq \dotsb \leq x_n$
+    \\
+    \comname{dotsc}%
+    \massindex[ellipses]{dotsc}[\comname]
+    &
+    Between commata.
+    &
+    $x_1, \dotsc, x_n$
+    \\
+    \comname{dotsm}%
+    \massindex[ellipses]{dotsm}[\comname]
+    &
+    Abbreviating multiplication.
+    &
+    $x_1 \dotsm x_n$
+    \\
+    \comname{dotsi}%
+    \massindex[ellipses]{dotsi}[\comname]
+    &
+    Iterated integrals.\index{integral}
+    &
+    $\int_{X_1} \dotsi \int_{X_n}$
+    \\
+    \comname{dotso}%
+    \massindex[ellipses]{dotso}[\comname]
+    &
+    Others.
+    &
+    {}
+    \\
+    \bottomrule
+  \end{tabular}
+  \endgroup
+  \end{center}
+  \caption{Ellipses with a specific functions.}
+  \label{ellipses with function}
+\end{table}
+Note that the members of this group all have names of the form \comname{dots*}, where \optname{*} is a letter that specifies the semantic use of the dots.
+
+The ellipses in the second group are not named after their function but after their orientation, see \cref{ellipses with orientation}
+\begin{table}[tb]
+  \begin{center}
+  \begingroup
+  \renewcommand{\arraystretch}{1.3}
+  \begin{tabular}{@{}llc@{}}
+    \toprule
+    %
+    \textbf{command}
+    &
+    \textbf{explanation}
+    &
+    \textbf{look}
+    \\
+    \midrule
+    %
+    \comname{cdots}%
+    \massindex[ellipses]{cdots}[\comname]
+    &
+    Horizontal dots, vertically centered.
+    &
+    $\cdots$
+    \\
+    \comname{ddots}%
+    \massindex[ellipses]{ddots}[\comname]
+    &
+    Diagonal dots.
+    &
+    $\ddots$
+    \\
+    \comname{vdots}%
+    \massindex[ellipses]{vdots}[\comname]
+    &
+    Vertical dots, horizontally centered.
+    &
+    $\vdots$
+    \\
+    \comname{ldots}%
+    \massindex[ellipses]{ldots}[\comname]
+    &
+    Lowered dots.
+    &
+    $\ldots$
+    % making this line as high as the others
+    \vphantom{$\vdots$}
+    \\
+    \bottomrule
+  \end{tabular}
+  \endgroup
+  \end{center}
+  \caption{Ellipses with a specific orientation.}
+  \label{ellipses with orientation}
+\end{table}
+The ellipses~\comname{cdots},~\comname{ddots} and~\comname{vdots} are typically used in matrices.
+\begin{showlatex}{Typical usage of the ellipses~\comname{cdots},~\comname{vdots},~\comname{ddots}}
+\[
+  \begin{pmatrix}
+    a_{11} & \cdots & a_{1n} \\
+    \vdots & \ddots & \vdots \\
+    a_{n1} & \cdots & a_{nn}
+  \end{pmatrix}
+\]
+\end{showlatex}
+The command~\comname{ldots} may be used to denote left out digits or symbols.
+\begin{showlatex}{Using the ellipsis~\comname{ldots}}
+We find that
+\[
+  x = 0.1234567891011\ldots
+\]
+Consider the word $w = a_1 \ldots a_n$ where $a_1, \dotsc, a_n$ are letters in an alphabet $\Sigma$.
+\end{showlatex}
+Note that the members of this second group of dots all have names of the form~\comname{*dots}, where~\optname{*} is a letter that specified the positioning of these dots.
+
+% The following should \emph{never} be used to denote a product:
+% \begin{showcode}{Wrong way of abbreviating multiplication~I}
+% x_1 \cdot {any kind of dots} \cdot x_n
+% \end{showcode}
+% So all of the following are \textbf{wrong}, and some of them look even worse then the other ones.
+% \begin{showlatex}*{Wrong way of abbreviating multiplication~II}
+% \begin{gather*}
+%   x_1 \cdot \dotsb \cdot x_n \\
+%   x_1 \cdot \dotsc \cdot x_n \\
+%   x_1 \cdot \dotsm \cdot x_n \\
+%   x_1 \cdot \dotsi \cdot x_n \\
+%   x_1 \cdot \cdots \cdot x_n \\
+%   x_1 \cdot \ldots \cdot x_n
+% \end{gather*}
+% \end{showlatex}
+% (The author hopes that nobody is stupid enough to even trying using \comname{ddots} or \comname{vdots} in this situation.)
+
+So overall one should use the ellipses~\comname{cdots}, \comname{ddots} and \comname{vdots} for matrices, and otherwise the ellipses~\comname{dotsb}, \comname{dotsc}, \comname{dotsm}, \comname{dotsi} and occasionally \comname{dotso}.
+
+There also exists the generic command~\comname{dots}\massindex[ellipses]{dots}[\comname] which tries to automagically use the right kind of positioning and spacing.
+But the author recommends no using this command as it can lead to inconsistent results:
+\begin{showlatex}{Inconsistent results with \comname{dots}}
+  The ellipses in $x_1 \leq x_2 \leq \dots \leq x_n$ and $y_1 \leq y_2 \leq \dots$ should look the same.
+\end{showlatex}
+
+\index{ellipses|)}
+
+
+
+\subsection{Know your matrices}
+\index{matrices|(}
+
+The package~\packname{amsmath}\massindex[packages]{amsmath}[\packname] provides various environments for matrices, the most basic of which is the environment~\envname{matrix}\massindex[matrices!normal sized]{matrix}[\envname].
+\begin{showlatex}*{The basic matrix environment~\envname{matrix}}
+\[
+  \begin{matrix}
+    a & b \\
+    c & d
+  \end{matrix}
+\]
+\end{showlatex}
+There are five more variants of this basic matrix environment, that put different delimiters around the matrix.
+The package~\packname{mathtools}\massindex[packages]{mathtools}[\packname] also provides small versions of all six kinds of matrices.
+See \cref{table of matrices} for a table of all these kinds of matrices.
+\begin{table}
+  \begin{center}
+  \begin{tabular}{@{}lccc@{}}
+    \toprule
+    %
+    \textbf{size}
+    &
+    \multicolumn{3}{c}{\textbf{matrices}}
+    \\
+    \midrule
+    %
+    normal
+    &
+    \begin{tabular}{c}
+      $\begin{matrix} a & b \\ c & d \end{matrix}$ \\
+      \envname{matrix}%
+      \massindex[matrices!normal sized]{matrix}[\envname]
+    \end{tabular}
+    &
+    \begin{tabular}{c}
+      $\begin{pmatrix} a & b \\ c & d \end{pmatrix}$ \\
+      \envname{pmatrix}%
+      \massindex[matrices!normal sized]{pmatrix}[\envname]
+    \end{tabular}
+    &
+    \begin{tabular}{c}
+      $\begin{bmatrix} a & b \\ c & d \end{bmatrix}$ \\
+      \envname{bmatrix}%
+      \massindex[matrices!normal sized]{bmatrix}[\envname]
+    \end{tabular}
+    \\[2.5em]
+    {}
+    &
+    \begin{tabular}{c}
+      $\begin{Bmatrix} a & b \\ c & d \end{Bmatrix}$ \\
+      \envname{Bmatrix}%
+      \massindex[matrices!normal sized]{Bmatrix}[\envname]
+    \end{tabular}
+    &
+    \begin{tabular}{c}
+      $\begin{vmatrix} a & b \\ c & d \end{vmatrix}$ \\
+      \envname{vmatrix}%
+      \massindex[matrices!normal sized]{vmatrix}[\envname]
+    \end{tabular}
+    &
+    \begin{tabular}{c}
+      $\begin{Vmatrix} a & b \\ c & d \end{Vmatrix}$ \\
+      \envname{Vmatrix}%
+      \massindex[matrices!normal sized]{Vmatrix}[\envname]
+    \end{tabular}
+    \\[2.5em]
+    small
+    &
+    \begin{tabular}{c}
+      $\begin{smallmatrix} a & b \\ c & d \end{smallmatrix}$ \\
+      \envname{smallmatrix}%
+      \massindex[matrices!small sized]{smallmatrix}[\envname]
+    \end{tabular}
+    &
+    \begin{tabular}{c}
+      $\begin{psmallmatrix} a & b \\ c & d \end{psmallmatrix}$ \\
+      \envname{psmallmatrix}%
+      \massindex[matrices!small sized]{psmallmatrix}[\envname]
+    \end{tabular}
+    &
+    \begin{tabular}{c}
+      $\begin{bsmallmatrix} a & b \\ c & d \end{bsmallmatrix}$ \\
+      \envname{bsmallmatrix}%
+      \massindex[matrices!small sized]{bsmallmatrix}[\envname]
+    \end{tabular}
+    \\[2.5em]
+    {}
+    &
+    \begin{tabular}{c}
+      $\begin{Bsmallmatrix} a & b \\ c & d \end{Bsmallmatrix}$ \\
+      \envname{Bsmallmatrix}%
+      \massindex[matrices!small sized]{Bsmallmatrix}[\envname]
+    \end{tabular}
+    &
+    \begin{tabular}{c}
+      $\begin{vsmallmatrix} a & b \\ c & d \end{vsmallmatrix}$ \\
+      \envname{vsmallmatrix}%
+      \massindex[matrices!small sized]{vsmallmatrix}[\envname]
+    \end{tabular}
+    &
+    \begin{tabular}{c}
+      $\begin{Vsmallmatrix} a & b \\ c & d \end{Vsmallmatrix}$ \\
+      \envname{Vsmallmatrix}%
+      \massindex[matrices!small sized]{Vsmallmatrix}[\envname]
+    \end{tabular}
+    \\
+    \bottomrule
+  \end{tabular}
+  \end{center}
+  \caption{Kinds of matrices.}
+  \label{table of matrices}
+\end{table}
+
+The package~\packname{mathtools}\massindex[packages]{mathtools}[\packname] also provides starred versions of the matrices in \cref{table of matrices}.
+These starred versions allow to specify as an optional argument the alignment of the columns.
+The three possible arguments are~\optname{l}\massindex{l}[\optname] for left-alignment,~\optname{c}\massindex{c}[\optname] for centered alignment and ~\optname{r}\massindex{r}[\optname] for right-alignment.
+The standard alignment is~\optname{c}.
+\begin{showlatex}{Aligning matrix entries}
+\[
+  \begin{bmatrix*}[l]
+      a & -b \\
+     -c &  d
+  \end{bmatrix*}
+  \qquad
+  \begin{bmatrix*}[c]
+    a & -b \\
+    -c &  d
+  \end{bmatrix*}
+  \qquad
+  \begin{bmatrix*}[r]
+     a & -b \\
+    -c &  d
+  \end{bmatrix*}
+  \qquad
+  \begin{bmatrix}
+     a & -b \\
+    -c &  d
+  \end{bmatrix}
+\]
+\end{showlatex}
+
+One should choose the kind of matrix, its size and alignment dependent on convention, usage and the matrix entries. 
+\begin{showlatex}*{Using the right kind of matrix}
+We consider the morphism
+\[
+  X \oplus Y
+  \xrightarrow{\,
+    \begin{bsmallmatrix*}[r]
+      f & -d \\
+      0 &  g
+    \end{bsmallmatrix*}
+    \,
+  }
+  X' \oplus Y' \,.
+\]
+\end{showlatex}
+
+\index{matrices|)}
+
+
+
+
+
+\section{Avoid bad notation}
+
+
+
+\subsection{Don’t use \comtitle{subset}}
+
+Some people use~$\subset$~(\comname{subset}\massindex{subset}[\comname]) to denote inclusion and~$\subsetneq$~(\comname{subsetneq}\massindex{subsetneq}[\comname]) to denote proper inclusion, while some other people use~$\subseteq$~(\comname{subseteq}\massindex{subseteq}[\comname]) to denote inclusion and~$\subset$ to denote proper inclusion.
 The second convention has the advantage of making sense and being consistent with the usual use of~$\leq$ and~$<$, whereas the first convention has the non-advantage of existing.
 The problem is that both conventions are wide-spread but use the symbol~$\subset$ is different ways.
 
 The conflict between the above two conventions has abused the symbol~$\subset$ to a point that it should simply \emph{never} be used.
-Instead one shold always use~$\subseteq$ for inclusion, $\subsetneq$ for proper inclusion and~$\nsubseteq$~(\commandname{nsubseteq}) for non-inclusion.
+Instead one should always use~$\subseteq$ for inclusion, $\subsetneq$ for proper inclusion and~$\nsubseteq$~(\comname{nsubseteq}\massindex{nsubseteq}[\comname]) for non-inclusion.
 
-Some people prefer the symbols~$\subseteqq$~(\commandname{subseteqq}) and~$\subsetneqq$~(\commandname{subsetneqq}) instead.
+Some people prefer the symbols~$\subseteqq$~(\comname{subseteqq}\massindex{subseteqq}[\comname]) and~$\subsetneqq$~(\comname{subsetneqq}\massindex{subsetneqq}[\comname]) instead.
 The author thinks that these symbols are unnecessary large and recommends not to use them.
 (But they do at least leave poor old~$\subset$ alone.)
 
 
 
+\subsection{Don’t underline}
+\index{underlining}
 
-
-\section{Don’t underline}
-
-Underlining mathematics works well on the blackboard, in handwritting and it was done in the age of typewriters.
+Underlining mathematics works well on the blackboard, in handwriting and it was done in the age of typewriters.
 Don’t do it in {\LaTeX}.
 
 
 
+\subsection{Use \texorpdfstring{$\mathrm{d}x$}{dx} instead of \texorpdfstring{$dx$}{dx}}
+
+A differential\index{differential} is written as \inlinecode{{\tbs}mathrm\{d\}x}, not as $dx$.
+When it occurs at the end of an integral\index{integral} then a slight spacing~\comname{\,}\index{spacing!in math mode} is also introduced in front of it.
+So don’t do the following:
+\begin{showlatex}*{Wrong kind of differentials}
+\[
+  \int_a^b f(x) dx
+  \quad
+  \int_a^b f(x) \mathrm{d}x
+\]
+\end{showlatex}
+Instead do the following:
+\begin{showlatex}*{Right kind of differential}
+\[
+  \int_a^b f(x) \,\mathrm{d}x
+\]
+\end{showlatex}
 
 
-\section{Using and defining commands}
 
-Use predefined mathematical operators:
-\begin{showlatex}{Using math operators vs.\ not using them}
+\subsection{Don’t force fancy fractions}
+\index{fractions|(}
+
+When fractions are placed inline, as an exponent or in an index then they should be of the form $a/b$.
+The notation
+\[
+  \frac{a}{b}
+\]
+is reserved for display style.
+So don’t do the following:
+\begin{showlatex}{Full fractions in exponent, index and inline}
+Consider $e^{\frac{1}{x}}$ and $x_{\frac{1}{n}}$ and $\frac{2}{3}$.
+\end{showlatex}
+Do the following instead:
+\begin{showlatex}{Flat fractions in exponent, index and inline}
+Consider $e^{1/x}$ and $x_{1/n}$ and $2/3$.
+\end{showlatex}
+
+Don’t use funky fractions like $\faktor{a}{b}$. They’ll make you go blind and burn down your house.
+
+% TODO: Finding out the proper term for flat fractions. See Chicago Manual?
+
+\index{fractions|)}
+
+
+
+
+
+\section{Defining new commands}
+
+Many mathematical operators have predefined commands, which should be used.
+\begin{showlatex}{Using commands vs.\ not using them}
 Use $\sin(x)$ instead of $sin x$, use $\dim V$ instead of $dim V$ and use $\lim_{n \to \infty} a_n$ instead of $lim_{n \to \infty} a_n$.
 \end{showlatex}
 New commands can be defined in various ways:
 
 
-\subsection{\texttt{DeclareMathOperator}}
+\subsection{\comtitle{DeclareMathOperator}}
 
-Commands of the form \commandtt{Word} that give the output $\mathrm{Word}$ can easily be defined using \commandtt{DeclareMathOperator}.
-The command \commandtt{DeclareMathOperator} can only be used in the preamble.
+Commands of the form~\comname{Word} that are supposed to give the output~$\mathrm{Word}$ can easily be defined using the command~\comname{DeclareMathOperator}\massindex[defining commands]{DeclareMathOperator}[\comname].
+\begin{showcode}{Syntax of~\comname{DeclareMathOperator}}
+\DeclareMathOperator{\Word}{Word}
+\end{showcode}
+The command \comname{DeclareMathOperator} can only be used in the preamble.
 
-To define the command \commandtt{Hom} we us the following text in the preamble:
-\begin{showcode}{Declaring a math operator with~\commandname{DeclareMathOperator}}
+To define the command~\comname{Hom} we us the following text in the preamble:
+\begin{showcode}{Declaring a mathematical operator with~\comname{DeclareMathOperator}}
 % in the preamble:
 \DeclareMathOperator{\End}{End}
 \end{showcode}
-The command \commandtt{Hom} can then be used in the usual way:
-\begin{showlatex}{Using a declared math operator}
+The command \comname{Hom} can then be used in the usual way:
+\begin{showlatex}{Using a declared mathematical operator}
 Thus $\End(V) = \End_k(V)$ becomes a vector space.
 \end{showlatex}
-When a command \commandtt{Word} is defined with \commandtt{DeclareMathOperator} then \hologo{LaTeX} automatically inserts some space around \commandtt{Word} when needed:
-\begin{showlatex}*{Automatic spacing of~\commandname{DeclareMathOperator}}
+
+When a command~\comname{Word} is defined with \comname{DeclareMathOperator} then {\LaTeX} will automatically insert some space around\index{spacing!in math mode} \comname{Word} when needed:
+\begin{showlatex}*{Automatic spacing of~\comname{DeclareMathOperator}}
 \begin{align*}
 &x \End V
 \\
@@ -536,89 +1339,92 @@ When a command \commandtt{Word} is defined with \commandtt{DeclareMathOperator} 
 &x \End {(V)}
 \end{align*}
 \end{showlatex}
-Note that in the first expression \hologo{LaTeX} inserts some spacing both to the left and to the right of $\End$.
-In the second expression \hologo{LaTeX} observes that the used math operator is follows by a parenthesis and thus inserts no additional spacing.
-For the third expression we prevent \hologo{LaTeX} from making such an observation by using a pair of curly brackets.
+Note that in the first expression {\LaTeX} inserts some spacing both to the left and to the right of $\End$.
+In the second expression {\LaTeX} observes that the used math operator is follows by a parenthesis and thus inserts no additional spacing.
+For the third expression we prevent {\LaTeX} from making such an observation by using a pair of curly brackets.
 
-
-
-\subsection{\commandtt{operatorname}}
-
-The command \commandtt{operatorname} can be used to give the formatting of a mathemical operator without defining a new command.
-\begin{showlatex}{Using \commandtt{operatorname}}
-Thus $\operatorname{Hom}(V,W) = \operatorname{Hom}_k(V,W)$ becomes a vector space.
-\end{showlatex}
-If the same command is used multiple times then one should use \commandtt{DeclareMathOperator} instead of \commandtt{operatorname}, as \commandtt{Word} easier to write and read than \commandtt{operatorname{Word}}, and keeps the code clean.
-
-This behavior leads to a bad looking output when \commandtt{DeclareMathoperator} is abused.
-Suppose that we want a command \commandtt{Complex} that inserts the code \commandtt{mathbb\{C\}}.
-\begin{showcode}{Wrong way of using \commandtt{DeclareMathOperator}}
+This behavior leads to a bad looking output when \comname{DeclareMathoperator} is abused.
+Suppose that we want a command \comname{Complex} that inserts the code \comname{mathbb\{C\}}.
+\begin{showcode}{Wrong way of using \comname{DeclareMathOperator}}
 % in the preamble:
 \DeclareMathOperator{\Complex}{\mathbb{C}}
 \end{showcode}
 This will lead to the following problem:
-\begin{showlatex}{Wrong output when \commandname{DeclareMathOperator} is abused}
+\begin{showlatex}{Wrong output when \comname{DeclareMathOperator} is abused}
 The span of $x_1, \dotsc, x_n \in \Complex^m$ equals $\Complex x_1 + \dotsb + \Complex x_n$.
 \end{showlatex}
 We expect the output $\mathbb{C} x_1 + \dotsb + \mathbb{C} x_n$ but get some unwanted spacing instead.
 
 
 
-\subsection{Don’t abuse \commandtt{mathrm}}
+\subsection{\comtitle{operatorname}}
 
-The commands \commandtt{mathrm} and \commandtt{operatorname} do not give the same formatting.
-With \commandtt{operatorname} we get necessary spacing when not using parentheses, which does not happen when using \commandtt{mathrm}.
-\begin{showlatex}{Missing spacing after~\commandname{mathrm}}
+The command~\comname{operatorname}\massindex[defining commands]{operatorname}[\comname] can be used to give the formatting of a mathemical operator without defining a new command.
+\begin{showlatex}{Using \comname{operatorname}}
+Thus $\operatorname{Hom}(V,W) = \operatorname{Hom}_k(V,W)$ becomes a vector space.
+\end{showlatex}
+If the same command is used multiple times then one should use \comname{DeclareMathOperator} instead of \comname{operatorname}, to keep the code clean.
+
+
+
+\subsection{Don’t abuse \comtitle{mathrm}}
+
+The commands~\comname{mathrm}\massindex{mathrm}[\comname] and \comname{operatorname} do not give the same formatting.
+With \comname{operatorname} we get the necessary spacing\index{spacing!in math mode} when not using parentheses, which does not happen when using \comname{mathrm}.
+\begin{showlatex}{Missing spacing after~\comname{mathrm}}
 Compare $\operatorname{End} V$ to $\mathrm{End} V$.
 \end{showlatex}
 
 
 
-\subsection{\commandtt{newcommand}}
+\subsection{\comtitle{newcommand}}
 
-A very general way of defining new commands is given by \commandtt{newcommand}.
+A very general way of defining new commands is given by \comname{newcommand}\massindex[defining commands]{newcommand}[\comname].
 Its syntax is as follows:
-\begin{showcode}{Syntax of \commandtt{newcommand}}
-\newcommand{\name}[n]{ definition including #1, ..., #n }
+\begin{showcode}{Syntax of \comname{newcommand}}
+\newcommand{\name}[number of arguments n]{ definition including #1, ..., #n }
 \end{showcode}
-Here \texttt{n} is the number of arguments that the defined \commandtt{name} will take.
-The arguments can be accessed as \texttt{\#1}, \texttt{\#2}, etc., where \texttt{\#i} is the $i$-th argument.
 Consider the following example:
-\begin{showlatex}{Using \commandtt{newcommand}}
+\begin{showlatex}{Using the command~\comname{newcommand}}
 \newcommand{\bimodule}[2]{#1-#2-bimodule}
 Let $M$ be an \bimodule{$A$}{$B$}.
 \end{showlatex}
-One may think about \commandtt{DeclareMathOperator} as a combination of \commandtt{newcommand} and \commandtt{operatorname}:
-\begin{showlatex}{\commandname{DeclareMathOperator} = \commandtt{newcommand} plus \commandtt{operatorname}}
+One may think about \comname{DeclareMathOperator} as a combination of \comname{newcommand} and \comname{operatorname}:
+\begin{showlatex}{\comname{DeclareMathOperator} = \comname{newcommand} plus \comname{operatorname}}
 \newcommand{\Ouv}{\operatorname{Ouv}}
 $\Ouv X$
 \end{showlatex}
 
-Trying to define an already existing command with \commandtt{newcommand} will lead to an error.
-To overwrite an already existing command one can use \commandtt{renewcommand} instead.
-But this shouldn’t really be used (unles you really, \emph{really} know what you’re doing):
+Trying to define an already existing command with \comname{newcommand} will lead to an error.
+To overwrite an already existing command one can use \comname{renewcommand}\massindex[defining commands]{renewcommand}[\comname] instead.
+But this shouldn’t really be used (unless you really, \emph{really} know what you’re doing):
 Even if you don’t like a particular command there is a chance that some package that you’re using relies on it.
 So overwriting a command can easily surprise you with some new problems.
 
 
 
-\subsection{\commandtt{DeclarePairedDelimiter}}
+\subsection{\comtitle{DeclarePairedDelimiter}}
+\index{delimiters!zzzz@\igobble |seealso {\comname{DeclarePairedDelimiter}}}
 
-One special kind of commands are things like \commandtt{abs\{ \}} for absolute values, which are supposed to put a certain kind of delimiter to the sides of the given argument.
-One can use \commandtt{DeclarePaireDelimiter} to define such commands:
-\begin{showcode}{Using \commandtt{DeclarePairedDelimiter}}
+Mathematical operations like the absolute value~$\lvert \cdot \rvert$ and a norm~$\lVert \cdot \rVert$ are denoted by putting certain delimiters to the left and right of the argument.
+To define a corresponding {\LaTeX} command like~\comname{abs} or \comname{norm} one should use the command~\comname{DeclarePairedDelimiter}\massindex[defining commands]{DeclarePairedDelimiter}[\comname] (which is provided by the package~\packname{mathtools}):
+\begin{showcode}{Syntax of \comname{DeclarePairedDelimiter}}
+\DeclarePairedDelimiter{\name}{left delimiter}{right delimiter}
+\end{showcode}
+As an example we use \comname{DeclarePairedDelimiter} to define a command~\comname{abs} for absolute value:
+\begin{showcode}{Defining the command~\comname{abs} with \comname{DeclarePairedDelimiter}}
 \DeclarePairedDelimiter{\abs}{\lvert}{\rvert}
 \end{showcode}
-The defined command can then be used as \commandtt{abs\{ \}}:
+The defined command can now be used as expected:
 \begin{showlatex}{Using a declared delimiter}
   \[
     \abs{-5} = 5
   \]
 \end{showlatex}
 
-But \commandtt{DeclarePairedDelimiter} does not only define \commandtt{abs} but also a starred version \commandtt{abs*} that scales the surrounding delimiters according to its content.
-One can also specify a scaling size, like \commandtt{big}, \commandtt{bigg}, etc. to scale the delimiters:
-\begin{showlatex}{Scaling of declaired delimiters}
+Declaring a command~\comname{delim} via~\comname{DeclarePairedDelimiter} will automatically also define starred version~\comname{delim*} that scales the surrounding delimiters according to the given content between them.
+One can also specify a scaling size like \comname{big}\massindex[scaling]{big}[\comname], \comname{bigg}\massindex[scaling]{bigg}[\comname], etc.\ to scale the delimiters.
+\begin{showlatex}{Scaling of declared delimiters}
 \begin{align*}
   \abs{-\frac{1}{2}}
   &=
@@ -634,12 +1440,19 @@ One can also specify a scaling size, like \commandtt{big}, \commandtt{bigg}, etc
 \end{align*}
 \end{showlatex}
 
-Sometimes one needs a little more control then the basic \commandtt{DeclairePairedDelimiter} offers.
-The command \commandtt{DeclarePairedDelimiterX} allows to specify a number of arguments \texttt{[n]} and needs to know how to built up the expression between the delimiters using these specified arguments:
-\begin{showcode}{Using \commandtt{DeclarePairedDelimiterX} for more advanced delimiters}
+The variant~\comname{DeclarePairedDelimiterX}\massindex[defining commands]{DeclarePairedDelimiterX}[\comname] allows building more sophisticated commands:
+\begin{showcode}{Syntax of \comname{DeclarePairedDelimiterX}}
+\DeclarePairedDelimiterX{\name}
+  [number of arguments n]
+  {left delimiter}{right delimiter}
+  {expression build from #1, #2, ..., #n}
+\end{showcode}
+If the built up expression contains a delimiter, and by prefixing this delimiter with the command~\comname{delimsize}\massindex[scaling]{delimsize}[\comname] will ensure that the delimiter scales in the same way as the two surrounding delimiters.
+As an example we define a command~\comname{inner} for inner product. 
+\begin{showcode}{Using \comname{DeclarePairedDelimiterX} for more advanced delimiters}
 \DeclarePairedDelimiterX{\inner}[2]{\langle}{\rangle}{#1 \,\delimsize\vert\, #2}
 \end{showcode}
-The command \commandtt{delimsize} ensures that the vertical line \commandtt{vert} will be properly scaled when the starred version of the command will be used:
+The defined command~\comname{inner} takes two arguments and inserts a line~(\comname{vert}) with some surrounding space~(\comname{,}) between them.
 \begin{showlatex}{Using more advanced delimiters}
 \[
   \inner{\psi_1}{\psi_2}
@@ -647,501 +1460,74 @@ The command \commandtt{delimsize} ensures that the vertical line \commandtt{vert
   \inner*{\frac{f}{g}}{\frac{h}{k}}
 \]
 \end{showlatex}
-
-There is also the even more advanced command \commandtt{DeclarePairedDelimiterXPP}, which also allows to specify code that is to be inserted before the left delimiter and after the right delimiter:
-\begin{showcode}{Syntax of \commandtt{DeclarePairedDelimiterXPP}}
-\DeclarePairedDelimiterXPP{\name}[n]{left code}{left delimiter}{right delimiter}{right code}{inner code}
-\end{showcode}
-Suppose for example that we have defined a command \commandtt{norm} as follows:
-\begin{showcode}{Defining \commandtt{norm} in the naive way}
-\DeclarePairedDelimiter{\norm}{\lVert}{\rVert}
-\end{showcode}
-This will lead to the following output:
-\begin{showlatex}{Using the naive \commandtt{norm}}
-\[
-  \norm{f}
-  =
-  \sup_{x \in I} \norm{f(x)}
-\]
-\end{showlatex}
-Note that there seems to be some space missing between the expressions $\sup$ and $\norm{f(x)}$.
-This may seem surprising at first but makes sense:
-In the similar expression $\sup(M)$ we dont expect any space between \commandtt{sup} and the following left delimiter \texttt{(}, so here we also don’t get any spacing between \commandtt{sup} and the following left delimiter \commandtt{lVert}.
-We can circumvent this problem by adding an empty use of \commandtt{mathop} in between.
-We can do this by using \commandtt{DeclarePairedDelimiterXPP} to insert \commandtt{mathop\{\}} before the left delimiter:
-\begin{showcode}{Defining~\commandname{newnorm} with~\commandtt{DeclarePairedDelimiterXPP}}
-\DeclarePairedDelimiterXPP{\newnorm}[1]{\mathop{}}{\lVert}{\rVert}{}{#1}
-\end{showcode}
-The output now looks as follows:
-\begin{showlatex}{Using \commandtt{newnorm}}
-\[
-  \newnorm{f}
-  =
-  \sup_{x \in I} \newnorm{f(x)}
-\]
-\end{showlatex}
-This approach is motivated by \cite{tex_advancedpair}.
-
-More information on \commandtt{DeclarePairedDelimiter} can be found in the \texttt{mathtools} manual.
+There is also the variant~\comname{DeclarePairedDelimiterXPP}\massindex[defining commands]{DeclarePairedDelimiterXPP}[\comname] that is even more flexible than \comname{DeclarePairedDelimiterX}.
 
 
 
-\subsection{\texttt{xparse}}
+\subsection{The package~\packtitle{xparse}}
 
-A useful way for defining more involved macros is the \texttt{xparse} package.
-This package provides the \commandtt{NewDocumentCommand} command, which can be used to define new commands.
-The syntax of \commandtt{NewDocumentCommand} is as follows:
-\begin{showcode}{Syntax of \commandtt{NewDocumentCommand}}
+A useful way for defining commands -- in particular more involved ones -- is provided by the package~\packname{xparse}\massindex[packages]{xparse}[\packname].
+This package provides the command~\comname{NewDocumentCommand}\massindex[defining commands]{NewDocumentCommand}[\comname], which can be used to define new commands.
+\begin{showcode}{Syntax of \comname{NewDocumentCommand}}
 \NewDocumentCommand{\name}{arguments}{definition}
 \end{showcode}
-Instead of giving the number of arguments (as done for \commandtt{newcommand}) we say what kind of arguments will be given.
-There are four possible kinds of argument:
-\begin{itemize}
-  \item
-    \texttt{s} if a starred version of the argument should also be defined,
-  \item
-    \texttt{o} for optional arguments,
-  \item
-    \texttt{O} for optional arguments that admit a default value
-  \item 
-    \texttt{m} for mandatory arguments.
-\end{itemize}
-Mandatory arguments are given in curly brackets \texttt{\{ \}} and optional arguments are given in square brackets \texttt{[ ]}.
-This is most easy to understand through some examples:
+The field~\inlinecode{arguments} specifies what kinds of arguments the command~\comname{name} will take:
 
-\subsubsection{First example}
+\subsubsection{Mandatory arguments}
 
-\begin{showcode}{Using~\commandname{NewDocumentCommand}~I, defining~\commandname{restrict}}
-\NewDocumentCommand{\restrict}{smm}{
-  \IfBooleanTF{#1}
-    {\left. {#2} \right|_{#3}}
-    {#2|_{#3}}
-}
-\end{showcode}
-% define the command
-\NewDocumentCommand{\restrict}{smm}{
-  \IfBooleanTF{#1}
-    {\left. {#2} \right|_{#3}}
-    {#2|_{#3}}
-}%
-The letter \texttt{s} ensures that the code defines both the command \commandtt{restrict} and its starred version \commandtt{restrict*}.
-Both of these take two mandatory arguments.
-The following part checks which version of the command is used:
-\begin{showcode}{How to check for the star}
-\IfBooleanTF{#1}{ starred command }{ non-starred command }
-\end{showcode}
-So \commandtt{restrict\{f\}\{X\}} gives the code \texttt{f|\_\{X\}} whereas \commandtt{restrict*\{f\}\{X\}} gives the following code:
-\begin{center}
-  \texttt{{\tbs}left. f {\tbs}right|\_\{X\}}
-\end{center}
-We get the following output:
-\begin{showlatex}{Using \commandtt{restrict}}
-\[
-  \restrict{f}{X}
-  \quad
-  \restrict{\frac{f}{g}}{X}
-  \quad
-  \restrict*{\frac{f}{g}}{X}
-\]
+Mandatory arguments can be declared with the option~\optname{m}\expandafter\index\expandafter{\ciname{NewDocumentCommand}!mandatory argument}:
+\begin{showlatex}{Mandatory arguments with \comname{NewDocumentCommand}~II}
+% in the preamble
+\NewDocumentCommand{\double}{m}{#1 #1}
+% in the main text
+\double{sometext}
+\end{showlatex}
+One can specify multiple arguments:
+\begin{showlatex}{Mandatory arguments with \comname{NewDocumentCommand}~II}
+% in the preamble
+\NewDocumentCommand{\swap}{m m}{#2 #1}
+% in the main text
+\swap{first}{second}
 \end{showlatex}
 
-\subsubsection{Second example}
+\subsubsection{Optional arguments without default value}
 
-The following is modified version of the previous example:
-\begin{showcode}{Using~\commandname{NewDocumentCommand}~II, defining an enhanced version of~\commandname{restrict}}
-\NewDocumentCommand{\restrict}{smmO{}}{
-\IfBooleanTF{#1}
-  {\left. {#2} \right|_{#3}^{#4}}
-  {{#2} |_{#3}^{#4}}
-}
+Optional arguments can be declared with the option~\optname{o}\massindex{o}[\optname]\expandafter\index\expandafter{\ciname{NewDocumentCommand}!optional argument!without default value}.
+It then needs to be checked with the command~\comname{IfNoValueTF}
+\begin{showcode}[label = {syntax of ifvaluetf}]{Syntax of \comname{IfValueTF}}
+\IfValueTF{#number of argument}
+  {if the argument has been set}
+  {if the argument has not been set}
 \end{showcode}
-% redefine the command
-\RenewDocumentCommand{\restrict}{smmO{}}{
-\IfBooleanTF{#1}
-  {\left. {#2} \right|_{#3}^{#4}}
-  {{#2} |_{#3}^{#4}}
-}
-The command now takes an optional third argument.
-If this optional argument is not set then it takes on its standard value, which is empty.
-\begin{showlatex}{Using the enhanced version of \commandtt{restrict}}
-\[
-  \restrict{f}{X}
-  \quad
-  \restrict{f}{X}[Y]
-  \quad
-  \restrict*{\frac{f}{g}}{X}
-  \quad
-  \restrict*{\frac{f}{g}}{X}[Y]
-\]
-\end{showlatex}
-
-\subsubsection{Third example}
-
-The following command takes two mandatory arguments and two optional arguments, whose standard values are empty:
-\begin{showcode}{Using~\commandname{NewDocumentCommand}~III, defining~\commandname{moduleindex}}
-\NewDocumentCommand{\moduleindex}{O{} m O{}}{
-  {}_{#1} #2_{#3}
-}
-\end{showcode}
-\NewDocumentCommand{\moduleindex}{O{} m O{}}{
-  {}_{#1} #2_{#3}
-}
-The output is as follows:
-\begin{showlatex}{Using \commandtt{moduleindex}}
-\[
-  \moduleindex{M}
-  \quad
-  \moduleindex[R]{M}
-  \quad
-  \moduleindex{M}[S]
-  \quad
-  \moduleindex[R]{M}[S]
-\]
-\end{showlatex}
-
-\subsubsection{Fourth example}
-
-The following example takes an optional argument with no standard value.
-So it has to be checked if this optional argument was assigned a value.
-\begin{showcode}{Using~\commandname{NewDocumentCommand}~IV, defining~\commandname{module}}
-\NewDocumentCommand{\module}{m o}{
-  \IfNoValueTF{#2}{{#1}-module}
-                  {{#1}-{#2}-bimodule}
-}
-\end{showcode}
-% overwrite the command
-\NewDocumentCommand{\module}{m o}{%
-  \IfNoValueTF{#2}{{#1}-module}
-                  {{#1}-{#2}-bimodule}%
-}
-This command works as follows:
-\begin{showlatex}{Using\commandtt{module}}
+One can similarly use~\comname{IfNoValueTF} instead of~\comname{IfNoValueTF}.
+This has the same effect as switching the cases in \cref{syntax of ifvaluetf}.
+\begin{showlatex}{Optional arguments with \comname{NewDocumentCommand},~I}
+% in the preamble
+\NewDocumentCommand{\module}{m o}{\IfNoValueTF{#2}{#1-module}{#1-#2-bimodule}}
+% in the main text
 Let $M$ be an \module{$R$} and let $N$ be an \module{$R$}[$S$].
 \end{showlatex}
 
+\subsubsection{Optional arguments with default value}
 
-
-
-
-\section{Don’t use \commandtt{limits}}
-
-For the love of God, please don’t.
-People seem to think that they have to add \commandtt{limits} after a command to add limits to it:
-\begin{showlatex}*{Using limits}
-\[
-  \sum\limits_{k=1}^n k
-  =
-  \frac{n(n+1)}{2}
-\]
-\end{showlatex}
-But this is not only unnecessary, but also dangerous.
-It is unnecessary because (most of) the commands in questions already have this functionality built in:
-\begin{showlatex}*{Using built-in limits}
-\[
-  \sum_{k=0}^n k
-  =
-  \frac{n(n+1)}{2}
-\]
-\end{showlatex}
-This built-in limits have the advantage that they can distinguish between inline math and display math math:
-\begin{showlatex}*{Inline vs.\ display with built-in limits}
-The sum $\sum_{k=0}^n 2^k = 2^{n+1} - 1$ is inline while the sum
-\[
-  \sum_{k=0}^n 3^k
-  \neq
-  3^{n+1} - 1
-\]
-is in display mode.
-\end{showlatex}
-We can see that the inline version does not only use the smaller summation sign, but also sets the limits to the right instead of above the top and below the bottom of the summation sign.
-This is a feature---a feature that the \commandtt{limits} version is missing:
-\begin{showlatex}*{Inline with~\commandname{limits}}
-So here is some text which will generate some lines.
-The text itself isn’t important, but we really want it to fill some lines.
-The important thing is the sum $\sum\limits_{k=0}^n k$.
-Well, not really the sum itself, but its typesetting using the \commandtt{limits} command.
-I think you know what I mean.
-\end{showlatex}
-The limits are still placed above the top and below the summation sign.
-This has it’s price:
-The line in which the sum resides breaks the usual vertical space between lines, which gives the text an inconsistent and unorganized look.
-Compare this to the version without \commandtt{limits}:
-\begin{showlatex}*{Inline with built-in limits}
-So here is some text which will generate some lines.
-The text itself isn’t important, but we really want it to fill some lines.
-The important thing is the sum $\sum_{k=0}^n k$.
-Well, not really the sum itself, but its typesetting without the \commandtt{limits} command.
-\end{showlatex}
-Here the line distance is nicely consistent and pleasing to the eye.
-
-The usual predefined commands on which one would expect limits already have them defined, e.g.\ \commandtt{sum}, \commandtt{prod} or \commandtt{lim}, as the following example shows:
-\begin{showlatex}{Inline vs.\ display for different commands with built-in limits}
-Compare the inline versions $\sum_{k=0}^n k$ and $\prod_{k=1}^n k$ and $\lim_{n \to \infty} a_n$ with the display versions
-\[
-  \sum_{k=0}^n k \,,
-  \quad
-  \prod_{k=1}^n k \,,
-  \quad
-  \lim_{n \to \infty} a_n \,.
-\]
-\end{showlatex}
-When one defines custom commands using \commandtt{DeclareMathOperator} and \commandtt{operatorname} one can make them support limits by using \commandtt{DeclareMathOperator*} and \commandtt{operatorname*} instead.
-Suppose for examlp that we make in the preamble the following definition:
-\begin{showcode}{Using \commandtt{DeclareMathOperator*} to define~\commandname{colim}}
-\DeclareMathOperator*{\colim}{colim}
-\end{showcode}
-We can then do the following:
-\begin{showlatex}{Using~\commandname{colim}}
-Inline we have $\colim_{X' \leq X} F(X')$ and in display mode we get
-\[
-  \colim_{X' \leq X} F(X') \,.
-\]
-\end{showlatex}
-The command \commandtt{operatorname*} was \commandtt{operatornamewithlimits} in the past, but this version should no longer be used.
-
-If for some extremly strange reason one \emph{really} needs the limits to be in display style, then one should commit to it by using \commandtt{displaystyle}.
-Consider the following example:
-\begin{showlatex}{Forcing displaystyle with \commandtt{displaystyle}}
-\[
-  \begin{pmatrix}
-    \frac{n^2+1}{n^2 + 2}
-    &
-    \frac{n^2+2}{n^2 + 3}
-    \\
-    \frac{n^2+2}{n^2 + 3}
-    &
-    \frac{n^2+3}{n^2 + 4}
-  \end{pmatrix}
-  =
-  \begin{pmatrix}
-    \displaystyle
-    \frac{n^2+1}{n^2 + 2}
-    &
-    \displaystyle
-    \frac{n^2+2}{n^2 + 3}
-    \\[1.5em]
-    \displaystyle
-    \frac{n^2+2}{n^2 + 3}
-    &
-    \displaystyle
-    \frac{n^2+3}{n^2 + 4}
-  \end{pmatrix}
-\]
-\end{showlatex}
-In the above example we have put~\commandname{displaystyle} before every matrix entry to ensure that it has the usual style of display mathematics.
-We have also put replaced the basic line break~\commandname{\tbs} by~\inlinecode{{\tbs}{\tbs}[1.5em]} for some additional spacing between the two rows of the resulting matrix.
-(Otherwise the fractions are far too close.)
-
-
-
-
-\section{Use \texorpdfstring{\commandname{xrightarrow}}{{\tbs}xrightarrow} intstead of \texorpdfstring{\commandname{overset}}{{\tbs}overset}}
-\label{extensible arrows}
-
-Some people put text above arrows by wrongly using \commandname{overset} and \commandname{underset}:
-\begin{showlatex}{Using~\commandname{overset} and~\commandname{underset} to put text above or below an arrow}
-\[
-  X
-  \overset{f}{\longrightarrow}
-  Y
-  \underset{g \circ h \circ k}{\longrightarrow}
-  Z
-\]
-\end{showlatex}
-We can see above that the length of the arrow does not adjust to the size of the text above it or below it.
-The proper way to put text on top of an arrow or bellow an arrow of the form~\enquote{$\to$} is therefore the command~\commandname{xrightarrow}:
-\begin{showlatex}{Using~\commandname{xrightarrow} to put text above or below an arrow}
-\[
-  X
-  \xrightarrow{f}
-  Y
-  \xrightarrow[g \circ h \circ k]{}
-  Z \,.
-\]
-\end{showlatex}
-The package~\packagename{amsmath} defines only the two most basic extensible arrows.
-Many more kinds of extensible arrows are provided by the package~\packagename{mathtools} and some more are contained in the package~\packagename{extarrows}.
-An overview of the various kinds of extensible arrows can be found in \cref{extensible arrow table}.
-\begin{table}[tb]
-  \begin{center}
-  \begingroup
-  \renewcommand{\arraystretch}{0.9}
-  \begin{tabular}{@{}ccc@{}}
-    \toprule
-    \multicolumn{3}{c}{\textbf{extensible arrows in \packagename{amsmath}, \packagename{mathtools}, \packagename{extarrows}}}
-    \\
-    \midrule
-    \begin{tabular}{c}
-      $A \xrightarrow{f} B$
-      \\
-      \commandname{xrightarrow}
-    \end{tabular}
-    &
-    \begin{tabular}{c}
-      $A \xleftarrow{f} B$
-      \\
-      \commandname{xleftarrow}
-    \end{tabular}
-    &
-    {}
-    \\
-    \midrule
-    \begin{tabular}{c}
-      $A \xmapsto{f} B$
-      \\
-      \commandname{xmapsto}
-    \end{tabular}
-    &
-    \begin{tabular}{c}
-      $A \xleftrightarrow{f} B$
-      \\
-      \commandname{xleftrightarrow}
-    \end{tabular}
-    &
-    \begin{tabular}{c}
-      $A \xRightarrow{f} B$
-      \\
-      \commandname{xRightarrow}
-    \end{tabular}
-    \\[1.5em]
-    \begin{tabular}{c}
-      $A \xLeftarrow{f} B$
-      \\
-      \commandname{xLeftarrow}
-    \end{tabular}
-    &
-    \begin{tabular}{c}
-      $A \xLeftrightarrow{f} B$
-      \\
-      \commandname{xLeftrightarrow}
-    \end{tabular}
-    &
-    \begin{tabular}{c}
-      $A \xhookleftarrow{f} B$
-      \\
-      \commandname{xhookleftarrow}
-    \end{tabular}
-    \\[1.5em]
-    \begin{tabular}{c}
-      $A \xhookrightarrow{f} B$
-      \\
-      \commandname{xhookrightarrow}
-    \end{tabular}
-    &
-    \begin{tabular}{c}
-      $A \xrightharpoondown{f} B$
-      \\
-      \commandname{xrightharpoondown}
-    \end{tabular}
-    &
-    \begin{tabular}{c}
-      $A \xrightharpoonup{f} B$
-      \\
-      \commandname{xrightharpoonup}
-    \end{tabular}
-    \\[1.5em]
-    \begin{tabular}{c}
-      $A \xrightleftharpoons{f} B$
-      \\
-      \commandname{xrightleftharpoons}
-    \end{tabular}
-    &
-    \begin{tabular}{c}
-      $A \xleftharpoondown{f} B$
-      \\
-      \commandname{xleftharpoondown}
-    \end{tabular}
-    &
-    \begin{tabular}{c}
-      $A \xleftharpoonup{f} B$
-      \\
-      \commandname{xleftharpoonup}
-    \end{tabular}
-    \\[1.5em]
-    \begin{tabular}{c}
-      $A \xleftrightharpoons{f} B$
-      \\
-      \commandname{xleftrightharpoons}
-    \end{tabular}
-    &
-    {}
-    &
-    {}
-    \\
-    \midrule
-    \begin{tabular}{c}
-      $A \xlongequal{f} B$
-      \\
-      \commandname{xlongequal}
-    \end{tabular}
-    &
-    \begin{tabular}{c}
-      $A \xleftrightarrow{f} B$
-      \\
-      \commandname{xleftrightarrow}
-    \end{tabular}
-    &
-    \begin{tabular}{c}
-      $A \xLeftrightarrow{f} B$
-      \\
-      \commandname{xLeftrightarrow}
-    \end{tabular}
-    \\[1.5em]
-    \begin{tabular}{c}
-      $A \xlongleftarrow{f} B$
-      \\
-      \commandname{xlongleftarrow}
-    \end{tabular}
-    &
-    \begin{tabular}{c}
-      $A \xlongrightarrow{f} B$
-      \\
-      \commandname{xlongrightarrow}
-    \end{tabular}
-    &
-    \begin{tabular}{c}
-      $A \xlongleftrightarrow{f} B$
-      \\
-      \commandname{xlongleftrightarrow}
-    \end{tabular}
-    \\[1.5em]
-    \begin{tabular}{c}
-      $A \xLongleftarrow{f} B$
-      \\
-      \commandname{xLongleftarrow}
-    \end{tabular}
-    &
-    \begin{tabular}{c}
-      $A \xLongrightarrow{f} B$
-      \\
-      \commandname{xLongrightarrow}
-    \end{tabular}
-    &
-    \begin{tabular}{c}
-      $A \xLongleftrightarrow{f} B$
-      \\
-      \commandname{xLongleftrightarrow}
-    \end{tabular}
-    \\
-    \bottomrule
-  \end{tabular}
-  \endgroup
-  \end{center}
- \caption{Extensible arrows.}
- \label{extensible arrow table}
-\end{table}
-
-The author recommends to define custom commmands as shortcuts for the most used arrows.
-\begin{showlatex}{Defining arrow commands as shortcuts}
-\newcommand{\xto}{\xrightarrow}
-\newcommand{\xlongto}[1]{\xlongrightarrow{\;#1\;}}
-The function $A \xto{f} B$ is the same as
-\[
-  A \xlongto{f} B \,.
-\]
+One can use \optname{O\{default value\}}\massindex{O\{ \}}[\optname]\expandafter\index\expandafter{\ciname{NewDocumentCommand}!optional argument!with default value} instead of \optname{o} to declare an optional argument that has a default value.
+\begin{showlatex}{Optional arguments with \comname{NewDocumentCommand},~II}
+% in the preamble
+\NewDocumentCommand{\restrict}{m m O{}}{#1|_{#2}^{#3}}
+% in the main text
+Let $f = \restrict{g}{X}$ and $f' = \restrict{g'}{X}[Y]$
 \end{showlatex}
 
-% TODO: Defining new kind of stretchable arrows
+\subsubsection{Starred versions}
+
+One can use the argument~\optname{*} together with the command~\comname{IfBooleanTF}\massindex[\ciname{NewDocumentCommand}]{IfBooleanTF}[\comname] to check for the occurrence of a star.
+This can be used to also define a starred version of a command.
+\begin{showlatex}{Starred versions with \comname{NewDocumentCommand}}
+% in the preamble
+\NewDocumentCommand{\choice}{s m m}{\IfBooleanTF{#1}{#3}{#2}}
+% in the main text
+Don’t confuse \choice{first}{second} with \choice*{first}{second}.
+\end{showlatex}
 
 
 
@@ -1169,49 +1555,49 @@ If an arrow in a commutative diagram isn’t long enough then this arrow must al
 \end{tikzcd}
 \]
 \end{showlatex}
-By using the option~\inlinecode{column~sep~=~*} one can change the distance of the columns of the commutative diagram.
-As options for~\inlinecode{*} one can give a specific distance, like~\inlinecode{4~em}.
-Some distances are predefined for easy use, see \cref{column sep settings}.
+The column distance of a commutative diagram is governed by the option~\optname{column~sep}\massindex[\piname{tikz-cd}]{column sep}[\optname].
+The value of \optname{column~sep} is expected to be a distance, e.g.~\optname{4em}.
+Some standard distances are predefined, see \cref{column sep settings}.
 \begin{table}[tb]
   \begin{center}
   \begin{tabular}{@{}lcccccc@{}}
     \toprule
     \textbf{name}
     &
-    \inlinecode{tiny}
+    \optname{tiny}\massindex[\piname{tikz-cd}!\optname{column sep}]{tiny}[\optname]
     &
-    \inlinecode{small}
+    \optname{small}\massindex[\piname{tikz-cd}!\optname{column sep}]{small}[\optname]
     &
-    \inlinecode{scriptsize}
+    \optname{scriptsize}\massindex[\piname{tikz-cd}!\optname{column sep}]{scriptsize}[\optname]
     &
-    \inlinecode{normal}
+    \optname{normal}\massindex[\piname{tikz-cd}!\optname{column sep}]{normal}[\optname]
     &
-    \inlinecode{large}
+    \optname{large}\massindex[\piname{tikz-cd}!\optname{column sep}]{large}[\optname]
     &
-    \inlinecode{huge}
+    \optname{huge}\massindex[\piname{tikz-cd}!\optname{column sep}]{huge}[\optname]
     \\
     \textbf{distance}
     &
-    \inlinecode{0.6em}
+    \optname{0.6em}
     &
-    \inlinecode{1.2em}
+    \optname{1.2em}
     &
-    \inlinecode{1.8em}
+    \optname{1.8em}
     &
-    \inlinecode{2.4em}
+    \optname{2.4em}
     &
-    \inlinecode{3.6em}
+    \optname{3.6em}
     &
-    \inlinecode{4.8em}
+    \optname{4.8em}
     \\
     \bottomrule
   \end{tabular}
   \end{center}
-  \caption{Standard distances for~\inlinecode{column sep}.}
+  \caption{Standard distances for~\optname{column sep}.}
   \label{column sep settings}
 \end{table}
-With~\inlinecode{column~sep} one can fix the above diagram.
-\begin{showlatex}{Using~\inlinecode{column sep}}
+With~\optname{column~sep} one can fix the above diagram.
+\begin{showlatex}{Using~\optname{column sep}}
 \[
 \begin{tikzcd}[column sep = huge]
   X \arrow{r}{f \circ g - g \circ f} \arrow{d}
@@ -1230,7 +1616,7 @@ With~\inlinecode{column~sep} one can fix the above diagram.
 \end{showlatex}
 % TODO: Change the distance between only specific columns.
 
-One can similarly use the option~\inlinecode{row~sep~=~*} to change the distance of the rows.
+One can similarly use the option~\optname{row~sep} to change the distance of the rows.
 Some predefined distances can be found in \cref{row sep settings}.
 \begin{table}[tb]
   \begin{center}
@@ -1238,17 +1624,17 @@ Some predefined distances can be found in \cref{row sep settings}.
     \toprule
     \textbf{name}
     &
-    \inlinecode{tiny}
+    \optname{tiny}\massindex[\piname{tikz-cd}!\optname{row sep}]{tiny}[\optname]
     &
-    \inlinecode{small}
+    \optname{small}\massindex[\piname{tikz-cd}!\optname{row sep}]{small}[\optname]
     &
-    \inlinecode{scriptsize}
+    \optname{scriptsize}\massindex[\piname{tikz-cd}!\optname{row sep}]{scriptsize}[\optname]
     &
-    \inlinecode{normal}
+    \optname{normal}\massindex[\piname{tikz-cd}!\optname{row sep}]{normal}[\optname]
     &
-    \inlinecode{large}
+    \optname{large}\massindex[\piname{tikz-cd}!\optname{row sep}]{large}[\optname]
     &
-    \inlinecode{huge}
+    \optname{huge}\massindex[\piname{tikz-cd}!\optname{row sep}]{huge}[\optname]
     \\
     \textbf{distance}
     &
@@ -1267,250 +1653,78 @@ Some predefined distances can be found in \cref{row sep settings}.
     \bottomrule
   \end{tabular}
   \end{center}
-  \caption{Standard distances for~\inlinecode{row sep}.}
+  \caption{Standard distances for~\optname{row sep}.}
   \label{row sep settings}
 \end{table}
-These are the same as for~\inlinecode{column~sep} but scaled down by a factor of~$0.75$.
+They are the same as for~\optname{column~sep} but scaled down by a factor of~$0.75$.
 
 
 
 
 
-\section{Know your dots}
+\section{Beware of spacings}
 
-Ellipsis should \textbf{never} by written as \texttt{...} (three single dots), see the following horrible example:
-\begin{showlatex}*{Very wrong ellipsis with~\inlinecode{...}}
-$a + ... + b$
-\end{showlatex}
-\hologo{LaTeX} instead provides different kinds of ellipses to use in math mode, namely
-\begin{center}
-    \commandtt{dotsb},
-    \quad
-    \commandtt{dotsc},
-    \quad
-    \commandtt{dotsm},
-    \quad
-    \commandtt{dotsi},
-    \quad
-    \commandtt{dotso},
-    \\
-    \commandtt{cdots},
-    \quad
-    \commandtt{ddots},
-    \quad
-    \commandtt{vdots},
-    \quad
-    \commandtt{ldots}.
-\end{center}
-Each of these have they own role and (mostly) distinct look and feel.
-There are two groups of ellipses.
-The first group consists of \commandtt{dotsb}, \commandtt{dotsc}, \commandtt{dotsm}, \commandtt{dotsi},\commandtt{dotso}, whereas the second group consists of \commandtt{cdots}, \commandtt{ddots}, \commandtt{vdots}, \commandtt{ldots}.
+\index{spacing!in math mode|(}
 
-The ellipses in the first group are named after they function:
-The ellipsis \commandtt{dotsb} for binary, \commandtt{dotsc} for comma, \commandtt{dotsm} for multiplication, \commandtt{dotsi} for integrals and \commandtt{dotso} for other.
-The usage and look of the first three are as follows:
-\begin{showlatex}*{Using~\commandname{dotsb},~\commandname{dotsc},~\commandname{dotsi},~\commandname{dotsm}}
-\begin{gather*}
-  \sum_{i=1}^n x_i
-  =
-  x_1 + \dotsb + x_n 
-  \\
-  1 \leq \dotsb \leq n 
-  \\
-  i = 1, \dotsc, m
-  \\
-  \int_{a_1}^{b_1}
-  \dotsi
-  \int_{a_n}^{b_n}
-  \\
-  \prod_{i=1}^n x_i
-  =
-  x_1 \dotsm x_n
-\end{gather*}
-\end{showlatex}
-The command \commandtt{dotso} is meant for other, more unspecific cases.
-Note that the members of this group all have names of the form \commandtt{dots*}, where \texttt{*} is a letter that specifies the semantic use of the dots.
-
-The ellipses in the second group are not named after their function but after their look:
-The ellipsis \commandtt{cdots} is vertically centered, \commandtt{ddots} is diagonal (from the top left to the bottom right), \commandtt{vdots} is horizontally centered, and \commandtt{ldots} is vertically lowered.
-The first three of these ellipses are usually used in matrices:
-\begin{showlatex}{Using~\commandname{cdots},~\commandname{vdots},~\commandname{ddots}}
+When typesetting a document {\LaTeX} groups the appearing symbols and expressions into certain groups and then adds spacing around these symbols and expressions depending on which group they belong to.
+Three of these groups are \enquote{operators}, \enquote{relation symbols} and \enquote{binary operations}.
+The symbols~\inlinecode{=} and~\inlinecode{<} are for example treated as relations symbols, and the symbols~\inlinecode{+} and~\comname{cdot} as binary operations.
+We can see in the following example how some space is automatically added around these symbols:
+\begin{showlatex}{Standard spacing around relation symbols and binary operators}
 \[
-  \begin{pmatrix}
-    a_{11} & \cdots & a_{1n} \\
-    \vdots & \ddots & \vdots \\
-    a_{n1} & \cdots & a_{nn}
-  \end{pmatrix}
+  a = b  \qquad  a < b  \qquad  a + b  \qquad  a \cdot b
 \]
 \end{showlatex}
-The command \commandtt{ldots} can for example be used to denote left out digits or symbols.
-\begin{showlatex}{Using~\commandtt{ldots}}
-We find that
+To compare this to a version without spacing we can surround the symbols by a pair of curly brackets.
+This circumvents {\LaTeX} from taking the surround code into consideration.
+This leads to the following result:
+\begin{showlatex}{Disabling the standard spacing around a symbol}
 \[
-  x = 0.1234567891011\ldots
-\]
-Consider the word $w = a_1 \ldots a_n$ where $a_1, \dotsc, a_n$ are letters in an alphabet $\Sigma$.
-\end{showlatex}
-Note that the members of this second group of dots all have names of the form \texttt{*dots}, where \texttt{*} is a letter that specified the positioning of these dots.
-
-The following should \textbf{never} to denote a product:
-\begin{showcode}{Wrong way of abbreviating multiplication~I}
-x_1 \cdot {any kind of dots} \cdot x_n
-\end{showcode}
-So all of the following are \textbf{wrong}, and some of them look even worse then the other ones.
-\begin{showlatex}*{Wrong way of abbreviating multiplication~II}
-\begin{gather*}
-  x_1 \cdot \dotsb \cdot x_n \\
-  x_1 \cdot \dotsc \cdot x_n \\
-  x_1 \cdot \dotsm \cdot x_n \\
-  x_1 \cdot \dotsi \cdot x_n \\
-  x_1 \cdot \cdots \cdot x_n \\
-  x_1 \cdot \ldots \cdot x_n
-\end{gather*}
-\end{showlatex}
-(The author hopes that nobody is stupid enough to even trying using \commandtt{ddots} or \commandtt{vdots} in this situation.)
-
-So overall one should use \commandtt{cdots}, \commandtt{ddots} and \commandtt{vdots} for matrices, and otherwise the commands \commandtt{dotsb}, \commandtt{dotsc}, \commandtt{dotsm}, \commandtt{dotsi} or \commandtt{dotso} depending on the context.
-
-There also exists the generic command \commandtt{dots} which tries to automagically use the right kind of positioning and spacing.
-
-
-
-
-
-\section{Know your matrices}
-
-The following are the usual kinds of matrices.
-\begin{showlatex}{Different kinds of matrices}
-\begin{gather*}
-  \begin{matrix}
-    a & b \\
-    c & d
-  \end{matrix}
-  \quad
-  \begin{pmatrix}
-    a & b \\
-    c & d
-  \end{pmatrix}
-  \quad
-  \begin{bmatrix}
-    a & b \\
-    c & d
-  \end{bmatrix}
-  \quad
-  \begin{vmatrix}
-    a & b \\
-    c & d
-  \end{vmatrix}
-\end{gather*}
-\end{showlatex}
-There alse exist starred versions of these matrix environments that allow to specify the alignment of its columns.
-(The standard is centered.)
-\begin{showlatex}{Aligning matrix entries}
-\[
-  \begin{matrix*}[r]
-      a & -b \\
-     -c &  d
-  \end{matrix*}
-  \qquad
-  \begin{pmatrix*}[c]
-    a & -b \\
-    -c &  d
-  \end{pmatrix*}
-  \qquad
-  \begin{bmatrix*}[l]
-     a & -b \\
-    -c &  d
-  \end{bmatrix*}
-  \qquad
-  \begin{vmatrix}
-     a & -b \\
-    -c &  d
-  \end{vmatrix}
+  a {=} b   \qquad  a {<} b  \qquad  a {+} b  \qquad  a {\cdot} b
 \]
 \end{showlatex}
-There are also small versions of all of the above:
-\begin{showlatex}{Different kind of (aligned) small matrices}
-\begin{gather*}
-  \begin{smallmatrix}
-    a & b \\
-    c & d
-  \end{smallmatrix}
-  \qquad
-  \begin{psmallmatrix}
-    a & b \\
-    c & d
-  \end{psmallmatrix}
-  \qquad
-  \begin{bsmallmatrix}
-    a & b \\
-    c & d
-  \end{bsmallmatrix}
-  \qquad
-  \begin{vsmallmatrix}
-    a & b \\
-    c & d
-  \end{vsmallmatrix}
-\\
-  \begin{smallmatrix*}[r]
-    -a &  b \\
-      c & -d
-  \end{smallmatrix*}
-  \quad
-  \begin{psmallmatrix*}[c]
-    -a &  b \\
-      c & -d
-  \end{psmallmatrix*}
-  \quad
-  \begin{bsmallmatrix*}[l]
-    -a &  b \\
-      c & -d
-  \end{bsmallmatrix*}
-  \quad
-  \begin{vsmallmatrix}
-    -a &  b \\
-      c & -d
-  \end{vsmallmatrix}
-\end{gather*}
-\end{showlatex}
-One needs to choose the type of matrix depending on the context:
-\begin{showlatex}*{Using the right kind of matrix}
-We consider the morphism
+The automatic spacing can become a problem, as the following examples illustrate:
+\begin{showlatex}*{Clashing spacings around symbols}
 \[
-  X \oplus Y
-  \xrightarrow{\,
-    \begin{bsmallmatrix*}[r]
-      f & -d \\
-      0 &  g
-    \end{bsmallmatrix*}
-    \,
-  }
-  X' \oplus Y' \,.
+  X/\sim
+  \quad
+  R/\operatorname{J}(R)
+  \quad
+  \operatorname{id} \otimes h
 \]
 \end{showlatex}
-
-
-
-
-
-\section{Use \texorpdfstring{$\mathrm{d}x$}{dx} instead of \texorpdfstring{$dx$}{dx}}
-
-A differential is written as \texttt{{\tbs}mathrm\{d\}x}, not as $dx$.
-When it occurs at the end of an integral then a slight spacing \texttt{{\tbs},} is also introduced.
-The following are therefore \textbf{wrong}:
-\begin{showlatex}*{Wrong kind of differentials}
+This problem can be fixed by surround the respective symbols in curly brackets.
+\begin{showlatex}*{Preventing a clash of spacings}
 \[
-  \int_a^b f(x) dx
+  X/{\sim}
   \quad
-  \int_a^b f(x) \mathrm{d}x
+  R/{\operatorname{J}(R)}
+  \quad
+  {\operatorname{id}} \otimes h
 \]
 \end{showlatex}
-The following is right:
-\begin{showlatex}*{Right kind of differential}
+One can tell {\LaTeX} how to treat a certain symbol:
+\begin{showlatex}*{Specifying the role (and thus spacing) of a symbol}
 \[
-  \int_a^b f(x) \,\mathrm{d}x
+  a | b
+  \quad
+  a \mathop{|} b
+  \quad
+  a \mathrel{|} b
+  \quad
+  a \mathbin{|} b
 \]
 \end{showlatex}
+To define a command~\comname{divides} to express that a number~$n$ divides a number~$m$ we do therefore do the following:
+\begin{showlatex}*{Defining and using \comname{divides}}
+\newcommand{\divides}{\mathrel{|}}
+\[
+  n \divides m
+\]
+\end{showlatex}
+For more on this topic see \cite{tex_binrel}.
+
+\index{spacing!in math mode|)}
 
 
 
