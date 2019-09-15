@@ -23,9 +23,26 @@
 
 % configure list environments
 \usepackage{enumitem}
-\setlist{
-  listparindent=\parindent,
-  parsep=0pt,
+\newlist{myenumerate}{enumerate}{2}
+\newlist{myitemize}{itemize}{2}
+\newlist{mydescription}{description}{2}
+\setlist[myenumerate]{
+  label         = {\arabic*.},
+  listparindent = \parindent,
+  parsep        = 0pt
+}
+\setlist[myitemize]{
+  label         = \textbullet,
+  listparindent = \parindent,
+  parsep        = 0pt
+}
+\setlist[myitemize, 2]{
+  label = {\textopenbullet}
+}
+\setlist[mydescription]{
+  wide          = 0pt,
+  listparindent = \parindent,
+  parsep        = 0pt
 }
 
 % tables
@@ -127,7 +144,7 @@
 %%%%% PLAYING AROUND WITH FONTS
 \usepackage{fontspec}
 
-\setmonofont[Scale=MatchLowercase]{DejaVu Sans Mono}
+\setmonofont[Scale=MatchLowercase]{Hack}
 
 % first compiling with this font takes 6—7 GB, subsequent is back to normal
 \newfontfamily{\russianfont}[Scale=MatchUppercase]{Noto Serif CJK JP}

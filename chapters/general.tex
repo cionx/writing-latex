@@ -17,6 +17,37 @@ Sending code to yourself on Facebook\index{Facebook} is not a proper system of v
 
 
 
+\section{The compilation process}
+
+
+
+\subsection{Use \texorpdfstring{\LuaLaTeX}{LuaLaTeX} or \texorpdfstring{\XeLaTeX}{XeLaTeX}}
+
+Use {\LuaLaTeX}\index{LuaLaTeX@{\LuaLaTeX}} or {\XeLaTeX}\index{XeLaTeX@{\XeLaTeX}} for native Unicode\index{Unicode} support (i.e.\ without including any kind of additional packages).
+The author recommends {\LuaLaTeX} because the \packname{microtype}\massindex{microtype}[\packname] package his only a limited functionality under {\XeLaTeX}.
+
+
+
+\subsection{Don’t ignore warnings}
+
+There are two ways in which {\LaTeX} will tell you that something went wrong:
+Errors\index{error} and warnings\index{warning}.
+
+The occurrence of an error means that {\LaTeX} was unable the process the source code and gave up at some point in the process.
+In the case of a warning {\LaTeX} again wasn’t able to process the source code, but decided to produce some output nevertheless.
+Hence the only difference between an error and a warning is how {\LaTeX} decided to proceed with it.
+But there is no intrinsic difference between the two of them.
+
+It is typically hard to ignore errors, as no output file will be generated.
+But warnings also shouldn’t be ignored:
+While the occurrence of an error means that you get no output at all, the occurrence of a warning means that you’re getting a faulty output.
+
+% TODO: Too many warnings make future problems worse.
+
+
+
+
+
 \section{Code quality}
 
 
@@ -74,14 +105,14 @@ $y = \sin ( x ) - e^x$
 
 Related the previous point, write at most one sentence per line.
 This has at least three advantages:
-\begin{itemize}
+\begin{itemize}[wide=0pt, leftmargin=*]
   \item
     When an error\index{error} or warning\index{warning} occurs {\LaTeX} will (try to) tell you the line of source code in which the problem occurs.
     Having your source code split up over multiple lines makes it much easier to find the problem.
   \item
     Organizing the source code in lines will in most cases make the tools provided by your version control\index{version control} system more efficient to use.
   \item
-    By writing one sentence per line you will more easily spot sentences which are overly long.
+   Sentences which are overly loong become easily recognizable.
 \end{itemize}
 
 
@@ -89,7 +120,7 @@ This has at least three advantages:
 \subsection{Properly indent your source code}
 
 Writing {\LaTeX} means writing source code.
-Make sure that your source code is properly indented\index{indentation}.
+Make sure that your source code is properly indented\index{indentation!in source code}.
 
 
 
@@ -114,37 +145,6 @@ Here is some text.%
 
 
 
-\section{The compilation process}
-
-
-
-\subsection{Use \texorpdfstring{\LuaLaTeX}{LuaLaTeX} or \texorpdfstring{\XeLaTeX}{XeLaTeX}}
-
-Use {\LuaLaTeX}\index{LuaLaTeX@{\LuaLaTeX}} or {\XeLaTeX}\index{XeLaTeX@{\XeLaTeX}} for native Unicode\index{Unicode} support (i.e.\ without including any kind of additional packages).
-The author recommends {\LuaLaTeX} because the \packname{microtype}\massindex{microtype}[\packname] package his only a limited functionality under {\XeLaTeX}.
-
-
-
-\subsection{Don’t ignore warnings}
-
-There are two ways in which {\LaTeX} will tell you that something went wrong:
-Errors\index{error} and warnings\index{warning}.
-
-The occurrence of an error means that {\LaTeX} was unable the process the source code and gave up at some point in the process.
-In the case of a warning {\LaTeX} again wasn’t able to process the source code, but decided to produce some output nevertheless.
-Hence the only difference between an error and a warning is how {\LaTeX} decided to proceed with it.
-But there is no intrinsic difference between the two of them.
-
-It is typically hard to ignore errors, as no output file will be generated.
-But warnings also shouldn’t be ignored:
-While the occurrence of an error means that you get no output at all, the occurrence of a warning means that you’re getting a faulty output.
-
-% TODO: Too many warnings make future problems worse.
-
-
-
-
-
 \section{Splitting up a project into multiple files}
 \index{including files!zzzz@\igobble |see{file inclusion}}
 
@@ -155,28 +155,28 @@ Any slightly larger project should be split up into multiple files.
 \subsection{The commands~\comtitle{usepackage}, \comtitle{include}, \comtitle{input}}
 
 There are (at least) three useful ways to include another file into your project: \comname{usepackage}\massindex[file inclusion]{usepackage}[\comname], \comname{include}\massindex[file inclusion]{include}[\comname] and \comname{input}\massindex[file inclusion]{input}[\comname].
-\begin{itemize}[leftmargin=*]
+\begin{myitemize}
   \item
     Most of the preamble information -- including of packages, configuration of styles, configuration of the look and feels of the document -- should be put into one or multiple \filename{sty}-files.
     These file(s) can then be included into the document by using \comname{usepackage}\massindex[file inclusion]{usepackage}[\comname].
   \item
     The commands~\comname{include} and~\comname{input} insert the text of the specified documents at the position where they are used, but have slight differences:
-    \begin{itemize}[label = \textopenbullet, leftmargin=*]
+    \begin{myitemize}
       \item
         The command~\comname{include}\massindex[file inclusion]{include}[\comname] ensures that the specified content starts on a new page, and also that the following content begins on a new page.
         The command~\comname{input}\massindex[file inclusion]{input}[\comname] simply inserts the specified content at the given position without any such additional formatting.
       \item
         The command~\comname{include} cannot be nested:
         The specified file is not allowed to include the command~\comname{include} again.
-    \end{itemize}
-\end{itemize}
+    \end{myitemize}
+\end{myitemize}
 
 One should use the command~\comname{include} for chapters and the command~\comname{input} for any smaller level of text organization.
 One should in particular break the main text into smaller units until each of them can be put into its own file of sensible length.
 
 Suppose for example that your text consists of three chapters, each of which consists of two sections.
 Then you should have at least ten files:
-\begin{itemize}
+\begin{myitemize}
   \item
     A master file \filename{main.tex}.
     This file includes all other files in some way, and this is the file which needs to be compiled.
@@ -186,7 +186,7 @@ Then you should have at least ten files:
     Three files like \filename{chapter1.tex}, \filename{chapter2.tex} and \filename{chapter3.tex} for the chapters.
   \item
     Six files for the sections, say \filename{section1.tex} up to \filename{section6.tex}.
-\end{itemize}
+\end{myitemize}
 These files should include each other as shown in \cref{file inclusion structure}.
 \begin{figure}[tb]
   \begin{center}
@@ -322,7 +322,7 @@ This allows {\LaTeX} to access the labels in \filename{chapter2.tex} even though
 
 The auxiliary file~\filename{chapter2.aux} remains unchanged because {\LaTeX} does not go trough the file~\filename{chapter2.tex} as long as the code~\inlinecode{{\tbs}includeonly\{chapter1\}} is used.
 This leads to the two quirks mentioned above:
-\begin{itemize}
+\begin{myitemize}
   \item
     Before inserting the code \inlinecode{{\tbs}includeonly\{chapter1\}} one needs to compile the whole document, including \filename{chapter2.tex}, a least once.
     This needs to be done so that {\LaTeX} can properly create the auxiliary file~\filename{chapter2.aux}.
@@ -330,7 +330,7 @@ This leads to the two quirks mentioned above:
     Changes made to the file~\filename{chapter2.tex} will not be noticed by {\LaTeX} while the code~\inlinecode{{\tbs}includeonly\{chapter1\}} is present.
     This means in particular that {\LaTeX} won’t notice any new labels that are added in this file.
     In this case one need to stop excluding \filename{chapter1.tex} for at least on compilation process to ensure that the auxiliary file~\filename{chapter2.aux} is refreshed.
-\end{itemize}
+\end{myitemize}
 
 The command~\comname{includeonly} actually accepts as its argument a list of files to be included:
 \begin{showcode}{Syntax of \comname{includeonly}}
@@ -351,7 +351,7 @@ Instead of the standard classes\index{standard classes} \optname{article}\massin
 They provide more functionalities then the standard classes and a more unified interface.
 
 The KOMA-Script classes make slightly different design choices than the standard classes:
-\begin{itemize}
+\begin{myitemize}
   \item
     The KOMA-Script classes have a different chapter title layout than the standard classes.
     The standard look can be regained by setting the option~\optname{chapterprefix}\massindex[KOMA-Script classes, document class!options]{chapterprefix}[\optname] to~\optname{true}:
@@ -370,7 +370,7 @@ The KOMA-Script classes make slightly different design choices than the standard
   \begin{showcode}{Using the option~\optname{egregdoesnotlikesansseriftitles}}
 \documentclass[10pt, a4paper, egregdoesnotlikesansseriftitles]{scrbook}
   \end{showcode}
-\end{itemize}
+\end{myitemize}
 
 
 
@@ -439,7 +439,7 @@ The class~\optname{scrbook} provides the commands~\comname{frontmatter}\massinde
 Together with the sectioning command~\comname{appendix}\massindex[sectioning]{appendix}[\comname] these can be used to separate the document into four parts:
 The front part, the main part, the appendix and the back part.
 These parts behave slightly differently:
-\begin{itemize}
+\begin{myitemize}
   \item
     The front part uses lower case roman numerals\index{roman numerals}\index{numerals!roman} for page numbers.
     In the generated \pagename{pdf}-file these pages will again be numbered with roman numerals (this will be important for the main part).
@@ -469,7 +469,7 @@ These parts behave slightly differently:
     
     This part of the document should contain the bibliography and the index.
     An entry for the bibliography\index{bibliography} can be added to the table of contents by setting the option~\optname{bibliography}\massindex[KOMA-Script classes, document class!options, bibliography]{bibliography}[\optname] to~\optname{totoc}\massindex[KOMA-Script classes]{totoc}[\optname].
-\end{itemize}
+\end{myitemize}
 
 The document layout with~\optname{scrbook} should therefore look roughly as follows:
 

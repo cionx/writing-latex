@@ -236,14 +236,14 @@ The command~\comname{cref} differs from the more primitive~\comname{ref} in that
 \end{showlatex}
 
 The used options options~\inlinecode{capitalise} and~\inlinecode{noabbrev} have the following effects:
-\begin{itemize}
+\begin{myitemize}
   \item
     The option~\inlinecode{capitalise} ensures that the printed type of the reference will begin with an upper case letter.
     In \cref{cref example} we would otherwise get~\enquote{\lcnamecref{dim is well-defined}~\labelcref{dim is well-defined}} instead of~\enquote{\cref{dim is well-defined}}.
   \item
     The option~\inlinecode{noabbrev} ensures that printed types won’t be abbreviated.
     One wil otherwise get~\enquote{eq.\ (5)} instead of~\enquote{equation~(5)}.
-\end{itemize}
+\end{myitemize}
 
 The command~\comname{cref} has the variant \comname{Cref}\massindex[\piname{cleveref},referencing]{Cref}[\comname] which ensures that the inserted type will start with an upper case letter.
 One should always use~\comname{Cref} instead of~\comname{cref} at the beginning of a sentence, even if the option~\optname{capitalise} is set.
@@ -391,6 +391,7 @@ So for dealing with quotes of any kind use the package~\packname{csquotes}.
 
 
 
+
 \section{\packtitle{enumitem} for configuration of lists}
 
 In {\LaTeX} there are three different kinds of list environments:
@@ -428,10 +429,13 @@ The environment~\envname{description}\massindex[list environments]{description}[
 
 The package~\packname{enumitem}\massindex[packages]{enumitem}[\packname]\expandafter\index\expandafter{\einame{enumerate}!zzzz@\igobble |seealso{\packname{enumitem}}} is immensely useful for configuring the style and behavior of these list environments.
 It provides (among others) the following features:
-\begin{itemize}
-  \item
-    For the environment~\envname{enumerate} the style of the numbering can be changed by using the option~\optname{label}\massindex[\piname{enumitem}]{label}[\optname]
-    \begin{showlatex}*{Changing the numbering style of \envname{enumerate} lists}
+
+
+
+\subsection{Style of numbering}
+
+For the environment~\envname{enumerate} the style of the numbering can be changed by using the option~\optname{label}\massindex[\piname{enumitem}]{label}[\optname]
+\begin{showlatex}*{Changing the numbering style of \envname{enumerate} lists}
 \begin{enumerate}[label = (\alph*)]
   \item
     First entry.
@@ -440,56 +444,56 @@ It provides (among others) the following features:
   \item
     Third entry.
 \end{enumerate}
-    \end{showlatex}
-    For a list of possible labels see \cref{enumitem labels}.
-    \begin{table}[tb]
-      \begin{center}
-      \begin{tabular}{@{}ll@{}}
-        \toprule
-        \theading{option}
-        &
-        \theading{description}
-        \\
-        \midrule
-        \comname{alph*}%
-        \massindex[\piname{enumitem}]{alph*}[\optname]
-        &
-        lower case alphabetic
-        \\
-        \comname{Alph*}%
-        \massindex[\piname{enumitem}]{Alph*}[\optname]
-        &
-        upper case alphabetic
-        \\
-        \comname{roman*}%
-        \massindex[\piname{enumitem}]{roman*}[\optname]
-        &
-        lower case Roman numerals%
-        \index{Roman numerals}%
-        \index{numerals!Roman}
-        \\
-        \comname{Roman*}%
-        \massindex[\piname{enumitem}]{Roman*}[\optname]
-        &
-        upper case Roman numerals%
-        \index{Roman numerals}%
-        \index{numerals!Roman}
-        \\
-        \comname{arabic*}%
-        \massindex[\piname{enumitem}]{arabic*}[\optname]
-        &
-        Arabic numerals%
-        \index{Arabic numeral}%
-        \index{numerals!Arabic}
-        \\
-        \bottomrule
-      \end{tabular}
-      \end{center}
-      \caption{Possible labels for the environment~\envname{enumerate}.}
-      \label{enumitem labels}
-    \end{table}
-    One can similarly change the symbol for~\envname{itemize} lists via the option~\optname{label}\massindex[\piname{enumitem}]{label}[\optname]:
-    \begin{showlatex}*{Changing the symbol for~\envname{itemize} lists}
+\end{showlatex}
+For a list of possible labels see \cref{enumitem labels}.
+\begin{table}[tb]
+  \begin{center}
+  \begin{tabular}{@{}ll@{}}
+    \toprule
+    \theading{option}
+    &
+    \theading{description}
+    \\
+    \midrule
+    \comname{alph*}%
+    \massindex[\piname{enumitem}]{alph*}[\optname]
+    &
+    lower case alphabetic
+    \\
+    \comname{Alph*}%
+    \massindex[\piname{enumitem}]{Alph*}[\optname]
+    &
+    upper case alphabetic
+    \\
+    \comname{roman*}%
+    \massindex[\piname{enumitem}]{roman*}[\optname]
+    &
+    lower case Roman numerals%
+    \index{Roman numerals}%
+    \index{numerals!Roman}
+    \\
+    \comname{Roman*}%
+    \massindex[\piname{enumitem}]{Roman*}[\optname]
+    &
+    upper case Roman numerals%
+    \index{Roman numerals}%
+    \index{numerals!Roman}
+    \\
+    \comname{arabic*}%
+    \massindex[\piname{enumitem}]{arabic*}[\optname]
+    &
+    Arabic numerals%
+    \index{Arabic numeral}%
+    \index{numerals!Arabic}
+    \\
+    \bottomrule
+  \end{tabular}
+  \end{center}
+  \caption{Possible labels for the environment~\envname{enumerate}.}
+  \label{enumitem labels}
+\end{table}
+One can similarly change the symbol for~\envname{itemize} lists via the option~\optname{label}\massindex[\piname{enumitem}]{label}[\optname]:
+\begin{showlatex}*{Changing the symbol for~\envname{itemize} lists}
 With the standard symbol:
 \begin{itemize}[label = {\textbullet}]
   \item
@@ -504,36 +508,193 @@ Now with a different symbol:
   \item
     Second entry again.
 \end{itemize}
-    \end{showlatex}
-  \item
-    One can resume lists with the option~\optname{resume}\massindex[\piname{enumitem}]{resume}[\optname]:
-    \begin{showlatex}{Resuming lists}
+\end{showlatex}
+
+
+
+\subsection{Resuming lists}    
+
+One can resume lists with the option~\optname{resume*}\massindex[\piname{enumitem}]{resume*}[\optname].
+The option~\optname{resume}\massindex[\piname{enumitem}]{resume}[\optname] works similarly to~\optname{resume} but doesn’t copy any style options from the previous list.
+\begin{showlatex}{Resuming lists with \optname{resume*}}
 Some text before the first \texttt{enumerate} environment.
-\begin{enumerate}
+\begin{enumerate}[label = \roman*.]
   \item
     First entry.
   \item
     Second entry.
 \end{enumerate}
 Some text between the \texttt{enumerate} environment.
-\begin{enumerate}[resume]
+\begin{enumerate}[resume*]
   \item
     Third entry.
   \item
     Fourth entry.
 \end{enumerate}
 Some text after the second \texttt{enumerate} environment.
-    \end{showlatex}
+\begin{enumerate}[resume]
   \item
-    One can change the various spacings\index{spacing} involved in the list environments.
-%   TODO: Gixe examples
+    Fifth entry.
   \item
-    Global settings can be set via the command~\comname{setlist}\massindex[\piname{enumitem}]{setlist}[\optname]:
-    \begin{showcode}{Syntax of~\comname{setlist}}
+    Sixth entry.
+\end{enumerate}
+Some text after the third \texttt{enumerate} environmen.
+\end{showlatex}
+
+
+
+\subsection{Spacing}
+
+One can change the various spacings\index{spacing}\index{spacing!in lists} involved in the list environments.
+For a full overview we refer to~\cite{enumitem}, and in particular to~\cite[Figure~1]{enumitem}.
+We give here only some of the more important configurations.
+
+\subsubsection{Multiple paragraphs in a list item}
+
+If a list item contains multiple paragraphs of text then the new paragraphs are by default not indented but instead separated from the preceding paragraph by some additional vertical space:
+
+\begin{showlatex}*{Indentation and distance of pararaphs in lists, default behavior}
+\begin{enumerate}
+  \item
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna.
+    
+    In massa tempor nec feugiat. Nunc aliquet bibendum enim facilisis gravida.
+\end{enumerate}
+\end{showlatex}
+
+One can adjust the indentation of the paragraphs with the option~\optname{listparindent}\massindex[\piname{enumitem}]{listparindent}[\optname] and the additional vertical spacing between paragraphs with the option~\optname{parsep}\massindex[\piname{enumitem}]{parsep}[\optname].
+With this we can regain the standard indentation pattern in lists:
+
+\begin{showlatex}*{Indentation and distance of pararaphs in lists, changed behavior}
+\begin{enumerate}[listparindent = \parindent, parsep = 0pt]
+  \item
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna.
+    
+    In massa tempor nec feugiat. Nunc aliquet bibendum enim facilisis gravida.
+\end{enumerate}
+\end{showlatex}
+
+\subsubsection{Distance between items}
+
+One can control the distance between list itemns with the option~\optname{itemsep}\massindex[\piname{enumitem}]{itemsep}[\optname]:
+
+\begin{showlatex}{Distance between list items with \optname{itemsep}}
+A list with standard item distance:
+\begin{enumerate}
+  \item
+    First entry.
+  \item
+    Second entry.
+\end{enumerate}
+Now a list without additional item distance:
+\begin{enumerate}[itemsep = 0pt]
+  \item
+    First entry again.
+  \item
+    Second entry again.
+\end{enumerate}
+\end{showlatex}
+
+\subsubsection{Indentation}
+\index{indentation!for list environments|(}
+
+The environment~\envname{enumerate}\massindex{enumerate}[\envname] has by default two kinds of indentation\massindex{indent}:
+An indentation of the labels with respect to the left margin, and an indentation of the list items with respect to the label.
+\begin{showlatex}*{\envname{enumerate}~environment with standard indentation}
+Lorem ipsum dolor sit amet,
+\begin{enumerate}
+  \item
+  consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+\end{enumerate}
+\end{showlatex}
+
+We can remove both indentations by using the option~\optname{wide}\massindex[\piname{enumitem}]{wide}[\optname] with the value~\optname{0pt}:
+\begin{showlatex}*{\envname{enumerate}~environment without  indentation}
+Lorem ipsum dolor sit amet,
+\begin{enumerate}[wide = 0pt]
+  \item
+  consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+\end{enumerate}
+\end{showlatex}
+We can add back the identation between the item~labels and the item~text by setting the option~\optname{leftmargin}\massindex[\piname{enumitem}]{leftmargin}[\optname] to the value~\optname{*}:
+\begin{showlatex}*{\envname{enumerate}~environments with only identitation between label and text}
+Lorem ipsum dolor sit amet,
+\begin{enumerate}[wide = 0pt, leftmargin = *]
+  \item
+  consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+\end{enumerate}
+\end{showlatex}
+One can also add back the indentation between the left~margin and the item~labels by also using the option~\optname{labelindent}:
+\begin{showlatex}*{\envname{enumerate}~environment with indentation between margin and label, and label and text}
+Lorem ipsum dolor sit amet,
+\begin{enumerate}[wide = 0pt, leftmargin = \parindent, labelindent = \parindent]
+  \item
+  consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+\end{enumerate}
+\end{showlatex}
+One can also combine the above two indentations to regain something that looks like the standard indentation:
+\begin{showlatex}*[label = {better standard indentation}]{\envname{enumerate}~environment with indentation between margin and label, and label and text}
+Lorem ipsum dolor sit amet,
+\begin{enumerate}[wide = 0pt, leftmargin = *, labelindent = \parindent]
+  \item
+  consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+\end{enumerate}
+\end{showlatex}
+But \cref{better standard indentation} does actually have an advantage over the standard indentation, namely that it properly handels long labels:
+\begin{showlatex}{\envname{enumerate}~environment with indentation between margin and label, and label and text}
+The standard identation:
+\begin{enumerate}[label = {(Latin \arabic*)}]
+  \item
+  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+\end{enumerate}
+An indentation with adjusted parameters:
+\begin{enumerate}[label = {(Latin \arabic*)}, wide = 0pt, leftmargin = *, labelindent = \parindent]
+  \item
+  Dolor sed viverra ipsum nunc aliquet bibendum enim.
+  In massa tempor nec feugiat.
+\end{enumerate}
+\end{showlatex}
+
+The identitation for the environment~\envname{itemize}\massindex{itemize}[\envname] can be adjusted in the same way as for the environment~\envname{description}.
+
+For the environment~\envname{description}\massindex{description}[\envname] we can proceed similarly as for~\envname{enumerate}.
+We first observe the standard identation for this environment:
+There is a fixed identation between the left~margin and the items~texts.
+The item~labels are aligned at the left~margin.
+\begin{showlatex}*{\envname{description}~environment with standard indentation}
+Text, text, text, text, text, text, text.
+\begin{description}
+  \item[First item]
+    Text, text, text, text, text, text, text, text, text, text, text.
+  \item[Second item]
+     Text, text, text, text, text, text, text, text, text, text, text.
+\end{description}
+\end{showlatex}
+We can remove the identation by again using the option~\optname{wide}\massindex[\piname{enumitem}]{wide}[\optname].
+\begin{showlatex}*{\envname{description}~environment with no indentation}
+Text, text, text, text, text, text, text.
+\begin{description}[wide = 0pt]
+  \item[First item]
+    Text, text, text, text, text, text, text, text, text, text.
+  \item[Second item]
+     Text, text, text, text, text, text, text, text, text, text.
+\end{description}
+\end{showlatex}
+
+\index{indentation!for list environments|)}
+
+
+
+
+
+\subsection{Global settings}
+
+Global settings can be set via the command~\comname{setlist}\massindex[\piname{enumitem}]{setlist}[\optname]:
+\begin{showcode}{Syntax of~\comname{setlist}}
 \setlist[kind of list]{options}
-    \end{showcode}
-    Consider the following example:
-    \begin{showlatex}*{Global settings for list environments}
+\end{showcode}
+Consider the following example:
+\begin{showlatex}*{Global settings for list environments}
 \setlist[enumerate]{label = \roman*)}
 \begin{enumerate}
   \item
@@ -541,10 +702,14 @@ Some text after the second \texttt{enumerate} environment.
   \item
     Second entry.
 \end{enumerate}
-    \end{showlatex}
-  \item
-    When lists are nested one can use different settings for each list.
-    \begin{showlatex}{Different settings for nested lists}
+\end{showlatex}
+
+
+
+\subsection{Nested lists}
+
+When lists are nested one can use different settings for each list.
+\begin{showlatex}{Different settings for nested lists}
 \begin{enumerate}[label = \Roman*)]
   \item
     First entry.
@@ -563,9 +728,9 @@ Some text after the second \texttt{enumerate} environment.
         Second entry, second subentry.
     \end{enumerate}
 \end{enumerate}
-    \end{showlatex}
-    One can also use different global settings for different depths:
-    \begin{showlatex}{Global settings depending on level}
+\end{showlatex}
+One can also use different global settings for different depths:
+\begin{showlatex}{Global settings depending on level}
 \setlist[enumerate, 1]{label = (\roman*)}
 \setlist[enumerate, 2]{label = (\alph*)}
 \begin{enumerate}
@@ -586,9 +751,9 @@ Some text after the second \texttt{enumerate} environment.
         Second entry, second subentry.
     \end{enumerate}
 \end{enumerate}
-    \end{showlatex}
-    The counter of the first depth and second depth can be accessed via the counters~\inlinecode{enumi}\massindex[\piname{enumitem}]{enumi}[\inlinecode] and \inlinecode{enumii}\massindex[\piname{enumitem}]{enumii}[\inlinecode]: 
-    \begin{showlatex}{Accessing level counters in settings for list environments}
+\end{showlatex}
+The counter of the first depth and second depth can be accessed via the counters~\inlinecode{enumi}\massindex[\piname{enumitem}]{enumi}[\inlinecode] and \inlinecode{enumii}\massindex[\piname{enumitem}]{enumii}[\inlinecode]: 
+\begin{showlatex}{Accessing level counters in settings for list environments}
 \setlist[enumerate, 1]{label = (\arabic*)}
 \setlist[enumerate, 2]{label = (\arabic{enumi}.\alph*)}
 \begin{enumerate}
@@ -609,10 +774,11 @@ Some text after the second \texttt{enumerate} environment.
         Yet another entry.
     \end{enumerate}
 \end{enumerate}
-    \end{showlatex}
-  \item
-    New list types can be constructed by cloning an already existing one via the command~\comname{newlist}\massindex[\piname{enumitem}]{newlist}[\comname]:
-        \begin{showcode}{Syntax of \comname{newlist}}
+\end{showlatex}
+  
+\subsection{Cloning lists}
+New list types can be constructed by cloning an already existing one via the command~\comname{newlist}\massindex[\piname{enumitem}]{newlist}[\comname]:
+\begin{showcode}{Syntax of \comname{newlist}}
 \newlist{new list}{original list}{depth of new list}
     \end{showcode}
     One can then set global options for this new list type without changing the global options for the original type.
@@ -639,8 +805,7 @@ For every collection of elements $x_1, \dotsc, x_n \in M$ the following conditio
         the elements $x_1, \dotsc, x_n$ are a generating set of $M$.
     \end{equivalenceslist}
 \end{equivalenceslist}
-    \end{showlatex}
-\end{itemize}
+\end{showlatex}
 
 
 
@@ -654,22 +819,21 @@ For every collection of elements $x_1, \dotsc, x_n \in M$ the following conditio
 \subsection{The basic setup}
 
 A bibliography in {\LaTeX} comes about from the interplay of three different actors:
-\begin{itemize}
+\begin{myitemize}
   \item
     A~\filename{bib}-file\massindex[bibliography]{bib-file@\string\filename{bib}-file} that contains the various references and their information.
   \item
-    A package that provides commands for citing these references.
+    A bibliography package that provides commands for citing these references.
   \item
     A back~end program\index{bibliography!back~end} that accesses the~\filename{bib}-file to extract the needed information and pass them to {\LaTeX}.
-\end{itemize}
-
-One should choose~\packname{biblatex}\massindex[packages,bibliography]{biblatex}[\packname] for the package and~\appname{biber}\massindex[bibliography]{biber}[\appname] for the back~end program.
+\end{myitemize}
+One should choose~\packname{biblatex}\massindex[packages,bibliography]{biblatex}[\packname] for the bibliography package and~\appname{biber}\massindex[bibliography]{biber}[\appname] for the back~end program.
 For this the package~\packname{biblatex} needs to be loaded with the option~\optname{backend}\massindex[\piname{biblatex}!options]{backend}[\optname] set to~\optname{biber}:
 \begin{showcode}{Loading the package~\packname{biblatex}}
 \usepackage[backend = biber]{biblatex}
 \end{showcode}
 The author also likes to use the following options:
-\begin{itemize}
+\begin{myitemize}
   \item
     By default the occurring references will simply be numbered as~[1],~[2],~[3],~etc\@.
     Often references of the form~[Eis04] are preferable, which is achieved by setting the option~\optname{style}\massindex[\piname{biblatex}!options]{style}[\optname] to~\optname{alphabetic}.
@@ -677,7 +841,7 @@ The author also likes to use the following options:
     Setting the option~\optname{dateabbrev}\massindex[\piname{biblatex}!options]{dateabbrev}[\optname] to~\optname{false} ensures that month names like \enquote{September} are not abbreviated as~\enquote{Sept.}
   \item
     Setting the option~\optname{urldate}\massindex[\piname{biblatex}!options]{urldate}[\optname] to~\optname{long} ensure that dates concerning URLs are written out as~\enquote{September~4,~2109} instead of~\enquote{09/04/2019}.
-\end{itemize}
+\end{myitemize}
 
 
 
@@ -708,7 +872,7 @@ It will be used to add the citations to this reference in the main text.
 \subsubsection{How to choose data for the bibliography}
 
 One should follow two guidelines when adding information to the bibliography.
-\begin{itemize}
+\begin{myitemize}
   \item
     Provide as much data as possible.
     The specified type will determine which of these data will be printed.
@@ -717,7 +881,7 @@ One should follow two guidelines when adding information to the bibliography.
     How the printed data are to be formatted is for {\LaTeX} -- and more specifically \packname{biblatex} -- to decide.
     So don’t try to preformat the provided date in the~\filename{bib}-file.
     Try in particular to give full, unabbreviated names whenever possible.
-\end{itemize}
+\end{myitemize}
 If you feels strongly about certain data being printed, or how certain data should be formatted when printed out, then you should not try to abuse the~\filename{bib}-file for this.
 Instead tell these complains to \packname{biblatex} by changing the appropriate settings.
 
@@ -750,7 +914,7 @@ The resulting output in the bibliography (see \cref{example bibliography}) will 
 
 The type~\optname{@books}\massindex[\piname{biblatex}!types]{book}[\atname] tells {\LaTeX} that the entry is a (single) book.
 The various keys have the following functions:
-\begin{description}
+\begin{mydescription}
   \item[\optname{title}]
     \massindex[\piname{biblatex}!keys]{title}[\optname]
     This key specifies the title of the book.
@@ -763,13 +927,13 @@ The various keys have the following functions:
     \massindex[\piname{biblatex}!keys]{author}[\optname]
     This key specifies the author(s) of the book.
     There are some things to be aware of here:
-    \begin{itemize}
+    \begin{myitemize}
       \item
         The name of an author needs to be given in the format~\inlinecode{Lastname, Firstname}.
         This is needed so that~\appname{biber} can properly process this data.
       \item
         If multiple authors are given then they need to be separated by the word~\inlinecode{and}.
-    \end{itemize}
+    \end{myitemize}
   \item[\optname{edition}]
     \massindex[\piname{biblatex}!keys]{edition}[\optname]
     This key specifies the edition of the book.
@@ -824,7 +988,7 @@ The various keys have the following functions:
   \item[\optname{doi}]
     \massindex[\piname{biblatex}!keys]{doi}[\optname]
     This key specifies the DOI of the book (if it has one).
-\end{description}
+\end{mydescription}
 
 \subsubsection{Entry for a book with multiple volumes}
 
@@ -856,7 +1020,7 @@ We can then refer to the entry of type~\optname{@book} as usual, to get the foll
 \testcite{benson1991}
 
 There are three new keys to talk about here:
-\begin{description}
+\begin{mydescription}
   \item[\optname{volumes}]
     \massindex[\piname{biblatex}!keys]{volumes}[\optname]
     This key describes the total number of volumes.
@@ -869,7 +1033,7 @@ There are three new keys to talk about here:
   \massindex[\piname{biblatex}!keys]{crossref}[\optname]
     This key expresses that the given entry is subordinate to some other entry.
     The expected value is the label of the superior entry.
-\end{description}
+\end{mydescription}
 
 \subsubsection{Entry for an article}
 
@@ -894,7 +1058,7 @@ The output in the bibliography (see \cref{example bibliography}) will look as fo
 
 The type~\optname{@article}\massindex[\piname{biblatex}!types]{article}[\atname] tells {\LaTeX} that the entry is for a (journal)\index{journal} article.
 Many fields are as for the type~\optname{@book}, so we will focus on the changes:
-\begin{description}
+\begin{mydescription}
   \item[\optname{journaltitle}]
     \massindex[\piname{biblatex}!keys]{journaltitle}[\optname]
     This key specifies the name of the journal that the article was published in.
@@ -916,7 +1080,7 @@ Many fields are as for the type~\optname{@book}, so we will focus on the changes
     
     It is customary to specify page ranges in the form~\optname{pages~=~number--number} because this gives a right looking output even if this argument were simply to be interpreted as text.
     (Which lesser packages than \packname{biblatex} may do.)
-\end{description}
+\end{mydescription}
 
 \subsubsection{Entry for an online resource}
 
@@ -934,7 +1098,7 @@ For this we use the generic type~\optname{@online}\massindex[\piname{biblatex}!t
 The output in the bibliography (see \cref{example bibliography}) will look as follows:
 \testcite{cayley_graph}
 We have three (or rather two) new fields to discuss:
-\begin{description}
+\begin{mydescription}
   \item[\optname{date}]
     \massindex[\piname{biblatex}!keys]{date}[\optname]
     This key specifies when the linked to resource was created.
@@ -949,11 +1113,13 @@ We have three (or rather two) new fields to discuss:
     \massindex[\piname{biblatex}!keys]{urldate}[\optname]
     This key specifies the date on which the online resource was accessed.
     This is an important information since content online may change over time.
-\end{description}
+\end{mydescription}
 \index{bib-file@\filename{bib}-file|)}
 \index{bibliography!bib-file@\filename{bib}-file|)}
 
-To cite an article published on arXiv one shouldn’t use the key~\optname{url} because \packname{biblatex} has a built-in way of dealing with arXiv articles.
+\subsubsection{Entry for an arXiv~article}
+
+To cite an article published on arXiv one shouldn’t use the key~\optname{url} because \packname{biblatex} has a built-in way of dealing with arXiv~articles\massindex[bibliography]{arXiv}.
 For an article that uses the current identifier scheme consider the following example:
 \begin{showcode}{\filename{bib}-file entry for an online resource}
 @online{leinster2014,
@@ -969,7 +1135,7 @@ For an article that uses the current identifier scheme consider the following ex
 The output in the bibliography (see \cref{example bibliography}) will look as follows:
 \testcite{leinster2014}
 We have used three new fields:
-\begin{description}
+\begin{mydescription}
   \item[\optname{eprinttype}]
     This key specifies what kind of resource the entry is.
     The used value~\optname{arxiv} results in a predefined formatting of the resulting output.
@@ -977,7 +1143,7 @@ We have used three new fields:
     This key specifies the identifier of the resource.
   \item[\optname{eprintclass}]
     This field specifies additional information about the resource.
-\end{description}
+\end{mydescription}
 
 % For an article that uses the old identifier scheme a slightly different syntax is needed:
 % \testcite{symmgroup_2005}
@@ -1004,7 +1170,7 @@ For a nice proof of the Poincaré--Birkhoff--Witt~Theorem we refer to \cite[\S 3
 We will also need to add the bibliography into the {\LaTeX} document.
 Suppose for this that the \filename{bib}-file is called \filename{references.bib}.
 We then have to do two things:
-\begin{itemize}
+\begin{myitemize}
   \item
     We need to tell {\LaTeX} how the \filename{bib}-file is called.
     This is done via the command~\comname{bibliography}\massindex[bibliography]{bibliography}[\comname]:
@@ -1016,8 +1182,8 @@ We then have to do two things:
     We have to add the command~\comname{printbibliography}\massindex[\piname{biblatex},bibliography]{printbibliography}[\comname] at the position in source code where we want the bibliography to be printed.
     This typically happens near the end of the document.
   \item
-    We set the option~\optname{bibliography}\massindex[KOMA-Script classes, document class!options, bibliography]{bibliography}[\optname] of~\comname{documentclass} to~\optname{totoc} to add the bibliography to the index. (see \cref{layout for scrbook}).
-\end{itemize}
+    We set the option~\optname{bibliography}\massindex[KOMA-Script classes, document class!options, bibliography]{bibliography}[\optname] of~\comname{documentclass} to~\optname{totoc} to add the bibliography to the table of contents. (see \cref{layout for scrbook}).
+\end{myitemize}
 
 In our running example(s) we would get the following bibliography:
 % locally overwrite \printbibliography
@@ -1045,7 +1211,7 @@ To get the output of \cref{using cite} and \cref{example bibliography} we actual
 Suppose that the~\filename{bib}-file has created, we have put the citations in the text via~\comname{cite} and that we have placed \comname{printbibliography} in the source code.
 Suppose that our main file is called~\filename{main.tex} and the~\filename{bib}-file is called~\filename{references.bib}.
 To get the desired bibliography and cross-references between it and the text we need to complete three steps:
-\begin{enumerate}
+\begin{myenumerate}
   \item
     We compile the document~\filename{main.tex}.
     The compiler will note down in an auxiliary file~\filename{main.bcf} which labels are cited in this document
@@ -1054,7 +1220,7 @@ To get the desired bibliography and cross-references between it and the text we 
   \item
     We compile the document~\filename{main.tex} again.
     The compiler will read the various data given in the auxiliary file~\filename{main.bll} and, using the settings and commands from the package~\packname{biblatex}, will typeset both the citations in the main text and create a bibliography.
-\end{enumerate}
+\end{myenumerate}
 If you’re using a specialized {\LaTeX} editor or IDE (like {\TeX}Studio\index{TeXStudio@{\TeX}Studio}, kile\index{kile}, etc.)\ and have everything properly configured then your editor should take care of the above steps automatically when(ever) the document is compiled.
 But if you’re compiling by hand in the console then you will need three commands:
 \begin{showcode}{Compiling in the console (with bibliography)}
@@ -1076,7 +1242,10 @@ latex main.tex
 \subsection{Recalling basic tables}
 \index{tables|(}
 
+\subsubsection{The table itself}
+
 Recall that a table is constructed with the environment~\envname{tabular}\massindex[tables]{tabular}[\envname]:
+
 \begin{showlatex}{A basic table}
 \begin{tabular}{lcr}
   longtext & text     & text      \\
@@ -1085,12 +1254,12 @@ Recall that a table is constructed with the environment~\envname{tabular}\massin
 \end{tabular}
 \end{showlatex}
 The labels~\optname{l}\massindex[tables]{l}[\optname],~\optname{c}\massindex[tables]{c}[\optname],~\optname{r}\massindex[tables]{r}[\optname] specify the alignment of the corresponding column (left aligned, centered, and right aligned).
-Lines are traditionally added to a table as follows:
-\begin{itemize}
-  \item
-    The command~\comname{hline}\massindex[tables]{hline}[\comname]\index{tables!horizontal lines} at the beginning of a row introduces a horizontal line that separates this row from the previous one.
-    To get multiple parallel lines (e.g.\ a double line) one uses multiple instances of \comname{hline} directly after each other.
-    \begin{showlatex}{Full horizontal lines in tables}
+
+\subsubsection{Horizontal lines}
+
+The command~\comname{hline}\massindex[tables]{hline}[\comname]\index{tables!horizontal lines} at the beginning of a row introduces a horizontal line that separates this row from the previous one.
+To get multiple parallel lines (e.g.\ a double line) one uses multiple instances of \comname{hline} directly after each other.
+\begin{showlatex}{Full horizontal lines in tables}
 \begin{center}
 \begin{tabular}{ccc}
   top left & top center & top right \\
@@ -1100,14 +1269,16 @@ Lines are traditionally added to a table as follows:
   text     & text       & text
 \end{tabular}
 \end{center}
-  \end{showlatex}
-  \item
-    To separate only the columns $i, \dotsc, j$ by horizontal line\index{tables!horizontal lines}, the command~\comname{cline}\massindex[tables]{cline}[\comname] is used:
-    \begin{showcode}{Syntax of \comname{cline}}
+\end{showlatex}
+
+\subsubsection{Partial horizontal lines}
+
+To separate only the columns $i, \dotsc, j$ by horizontal line\index{tables!horizontal lines}, the command~\comname{cline}\massindex[tables]{cline}[\comname] is used:
+\begin{showcode}{Syntax of \comname{cline}}
 \cline{start column-end column}
-    \end{showcode}
-    The command~\comname{cline} has the same placement as \comname{hline}:
-    \begin{showlatex}{Partial horizontal lines in tables}
+\end{showcode}
+The command~\comname{cline} has the same placement as \comname{hline}:
+\begin{showlatex}{Partial horizontal lines in tables}
 \begin{center}
 \begin{tabular}{ccccc}
   text & text & text & text & text \\
@@ -1117,18 +1288,21 @@ Lines are traditionally added to a table as follows:
   text & text & text & text & text
 \end{tabular}
 \end{center}
-    \end{showlatex}
-  \item
-     One can put a vertical line\index{tables!vertical lines} between two columns by adding the symbol~\optname{|} between the corresponding alignment symbols.
-     Inserting this symbol multiple times will give parallel vertical lines.
-     \begin{showlatex}{Vertical lines in tables}
+\end{showlatex}
+
+\subsection{Vertical lines}
+
+One can put a vertical line\index{tables!vertical lines} between two columns by adding the symbol~\optname{|} between the corresponding alignment symbols.
+Inserting this symbol multiple times will give parallel vertical lines.
+\begin{showlatex}{Vertical lines in tables}
 \begin{tabular}{l||c|c}
   first row   & text & text \\
   second row  & text & text \\
   third row   & text & text
 \end{tabular}
-     \end{showlatex}
-\end{itemize}
+\end{showlatex}
+
+\subsubsection{Different kinds of lines}
 
 The above effects can also be combined:
 \begin{showlatex}{A table with all kinds of lines in it}
@@ -1160,7 +1334,7 @@ The above effects can also be combined:
 The above table has a huge problem:
 It’s ugly.
 This is due to various reasons:
-\begin{itemize}
+\begin{myitemize}
   \item
     The spacing between the horizontal lines and the text below them is both bad and inconsistent.
   \item
@@ -1169,10 +1343,10 @@ This is due to various reasons:
   \item
     The above table also breaks the second rule of table club:
     Never use double lines.
-\end{itemize}
+\end{myitemize}
 The last two points are easy to fix.
 The package~\packname{booktabs}\massindex[packages,tables]{booktabs}[\packname] gives a way for fixing the first problem:
-\begin{itemize}
+\begin{myitemize}
   \item
     The package provides the commands~\comname{toprule}\massindex[\piname{booktabs},tables]{toprule}[\comname], \comname{midrule}\massindex[\piname{booktabs},tables]{midrule}[\comname] and \comname{bottomrule}\massindex[\piname{booktabs},tables]{bottomrule}[\comname] as replacements for \comname{hline}.
     The command~\comname{toprule} is to be used only for the line on top of the table.
@@ -1180,7 +1354,7 @@ The package~\packname{booktabs}\massindex[packages,tables]{booktabs}[\packname] 
     The horizontal line~\comname{midrule} is meant to separate the main part of the table from the top part and bottom part.
   \item
     The command~\comname{cmidrule}\massindex[\piname{booktabs},tables]{cmidrule}[\comname] is the replacement for \comname{crule}.
-\end{itemize}
+\end{myitemize}
 One should also try to minimize the number of horizontal lines.
 The above example should hence look as follows:
 \begin{showlatex}{Using the rules of \packname{booktabs}}

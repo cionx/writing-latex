@@ -238,14 +238,14 @@ See \cref{dash list} for their {\LaTeX}~code and look.
 \end{table}
 Each of these symbols plays its own role, and these roles depend both on language and on convention.
 For mathematical writing in English the following usages are important:
-\begin{itemize}
+\begin{myitemize}
   \item
     For \enquote{$n$-dimensional} and \enquote{$3$-manifold}, use the hyphen.
   \item
     For combining names as in \enquote{Cauchy--Schwarz inequality} use the en~dash.
   \item
     To interrupt a sentence---as done here---use the em~dash without surrounding space, or -- if you’re feeling British -- use the en~dash surrounded by space.
-\end{itemize}
+\end{myitemize}
 For more information about the use of hyphen and dashes in the English language we refer to \cite[6.75--6.94]{chicago}.
 
 To underline how language dependent the usage of hyphen and dashes is we’re considering in \cref{cgc names} how the the Clebsch--Gordan are called in different languages, as taken from Wikipedia.
@@ -442,40 +442,42 @@ We refer to \cite[19.5.1, 19.6]{latex2e_manual} for more information on this top
 
 If two expressions in text mode are separated by a space or a hyphen then {\LaTeX} may separate these expressions in the output \filename{pdf}-file by a line break\index{line breaks!in text mode}.
 But such line breaks are often undesirable and can sometimes be downright wrong.
-\begin{itemize}
+\begin{myitemize}
   \item
     In abbreviations like~\enquote{Prof.~Dr.~John Doe}.
   \item
     In combinations of words and numbers like~\enquote{Lemma~5}.
   \item
     In combinations of mathematics and words like~\enquote{$3${\nbd}dimensional}.
-\end{itemize}
+\end{myitemize}
 In such cases one needs to prevent the line break:
-\begin{itemize}
-  \item
-    No line break will occur if the tie\index{\customtexttilde}\index{tie}\index{unbreakable!space} symbol~\inlinecode{\customtexttilde} is used instead of a space.
-    Consider for this the following example:
-    \begin{showlatex}*{An unwanted line break at a space}
+
+\subsubsection{Line breaks at a space}
+
+No line break will occur if the tie\index{\customtexttilde}\index{tie}\index{unbreakable!space} symbol~\inlinecode{\customtexttilde} is used instead of a space.
+Consider for this the following example:
+\begin{showlatex}*{An unwanted line break at a space}
 It follows from the above Lemma 5 that the integer $2$ is prime.
-    \end{showlatex}
-    We don’t want a line break to occur in the term~\enquote{Lemma~5} and thus introduce a tie.
-    In the above example it is also a good idea to prevent a possible line break in the term~\enquote{integer~$2$}.
-    We therefore get the following code:
-    \begin{showlatex}*{Using~\inlinecode{\customtexttilde} to prevent unwanted line breaks at spaces}
+\end{showlatex}
+We don’t want a line break to occur in the term~\enquote{Lemma~5} and thus introduce a tie.
+In the above example it is also a good idea to prevent a possible line break in the term~\enquote{integer~$2$}.
+We therefore get the following code:
+\begin{showlatex}*{Using~\inlinecode{\customtexttilde} to prevent unwanted line breaks at spaces}
 It follows from the above Lemma~5 that the integer~$2$ is prime.
-    \end{showlatex}
-  \item
-    To prevent a line break at a hyphen the command~\comname{nobreakdash}\massindex{nobreakdash}[\comname]\index{unbreakable!hyphen} needs to be placed in front of it can be used.
-    Consider the following example:
-    \begin{showlatex}{An unwanted line break at a hyphen}
+\end{showlatex}
+
+\subsubsection{Line breaks at a hypen}
+
+To prevent a line break at a hyphen the command~\comname{nobreakdash}\massindex{nobreakdash}[\comname]\index{unbreakable!hyphen} needs to be placed in front of it can be used.
+Consider the following example:
+\begin{showlatex}{An unwanted line break at a hyphen}
 The sphere $S^2$ will be our very first non-trivial example of a smooth $2$-manifold (without boundary).
-    \end{showlatex}
-    To prevent a line break at the hyphen\massindex[punctuation]{hyphen} we put~\comname{nobreakdash} before it:
-    \begin{showlatex}{Using~\comname{nobreakdash} to prevent unwanted line breaks at hyphens}
+\end{showlatex}
+To prevent a line break at the hyphen\massindex[punctuation]{hyphen} we put~\comname{nobreakdash} before it:
+\begin{showlatex}{Using~\comname{nobreakdash} to prevent unwanted line breaks at hyphens}
 The sphere $S^2$ will be our very first non-trivial example of a smooth $2${\nbd}manifold (without boundary).
-    \end{showlatex}
-    The command~\comname{nobreakdash} works not only with hyphens but also with en~dashes\index{unbreakable!dash}\massindex[punctuation]{en~dash} and em~dashes\index{unbreakable!dash}\massindex[punctuation]{em~dash}.
-\end{itemize}
+\end{showlatex}
+The command~\comname{nobreakdash} works not only with hyphens but also with en~dashes\index{unbreakable!dash}\massindex[punctuation]{en~dash} and em~dashes\index{unbreakable!dash}\massindex[punctuation]{em~dash}.
 
 
 
@@ -759,7 +761,7 @@ It may even be appropriate to use~\comname{qquad} on both sides when more space 
 
 \subsection{Use \comtitle{intertext} and \comtitle{shortintertext}}
 
-Multiline environments like \envname{gather*}\massindex[display math environment, multiline mathematics]{gather*}[\envname] and \envname{align*}\massindex[display math environment, multiline mathematics]{align*}[\envname] (see \cref{display environments}) can be interrupted by inserting some text via the commands~\comname{intersect}\massindex[text in math~mode]{intertext}[\comname] and~\comname{shortintertext}\massindex[text in math~mode]{shortintertext}[\comname] to insert some text between different lines of mathematics.
+Multi-line display mode environments like \envname{gather*}\massindex[display math environment, multi-line mathematics]{gather*}[\envname] and \envname{align*}\massindex[display math environment, multi-line mathematics]{align*}[\envname] (see \cref{display environments}) can be interrupted by inserting some text via the commands~\comname{intersect}\massindex[text in math~mode]{intertext}[\comname] and~\comname{shortintertext}\massindex[text in math~mode]{shortintertext}[\comname] to insert some text between different lines of mathematics.
 This is particularly useful can combine multiple \envname{align*}~environments into a single one, which then allows for a common alignment\index{aligning formulas} of all lines.
 
 The following is an example for what we don’t want.

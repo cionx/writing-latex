@@ -282,12 +282,12 @@ The flowchart in \cref{environment flow chart} explains how to choose the correc
 
 Oftentimes a formula is broken among multiple lines.
 This is done for at least two reasons:
-\begin{itemize}
+\begin{myitemize}
   \item
     To improve the readability of the given formula.
   \item
     To prevent that the formula goes over the margins of the text area.
-\end{itemize}
+\end{myitemize}
 If a formula is broken among multiple lines then one has to choose at which places the formula is broken, and how the resulting parts of the formula will be aligned.
 In this section we present some standard ways of doing so.
 
@@ -837,7 +837,7 @@ If a proof ends with display~style mathematics then the qed-symbol will by defau
 There are at least different approaches to fixing this situation:
 
 Some authors prever to bring the qed-symbol to the height of the display environment:
-\begin{showlatex}{Proper (?) placement of the qed-symbol after display~mode}
+\begin{showlatex}{Somewhat proper placement of the qed-symbol after display~mode}
 \begin{proof}
   This proof ends with a some display~mode mathematics, namely
   \[
@@ -960,9 +960,9 @@ The prevent the numbering of the unrequired lines the command~\comname{notag}\ma
 
 
 
-\section{Multiline set descriptions}
+\section{Multi-line set descriptions}
 
-Multiline set descriptions of the form
+Multi-line set descriptions of the form
 \[
   \left\{
     (e_1, \dotsc, e_n)
@@ -976,7 +976,7 @@ Multiline set descriptions of the form
   \right\}
 \]
 can be typeset by using a \envname{tabular} environment for the right hand side of the set description:
-\begin{showlatex}*{Multiline set descriptions with tabular}
+\begin{showlatex}*{Multi-line set descriptions with tabular}
 \[
   \left\{
     x \in X
