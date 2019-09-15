@@ -31,7 +31,7 @@ Two other useful packages for mathematical content are \packname{stmaryrd}\massi
 \label{defining theorem-like environments}
 
 To define theorem-like environments\index{theorem-like environments} -- like~\envname{lemma}\massindex[theorem-like environments]{lemma}[\envname], \envname{proposition}\massindex[theorem-like environments]{proposition}[\envname], \envname{theorem}\massindex[theorem-like environments]{theorem}[\envname], \envname{corollary}\massindex[theorem-like environments]{corollary}[\envname], etc.,\ include the package~\packname{amsthm}\massindex[packages]{amsthm}[\packname].
-New environments can then be defined with the command~\comname{newtheorem}\massindex{newtheorem}[\comname]:
+New environments can then be defined with the command~\comname{newtheorem}\massindex[\piname{amsthm}]{newtheorem}[\comname]:
 \begin{showcode}{Syntax of \comname{newtheorem)}}
 \newtheorem{internal name of the environment}{name to be printed}
 \end{showcode}
@@ -550,6 +550,7 @@ For a full overview we refer to~\cite{enumitem}, and in particular to~\cite[Figu
 We give here only some of the more important configurations.
 
 \subsubsection{Multiple paragraphs in a list item}
+\index{paragraphs}\index{indentation!of paragraphs}
 
 If a list item contains multiple paragraphs of text then the new paragraphs are by default not indented but instead separated from the preceding paragraph by some additional vertical space:
 
@@ -596,6 +597,7 @@ Now a list without additional item distance:
 \end{showlatex}
 
 \subsubsection{Indentation}
+\label{list indentation with enumitem}
 \index{indentation!for list environments|(}
 
 The environment~\envname{enumerate}\massindex{enumerate}[\envname] has by default two kinds of indentation\massindex{indent}:

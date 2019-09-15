@@ -483,7 +483,7 @@ The command~\comname{nobreakdash} works not only with hyphens but also with en~d
 
 \subsection{Don’t use \comtitle{\tbs} or \comtitle{newline}}
 
-The proper way to separate two succeeding paragraphs\massindex[spacing]{paragraph} in {\LaTeX} is to leave an empty line between them.
+The proper way to separate two succeeding paragraphs\index{paragraphs}\index{indentation!of paragraphs} in {\LaTeX} is to leave an empty line between them.
 \begin{showlatex}*{New paragraphs done right}
 This is the first paragraph.
 It consists of multiples lines to make this example better.
@@ -508,6 +508,108 @@ The use of \comname{\tbs} and \comname{newline} is only for starting new rows in
 Don’t use is to separate paragraphs.
 
 
+
+\subsection{Text consisting of lists}
+
+The list~environments~\envname{enumerate} and~\envname{itemize} do by default contain certain indentations, that can be problematic in mathematical writing.
+
+\subsubsection{Identation compared to the left~margin}
+
+There is by default some indentation between the left~margin of the text area and the item labels.
+This is meant to visually separate the list from the surrounding text.
+But in mathematical writing there often occur lists that don’t have a surrounding text.
+The most prominent example for this are propositions (and their proofs) that consist of multiple statements:
+\begin{showlatex}{A list without surrounding text}
+\begin{theorem}
+  Let $G$ be a finite group.
+  \begin{enumerate}
+    \item
+      If $H$ is subgroup of $G$ then $\operatorname{ord}(H)$ divides $\operatorname{ord}(G)$.
+    \item
+      If $a$ is any element of $G$ then $\operatorname{ord}(a)$ divides $\operatorname{ord}(G)$.
+    \item
+      Every group of prime order is cyclic.
+    \item
+      If $p$ is a prime divisor of $\operatorname{ord}(G)$ then $G$ contains an element of order $p$.
+  \end{enumerate}
+\end{theorem}
+\end{showlatex}
+
+In such cases one should remove the identation between the left~margin of the text area and the item~labels, as explained in \cref{list indentation with enumitem}.
+\begin{showlatex}{A list without surrounding text}
+\begin{theorem}
+  Let $G$ be a finite group.
+  \begin{enumerate}[wide = 0pt, leftmargin=*]
+    \item
+      If $H$ is subgroup of $G$ then $\operatorname{ord}(H)$ divides $\operatorname{ord}(G)$.
+    \item
+      If $a$ is any element of $G$ then $\operatorname{ord}(a)$ divides $\operatorname{ord}(G)$.
+    \item
+      Every group of prime order is cyclic.
+    \item
+      If $p$ is a prime divisor of $\operatorname{ord}(G)$ then $G$ contains an element of order $p$.
+  \end{enumerate}
+\end{theorem}
+\end{showlatex}
+
+
+
+\subsubsection{Theorems and proofs beginning with a list}
+
+If a theorem-like~environment\index{theorem-like environments} or a the environment~\envname{proof}\massindex[\piname{amsthm}]{proof}[\envname] begins with a list~environment then the first item of the list will not be aligned with the other list items:
+\begin{showlatex}{Improper aligned of list items}
+\begin{lemma}
+\begin{enumerate}
+  \item
+    Every group~$G$ is isomorphic to its opposite group~$G^{\mathrm{op}}$.
+  \item
+    A group~$G$ equals its opposite group~$G^{\mathrm{op}}$ if and only if it is abelian.
+\end{enumerate}
+\end{lemma}
+\end{showlatex}
+
+One way to circumvent this problem is by inserting the command~\comname{leavevmode}\massindex{leavevmode}[\comname] before the beginning of the list.
+\begin{showlatex}{Proper aligned of list items with~\comname{leavevmode}}
+\begin{lemma}
+\leavevmode
+\begin{enumerate}
+  \item
+    Every group~$G$ is isomorphic to its opposite group~$G^{\mathrm{op}}$.
+  \item
+    A group~$G$ equals its opposite group~$G^{\mathrm{op}}$ if and only if it is abelian.
+\end{enumerate}
+\end{lemma}
+\end{showlatex}
+The problem with this approach is that it allows a line break to occur at the position of~\comname{leavevmode}.
+So it may happen that the header of the theorem-like environment of proof environment occurs at the very bottom of the page while the list appears only on the next page.
+(This looks quite horrible.)
+
+As far as the author is aware there exists no good solution for this problem.%
+\footnote{The package~\packname{ntheorem}\massindex[packages]{ntheorem}[\packname] is allegedly able to address this problem, at the price of introducing new problems.}
+A good way of coping with this problem is to circumvent it by introducing some text before the list~environment:
+\begin{showlatex}{Proper aligned of list items by introducing text}
+\begin{lemma}
+Let $G$ be a group with opposite group $G^{\mathrm{op}}$. 
+\begin{enumerate}
+  \item
+    The groups $G$ and $G^{\mathrm{op}}$ are isomorphic.
+  \item
+    The groups $G$ and $G^{\mathrm{op}}$ are equal if and only if $G$ is abelian.
+\end{enumerate}
+\end{lemma}
+\end{showlatex}
+An seen above we should also eliminate the indentation between the left~margin of the text~area and the item~labels:
+\begin{showlatex}{Proper aligned of list items by introducing text}
+\begin{lemma}
+Let $G$ be a group with opposite group $G^{\mathrm{op}}$. 
+\begin{enumerate}[wide = 0pt, leftmargin=*]
+  \item
+    The groups $G$ and $G^{\mathrm{op}}$ are isomorphic.
+  \item
+    The groups $G$ and $G^{\mathrm{op}}$ are equal if and only if $G$ is abelian.
+\end{enumerate}
+\end{lemma}
+\end{showlatex}
 
 
 
