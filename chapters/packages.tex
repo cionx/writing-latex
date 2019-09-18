@@ -627,7 +627,7 @@ Lorem ipsum dolor sit amet,
 \end{enumerate}
 \end{showlatex}
 One can also add back the indentation between the left~margin and the item~labels by also using the option~\optname{labelindent}:
-\begin{showlatex}*{\envname{enumerate}~environment with indentation between margin and label, and label and text}
+\begin{showlatex}*{\envname{enumerate}~environment with indentation between margin and label}
 Lorem ipsum dolor sit amet,
 \begin{enumerate}[wide = 0pt, leftmargin = \parindent, labelindent = \parindent]
   \item
@@ -643,7 +643,7 @@ Lorem ipsum dolor sit amet,
 \end{enumerate}
 \end{showlatex}
 But \cref{better standard indentation} does actually have an advantage over the standard indentation, namely that it properly handels long labels:
-\begin{showlatex}{\envname{enumerate}~environment with indentation between margin and label, and label and text}
+\begin{showlatex}{Proper vs.\ improper placement of long labels}
 The standard identation:
 \begin{enumerate}[label = {(Latin \arabic*)}]
   \item
@@ -1262,7 +1262,6 @@ The labels~\optname{l}\massindex[tables]{l}[\optname],~\optname{c}\massindex[tab
 The command~\comname{hline}\massindex[tables]{hline}[\comname]\index{tables!horizontal lines} at the beginning of a row introduces a horizontal line that separates this row from the previous one.
 To get multiple parallel lines (e.g.\ a double line) one uses multiple instances of \comname{hline} directly after each other.
 \begin{showlatex}{Full horizontal lines in tables}
-\begin{center}
 \begin{tabular}{ccc}
   top left & top center & top right \\
   \hline\hline
@@ -1270,7 +1269,6 @@ To get multiple parallel lines (e.g.\ a double line) one uses multiple instances
   \hline
   text     & text       & text
 \end{tabular}
-\end{center}
 \end{showlatex}
 
 \subsubsection{Partial horizontal lines}
@@ -1281,7 +1279,6 @@ To separate only the columns $i, \dotsc, j$ by horizontal line\index{tables!hori
 \end{showcode}
 The command~\comname{cline} has the same placement as \comname{hline}:
 \begin{showlatex}{Partial horizontal lines in tables}
-\begin{center}
 \begin{tabular}{ccccc}
   text & text & text & text & text \\
   \cline{2-4}
@@ -1289,7 +1286,6 @@ The command~\comname{cline} has the same placement as \comname{hline}:
   \cline{1-2} \cline{4-5}
   text & text & text & text & text
 \end{tabular}
-\end{center}
 \end{showlatex}
 
 \subsection{Vertical lines}
@@ -1308,7 +1304,6 @@ Inserting this symbol multiple times will give parallel vertical lines.
 
 The above effects can also be combined:
 \begin{showlatex}{A table with all kinds of lines in it}
-\begin{center}
 \begin{tabular}{|l||l|r|}
   \hline
   \textbf{Country}  &  \textbf{Town}  & \textbf{Population} \\
@@ -1326,7 +1321,6 @@ The above effects can also be combined:
   {}                & Yokohama        & 3,697,894           \\
   \hline
 \end{tabular}
-\end{center}
 \end{showlatex}
 
 
@@ -1360,7 +1354,6 @@ The package~\packname{booktabs}\massindex[packages,tables]{booktabs}[\packname] 
 One should also try to minimize the number of horizontal lines.
 The above example should hence look as follows:
 \begin{showlatex}{Using the rules of \packname{booktabs}}
-\begin{center}
 \begin{tabular}{llr}
   \toprule
   \textbf{Country}  &  \textbf{Town}  & \textbf{Population} \\
@@ -1373,7 +1366,6 @@ The above example should hence look as follows:
   {}                & Yokohama        & 3,697,894           \\
   \bottomrule
 \end{tabular}
-\end{center}
 \end{showlatex}
 
 Note that we could leave out all non-essential horizontal lines because the table has a very regular form.

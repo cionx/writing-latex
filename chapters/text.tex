@@ -244,7 +244,7 @@ For mathematical writing in English the following usages are important:
   \item
     For combining names as in \enquote{Cauchy--Schwarz inequality} use the en~dash.
   \item
-    To interrupt a sentence---as done here---use the em~dash without surrounding space, or -- if you’re feeling British -- use the en~dash surrounded by space.
+    To interrupt a sentence{---}as done here{---}use the em~dash without surrounding space, or -- if you’re feeling British -- use the en~dash surrounded by space.
 \end{myitemize}
 For more information about the use of hyphen and dashes in the English language we refer to \cite[6.75--6.94]{chicago}.
 
@@ -309,7 +309,7 @@ for all examples to allow a better comparison.)
 \subsubsection{Don’t put a hyphen in math~mode}
 
 A non-trivial amount of people makes the mistake of putting a hypen\massindex[punctuation]{hyphen} into math~mode.
-\begin{showlatex}{A hyphen in math~mode}
+\begin{showlatex}{An accidental hyphen in math~mode}
 Let~$A$ be a $\mathbb{Z}-$module.
 \end{showlatex}
 We can see that we don’t get a hyphen but a minus sign.
@@ -456,27 +456,33 @@ In such cases one needs to prevent the line break:
 
 No line break will occur if the tie\index{\customtexttilde}\index{tie}\index{unbreakable!space} symbol~\inlinecode{\customtexttilde} is used instead of a space.
 Consider for this the following example:
+% fragile example
 \begin{showlatex}*{An unwanted line break at a space}
-It follows from the above Lemma 5 that the integer $2$ is prime.
+Text text text text text text text text text text text text text, so by Lemma 35 text text text text text text text text
 \end{showlatex}
-We don’t want a line break to occur in the term~\enquote{Lemma~5} and thus introduce a tie.
-In the above example it is also a good idea to prevent a possible line break in the term~\enquote{integer~$2$}.
-We therefore get the following code:
+We don’t want a line break to occur in the term~\enquote{Lemma~35} and thus introduce a tie.
 \begin{showlatex}*{Using~\inlinecode{\customtexttilde} to prevent unwanted line breaks at spaces}
-It follows from the above Lemma~5 that the integer~$2$ is prime.
+Text text text text text text text text text text text text text, so by Lemma~35 text text text text text text text text
 \end{showlatex}
 
 \subsubsection{Line breaks at a hypen}
 
-To prevent a line break at a hyphen the command~\comname{nobreakdash}\massindex{nobreakdash}[\comname]\index{unbreakable!hyphen} needs to be placed in front of it can be used.
-Consider the following example:
-\begin{showlatex}{An unwanted line break at a hyphen}
-The sphere $S^2$ will be our very first non-trivial example of a smooth $2$-manifold (without boundary).
-\end{showlatex}
-To prevent a line break at the hyphen\massindex[punctuation]{hyphen} we put~\comname{nobreakdash} before it:
-\begin{showlatex}{Using~\comname{nobreakdash} to prevent unwanted line breaks at hyphens}
-The sphere $S^2$ will be our very first non-trivial example of a smooth $2${\nbd}manifold (without boundary).
-\end{showlatex}
+
+% Unable to create an example of a bad lin break at a hypen after FUCKING HOURS OF TRYING
+
+To prevent a line break at a hyphen the command~\comname{nobreakdash}\massindex{nobreakdash}[\comname]\index{unbreakable!hyphen} needs to be placed in front of it.
+% Consider the following example:
+% % fragile example
+% \begin{showlatex}{An unwanted line break at a hyphen}
+% Lorem $1$-ipsum $2$-dolor $3$-sit $4$-amet, $5$-consectetur $6$-adipiscing $7$-elit, $8$-sed $9$-do $10$-eiusmod $11$-tempor $12$-incididunt $13$-ut $14$-labore $15$-et $16$-dolore $17$-magna $18$-aliqua.
+% Dolor $19$-sed $20$-viverra $21$-ipsum $22$-nunc $23$-aliquet $24$-bibendum $25$-enim.
+% In $26$-massa $27$-tempor $28$-nec $29$-feugiat.
+% Nunc $30$-aliquet $31$-bibendum $32$-enim $33$-facilisis $34$-gravida.
+% \end{showlatex}
+% To prevent a line break at the hyphen\massindex[punctuation]{hyphen} we put~\comname{nobreakdash} before it:
+% \begin{showlatex}*{Using~\comname{nobreakdash} to prevent unwanted line breaks at hyphens}
+% The sphere $S^2$ will be our very first non-trivial example of a smooth $2$\nobreakdash-manifold (without boundary).
+% \end{showlatex}
 The command~\comname{nobreakdash} works not only with hyphens but also with en~dashes\index{unbreakable!dash}\massindex[punctuation]{en~dash} and em~dashes\index{unbreakable!dash}\massindex[punctuation]{em~dash}.
 
 
@@ -621,10 +627,11 @@ Let $G$ be a group with opposite group $G^{\mathrm{op}}$.
 \label{breaking inline math}
 
 When inline formulas or equations are too long or badly placed then it can happen that a line break\index{line breaks!in text mode} occurs, tearing the formula apart:
-% standard values for penalities, for the demonstration
+% fragile example
 \begin{showlatex}[before lower = {\binoppenalty=100}, after lower = {\binoppenalty = \maxdimen}]{Line break in inline math}
 The most important formula of all times is without a doubt is my mind $1 + 2 + 3 + 4 = 10 - 5$.
 Truly a work of genius!
+% fragile example
 \end{showlatex}
 This horrible affront to nature can thankfully be completely stopped by setting the penalties~\comname{binoppenalty}\massindex[penalties]{binoppenality}[\comname] and~\comname{relpenalty}\massindex[penalties]{relpenalty}[\comname] to their maximum value, which can be accessed via the command~\comname{maxdimen}\massindex{maxdimen}[\comname].
 \begin{showlatex}{Preventing inline math in inline math}
@@ -885,7 +892,7 @@ and
 \end{showlatex}
 Note the annoying misalignment of the equality signs of the two \envname{align*}~environments.
 We can solve this problem by using only one \envname{align*}~environment and inserting the text~\enquote{and} by using the command~\comname{intertext}:
-\begin{showlatex}*{Two aligned blocks}
+\begin{showlatex}{Two aligned blocks}
 We consider now the equalities
 \begin{align*}
   H
@@ -899,39 +906,40 @@ We consider now the equalities
   &= f_1 + f_2 + f_3 + f_4 + f_5 \,.
 \end{align*}
 \end{showlatex}
+
 The command~\comname{shortintertext} works in the same way as~\comname{intertext} but inserts less vertical space\index{spacing} around it.
 To see the effects of~\comname{shortintertext} let us start with the following example:
-\begin{showlatex}{Two non-aligned equalities}
-First we have some lengthy text above the mathematical formulas, followed by the formulas
+\begin{showlatex}*{Two non-aligned equalities}
+It follows from the identity
 \[
   a = b
 \]
-and
+that
 \[
-  b = a \,.
+  b = a \,,
 \]
-We finish off by writing some more text after the above mathematical two formulas.
+which proves the theorem.
 \end{showlatex}
 We naturally want to align the two equality signs, which we by using a single \comname{align*}~environment together with~\comname{intertext}, as explained above:
-\begin{showlatex}{Two aligned equalities with too much space}
-First we have some lengthy text above the mathematical formulas, followed by the formulas
+\begin{showlatex}*{Two aligned equalities with too much space}
+It follows from the identity
 \begin{align*}
   a &= b
-\intertext{and}
-  b &= a \,.
+\intertext{that}
+  b &= a \,,
 \end{align*}
-We finish off by writing some more text after the above mathematical two formulas.
+which proves the theorem.
 \end{showlatex}
 But we can see that the inserted~\comname{intersect} puts a large space between the two formulas, far too large for our taste.
 We can solve this problem by using~\comname{shortintertext} instead of~\comname{intertext}, as the following example shows:
-\begin{showlatex}{Two aligned equalities with proper space}
-First we have some lengthy text above the mathematical formulas, followed by the formulas
+\begin{showlatex}*{Two aligned equalities with proper space}
+It follows from the identity
 \begin{align*}
   a &= b
-\shortintertext{and}
-  b &= a \,.
+\shortintertext{that}
+  b &= a \,,
 \end{align*}
-We finish off by writing some more text after the above mathematical two formulas.
+which proves the theorem.
 \end{showlatex}
 
 
