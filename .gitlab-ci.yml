@@ -1,0 +1,24 @@
+pages:
+  image: aergus/latex
+  before_script:
+  script:
+    # "hack" font for monospace
+  - apt-get install fonts-hack-ttf
+    # noto sans fonts for japanese
+  - apt-get install fonts-noto-cjk 
+    # gitinfo2 for git information in the document
+  - wget "https://raw.githubusercontent.com/Hightor/gitinfo2/CTAN/post-xxx-sample.txt" -O generate_gitinfo2
+  - chmod +x generate_gitinfo2
+  - ./generate_gitinfo2
+    # building with latexmk
+    # uses settings from .latexmkrc
+  - latexmk writing_latex.tex
+  - lualatex writing_latex.tex
+    # extract the results
+  - mkdir public
+  - mv writing_latex.pdf public/
+  artifacts:
+    paths:
+    - public
+  only:
+   - master
