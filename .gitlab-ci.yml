@@ -3,9 +3,9 @@ pages:
   before_script:
   script:
     # "hack" font for monospace
-  - apt-get install fonts-hack-ttf
+  - apt-get --yes install fonts-hack-ttf
     # noto sans fonts for japanese
-  - apt-get install fonts-noto-cjk 
+  - apt-get --yes install fonts-noto-cjk 
     # gitinfo2 for git information in the document
   - wget "https://raw.githubusercontent.com/Hightor/gitinfo2/CTAN/post-xxx-sample.txt" -O generate_gitinfo2
   - chmod +x generate_gitinfo2
