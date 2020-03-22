@@ -12,15 +12,15 @@
 \subsection{Don’t use \inlinecodetitle{\$\$  \$\$} or \envtitle{eqnarray}}
 
 There are many good ways to put mathematical content into display mode, but \inlinecode{\$\$~\$\$}\massindex[display math environment]{\$\$~\$\$}[\inlinecode] and \envname{eqnarray}\massindex[display math environment]{eqnarray}[\envname] are none of them.
-The method~\inlinecode{\$\$  \$\$} is too low level, and the environment~\envname{eqnarray} has too many problems and has been deprecated since forever.
-One can use any of the following, depending on the planned usage.
+The method~\inlinecode{\$\$  \$\$} is too low level, and the environment~\envname{eqnarray} has too many problem and has long been deprecated.
+One can instead use any of the following, depending on the planned usage.
 
 
 
 \subsection{The environments~\inlinecodetitle{{\tbs}[ {\tbs}]} and \envtitle{equation*}}
 
 The environments~\inlinecode{{\tbs}[ {\tbs}]}\massindex[display math environment]{{\tbs}[ {\tbs}]}[\inlinecode] and \envname{equation*}\massindex[display math environment]{equation*}[\envname] can be used for a single line of display math mode.
-Both commands do the same thing (when the package~\packname{amsmath}\massindex[packages]{amsmath}[\packname] is loaded).
+Both commands do the exactly same thing (when the package~\packname{amsmath}\massindex[packages]{amsmath}[\packname] is loaded).
 \begin{showlatex}*{Using the environments~\inlinecode{{\tbs}[ {\tbs}]} and \envname{equation*}}
 Suppose that both the formula
 \[
@@ -69,7 +69,7 @@ In particular
   p_5 = 1 + x + x^2 + x^3 + x^4 + x^5 \,.
 \end{gather*}
 \end{showlatex}
-The non-starred version~\envname{gather}\massindex[display math environment, multi-line mathematics, tagging and numbering]{gather}[\envname] numbers the lines.
+The non-starred version~\envname{gather}\massindex[display math environment, multi-line mathematics, tagging and numbering]{gather}[\envname] numbers each line.
 \begin{showlatex}{Using the environment~\envname{gather}}
 We have the polynomials
 \begin{gather}
@@ -91,7 +91,7 @@ We have the polynomials
 
 \subsection{The environments~\envtitle{align*} and \envtitle{alignat*}}
 
-The environment~\envname{align*}\massindex[display math environment, multi-line mathematics]{align*}[\envname] takes multiple lines which can aligned.
+The environment~\envname{align*}\massindex[display math environment, multi-line mathematics]{align*}[\envname] allows for multiple lines.
 Each line contains the symbol~\inlinecode{\&}\massindex{\&}[\inlinecode] once, and the occurrences of this symbol are then aligned.
 \begin{showlatex}*{Using the environment~\envname{align*}}
 We find that
@@ -144,8 +144,8 @@ We also consider the values
   y_7 &= 3 \,,  &         y_8 &= 2 \,,  &         y_9 &= 1 \,.
 \end{alignat*}
 \end{showlatex}
-For aligning multiple columns one should use \envname{alignat*} instead of \envname{align*} to get (manually) a good looking distance between the aligned columns.
-The environment~\envname{alignat}\massindex[display math environment, multi-line mathematics]{alignat}[\envname] works the same way as \envname{alignat*} but automatically numbers the lines.
+To align multiple columns one should use \envname{alignat*} instead of \envname{align*} to get (manually) a good looking distance between the aligned columns.
+The environment~\envname{alignat}\massindex[display math environment, multi-line mathematics]{alignat}[\envname] works in the same way as \envname{alignat*} but automatically numbers the lines.
 
 
 
@@ -155,11 +155,11 @@ The environment~\envname{alignat}\massindex[display math environment, multi-line
 
 By all that is holy, don’t do the following:
 \begin{showlatex}*{Using~\comname{center} with~\inlinecode{\$ \$}}
-Some text that ends in
+It holds that
 \begin{center}
-  $a + b = c$.
+  $\sum_{i=0}^n 2^i = 2^{n+1} - 1$.
 \end{center}
-Now some more text.
+This can be shown by induction.
 \end{showlatex}
 % TODO: Explain all the things that go wrong
 
@@ -288,7 +288,7 @@ This is done for at least two reasons:
   \item
     To prevent that the formula goes over the margins of the text area.
 \end{myitemize}
-If a formula is broken among multiple lines then one has to choose at which places the formula is broken, and how the resulting parts of the formula will be aligned.
+If a formula is broken among multiple lines then one has to choose at which places the formula should be broken, and how the resulting parts of the formula will then be aligned.
 In this section we present some standard ways of doing so.
 
 
@@ -338,16 +338,16 @@ Here is some text.
 \]
 Here is some more text.
 \end{showlatex}
-The formula in the above example does actually not go over the margin.
-But it has stretched the displaymode over its visual limits.
+The formula in the above example does -- technically speaking -- not go over the margin.
+But it has stretched the display mode beyond its visual limits.
 The formula does therefore need to be broken up.
 
 \subsubsection{Expressing structure}
 
-Often the breaking up of a formula is done to better express the structure---and thus content---of the displayed formula.
+Often the breaking up of a formula is done to better express the structure -- and thus content -- of the displayed formula.
 Consider the following example:
 \begin{showlatex}[label={unreadable formula}]{A formula that should be broken up for readability}
-If $k$ is algebraically closed and $i$ is a square root of $-1$ then
+If $k$ is algebraically closed with~$\operatorname{char}(k) \neq 2$ and $i$ is a square root of $-1$ then
 \[
   k[x]/(x^2 + 1)
   =
@@ -359,7 +359,7 @@ If $k$ is algebraically closed and $i$ is a square root of $-1$ then
 \]
 by the Chinese remainder theorem.
 \end{showlatex}
-The above output still has an appropriate length to be put into a single line, and if space is spare then this is an acceptable solution.
+The above output still has an appropriate length to be put into a single line, and if space is sparse then this is an acceptable solution.
 But this single-line approach to the formula does not help to display its internal structure.
 This can be done by splitting up the formula as done in the next example:
 \begin{showlatex}{Broken up version of \cref*{unreadable formula}}
@@ -388,9 +388,9 @@ We now discuss at which points a formula can be broken, and how these broken par
 
 \subsubsection{Aligning at relation symbols I}
 
-A first approach is to all relation symbols under each other, 
+A first approach is to put all relation symbols underneath each other.
 \begin{showlatex}{Aligning relation symbols~I}
-Let $x$,$y$ be two nilpotent elements in a commutative ring $R$.
+Let $x$, $y$ be two commuting, nilpotent elements of~$A$.
 Then
 \begin{align*}
   \exp(x) \exp(y)
@@ -429,7 +429,7 @@ Then for every~$(r,s) \in R \times S$,
   \text{there exist $(r', s') \in R \times S$ with $(r,s)(r',s') = (1,1)$}
   \\
   \iff{}&
-  \text{there exist $r' \in R$ and $s' \in S$ with $rr' = r$ and $ss' = 1$}
+  \text{there exist $r' \in R$ and $s' \in S$ with $rr' = 1$ and $ss' = 1$}
   \\
   \iff{}&
   \text{$r \in R^\times$ and $s \in S^\times$}
@@ -466,6 +466,7 @@ The following should be done instead:
   & + d + e
 \end{align*}
 \end{showlatex}
+%TODO: Explain the above example better.
 If a formula is broken at relation symbols and one of the resulting terms is broken at a binary operator, then the operator is not aligned together with the relation symbols.
 Instead the binary operator appears after the relation symbols.
 The following example does it wrong:
@@ -527,7 +528,7 @@ and hence $2 + 2 = 5$.
 
 \subsection{Don’t break formulas badly}
 
-One should always keep in mind that breaking up a formula isn’t just meant to prevent technical problems, but more importantly to let the resulting output display the structure---and thus part of the content---of the formula.
+One should always keep in mind that breaking up a formula isn’t just meant to prevent technical problems, but more importantly to let the resulting output better display the structure -- and thus part of the content -- of the formula.
 A badly broken up formula is harder to understand for both the reader and the author.
 Consider the following example:
 \begin{showlatex}{Badly broken formula}
@@ -565,7 +566,7 @@ It follows that
 \end{align*}
 \end{showlatex}
 In such a case the breaking of the formula should be done in a consistent way.
-There seems to be two sensible approaches in this example:
+There seem to be two sensible approaches for the above example, which we will now explain.
 
 \subsubsection{Align everything}
 
@@ -591,7 +592,7 @@ It follows that
 \end{showlatex}
 This approach has the advantage of being very consistent.
 But it has the disadvantage of taking a lot of space.
-It also may not reflect the structure of the formula particularly well, as this layout gives all (in)equalities the same importance.
+It might also not reflect the structure of the formula particularly well, as this layout gives all (in)equalities the same importance.
     
 \subsubsection{Align at inequalities}
 
@@ -654,7 +655,7 @@ Consider the following example:
 \end{gather*}
 \end{showlatex}
 Note that the first line of the output looks slightly shifted to the left when compared to the second line.
-But properly aligning both lines this impression vanishes and instead gives rise to more coherent look and fell.
+This impression vanishes when both lines are properly aligned, and instead gives rise to more coherent look and fell.
 \begin{showlatex}{Intentional well-aligned expressions}
 \begin{align*}
   KK^{-1} = 1 = K^{-1}K \,,
@@ -687,7 +688,7 @@ Nunc aliquet bibendum enim facilisis gravida. Nisl nunc mi ipsum faucibus vitae 
 \end{showlatex}
 
 If the line before a display mode environment is too short then this vertical spacing may be visually too large.
-The one-line display environments~\inlinecode{{\tbs}[ {\tbs}]}\massindex[display math environment]{{\tbs}[ {\tbs}]}[\inlinecode] and \massindex[display math environment]{equation*}[\envname] do therefore automatically adjust this spacing.
+The one-line display environments~\inlinecode{{\tbs}[ {\tbs}]}\massindex[display math environment]{{\tbs}[ {\tbs}]}[\inlinecode] and~\envname{equation*}\massindex[display math environment]{equation*}[\envname] do therefore automatically adjust this spacing.
 Observe that in the following example the distance between the first two text lines is far shorter than the distance between the second and third text lines.
 \begin{showlatex}*{Adjusted spacing before one-line display mode}
 Lorem
@@ -702,8 +703,8 @@ ipsum elit.
 \end{showlatex}
 We can say more precisely that the additional spacing inserted by {\LaTeX} is either \comname{abovedisplayskip} or its shorter version~\comname{abovedisplayshortskip}.
 
-The multi-line display mode environments (like~~\envname{align*}\massindex[display math environment, multi-line mathematics]{align*}[\envname]) don’t have this feature.
-It always uses the spacing~\comname{abovedisplayskip} (for technical reasons).
+The multi-line display mode environments (like~~\envname{align*}\massindex[display math environment, multi-line mathematics]{align*}[\envname]) don’t have this feature (for technical reasons).
+Instead, it always uses the spacing~\comname{abovedisplayskip}.
 This can lead to some unpleasant spacing:
 \begin{showlatex}*{Unpleasant spacing around a multi-line environment}
 text text text text text text text text text
@@ -777,7 +778,8 @@ This is obviously a proof.
 \end{showlatex}
 It can happen that this automatic placement of the qed-symbol gives a bad looking result.
 The general rule is that the qed-symbol should not occur at the end of an otherwise empty line.
-To fix such a bad placement one can use the command~\comname{qedhere}\massindex{qedhere}[\comname] 
+To fix such a bad placement one can use the command~\comname{qedhere}\massindex{qedhere}[\comname].
+Let’s look at some specific examples of this problem:
 
 \subsubsection{qed-symbol after lists}
 
@@ -793,7 +795,7 @@ If a proof consists of a list then the qed-symbol will by default be placed afte
   \end{enumerate}
 \end{proof}
 \end{showlatex}
-This can be fixed by placing the command~\comname{qedhere}
+This can be fixed by placing the command~\comname{qedhere} just before the list ends.
 \begin{showlatex}{Proper placement of the qed-symbol after a list}
 \begin{proof}
   This proof consists of a list.
@@ -834,9 +836,9 @@ If a proof ends with display~style mathematics then the qed-symbol will by defau
   \]
 \end{proof}
 \end{showlatex}
-There are at least different approaches to fixing this situation:
+There are at least two different approaches to fixing this situation:
 
-Some authors prever to bring the qed-symbol to the height of the display environment:
+Some authors prever to bring the qed-symbol to the height of the display environment, as done in the following example.
 \begin{showlatex}{Somewhat proper placement of the qed-symbol after display~mode}
 \begin{proof}
   This proof ends with a some display~mode mathematics, namely
@@ -849,7 +851,7 @@ Some authors prever to bring the qed-symbol to the height of the display environ
 \end{proof}
 \end{showlatex}
 But this approach does not work if the (last line) of the display environment has additional height.
-Then the mathematical formula go below the line on which the qed-symbol rests.
+Then the mathematical formula goes below the line on which the qed-symbol rests.
 \begin{showlatex}{Improper placement of the qed-symbol after display~mode~II}
 \begin{proof}
   This proof ends with a some display~mode mathematics, namely
@@ -871,7 +873,7 @@ One of the functions of display~mode is to put an emphasis on the displayed math
 Putting such an emphasis directly before the end of a proof can lead to the proof missing a sense of closure.
 
 This problem leads to the second solution for the placement of the qed-symbol.
-Simply never end a proof with a display~environment.
+Never end a proof with a display~environment.
 This can be done by rewriting the end of proof, or by adding a closing sentence to it.
 % TODO: Give an example
 
@@ -889,7 +891,7 @@ If this happens then one should (slightly) rewrite the text to circumvent this p
 
 \section{Tagging and numbering}
 
-A finer control of tags can be achieved using~\comname{tag} and~\comname{notag}.
+A finer control over tags can be achieved via the commands~\comname{tag} and~\comname{notag}.
 
 
 
@@ -944,7 +946,7 @@ It follows from the Chinese remainder theorem that
 \subsection{\comtitle{notag}}
 
 According to \cref{dont number all formulas} a formula should be numbered only if it needs to be referred to.
-But if this formula occurs in a multi-line environment like~\envname{align*} then by switching~\envname{align} all lines will be numbered.
+But if this formula occurs in a multi-line environment like~\envname{align} then all occuring lines will be numbered, even unwanted ones.
 The prevent the numbering of the unrequired lines the command~\comname{notag}\massindex[tagging and numbering]{tag}[\comname] can then be used:
 \begin{showlatex}*{Using~\comname{notag} to prevent selected line numbers}
 \begin{align}

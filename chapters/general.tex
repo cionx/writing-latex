@@ -1,6 +1,6 @@
 \chapter{Before you start writing}
 
-A dozen mistakes and bad choices can be made before even the first word of actual text is written.
+A dozen mistakes and bad choices can be made before even the first word of the actual text is written.
 In this chapter we talk about how to prevent this from happening.
 Some of the points -- those about code quality and code management -- are not unique to writing {\LaTeX}.
 
@@ -21,10 +21,12 @@ Sending code to yourself on Facebook\index{Facebook} is not a proper system of v
 
 
 
-\subsection{Use \texorpdfstring{\LuaLaTeX}{LuaLaTeX} or \texorpdfstring{\XeLaTeX}{XeLaTeX}}
+\subsection{Use \texorpdfstring{\XeLaTeX}{XeLaTeX} or \texorpdfstring{\LuaLaTeX}{LuaLaTeX}}
 
-Use {\LuaLaTeX}\index{LuaLaTeX@{\LuaLaTeX}} or {\XeLaTeX}\index{XeLaTeX@{\XeLaTeX}} for native Unicode\index{Unicode} support (i.e.\ without including any kind of additional packages).
-The author recommends {\LuaLaTeX} because the \packname{microtype}\massindex{microtype}[\packname] package his only a limited functionality under {\XeLaTeX}.
+Use {\XeLaTeX}\index{XeLaTeX@{\XeLaTeX}} or {\LuaLaTeX}\index{LuaLaTeX@{\LuaLaTeX}} for out-of-the-box Unicode\index{Unicode} support.
+The author generally recommends {\LuaLaTeX} because the \packname{microtype}\massindex{microtype}[\packname] package his only a limited functionality under {\XeLaTeX}.
+
+In the following we always talk about \enquote{the~{\LaTeX}~compiler}, whether it may \inlinecode{latex}, \inlinecode{lualatex} or \inlinecode{xelatex}.
 
 
 
@@ -69,7 +71,7 @@ Instead do the following:
   \end{pmatrix*}
 \]
 \end{showcode}
-You can (and should) even do the following:
+You could (and maybe should) even do the following:
 \begin{showcode}{Code isn’t cramped}
 \[
   \begin{pmatrix*}[r]
@@ -83,7 +85,7 @@ You can (and should) even do the following:
   \end{pmatrix*}
 \]
 \end{showcode}
-This last one is easiest to write and easiest to navigate.
+This last version is easiest to write and easiest to navigate.
 
 Also put at least one space between any two symbols that do not belong together.
 Don’t do the following:
@@ -107,12 +109,12 @@ Related the previous point, write at most one sentence per line.
 This has at least three advantages:
 \begin{itemize}[wide=0pt, leftmargin=*]
   \item
-    When an error\index{error} or warning\index{warning} occurs {\LaTeX} will (try to) tell you the line of source code in which the problem occurs.
+    When an error\index{error} or warning\index{warning} occurs, {\LaTeX} will (try to) tell you in which line of source code the problem occured.
     Having your source code split up over multiple lines makes it much easier to find the problem.
   \item
-    Organizing the source code in lines will in most cases make the tools provided by your version control\index{version control} system more efficient to use.
+    Organizing the source code into more lines will make the tools provided by your version control\index{version control} system more efficient to use.
   \item
-   Sentences which are overly loong become easily recognizable.
+   Sentences which are overly long become more easily recognizable.
 \end{itemize}
 
 
@@ -132,7 +134,7 @@ Consider the following example:
 Here is some text.
 \footnote{Here is a footnote for this text.}
 \end{showlatex}
-Note the unwanted space\index{before a footnote} between the period and the superscript of the footnote\index{footnote}.
+Note the unwanted space\index{before a footnote} between the period and the superscript belonging to the footnote\index{footnote}.
 This unwanted space comes from the line break that occurs between them in the source code.
 By ending the first line with \inlinecode{\%}\massindex{\%}[\inlinecode] we can \enquote{comment out} this line break.
 We hence do the following:
@@ -148,7 +150,7 @@ Here is some text.%
 \section{Splitting up a project into multiple files}
 \index{including files!zzzz@\igobble |see{file inclusion}}
 
-Any slightly larger project should be split up into multiple files.
+Nearly every project should be split up into multiple files.
 
 
 
@@ -157,8 +159,8 @@ Any slightly larger project should be split up into multiple files.
 There are (at least) three useful ways to include another file into your project: \comname{usepackage}\massindex[file inclusion]{usepackage}[\comname], \comname{include}\massindex[file inclusion]{include}[\comname] and \comname{input}\massindex[file inclusion]{input}[\comname].
 \begin{myitemize}
   \item
-    Most of the preamble information -- including of packages, configuration of styles, configuration of the look and feels of the document -- should be put into one or multiple \filename{sty}-files.
-    These file(s) can then be included into the document by using \comname{usepackage}\massindex[file inclusion]{usepackage}[\comname].
+    Most of the preamble information -- inclusion packages, configuration of styles, configuration of the look and feels of the document -- should be put into one or multiple \filename{sty}-files.
+    These file(s) can then be included into the document via the command~\comname{usepackage}\massindex[file inclusion]{usepackage}[\comname].
   \item
     The commands~\comname{include} and~\comname{input} insert the text of the specified documents at the position where they are used, but have slight differences:
     \begin{myitemize}
@@ -174,7 +176,11 @@ There are (at least) three useful ways to include another file into your project
 One should use the command~\comname{include} for chapters and the command~\comname{input} for any smaller level of text organization.
 One should in particular break the main text into smaller units until each of them can be put into its own file of sensible length.
 
-Suppose for example that your text consists of three chapters, each of which consists of two sections.
+
+
+\subsection{An Example}
+
+Suppose that your text consists of two chapters, each of which consists of three sections.
 Then you should have at least ten files:
 \begin{myitemize}
   \item
@@ -183,7 +189,7 @@ Then you should have at least ten files:
   \item
     A file \filename{mystyle.sty} in which packages are included and options are set.
   \item
-    Three files like \filename{chapter1.tex}, \filename{chapter2.tex} and \filename{chapter3.tex} for the chapters.
+    Two files for the chapters, say \filename{chapter1.tex} and \filename{chapter2.tex}.
   \item
     Six files for the sections, say \filename{section1.tex} up to \filename{section6.tex}.
 \end{myitemize}
@@ -210,11 +216,12 @@ These files should include each other as shown in \cref{file inclusion structure
         };
     \end{tikzpicture}
   \end{center}
-  \caption{Splitting up a project into files.}
+  \caption{Splitting up a project into multiple files.}
   \label{file inclusion structure}
 \end{figure}
-We suppose for simplicity that all ten files are contained in the same directory.
-The master file \filename{main.tex} should look roughly as follows:
+
+Let us suppose for simplicity that all ten files are contained in the same directory.
+The master file \filename{main.tex} should then look roughly as follows:
 %
 \begin{showcode}{Layout of \filename{main.tex}}
 \documentclass[a4paper, 10pt]{scrreprt}
@@ -276,13 +283,15 @@ Text of the first section.
 
 \subsection{Use \comtitle{includeonly}}
 
-As a document grows so does the time that is needed to compile it.
+As your document grows so does the time needed to compile it.
 It is therefore often desirable to compile only certain parts of the document.
 One naive solution to this problem is to simply not include the currently unwanted parts, e.g.\ by commenting out the corresponding lines of~\comname{include} and~\comname{input}.
 This approach has the problem that references to the now-excluded parts of the document will not compile properly.
 This problem can be fixed by using the command~\comname{inludeonly}\massindex[file inclusion]{includeonly}[\comname].
 
-Suppose that your main document, say \filename{main.tex}, included two other files, say \filename{chapter1.tex} and \filename{chapter2.tex}, via the command \comname{include}.
+\subsubsection{Usage of the command}
+
+Suppose that your main document, \filename{main.tex}, includes two other files, say \filename{chapter1.tex} and \filename{chapter2.tex}, via the command \comname{include}.
 Hence the file~\filename{main.tex} should look roughly as follows:
 \begin{showcode}{Basic example of \filename{main.tex}}
 \documentclass[a4paper, 10pt]{scrreprt}
@@ -306,31 +315,37 @@ By putting~\inlinecode{{\tbs}includeonly\{chapter1\}} in the preamble we tell {\
 
 \end{document}
 \end{showcode}
-If in the above situation chapter~1 contains some references to chapter~2 then these references will still compile correctly, even though only chapter~1 is compiled.
+If in the above situation the file~\filename{chapter1.tex} contains some references to labels contained in the file~\filename{chapter2.tex} then these references will still compile correctly, even though only~\filename{chapter1.tex} is compiled.
+
+\subsubsection{Things to be aware of}
 
 The command~\comname{includeonly} has two quirks, which follow from the way {\LaTeX} handles referencing:
 
 When {\LaTeX} compiles the file~\filename{main.tex} an auxiliary file~\filename{main.aux} is created.
 This file contains various information about the compiled document.
 It does in particular contain a list of all labels found in \filename{main.tex} during the compilation process.
-The next compilation process can then access these information to properly properly typeset all references that refer to these labels.
+The next compilation process can then access these information to properly typeset all references that refer to these labels.
 
 A feature of the command~\comname{include} (which the command~\comname{input} does not have) is that such an auxiliary file is also generated for the included file.
-So in the above example the files~\filename{chapter1.aux} and \filename{chapter2.aux} will be created.
+So in the above example the files~\filename{chapter1.aux} and \filename{chapter2.aux} will be created whenever corresponding \filename{tex}-files are compiled.
 These files will in particular contain lists of all the labels found in~\filename{chapter1.tex} and \filename{chapter2.tex}.
-This allows {\LaTeX} to access the labels in \filename{chapter2.tex} even though only \filename{chapter1.tex} is compiled.
 
-The auxiliary file~\filename{chapter2.aux} remains unchanged because {\LaTeX} does not go trough the file~\filename{chapter2.tex} as long as the code~\inlinecode{{\tbs}includeonly\{chapter1\}} is used.
-This leads to the two quirks mentioned above:
+
+When~\inlinecode{{\tbs}includeonly\{chapter1\}} is used, only \filename{chapter1.tex} is recompiled.
+As a consequence, the auxiliary file~\filename{chapter1.aux} may change, but the file~\filename{chapter2.aux} remains unchanged.
+This allows {\LaTeX} to access the labels in~\filename{chapter2.tex} (which are now listed in \filename{chapter2.aux}) without going through this file again.
+However, that the file~\filename{chapter2.aux} remains unchanged leads to two quirks that one should be aware of:
 \begin{myitemize}
   \item
     Before inserting the code \inlinecode{{\tbs}includeonly\{chapter1\}} one needs to compile the whole document, including \filename{chapter2.tex}, a least once.
     This needs to be done so that {\LaTeX} can properly create the auxiliary file~\filename{chapter2.aux}.
   \item
-    Changes made to the file~\filename{chapter2.tex} will not be noticed by {\LaTeX} while the code~\inlinecode{{\tbs}includeonly\{chapter1\}} is present.
+    Changes made to the file~\filename{chapter2.tex} will not be seen by {\LaTeX} while the code~\inlinecode{{\tbs}includeonly\{chapter1\}} is present.
     This means in particular that {\LaTeX} won’t notice any new labels that are added in this file.
-    In this case one need to stop excluding \filename{chapter1.tex} for at least on compilation process to ensure that the auxiliary file~\filename{chapter2.aux} is refreshed.
+    In this case one need to stop excluding \filename{chapter1.tex} for at least one compilation process to ensure that the auxiliary file~\filename{chapter2.aux} is updated.
 \end{myitemize}
+
+\subsubsection{Specifying multiple files}
 
 The command~\comname{includeonly} actually accepts as its argument a list of files to be included:
 \begin{showcode}{Syntax of \comname{includeonly}}
@@ -347,10 +362,11 @@ The command~\comname{includeonly} actually accepts as its argument a list of fil
 
 \subsection{Use the KOMA-Script classes}
 
-Instead of the standard classes\index{standard classes} \optname{article}\massindex[standard classes, document class!classes]{article}[\optname], \optname{report}\massindex[standard classes, document class!classes]{report}[\optname] or \optname{book}\massindex[standard classes, document class!classes]{book}[\optname] the the more modern KOMA-Script classes \optname{scrartcl}\massindex[KOMA-Script classes, document class!classes]{scrartcl}[\optname], \optname{scrreprt}\massindex[KOMA-Script classes, document class!classes]{scrreprt}[\optname] and \optname{scrbook}\massindex[KOMA-Script classes, document class!classes]{scrbook}[\optname] should be used.
-They provide more functionalities then the standard classes and a more unified interface.
+Instead of the standard classes\index{standard classes} \optname{article}\massindex[standard classes, document class!classes]{article}[\optname], \optname{report}\massindex[standard classes, document class!classes]{report}[\optname] or \optname{book}\massindex[standard classes, document class!classes]{book}[\optname], the the KOMA-Script classes \optname{scrartcl}\massindex[KOMA-Script classes, document class!classes]{scrartcl}[\optname], \optname{scrreprt}\massindex[KOMA-Script classes, document class!classes]{scrreprt}[\optname] and \optname{scrbook}\massindex[KOMA-Script classes, document class!classes]{scrbook}[\optname] should be used.
+They provide more built-in functionalities than the standard classes and a more unified interface.
 
-The KOMA-Script classes make slightly different design choices than the standard classes:
+The KOMA-Script classes make slightly different design choices than the standard classes.
+Some of them are the following:
 \begin{myitemize}
   \item
     The KOMA-Script classes have a different chapter title layout than the standard classes.
@@ -359,8 +375,8 @@ The KOMA-Script classes make slightly different design choices than the standard
 \documentclass[10pt, a4paper, chapterprefix = true]{scrbook}
     \end{showcode}
   \item
-    The default font of the KOMA-Script classes for headings and description~labels is a bold sans-serif font.
-    It can be changed to the standard serif font with help of the command~\comname{setkomafont}\massindex[KOMA-Script classes, fonts]{addtokomafont}[\comname].
+    Headings and description~labels are set in bold and sans-serif.
+    This can be changed to a serif font with help of the command~\comname{setkomafont}\massindex[KOMA-Script classes, fonts]{addtokomafont}[\comname].
     \begin{showcode}{Changing KOMA fonts}
 \addtokomafont{disposition}{\rmfamily}
 \addtokomafont{descriptionlabel}{\rmfamily}
@@ -378,11 +394,11 @@ The KOMA-Script classes make slightly different design choices than the standard
 \index{document class}
 
 The three standard classes to consider for a mathematical project are~\optname{scrartcl}\massindex[KOMA-Script classes, document class!classes]{scrartcl}[\optname],~\optname{scrreprt}\massindex[KOMA-Script classes, document class!classes]{scrreprt}[\optname] and~\optname{scrbook}\optionindex{scrbook}{scrbook}\massindex[KOMA-Script classes, document class!classes]{scrbook}[\optname].
-These three classes differ in what functionalities they provide and what they standard settings are.
+These three classes differ in what functionalities they provide and what their standard settings are.
 
 The class~\optname{scrartcl} is the most basic one.
 It provides the standard sectioning commands~\comname{section}\massindex[sectioning]{section}[\comname],~\comname{subsection}\massindex[sectioning]{subsection}[\comname] and~\comname{subsubsection}\massindex[sectioning]{subsubsection}[\comname].
-An abstract can be set with the~\envname{abstract}\massindex{abstract}[\envname] environment and by giving~\comname{documentclass} the option~\inlinecode{abstract~=~on}\massindex[document class!options]{abstract}[\envname]:
+An abstract can be added with the~\envname{abstract}\massindex{abstract}[\envname] environment and by giving~\comname{documentclass} the option~\inlinecode{abstract~=~on}\massindex[document class!options]{abstract}[\envname]:
 \begin{showcode}{Using the environment~\envname{abstract}}
 \documentclass[10pt, a4paper, abstract = on]{scrartcl}
 
@@ -396,39 +412,36 @@ An abstract can be set with the~\envname{abstract}\massindex{abstract}[\envname]
 \end{showcode}
 
 The class~\optname{scrreprt} extends the previous class:
-It provides the additional sectioning command~\comname{chapter}\massindex[sectioning]{chapter}[\comname] that precedes~\comname{section}.
-The title is now printed its own page, although this can by setting the option~\optname{titlepage}\massindex[KOMA-Script classes, document class!options]{titlepage}[\optname] to~\optname{false}:
+It provides the additional sectioning command~\comname{chapter}\massindex[sectioning]{chapter}[\comname], which is higher-level than~\comname{section}.
+The title has a complete page for itself, although this behavior can be changed by setting the option~\optname{titlepage}\massindex[KOMA-Script classes, document class!options]{titlepage}[\optname] to~\optname{false}:
 \begin{showcode}{Using the option~\optname{titlepage}}
 \documentclass[10pt, a4paper, titlepage = false]{scrreprt}
 \end{showcode}
-It also provides the sectioning command~\comname{abstract} after which all chapters will be counted towards the appendix.
+This class also provides the sectioning command~\comname{appendix} after which all chapters will be counted towards the appendix.
 The~\envname{abstract} environment is still available in the same way as before.
 (But the abstract is printed only on the second page, after the title page.)
 
-The class~\optname{scrbook} provides the additional sectioning command~\comname{part}\massindex[sectioning]{part}[\comname] that precedes~\comname{chapter}.
+The class~\optname{scrbook} provides the additional sectioning command~\comname{part}\massindex[sectioning]{part}[\comname] that that is even more higher-level than~\comname{chapter}.
 This class also provides the (very useful) additional sectioning commands~\comname{frontmatter}\massindex[sectioning]{frontmatter}[\comname],~\comname{mainmatter}\massindex[sectioning]{mainmatter}[\comname] and~\comname{backmatter}\massindex[sectioning]{backmatter}[\comname].
 The~\envname{abstract} environment isn’t available anymore.
-This class distinguish between left and right pages, i.e.\ even and odd pages.
+This class does by default distinguish between left and right pages, i.e.\ even and odd pages.
 This can be disabled by using the option~\optname{oneside}\massindex[KOMA-Script classes, document class!options]{oneside}[\optname]:
 \begin{showcode}{Using the option~\optname{oneside}}
 \documentclass[10pt, a4paper, oneside]{scrbook}
 \end{showcode}
-By default chapters will begin on the right side.
+By default chapters will begin on the right page.
 This can be disabled with the option~\optname{openany}\massindex[KOMA-Script classes, document class!options]{openany}[\optname]:
 \begin{showcode}{Using the option~\optname{openany}}
 \documentclass[10pt, a4paper, openany]{scrbook}
 \end{showcode}
-When the option~\optname{oneside} is used then chapters can start on both the left pages and the right pages.
-So option~\optname{openany} is then not needed.
+When the option~\optname{oneside} then chapters are automatically allowed to start on both left pages and right pages.
+The option~\optname{openany} is then not needed.
 
-In practice one should use the class~\optname{scrartcl} if only sections and subsections are used, and otherwise the class~\optname{scrbook}.
+In practice one should use the class~\optname{scrartcl} if only sections and subsections are needed, and otherwise the class~\optname{scrbook}.
 Instead of~\optname{scrreprt} one should directly use~\optname{scrbook}:
-The additional commands~\comname{frontmatter},~\comname{mainmatter} and~\comname{backmatter} that~\optname{scrbook} provides are extremely useful (see \cref{using frontmatter}), and the visual difference between~\optname{scrreprt} and~\optname{scrbook} (which is their main difference) can easily be adjusted by passing the option~\optname{openany}\massindex[KOMA-Script classes, document class!options]{openany}[\optname] to~\comname{documentclass}:
-\begin{showcode}{Using the option~\optname{openany}}
-\documentclass[10pt, a4paper, openany]{scrbook}
-\end{showcode}
+The additional commands~\comname{frontmatter},~\comname{mainmatter} and~\comname{backmatter} that~\optname{scrbook} provides are extremely useful (see \cref{using frontmatter}), and the visual difference between~\optname{scrreprt} and~\optname{scrbook} (which is their main difference) can easily be adjusted by using the aforementioned option~\optname{openany}.
 
-
+% TODO: Better explanation of twoside, oneside and semi.
 
 
 
@@ -442,13 +455,13 @@ These parts behave slightly differently:
 \begin{myitemize}
   \item
     The front part uses lower case roman numerals\index{roman numerals}\index{numerals!roman} for page numbers.
-    In the generated \pagename{pdf}-file these pages will again be numbered with roman numerals (this will be important for the main part).
+    In the generated \filename{pdf}-file these pages will again be numbered with roman numerals (this will be important for the main part).
     Chapters in this part of the document will not be numbered, but will appear in the table of contents.
     
-    This part of the document should include the title page\index{title page}, preface\index{preface}, table of content\index{table of contents} and introduction\index{introduction}.
-    Basically everything that occurs before the first chapter.
+    This part of the document should include the title page\index{title page}, preface\index{preface}, table of content\index{table of contents}, list of figures, list of tables, and the introduction\index{introduction}.
+    In other words, everything that occurs before the first chapter.
   \item
-    The main part uses Arabic numerals\index{Arabic numerals}\index{numerals!Arabic} for page numbers and the page number is reset when the main part starts.
+    The main part uses Arabic numerals\index{Arabic numerals}\index{numerals!Arabic} for page numbers and the page number is reset at the beginning of the main part.
     The first page of the main part is therefore numbered~\enquote{1}.
     In the generated \filename{pdf}-file this first page will also be numbered as such.
     This means that going to page~15 of the \filename{pdf}-file will indeed give page~15 of the document.
@@ -460,21 +473,21 @@ These parts behave slightly differently:
     The appendix part continues the numbering of the main part.
     It both resets the chapter number and changes its style to upper case letters.
     The first chapter in this part will hence be numbered~\enquote{A}.
-    If the option~\inlinecode{chapterprefix~=~true} is set then the word~\enquote{Chapter} at the beginning of a new~\comname{chapter} will be replaced by~\enquote{Appendix}.
+    If the option~\inlinecode{chapterprefix~=~true} is set then the word~\enquote{Chapter} at the beginning of a new chapter will be replaced by~\enquote{Appendix}.
     
-    This part of the document should contain all appendices.
+    This part of the document should contain the appendices.
   \item
     The back part continues the numbering of the appendix (and thus the numbering of the main part).
-    The chapters appearing in this part of the document are again unnumbered, and no~\enquote{Chapter} is printed at the beginning of a new~\comname{chapter} is printed.
+    The chapters appearing in this part of the document are again unnumbered, and no~\enquote{Chapter} is printed at the beginning of a new chapter.
     
-    This part of the document should contain the bibliography and the index.
+    This part of the document should contain the bibliography, list of symbols, and the index.
     An entry for the bibliography\index{bibliography} can be added to the table of contents by setting the option~\optname{bibliography}\massindex[KOMA-Script classes, document class!options, bibliography]{bibliography}[\optname] to~\optname{totoc}\massindex[KOMA-Script classes]{totoc}[\optname].
 \end{myitemize}
 
 The document layout with~\optname{scrbook} should therefore look roughly as follows:
 
 \begin{showcode}[label = {layout for scrbook}]{General document layout with~\optname{scrbook}}
-\documentclass[a4paper, 10pt,bibliography=totocnumbered]{scrbook}
+\documentclass[a4paper, 10pt, bibliography = totocnumbered]{scrbook}
 
 % preamble
 
@@ -485,6 +498,8 @@ The document layout with~\optname{scrbook} should therefore look roughly as foll
 % dedication
 % preface
 \tableofcontents
+% \listoftables
+% \listoffigures
 % introduction
 
 \mainmatter
@@ -495,6 +510,7 @@ The document layout with~\optname{scrbook} should therefore look roughly as foll
 
 \backmatter
 \printbibliography
+% list of symbols
 % index
 \end{document}
 \end{showcode}
@@ -506,7 +522,7 @@ The document layout with~\optname{scrbook} should therefore look roughly as foll
 \section{Be consistent}
 
 One of the most important aspects of both mathematical writing and the use of mathematical notation is consistency\index{consistency}.
-If you’re making crappy choices then at least do them consistently, in the same way.
+If you’re making crappy choices then at least do them consistently.
 Consider the following example:
 % 
 % \begin{tcblisting}{title = {Bad}}

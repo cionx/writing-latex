@@ -11,7 +11,7 @@
 \subsection{General symbols}
 \index{symbols}
 
-Use the right symbols.
+Use the correct symbols.
 \Cref{wrong symbol list} shows some popular sources of this problem.
 \begin{table}[tb]
   \begin{center}
@@ -175,6 +175,16 @@ Use the right symbols.
       &
       $\Leftrightarrow$
     \\
+      {}
+      &
+      {}
+      &
+      {}
+      &
+      \inlinecode{<=>}
+      &
+      <=>
+    \\
     \cmidrule(lr){2-3} \cmidrule(l){4-5}
       definition
       &
@@ -273,7 +283,7 @@ So use whichever is more appropriate in the given situation.
 
 \subsection{Operations}
 
-Many mathematical operations have both a binary version and an operator version where the operation can range over some index set.
+Many mathematical operations have both a binary version and an operator version, where the operation can range over some index set.
 One should not confuse the two of them.
 \Cref{binary vs operator} shows some popular binary operations and their operator counterpart.
 \begin{table}[tb]
@@ -487,7 +497,7 @@ A few of them are collected in~\cref{negation list}.
   \caption{Negated versions of popular symbols.}
   \label{negation list}
 \end{table}
-If the required symbol is not predefined then the command~\comname{centernot}\massindex[negation]{centernot}[\comname] from the package~\packname{centernot}\massindex[packages]{centernot}[\packname] often produces better looking output then~\comname{not}:
+If the required symbol is not predefined then the command~\comname{centernot}\massindex[negation]{centernot}[\comname] from the package~\packname{centernot}\massindex[packages]{centernot}[\packname] often produces better looking output than~\comname{not}:
 \begin{showlatex}{Using the command~\comname{centernot}}
   Consider
   \[
@@ -508,8 +518,8 @@ If the required symbol is not predefined then the command~\comname{centernot}\ma
 
 \subsection{Don’t use \comtitle{limits}}
 
-People seem to think that they have to put\comname{limits}\massindex[limits]{limits}[\comname] after a command to add limits to it:
-\begin{showlatex}*{Using limits}
+People seem to think that they have to put \comname{limits}\massindex[limits]{limits}[\comname] after a command to add limits to it:
+\begin{showlatex}*{Using~\comname{limits}}
 \[
   \sum\limits_{k=1}^n k
   =
@@ -525,7 +535,7 @@ It is unnecessary because (most of) the commands in questions already have this 
   \frac{n(n+1)}{2}
 \]
 \end{showlatex}
-This built-in limits have the advantage that they can distinguish between inline math and display math math:
+These built-in limits have the advantage that they can distinguish between inline math and display math:
 \begin{showlatex}*{Inline math vs.\ display math with built-in limits}
 The sum $\sum_{k=0}^n 2^k = 2^{n+1} - 1$ is inline while the sum
 \[
@@ -541,7 +551,7 @@ This is a feature which \comname{limits} version is missing:
 So here is some text which will generate some lines.
 The text itself isn’t important, but we really want it to fill some lines.
 The important thing is the sum $\sum\limits_{k=0}^n k$.
-Well, not really the sum itself, but the use of \texttt{{\textbackslash}limits} for typesetting it..
+Well, not really the sum itself, but the use of \texttt{{\textbackslash}limits} for typesetting it.
 \end{showlatex}
 The limits are still placed above the top and below the summation sign.
 This has its price:
@@ -566,7 +576,7 @@ Compare the inline versions $\sum_{k=0}^n k$ and $\prod_{k=1}^n k$ and $\lim_{n 
   \lim_{n \to \infty} a_n \,.
 \]
 \end{showlatex}
-When now commands are defined with~\comname{DeclareMathOperator}\massindex[defining commands]{DeclareMathOperator}[\comname] or~\comname{operatorname}\massindex[defining commands]{operatorname}[\comname] then one can make them support limits by using \comname{DeclareMathOperator*}\massindex[defining commands, limits]{DeclareMathOperator*}[\comname] and \comname{operatorname*}\massindex[defining commands, limits]{operatorname*}[\comname] instead.
+If a new commands are defined with~\comname{DeclareMathOperator}\massindex[defining commands]{DeclareMathOperator}[\comname] or~\comname{operatorname}\massindex[defining commands]{operatorname}[\comname] then one can make them support limits by using \comname{DeclareMathOperator*}\massindex[defining commands, limits]{DeclareMathOperator*}[\comname] and \comname{operatorname*}\massindex[defining commands, limits]{operatorname*}[\comname] instead.
 Suppose for example that we have made in the preamble the following definition:
 \begin{showcode}{Using \comname{DeclareMathOperator*} to define~\comname{colim}}
 \DeclareMathOperator*{\colim}{colim}
@@ -914,41 +924,41 @@ The ellipses in the first group are named after their function, see \cref{ellips
     \comname{dotsb}%
     \massindex[ellipses]{dotsb}[\comname]
     &
-    Between binary relations and operations.
+    between binary relations
     &
-    $x_1 + \dotsb + x_n$
+    $x_1 \leq \dotsb \leq x_n$
     \\
     {}
     &
-    {}
+    and binary operations
     &
-    $x_1 \leq \dotsb \leq x_n$
+    $x_1 + \dotsb + x_n$
     \\
     \comname{dotsc}%
     \massindex[ellipses]{dotsc}[\comname]
     &
-    Between commata.
+    between commas
     &
     $x_1, \dotsc, x_n$
     \\
     \comname{dotsm}%
     \massindex[ellipses]{dotsm}[\comname]
     &
-    Abbreviating multiplication.
+    abbreviating multiplication
     &
     $x_1 \dotsm x_n$
     \\
     \comname{dotsi}%
     \massindex[ellipses]{dotsi}[\comname]
     &
-    Iterated integrals.\index{integral}
+    iterated integrals\index{integral}
     &
     $\int_{X_1} \dotsi \int_{X_n}$
     \\
     \comname{dotso}%
     \massindex[ellipses]{dotso}[\comname]
     &
-    Others.
+    others
     &
     {}
     \\
@@ -959,7 +969,7 @@ The ellipses in the first group are named after their function, see \cref{ellips
   \caption{Ellipses with a specific functions.}
   \label{ellipses with function}
 \end{table}
-Note that the members of this group all have names of the form \comname{dots*}, where \optname{*} is a letter that specifies the semantic use of the dots.
+Note that the members of this group all have names of the form \comname{dots*}, where \optname{*} is a letter that specifies the semantic use of the ellipsis.
 
 The ellipses in the second group are not named after their function but after their orientation, see \cref{ellipses with orientation}
 \begin{table}[tb]
@@ -1054,9 +1064,9 @@ Note that the members of this second group of dots all have names of the form~\c
 So overall one should use the ellipses~\comname{cdots}, \comname{ddots} and \comname{vdots} for matrices, and otherwise the ellipses~\comname{dotsb}, \comname{dotsc}, \comname{dotsm}, \comname{dotsi} and occasionally \comname{dotso}.
 
 There also exists the generic command~\comname{dots}\massindex[ellipses]{dots}[\comname] which tries to automagically use the right kind of positioning and spacing.
-But the author recommends no using this command as it can lead to inconsistent results:
+But the author recommends not using this command as it can lead to inconsistent results:
 \begin{showlatex}{Inconsistent results with \comname{dots}}
-  The ellipses in $x_1 \leq x_2 \leq \dots \leq x_n$ and $y_1 \leq y_2 \leq \dots$ should look the same.
+The ellipses in $x_1 \leq x_2 \leq \dots \leq x_n$ and $y_1 \leq y_2 \leq \dots$ should look the same.
 \end{showlatex}
 
 \index{ellipses|)}
@@ -1172,13 +1182,13 @@ See \cref{table of matrices} for a table of all these kinds of matrices.
     \bottomrule
   \end{tabular}
   \end{center}
-  \caption{Kinds of matrices.}
+  \caption{Different kinds of matrices.}
   \label{table of matrices}
 \end{table}
 
-The package~\packname{mathtools}\massindex[packages]{mathtools}[\packname] also provides starred versions of the matrices in \cref{table of matrices}.
-These starred versions allow to specify as an optional argument the alignment of the columns.
-The three possible arguments are~\optname{l}\massindex{l}[\optname] for left-alignment,~\optname{c}\massindex{c}[\optname] for centered alignment and ~\optname{r}\massindex{r}[\optname] for right-alignment.
+The package~\packname{mathtools}\massindex[packages]{mathtools}[\packname] also provides starred versions of the matrices.
+These starred versions allow to specify as an optional argument the alignment of the columns, see \cref{table of matrices}.
+The three possible arguments are~\optname{l}\massindex{l}[\optname] for left-alignment,~\optname{c}\massindex{c}[\optname] for centered alignment and~\optname{r}\massindex{r}[\optname] for right-alignment.
 The standard alignment is~\optname{c}.
 \begin{showlatex}{Aligning matrix entries}
 \[
@@ -1234,9 +1244,9 @@ We consider the morphism
 
 Some people use~$\subset$~(\comname{subset}\massindex{subset}[\comname]) to denote inclusion and~$\subsetneq$~(\comname{subsetneq}\massindex{subsetneq}[\comname]) to denote proper inclusion, while some other people use~$\subseteq$~(\comname{subseteq}\massindex{subseteq}[\comname]) to denote inclusion and~$\subset$ to denote proper inclusion.
 The second convention has the advantage of making sense and being consistent with the usual use of~$\leq$ and~$<$, whereas the first convention has the non-advantage of existing.
-The problem is that both conventions are wide-spread but use the symbol~$\subset$ is different ways.
+The problem is that both conventions are wide-spread while using the symbol~$\subset$ is different ways.
 
-The conflict between the above two conventions has abused the symbol~$\subset$ to a point that it should simply \emph{never} be used.
+The conflict between the above two conventions has abused the symbol~$\subset$ to a point that it should \emph{never} be used.
 Instead one should always use~$\subseteq$ for inclusion, $\subsetneq$ for proper inclusion and~$\nsubseteq$~(\comname{nsubseteq}\massindex{nsubseteq}[\comname]) for non-inclusion.
 
 Some people prefer the symbols~$\subseteqq$~(\comname{subseteqq}\massindex{subseteqq}[\comname]) and~$\subsetneqq$~(\comname{subsetneqq}\massindex{subsetneqq}[\comname]) instead.
@@ -1248,21 +1258,19 @@ The author thinks that these symbols are unnecessary large and recommends not to
 \subsection{Don’t underline}
 \index{underlining}
 
-Underlining mathematics works well on the blackboard, in handwriting and it was done in the age of typewriters.
+Underlining works well on the blackboard, in handwriting, and was useful in the in the (dark) age of typewriters.
 Don’t do it in {\LaTeX}.
 
 
 
 \subsection{Use \texorpdfstring{$\mathrm{d}x$}{dx} instead of \texorpdfstring{$dx$}{dx}}
 
-A differential\index{differential} is written as \inlinecode{{\tbs}mathrm\{d\}x}, not as $dx$.
-When it occurs at the end of an integral\index{integral} then a slight spacing~\comname{\,}\index{spacing!in math mode} is also introduced in front of it.
+A differential\index{differential} is written as \inlinecode{{\tbs}mathrm\{d\}x}, not as \inlinecode{dx}.
+When it occurs at the end of an integral\index{integral} then a slight spacing~\comname{,}\index{spacing!in math mode} is also introduced in front of it.
 So don’t do the following:
 \begin{showlatex}*{Wrong kind of differentials}
 \[
   \int_a^b f(x) dx
-  \quad
-  \int_a^b f(x) \mathrm{d}x
 \]
 \end{showlatex}
 Instead do the following:
@@ -1277,7 +1285,7 @@ Instead do the following:
 \subsection{Don’t force fancy fractions}
 \index{fractions|(}
 
-When fractions are placed inline, as an exponent or in an index then they should be of the form $a/b$.
+When fractions are placed inline, are part of an exponent or part of an index, then they should be of the form $a/b$.
 The notation
 \[
   \frac{a}{b}
@@ -1304,7 +1312,7 @@ Don’t use funky fractions like $\faktor{a}{b}$. They’ll make you go blind an
 
 \section{Defining new commands}
 
-Many mathematical operators have predefined commands, which should be used.
+Many mathematical operators have predefined commands, which should be used when needed.
 \begin{showlatex}{Using commands vs.\ not using them}
 Use $\sin(x)$ instead of $sin x$, use $\dim V$ instead of $dim V$ and use $\lim_{n \to \infty} a_n$ instead of $lim_{n \to \infty} a_n$.
 \end{showlatex}
@@ -1313,23 +1321,23 @@ New commands can be defined in various ways:
 
 \subsection{\comtitle{DeclareMathOperator}}
 
-Commands of the form~\comname{Word} that are supposed to give the output~$\mathrm{Word}$ can easily be defined using the command~\comname{DeclareMathOperator}\massindex[defining commands]{DeclareMathOperator}[\comname].
+Commands of the form~\comname{WordCommand}, that are supposed to print~\enquote{$\mathrm{WordOutupt}$}, can easily be defined using the command~\comname{DeclareMathOperator}\massindex[defining commands]{DeclareMathOperator}[\comname].
 \begin{showcode}{Syntax of~\comname{DeclareMathOperator}}
-\DeclareMathOperator{\Word}{Word}
+\DeclareMathOperator{\WordCommand}{WordOutput}
 \end{showcode}
 The command \comname{DeclareMathOperator} can only be used in the preamble.
 
-To define the command~\comname{Hom} we us the following text in the preamble:
+To define the command~\comname{End} we use the following text in the preamble:
 \begin{showcode}{Declaring a mathematical operator with~\comname{DeclareMathOperator}}
 % in the preamble:
 \DeclareMathOperator{\End}{End}
 \end{showcode}
-The command \comname{Hom} can then be used in the usual way:
+The command \comname{End} can then be used in the usual way:
 \begin{showlatex}{Using a declared mathematical operator}
 Thus $\End(V) = \End_k(V)$ becomes a vector space.
 \end{showlatex}
 
-When a command~\comname{Word} is defined with \comname{DeclareMathOperator} then {\LaTeX} will automatically insert some space around\index{spacing!in math mode} \comname{Word} when needed:
+If a command~\comname{WordCommand} is defined with \comname{DeclareMathOperator} then {\LaTeX} will automatically insert some space around\index{spacing!in math mode} \comname{WordCommand} when needed:
 \begin{showlatex}*{Automatic spacing of~\comname{DeclareMathOperator}}
 \begin{align*}
 &x \End V
@@ -1370,9 +1378,10 @@ If the same command is used multiple times then one should use \comname{DeclareM
 \subsection{Don’t abuse \comtitle{mathrm}}
 
 The commands~\comname{mathrm}\massindex{mathrm}[\comname] and \comname{operatorname} do not give the same formatting.
-With \comname{operatorname} we get the necessary spacing\index{spacing!in math mode} when not using parentheses, which does not happen when using \comname{mathrm}.
+With \comname{operatorname} we get the necessary spacing\index{spacing!in math mode} when not using parentheses
+We don’t get this from \comname{mathrm}.
 \begin{showlatex}{Missing spacing after~\comname{mathrm}}
-Compare $\operatorname{End} V$ to $\mathrm{End} V$.
+Compare $\operatorname{End} V$ to $\mathrm{End} V$, and also~$2 \operatorname{Fr}(x)$ to~$\mathrm{Fr}(x)$.
 \end{showlatex}
 
 
@@ -1397,17 +1406,17 @@ $\Ouv X$
 
 Trying to define an already existing command with \comname{newcommand} will lead to an error.
 To overwrite an already existing command one can use \comname{renewcommand}\massindex[defining commands]{renewcommand}[\comname] instead.
-But this shouldn’t really be used (unless you really, \emph{really} know what you’re doing):
-Even if you don’t like a particular command there is a chance that some package that you’re using relies on it.
-So overwriting a command can easily surprise you with some new problems.
+But this shouldn’t really be done (unless you really, \emph{really} know what you’re doing).
+Even if you don’t like a particular command it may happen that some of the packages which you’re using rely on it:
+overwriting the command can then easily lead to some unexpected new problems.
 
 
 
 \subsection{\comtitle{DeclarePairedDelimiter}}
 \index{delimiters!zzzz@\igobble |seealso {\comname{DeclarePairedDelimiter}}}
 
-Mathematical operations like the absolute value~$\lvert \cdot \rvert$ and a norm~$\lVert \cdot \rVert$ are denoted by putting certain delimiters to the left and right of the argument.
-To define a corresponding {\LaTeX} command like~\comname{abs} or \comname{norm} one should use the command~\comname{DeclarePairedDelimiter}\massindex[defining commands]{DeclarePairedDelimiter}[\comname] (which is provided by the package~\packname{mathtools}):
+Mathematical operations like the absolute value~$\lvert \,\cdot\, \rvert$ and a norm~$\lVert \,\cdot\, \rVert$ are denoted by putting certain delimiters around the argument.
+To define a corresponding {\LaTeX} command like~\comname{abs} or \comname{norm} one should use the command~\comname{DeclarePairedDelimiter}\massindex[defining commands]{DeclarePairedDelimiter}[\comname] (which is provided by the package~\packname{mathtools}).
 \begin{showcode}{Syntax of \comname{DeclarePairedDelimiter}}
 \DeclarePairedDelimiter{\name}{left delimiter}{right delimiter}
 \end{showcode}
@@ -1422,7 +1431,7 @@ The defined command can now be used as expected:
   \]
 \end{showlatex}
 
-Declaring a command~\comname{delim} via~\comname{DeclarePairedDelimiter} will automatically also define starred version~\comname{delim*} that scales the surrounding delimiters according to the given content between them.
+Declaring a command via~\comname{DeclarePairedDelimiter} will automatically also define a starred version that scales the surrounding delimiters according to the given content between them.
 One can also specify a scaling size like \comname{big}\massindex[scaling]{big}[\comname], \comname{bigg}\massindex[scaling]{bigg}[\comname], etc.\ to scale the delimiters.
 \begin{showlatex}{Scaling of declared delimiters}
 \begin{align*}
@@ -1447,8 +1456,8 @@ The variant~\comname{DeclarePairedDelimiterX}\massindex[defining commands]{Decla
   {left delimiter}{right delimiter}
   {expression build from #1, #2, ..., #n}
 \end{showcode}
-If the built up expression contains a delimiter, and by prefixing this delimiter with the command~\comname{delimsize}\massindex[scaling]{delimsize}[\comname] will ensure that the delimiter scales in the same way as the two surrounding delimiters.
-As an example we define a command~\comname{inner} for inner product. 
+If the built up expression contains a delimiter, then by prefixing this delimiter with the command~\comname{delimsize}\massindex[scaling]{delimsize}[\comname] will ensure that the delimiter scales in the same way as the two surrounding delimiters.
+As an example we define a command~\comname{inner} for inner product.
 \begin{showcode}{Using \comname{DeclarePairedDelimiterX} for more advanced delimiters}
 \DeclarePairedDelimiterX{\inner}[2]{\langle}{\rangle}{#1 \,\delimsize\vert\, #2}
 \end{showcode}
@@ -1461,13 +1470,14 @@ The defined command~\comname{inner} takes two arguments and inserts a line~(\com
 \]
 \end{showlatex}
 There is also the variant~\comname{DeclarePairedDelimiterXPP}\massindex[defining commands]{DeclarePairedDelimiterXPP}[\comname] that is even more flexible than \comname{DeclarePairedDelimiterX}.
+We refer to \cite{mathtools} for more details on these commands.
 
 
 
 \subsection{The package~\packtitle{xparse}}
 
 A useful way for defining commands -- in particular more involved ones -- is provided by the package~\packname{xparse}\massindex[packages]{xparse}[\packname].
-This package provides the command~\comname{NewDocumentCommand}\massindex[defining commands]{NewDocumentCommand}[\comname], which can be used to define new commands.
+This package provides the command~\comname{NewDocumentCommand}\massindex[defining commands]{NewDocumentCommand}[\comname].
 \begin{showcode}{Syntax of \comname{NewDocumentCommand}}
 \NewDocumentCommand{\name}{arguments}{definition}
 \end{showcode}
@@ -1482,7 +1492,7 @@ Mandatory arguments can be declared with the option~\optname{m}\expandafter\inde
 % in the main text
 \double{sometext}
 \end{showlatex}
-One can specify multiple arguments:
+One can also specify multiple arguments:
 \begin{showlatex}{Mandatory arguments with \comname{NewDocumentCommand}~II}
 % in the preamble
 \NewDocumentCommand{\swap}{m m}{#2 #1}
@@ -1493,7 +1503,7 @@ One can specify multiple arguments:
 \subsubsection{Optional arguments without default value}
 
 Optional arguments can be declared with the option~\optname{o}\massindex{o}[\optname]\expandafter\index\expandafter{\ciname{NewDocumentCommand}!optional argument!without default value}.
-It then needs to be checked with the command~\comname{IfNoValueTF}
+It needs to be checked with the command~\comname{IfNoValueTF} if this optional argument was assigned a value.
 \begin{showcode}[label = {syntax of ifvaluetf}]{Syntax of \comname{IfValueTF}}
 \IfValueTF{#number of argument}
   {if the argument has been set}
@@ -1501,9 +1511,45 @@ It then needs to be checked with the command~\comname{IfNoValueTF}
 \end{showcode}
 One can similarly use~\comname{IfNoValueTF} instead of~\comname{IfNoValueTF}.
 This has the same effect as switching the cases in \cref{syntax of ifvaluetf}.
+
+Let’s look at a specific example:
 \begin{showlatex}{Optional arguments with \comname{NewDocumentCommand},~I}
 % in the preamble
-\NewDocumentCommand{\module}{m o}{\IfNoValueTF{#2}{#1-module}{#1-#2-bimodule}}
+\NewDocumentCommand
+{\module}
+{m o}
+{\IfNoValueTF{#2}{#1-module}{#1-#2-bimodule}}
+% in the main text
+Let $M$ be an \module{$R$} and let $N$ be an \module{$R$}[$S$].
+\end{showlatex}
+It is useful to properly indent the source code.
+But we have to be careful here:
+It can easily happen that this indentation introduces some unwanted whitespace.
+Let’s consider the naive code first:
+\begin{showlatex}{Optional arguments with \comname{NewDocumentCommand},~I}
+% in the preamble
+\NewDocumentCommand
+{\module}
+{m o}
+{
+  \IfNoValueTF{#2}
+    {#1-module}
+    {#1-#2-bimodule}
+}
+% in the main text
+Let $M$ be an \module{$R$} and let $N$ be an \module{$R$}[$S$].
+\end{showlatex}
+Now let’s \enquote{comment out} the additional whitespace.
+\begin{showlatex}{Optional arguments with \comname{NewDocumentCommand},~I}
+% in the preamble
+\NewDocumentCommand
+{\module}
+{m o}
+{%
+  \IfNoValueTF{#2}
+    {#1-module}
+    {#1-#2-bimodule}%
+}
 % in the main text
 Let $M$ be an \module{$R$} and let $N$ be an \module{$R$}[$S$].
 \end{showlatex}
@@ -1511,11 +1557,21 @@ Let $M$ be an \module{$R$} and let $N$ be an \module{$R$}[$S$].
 \subsubsection{Optional arguments with default value}
 
 One can use \optname{O\{default value\}}\massindex{O\{ \}}[\optname]\expandafter\index\expandafter{\ciname{NewDocumentCommand}!optional argument!with default value} instead of \optname{o} to declare an optional argument that has a default value.
+
+Let’s start with an example where this default value is empty:
 \begin{showlatex}{Optional arguments with \comname{NewDocumentCommand},~II}
 % in the preamble
 \NewDocumentCommand{\restrict}{m m O{}}{#1|_{#2}^{#3}}
 % in the main text
 Let $f = \restrict{g}{X}$ and $f' = \restrict{g'}{X}[Y]$
+\end{showlatex}
+Now let’s do an example which has a standard value:
+\begin{showlatex}{Optional arguments with \comname{NewDocumentCommand},~III}
+% in the preamble
+\NewDocumentCommand{\favorite}{O{colour} m}{My favorite #1 is #2.}
+% in the main text
+\favorite{blue}
+\favorite[food]{spam}
 \end{showlatex}
 
 \subsubsection{Starred versions}
@@ -1535,8 +1591,13 @@ Don’t confuse \choice{first}{second} with \choice*{first}{second}.
 
 \section{Stretch your arrows}
 
-If some expression occurs atop or below an arrow, then this arrow must be stretched suffciently long to accommodate these expression.
+If some expression occurs atop or below an arrow, then this arrow must be stretched suffciently long to accommodate this expression.
 The extensible arrows introduced in \cref{extensible arrows} automatically do so.
+
+
+
+\subsection{Stretching columns}
+
 If an arrow in a commutative diagram isn’t long enough then this arrow must also be stretched:
 \begin{showlatex}{Commutative diagram with an arrow too short}
 \[
@@ -1614,7 +1675,29 @@ With~\optname{column~sep} one can fix the above diagram.
 \end{tikzcd}
 \]
 \end{showlatex}
-% TODO: Change the distance between only specific columns.
+One can also increase the width of a specific column by specifying the additional width at the correct~\&\nbd-symbol in the first row.
+(In the above examples, the difference between \optname{normal} and \optname{huge} is~\optname{2.4em}.)
+\begin{showlatex}{Explicit column spacing}
+\[
+\begin{tikzcd}
+  X \arrow{r}{f \circ g - g \circ f} \arrow{d}
+  &[2.4em]
+  Y \arrow{r}{k} \arrow{d}
+  &
+  Z \arrow[equal]{d}
+  \\
+  X' \arrow[dashed]{r}{h'}
+  &
+  Y' \arrow{r}{k'}
+  &
+  Z'
+\end{tikzcd}
+\]
+\end{showlatex}
+
+
+
+\subsection{Stretch rows}
 
 One can similarly use the option~\optname{row~sep} to change the distance of the rows.
 Some predefined distances can be found in \cref{row sep settings}.
@@ -1657,7 +1740,38 @@ Some predefined distances can be found in \cref{row sep settings}.
   \label{row sep settings}
 \end{table}
 They are the same as for~\optname{column~sep} but scaled down by a factor of~$0.75$.
-
+One can also explicitely specify an additional space between two rows after the correct~\comname{\tbs}.
+\begin{showlatex}{Using~\optname{row sep} and explicit row spacing}
+\[
+  \begin{tikzcd}[row sep = huge]
+    A \arrow{r} \arrow{d}
+    &
+    B \arrow{d}
+    \\
+    C \arrow{r} \arrow{d}
+    &
+    D \arrow{d}
+    \\
+    E \arrow{r}
+    &
+    F
+  \end{tikzcd}
+  \qquad
+  \begin{tikzcd}
+    A \arrow{r} \arrow{d}
+    &
+    B \arrow{d}
+    \\[1.8em]
+    C \arrow{r} \arrow{d}
+    &
+    D \arrow{d}
+    \\
+    E \arrow{r}
+    &
+    F
+  \end{tikzcd}
+\]
+\end{showlatex}
 
 
 
@@ -1666,7 +1780,7 @@ They are the same as for~\optname{column~sep} but scaled down by a factor of~$0.
 
 \index{spacing!in math mode|(}
 
-When typesetting a document {\LaTeX} groups the appearing symbols and expressions into certain groups and then adds spacing around these symbols and expressions depending on which group they belong to.
+{\LaTeX} classifies symbols and expressions into certain groups and then adds spacing around these symbols, which depends on the group they belong to.
 Three of these groups are \enquote{operators}, \enquote{relation symbols} and \enquote{binary operations}.
 The symbols~\inlinecode{=} and~\inlinecode{<} are for example treated as relations symbols, and the symbols~\inlinecode{+} and~\comname{cdot} as binary operations.
 We can see in the following example how some space is automatically added around these symbols:
@@ -1676,8 +1790,7 @@ We can see in the following example how some space is automatically added around
 \]
 \end{showlatex}
 To compare this to a version without spacing we can surround the symbols by a pair of curly brackets.
-This circumvents {\LaTeX} from taking the surround code into consideration.
-This leads to the following result:
+This circumvents {\LaTeX} from taking the surrounding code into consideration.
 \begin{showlatex}{Disabling the standard spacing around a symbol}
 \[
   a {=} b   \qquad  a {<} b  \qquad  a {+} b  \qquad  a {\cdot} b
@@ -1693,7 +1806,7 @@ The automatic spacing can become a problem, as the following examples illustrate
   \operatorname{id} \otimes h
 \]
 \end{showlatex}
-This problem can be fixed by surround the respective symbols in curly brackets.
+These problems can be fixed by surrounding the respective symbols with curly brackets.
 \begin{showlatex}*{Preventing a clash of spacings}
 \[
   X/{\sim}
@@ -1703,7 +1816,7 @@ This problem can be fixed by surround the respective symbols in curly brackets.
   {\operatorname{id}} \otimes h
 \]
 \end{showlatex}
-One can tell {\LaTeX} how to treat a certain symbol:
+One can also tell {\LaTeX} a symbol should be treated.
 \begin{showlatex}*{Specifying the role (and thus spacing) of a symbol}
 \[
   a | b
@@ -1715,14 +1828,14 @@ One can tell {\LaTeX} how to treat a certain symbol:
   a \mathbin{|} b
 \]
 \end{showlatex}
-To define a command~\comname{divides} to express that a number~$n$ divides a number~$m$ we do therefore do the following:
+We can thus define a command~\comname{divides}, which expresses that a number~$n$ divides a number~$m$, as follows:
 \begin{showlatex}*{Defining and using \comname{divides}}
 \newcommand{\divides}{\mathrel{|}}
 \[
   n \divides m
 \]
 \end{showlatex}
-For more on this topic see \cite{tex_binrel}.
+For more on this topic we refer to \cite{tex_binrel}.
 
 \index{spacing!in math mode|)}
 

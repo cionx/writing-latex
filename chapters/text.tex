@@ -24,7 +24,7 @@ We will in particular talk about the interplay between the mathematical content 
 \label{a mathematical text is a text}
 
 A mathematical text has to obey the rules of the language that is it written in (e.g.~English, French, German or Russian).
-It also means that a mathematical formula is part of the surrounding text, and has to be treated as such.
+A mathematical formula is part of the surrounding text, and has to be treated as such.
 
 
 
@@ -38,8 +38,8 @@ It also means that a mathematical formula is part of the surrounding text, and h
 \index{punctuation!in formulas|(}
 
 \Cref{a mathematical text is a text} has an important consequence:
-If a sentence ends with a formula, then this formula need to be followed by some kind of punctuation (in most cases by a full point).
-The following example does it very wrong:
+If a sentence ends with a formula, then this formula need to be followed by some kind of punctuation (in most cases by a period).
+The following example is very wrong:
 \begin{showlatex}*{Very wrong punctuation in an equation}
 It follows that
 \[
@@ -160,7 +160,7 @@ In the above example this gives the following:
 \begin{center}
   A set $B$ is a basis of $V$ if $B$ is linearly independent $B$ is a generating set
 \end{center}
-This is not a proper sentence, and should be the following instead:
+This is not a proper sentence, and should instead be as follows:
 \begin{center}
   A set $B$ is a basis of $V$ if $B$ is linearly independent and $B$ is a generating set.
 \end{center}
@@ -176,7 +176,7 @@ The above counterexample should hence read as follows:
 \end{showlatex}
 There are also some other acceptable versions:
 \begin{showlatex}{Right punctuation in lists~II}
-  A set $B$ is a basis of $V$ if it satisfies the following conditions:
+  A set $B$ is a basis of $V$ if it satisfies the following two conditions:
   \begin{enumerate}
     \item
       $B$ is linearly independent.
@@ -310,12 +310,12 @@ for all examples to allow a better comparison.)
 
 A non-trivial amount of people makes the mistake of putting a hypen\massindex[punctuation]{hyphen} into math~mode.
 \begin{showlatex}{An accidental hyphen in math~mode}
-Let~$A$ be a $\mathbb{Z}-$module.
+Let~$A$ be an $R-$module.
 \end{showlatex}
 We can see that we don’t get a hyphen but a minus sign.
 We hence need to place the symbol~\inlinecode{-} outside of the math environment.
 \begin{showlatex}{Proper placement of the hyphen}
-Let~$A$ be a $\mathbb{Z}$-module.
+Let~$A$ be an $R$-module.
 \end{showlatex}
 
 
@@ -367,7 +367,37 @@ This happens because {\LaTeX} thinks that the period in~\enquote{\inlinecode{x. 
 We can also see from the first two tables that this difference of spacing occurs both if the following letter is lower case and if it is upper case.
 We can see from the third and fourth column that the amount of additional spacing does not depenend on whether the following letter is in lower case or upper case.
 
-\subsubsection{The solution}
+\subsubsection{First Solution}
+
+The default behaviour of {\LaTeX}, to put additional space after a period that ends a sentence, is outdated.
+So it is best to just deactivate it.
+This can via the command \comname{frenchspacing}\massindex[spacing!after a period]{frenchspacing}[\comname].
+By putting this command in the preamble, the whole document will be affected.
+
+\begin{showcode}{Using \comname{frenchspacing}}
+  \documentclass[a4paper, 10pt]{scrartcl}
+
+  \frenchspacing
+
+  \begin{document}
+
+  No additional space after a sentence in this document.
+
+  \end{document}
+\end{showcode}
+
+The additional spacing can also be reenabled by \comname{nofrenchspacing}\massindex[spacing!after a period]{nofrenchspacing}[\comname].
+
+\begin{showlatex}{Using \comname{nofrenchspacing}}
+  \frenchspacing
+  Observe the spacing. Between the preceeding period.
+  \nonfrenchspacing\\
+  Observe the spacing. Between the preceeding period.
+\end{showlatex}
+
+\subsubsection{Second Solution}
+
+If the default behavior should be kept, then one needs to do more manual work.
 
 We can use the command~\enquote{\comname{ }} -- which we will write for readability as~\comname{(space)}\massindex[spacing!after a period]{(space)}[\comname] -- to tell~{\LaTeX} that a preceding period is not meant to end a sentence.
 We can similarly use the command~\comname{@}\massindex[spacing!after a period]{"@}[\comname] to tell {\LaTeX} that the following period is ending a sentence.
@@ -382,8 +412,8 @@ Imagine now some old and long-dead English kings, e.g.\ Henry~III and Henry~IV\@
 (Kings not named Henry are also okay.)
 \end{showlatex}
 
-It should be pointed out that if a problematic period is followed by a closing parenthesis, a closing brecket or quotations marks then then the problematic spacing will still occur after these symbols.
-Lets consider the following example (where we use the forbidden \comname{\tbs} to compare the versions).
+It should be pointed out that if a problematic period is followed by a closing parenthesis, a closing bracket, or quotations marks then then the problematic spacing will still occur after these symbols.
+Lets consider the following example (where we use the otherwise forbidden~\comname{\tbs} to compare the versions).
 \begin{showlatex}{Spacings after periods followed by parentheses or quotation marks}
 Many colours (e.g. red, blue, etc.) are supported by \enquote{ColorX}. Even purple! \\
 Many colours (e.g.\ red, blue, etc.) are supported by \enquote{ColorX}. Even purple! \\
@@ -408,22 +438,21 @@ Let $f$ be an endomorphism of $\operatorname{X}$.\
 Then $f$ is an isomorphism or $f = 0$.
 \end{showlatex}
 
-In view of \cref{non-breakable space} we get a problem:
+In view of the upcoming \cref{non-breakable space} we get a problem:
 What if we want the space after an abbreviation, as in~\enquote{i.e.~word}, not to be broken?
 Should we then write~\inlinecode{i.e.{\tbs} word} or~\inlinecode{i.e.{\customtexttilde}word}?
 
 In this case we write~\inlinecode{i.e.{\customtexttilde}word}, since the tie~\inlinecode{\customtexttilde} already contains the effect of~\comname{(space)}.
 Consider for this the following example:
 \begin{showlatex}{Spacing of~\inlinecode{\customtexttilde} and~\enquote{\inlinecode{{\tbs} }}}
-Let $M$ be a $2$-manifold, e.g. $M = S^2$-dimensional. \\
-Let $M$ be a $2$-manifold, e.g.\ $M = S^2$-dimensional. \\
-Let $M$ be a $2$-manifold, e.g.~$M = S^2$-dimensional.
+Let $M$ be a $2$-manifold, e.g. $M = S^2$. \\
+Let $M$ be a $2$-manifold, e.g.\ $M = S^2$. \\
+Let $M$ be a $2$-manifold, e.g.~$M = S^2$.
 \end{showlatex}
 
 To summarize this \lcnamecref{spacing after dots}:
-As long as words are written, no problem occur.
-If an abbreviation or some non-word things appear one should pay heed to periods which may occur.
-The most of these special cases are covered by paying attention to~\enquote{i.e.~words} and~\enquote{e.g.~words}.
+If an abbreviation or some non-word things appear one should pay heed to periods which may occur at their ends.
+Most of these special cases are covered by paying attention to~\enquote{i.e.~*} and~\enquote{e.g.~*}.
 
 We refer to \cite[19.5.1, 19.6]{latex2e_manual} for more information on this topic.
 
@@ -442,15 +471,16 @@ We refer to \cite[19.5.1, 19.6]{latex2e_manual} for more information on this top
 
 If two expressions in text mode are separated by a space or a hyphen then {\LaTeX} may separate these expressions in the output \filename{pdf}-file by a line break\index{line breaks!in text mode}.
 But such line breaks are often undesirable and can sometimes be downright wrong.
+Comsider for this the following examples:
 \begin{myitemize}
   \item
-    In abbreviations like~\enquote{Prof.~Dr.~John Doe}.
+    Abbreviations like~\enquote{Prof.~Dr.~John Doe}.
   \item
-    In combinations of words and numbers like~\enquote{Lemma~5}.
+    Cmbinations of words and numbers like~\enquote{Lemma~5}.
   \item
-    In combinations of mathematics and words like~\enquote{$3${\nbd}dimensional}.
+    Combinations of mathematics and words like~\enquote{$3${\nbd}dimensional}.
 \end{myitemize}
-In such cases one needs to prevent the line break:
+In such cases one needs to prevent the line break.
 
 \subsubsection{Line breaks at a space}
 
@@ -467,22 +497,15 @@ Text text text text text text text text text text text text text, so by Lemma~35
 
 \subsubsection{Line breaks at a hypen}
 
-
-% Unable to create an example of a bad lin break at a hypen after FUCKING HOURS OF TRYING
-
-To prevent a line break at a hyphen the command~\comname{nobreakdash}\massindex{nobreakdash}[\comname]\index{unbreakable!hyphen} needs to be placed in front of it.
-% Consider the following example:
+Consider the following example:
 % % fragile example
-% \begin{showlatex}{An unwanted line break at a hyphen}
-% Lorem $1$-ipsum $2$-dolor $3$-sit $4$-amet, $5$-consectetur $6$-adipiscing $7$-elit, $8$-sed $9$-do $10$-eiusmod $11$-tempor $12$-incididunt $13$-ut $14$-labore $15$-et $16$-dolore $17$-magna $18$-aliqua.
-% Dolor $19$-sed $20$-viverra $21$-ipsum $22$-nunc $23$-aliquet $24$-bibendum $25$-enim.
-% In $26$-massa $27$-tempor $28$-nec $29$-feugiat.
-% Nunc $30$-aliquet $31$-bibendum $32$-enim $33$-facilisis $34$-gravida.
-% \end{showlatex}
-% To prevent a line break at the hyphen\massindex[punctuation]{hyphen} we put~\comname{nobreakdash} before it:
-% \begin{showlatex}*{Using~\comname{nobreakdash} to prevent unwanted line breaks at hyphens}
-% The sphere $S^2$ will be our very first non-trivial example of a smooth $2$\nobreakdash-manifold (without boundary).
-% \end{showlatex}
+\begin{showlatex}{An unwanted line break at a hypen}
+  textextext textextext textextext textextext textextext textextext textext 123456-dimensional textextext
+\end{showlatex}
+To prevent a line break at the hyphen\massindex[punctuation]{hyphen} we put~\comname{nobreakdash} before it:
+\begin{showlatex}{Using~\comname{nobreakdash} to prevent unwanted line breaks at hyphens}
+  textextext textextext textextext textextext textextext textextext textext 123456\nobreakdash-dimensional textextext
+\end{showlatex}
 The command~\comname{nobreakdash} works not only with hyphens but also with en~dashes\index{unbreakable!dash}\massindex[punctuation]{en~dash} and em~dashes\index{unbreakable!dash}\massindex[punctuation]{em~dash}.
 
 
@@ -502,22 +525,26 @@ It also consists of multiple lines.
 \end{showlatex}
 Note that new paragraphs start indented.
 
-The use of~\comname{\tbs}\massindex{\tbs}[\comname] or~\comname{newline}\massindex{newline}[\comname] doesn’t actually end a paragraph but instead forces {\LaTeX} to do a line break.\index{line breaks!in text mode}
+The use of~\comname{\tbs}\massindex{\tbs}[\comname] or~\comname{newline}\massindex{newline}[\comname] doesn’t actually end a paragraph but only forces a line break.\index{line breaks!in text mode}
 \begin{showlatex}*{New \enquote{paragraphs} done wrong}
 This is the first paragraph in a counterexample.\\
 This is not a new paragraph.
-The text was just forced to start a new line.\newline
+The text is just forced to start a new line.\newline
 This one is also not a new paragraph.
 But this whole thing looks ugly.
 \end{showlatex}
-The use of \comname{\tbs} and \comname{newline} is only for starting new rows in matrices, tables and arrays.
+The use of \comname{\tbs} and \comname{newline} is only for starting new rows in matrices, tables and arrays.%
+\footnote{
+  In this text we sometimes use~\comname{\tbs} to tweak examples, to make certain lines more comparable.
+  This is done purely for technical purposes and should not be done for actual mathematical writings.
+}
 Don’t use is to separate paragraphs.
 
 
 
 \subsection{Text consisting of lists}
 
-The list~environments~\envname{enumerate} and~\envname{itemize} do by default contain certain indentations, that can be problematic in mathematical writing.
+The two list~environments~\envname{enumerate} and~\envname{itemize} contain by default certain indentations, that can be problematic in mathematical writing.
 
 \subsubsection{Identation compared to the left~margin}
 
@@ -532,7 +559,7 @@ The most prominent example for this are propositions (and their proofs) that con
     \item
       If $H$ is subgroup of $G$ then $\operatorname{ord}(H)$ divides $\operatorname{ord}(G)$.
     \item
-      If $a$ is any element of $G$ then $\operatorname{ord}(a)$ divides $\operatorname{ord}(G)$.
+      If $g$ is any element of $G$ then $\operatorname{ord}(g)$ divides $\operatorname{ord}(G)$.
     \item
       Every group of prime order is cyclic.
     \item
@@ -549,7 +576,7 @@ In such cases one should remove the identation between the left~margin of the te
     \item
       If $H$ is subgroup of $G$ then $\operatorname{ord}(H)$ divides $\operatorname{ord}(G)$.
     \item
-      If $a$ is any element of $G$ then $\operatorname{ord}(a)$ divides $\operatorname{ord}(G)$.
+      If $g$ is any element of $G$ then $\operatorname{ord}(g)$ divides $\operatorname{ord}(G)$.
     \item
       Every group of prime order is cyclic.
     \item
@@ -562,14 +589,14 @@ In such cases one should remove the identation between the left~margin of the te
 
 \subsubsection{Theorems and proofs beginning with a list}
 
-If a theorem-like~environment\index{theorem-like environments} or a the environment~\envname{proof}\massindex[\piname{amsthm}]{proof}[\envname] begins with a list~environment then the first item of the list will not be aligned with the other list items:
+If a theorem-like~environment\index{theorem-like environments} or a the environment~\envname{proof}\massindex[\piname{amsthm}]{proof}[\envname] begins with a list~environment then the first item of this list will not be aligned with the other list items:
 \begin{showlatex}{Improper aligned of list items}
 \begin{lemma}
 \begin{enumerate}
   \item
-    Every group~$G$ is isomorphic to its opposite group~$G^{\mathrm{op}}$.
+    Every group $G$ is isomorphic to its opposite group $G^{\mathrm{op}}$.
   \item
-    A group~$G$ equals its opposite group~$G^{\mathrm{op}}$ if and only if it is abelian.
+    A group $G$ equals its opposite group $G^{\mathrm{op}}$ if and only if it is abelian.
 \end{enumerate}
 \end{lemma}
 \end{showlatex}
@@ -580,9 +607,9 @@ One way to circumvent this problem is by inserting the command~\comname{leavevmo
 \leavevmode
 \begin{enumerate}
   \item
-    Every group~$G$ is isomorphic to its opposite group~$G^{\mathrm{op}}$.
+    Every group $G$ is isomorphic to its opposite group $G^{\mathrm{op}}$.
   \item
-    A group~$G$ equals its opposite group~$G^{\mathrm{op}}$ if and only if it is abelian.
+    A group $G$ equals its opposite group $G^{\mathrm{op}}$ if and only if it is abelian.
 \end{enumerate}
 \end{lemma}
 \end{showlatex}
@@ -626,20 +653,20 @@ Let $G$ be a group with opposite group $G^{\mathrm{op}}$.
 \subsection{Don’t break inline mathematics}
 \label{breaking inline math}
 
-When inline formulas or equations are too long or badly placed then it can happen that a line break\index{line breaks!in text mode} occurs, tearing the formula apart:
+When inline formulas or inline equations are too long or badly placed then it can happen that a line break\index{line breaks!in text mode} occurs inside the formula, tearing it apart:
 % fragile example
 \begin{showlatex}[before lower = {\binoppenalty=100}, after lower = {\binoppenalty = \maxdimen}]{Line break in inline math}
-The most important formula of all times is without a doubt is my mind $1 + 2 + 3 + 4 = 10 - 5$.
+The most important formula of all times is without a doubt is my mind $1 + 2 + 3 + 4 = 10$.
 Truly a work of genius!
 % fragile example
 \end{showlatex}
-This horrible affront to nature can thankfully be completely stopped by setting the penalties~\comname{binoppenalty}\massindex[penalties]{binoppenality}[\comname] and~\comname{relpenalty}\massindex[penalties]{relpenalty}[\comname] to their maximum value, which can be accessed via the command~\comname{maxdimen}\massindex{maxdimen}[\comname].
+This horrible affront to nature can thankfully be eliminated by setting the penalties~\comname{binoppenalty}\massindex[penalties]{binoppenality}[\comname] and~\comname{relpenalty}\massindex[penalties]{relpenalty}[\comname] to their maximum value, which can be accessed via the command~\comname{maxdimen}\massindex{maxdimen}[\comname].
 \begin{showlatex}{Preventing inline math in inline math}
 % in the preamble:
 \binoppenalty = \maxdimen
-\relpenalty = \maxdimen
+\relpenalty   = \maxdimen
 % in the main text:
-The most important formula of all times is without a doubt is my mind $1 + 2 + 3 + 4 = 10 - 5$.
+The most important formula of all times is without a doubt is my mind $1 + 2 + 3 + 4 = 10$.
 Truly a work of genius!
 \end{showlatex}
 
@@ -669,11 +696,11 @@ Let $U$ and $W$ be two linear subspaces of $V$ of complementary dimensions, i.e.
 Then the following conditions are equivalent:
 \begin{enumerate}[label = \roman*)]
   \item
-    $V = U \oplus W$,
+    $V = U \oplus W$.
   \item
-    $V = U + W$,
+    $V = U + W$.
   \item
-    $V = U \cap W$.
+    $U \cap W = 0$.
 \end{enumerate}
 \end{showlatex}
 
@@ -686,7 +713,7 @@ Consider the following example:
 \begin{showlatex}{Not properly separating mathematics}
 Then $f^2 = g$,$f$ is differentiable and $f = \exp(h)$.
 \end{showlatex}
-Thu human eye (and brain) parses this sentence as follows:
+The human eye (and brain) parses this sentence as follows:
 \begin{center}
   Then
   \quad
@@ -697,7 +724,7 @@ Thu human eye (and brain) parses this sentence as follows:
   $f = \exp(h)$.
 \end{center}
 But this betrays the actual content of the sentence.
-This problem can be fixed by introducing some text.
+This problem can be fixed by introducing some more text.
 One solution is the following:
 \begin{showlatex}{Properly separating mathematics~I}
 Then $f^2 = g$, the function $f$ is differentiable and $f = \exp(h)$.
@@ -754,7 +781,7 @@ The author has taken this approach from~\cite{nomath_at_line}.
 
 When text needs to be used in math~mode the command~\comname{text} is to be used.
 \begin{showcode}{Syntax of \comname{text}}
-\text{normal text in math~mode}
+\text{normal text in math mode}
 \end{showcode}
 Let’s start with the following horrible example:
 \begin{showlatex}{Missing text in math~mode}
@@ -768,7 +795,7 @@ Instead do this:
 \begin{showlatex}[label = {right math mode position}]{Right way of using text in math~mode}
 Let $A \coloneqq \{ x \in [0,1] : \text{$x$ is rational} \}$.
 \end{showlatex}
-Note that the right code reflects the structure\index{structure of an expression} of the displayed expression:
+Note that the right code reflects the actual structure\index{structure of an expression} of the displayed expression:
 Indeed, the diagram in \cref{structure tree of definition} shows the structure of the given expression.
 \begin{figure}[tb]
   \begin{center}
@@ -832,7 +859,8 @@ Therefore
 \]
 \end{showlatex}
 In such a case one needs to put space\index{spacing!in math~mode} between the mathematics and the text.
-This space should not be part of the text:
+This space should not be part of the text.
+Consider the following counterexample:
 \begin{showlatex}{Wrong spacing around text in math~mode~II}
 Therefore
 \[
@@ -842,7 +870,8 @@ Therefore
   \text{ for all $g, h \in G$.}
 \]
 \end{showlatex}
-Instead it should be put between the formula and the text.
+Instead the spacing should be put between the formula and the text.
+
 In the above example, where a single block of mathematics is follows by a single block of text which contains quantifiers for the previous formula, one should use the spacing~\comname{qquad}\massindex[spacing]{qquad}[\comname]:
 \begin{showlatex}{Right spacing around text in math~mode~I}
 Therefore
@@ -871,7 +900,7 @@ It may even be appropriate to use~\comname{qquad} on both sides when more space 
 \subsection{Use \comtitle{intertext} and \comtitle{shortintertext}}
 
 Multi-line display mode environments like \envname{gather*}\massindex[display math environment, multi-line mathematics]{gather*}[\envname] and \envname{align*}\massindex[display math environment, multi-line mathematics]{align*}[\envname] (see \cref{display environments}) can be interrupted by inserting some text via the commands~\comname{intersect}\massindex[text in math~mode]{intertext}[\comname] and~\comname{shortintertext}\massindex[text in math~mode]{shortintertext}[\comname] to insert some text between different lines of mathematics.
-This is particularly useful can combine multiple \envname{align*}~environments into a single one, which then allows for a common alignment\index{aligning formulas} of all lines.
+This is particularly useful to combine multiple \envname{align*}~environments into a single one, which then allows for a common alignment\index{aligning formulas} of all lines.
 
 The following is an example for what we don’t want.
 \begin{showlatex}{Two non-aligned blocks}
@@ -930,7 +959,8 @@ It follows from the identity
 \end{align*}
 which proves the theorem.
 \end{showlatex}
-But we can see that the inserted~\comname{intersect} puts a large space between the two formulas, far too large for our taste.
+But we can see that the inserted~\comname{intersect} puts a large distance between the two formulas.
+This distance is far too large for our taste.
 We can solve this problem by using~\comname{shortintertext} instead of~\comname{intertext}, as the following example shows:
 \begin{showlatex}*{Two aligned equalities with proper space}
 It follows from the identity
@@ -962,7 +992,7 @@ But this use of mathematics should be treated with care, and not abused:
 \begin{showlatex}{Wrong way of using mathematical symbols as words}
 The integer $a$ is $< 0$ and thus $\notin \mathbb{N}$.
 \end{showlatex}
-
+This kind of tortue is highly illegal, so don’t do it!
 
 
 \subsection{Logical symbols don’t replace text}
@@ -1014,7 +1044,7 @@ The use of the above logical symbols is of course okay if they are used in their
     \bigr]
     \\
     \implies{}&
-    \text{$f^* \colon \mathcal{C}(Y,-) \to \mathcal{C}(X,-)$ is a monomorphism}.
+    \text{$f^* \colon \mathcal{C}(Y,-) \to \mathcal{C}(X,-)$ is a monomorphism in~$\mathbf{Fun}(\mathcal{C}, \mathbf{Set})$}
   \end{align*}
 \end{showlatex}
 
@@ -1024,7 +1054,7 @@ The use of the above logical symbols is of course okay if they are used in their
 \index{iff}
 \label{no iff}
 
-Similarly to \cref{no logical symbols} abbreviations like~\enquote{iff} need to be written out in a mathematical text.
+Similarly to \cref{no logical symbols} abbreviations like~\enquote{iff} need to be written out in a proper mathematical text.
 
 
 

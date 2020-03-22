@@ -112,7 +112,7 @@
 % for a current lualatex bug regarding em dash and en dash
 % see https://tex.stackexchange.com/questions/477094/luatex-and-em-dashes
 % should be fixed in the future
-\automatichyphenmode=1
+%\automatichyphenmode=1
 
 
 % further dictum settings
@@ -144,6 +144,9 @@
 % prevents breaking inline math around binary or relationship symbols
 \binoppenalty=\maxdimen
 \relpenalty=\maxdimen
+
+% show overfull hboxes
+\overfullrule=2mm
 
 
 %%%%% PLAYING AROUND WITH FONTS
@@ -182,8 +185,8 @@
     breakable,
     enhanced jigsaw,
     before lower={\setlength{\parindent}{\normalparindent}\noindent},
-    before={\par\pagebreak[0]\smallskip\noindent},
-    after={\par\noindent},
+    before={\par\pagebreak[0]\medskip\noindent},
+    after={\par\smallskip\noindent},
   }
 }
 % before must be set because after is set, see
@@ -280,10 +283,10 @@
   \end{center}
 }
 
-\RenewDocumentCommand{\TeX}{}{\hologo{TeX}}
-\RenewDocumentCommand{\LaTeX}{}{\hologo{LaTeX}}
-\NewDocumentCommand{\LuaLaTeX}{}{\hologo{LuaLaTeX}}
-\NewDocumentCommand{\XeLaTeX}{}{\hologo{XeLaTeX}}
+\renewcommand{\TeX}{\hologo{TeX}}
+\renewcommand{\LaTeX}{\hologo{LaTeX}}
+\newcommand{\LuaLaTeX}{\hologo{LuaLaTeX}}
+\newcommand{\XeLaTeX}{\hologo{XeLaTeX}}
 
 
 
