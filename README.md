@@ -1,5 +1,6 @@
 # writing-latex
 
-The compiled document can be downloaded [here][1].
+Some thoughts about what to do (and not to do) when writing mathematical texts with LaTeX.
+The compiled document can be downloaded via the following link: [Download][1].
 
-[1]: https://github.com/cionx/writing-latex/releases/download/v0.5/writing_latex.pdf
+[1]: https://cionx.gitlab.io/writing-latex/writing-latex.pdf
