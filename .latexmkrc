@@ -11,7 +11,7 @@ $pdf_mode = 4;
 # the defaut is 'lualatex %O %S'
 # %O is a placeholder for additional options passed to latexmk
 # %S is the name of the source file(s?)
-$xelatex = 'lualatex %O -synctex=1 -interaction=nonstopmode -file-line-error %S';
+$lualatex = 'lualatex %O -synctex=1 -interaction=nonstopmode -file-line-error %S';
 
 # the list of files to be compiled
 # by default all tex-files in the current directory are compiled
